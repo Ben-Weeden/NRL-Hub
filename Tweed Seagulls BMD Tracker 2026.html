@@ -294,6 +294,19 @@ function renderRounds(){
         ${r.penAg!=null?`<div style="background:var(--card);border-radius:8px;padding:8px 12px;text-align:center;flex:1;min-width:70px;"><div style="font-size:18px;font-weight:900;color:${r.penAg<=7?'var(--green)':r.penAg<=9?'var(--amber)':'var(--red)'};">${r.penAg}</div><div style="font-size:10px;color:var(--muted);margin-top:1px;">PEN AGAINST</div></div>`:''}
         ${r.errors!=null?`<div style="background:var(--card);border-radius:8px;padding:8px 12px;text-align:center;flex:1;min-width:70px;"><div style="font-size:18px;font-weight:900;color:${r.errors<=8?'var(--green)':r.errors<=10?'var(--amber)':'var(--red)'};">${r.errors}</div><div style="font-size:10px;color:var(--muted);margin-top:1px;">ERRORS</div></div>`:''}
       </div>
+      ${r.lpo&&r.lpo.length?`
+      <div style="margin-top:12px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">🏉 Last Play Options</div>
+        <div style="display:grid;grid-template-columns:50px 50px 1fr;gap:4px;">
+          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">1H</div>
+          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">2H</div>
+          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Opposition Starting Point</div>
+          ${r.lpo.map(row=>`
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;font-size:12px;font-weight:700;color:var(--text);">${row.h1??'—'}</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;font-size:12px;font-weight:700;color:var(--text);">${row.h2??'—'}</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.osp||'—'}</div>`).join('')}
+        </div>
+      </div>`:''}
     </div>`;
   }).join('');
 }
@@ -473,11 +486,63 @@ function renderEntryForm(rd){
     <div class="form-group"><label>Total (auto)</label><input type="number" id="f-errors" min="0" value="${get('errors')}" style="color:var(--gold);" readonly></div>
   </div>
 
+  <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:14px 0 8px;">🏉 Last Play Options</div>
+  <div style="display:grid;grid-template-columns:60px 60px 1fr 32px;gap:6px;margin-bottom:6px;">
+    <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">1H</div>
+    <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">2H</div>
+    <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Opposition Starting Point</div>
+    <div></div>
+  </div>
+  <div id="lpo-rows">
+    ${(get('lpo',[])).length > 0
+      ? get('lpo',[]).map((row,i) => `
+        <div class="lpo-row" style="display:grid;grid-template-columns:60px 60px 1fr 32px;gap:6px;margin-bottom:6px;" id="lpo-row-${i}">
+          <input type="text" class="lpo-h1" value="${row.h1||''}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <input type="text" class="lpo-h2" value="${row.h2||''}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <input type="text" class="lpo-osp" placeholder="e.g. Kick Return" value="${row.osp||''}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <button onclick="this.closest('.lpo-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
+        </div>`).join('')
+      : `<div class="lpo-row" style="display:grid;grid-template-columns:60px 60px 1fr 32px;gap:6px;margin-bottom:6px;" id="lpo-row-0">
+          <input type="text" class="lpo-h1" placeholder="0" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <input type="text" class="lpo-h2" placeholder="0" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <input type="text" class="lpo-osp" placeholder="e.g. Kick Return" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <button onclick="this.closest('.lpo-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
+        </div>`
+    }
+  </div>
+  <button onclick="addLpoRow()" style="background:rgba(0,75,160,.15);border:1px solid rgba(0,75,160,.3);border-radius:8px;color:#5b9bd5;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;margin-bottom:12px;">+ Add Row</button>
+
   <button class="btn-primary" onclick="submitEntry(${rd})">💾 Save R${rd} Data</button>
   ${saved['rd'+rd] ? `<br><button class="btn-clear" onclick="clearEntry(${rd})">🗑 Clear saved data for R${rd}</button>` : ''}
   <div class="save-notice" id="save-notice">✅ R${rd} data saved!</div>`;
 
   calcPct();
+}
+
+function addLpoRow(){
+  const container = document.getElementById('lpo-rows');
+  const idx = Date.now();
+  const div = document.createElement('div');
+  div.className = 'lpo-row';
+  div.style = 'display:grid;grid-template-columns:60px 60px 1fr 32px;gap:6px;margin-bottom:6px;';
+  div.innerHTML = `
+    <input type="text" class="lpo-h1" placeholder="0" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+    <input type="text" class="lpo-h2" placeholder="0" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+    <input type="text" class="lpo-osp" placeholder="e.g. Dropout" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+    <button onclick="this.closest('.lpo-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>`;
+  container.appendChild(div);
+}
+
+function collectLpo(){
+  const rows = document.querySelectorAll('.lpo-row');
+  const lpo = [];
+  rows.forEach(row => {
+    const h1 = row.querySelector('.lpo-h1').value;
+    const h2 = row.querySelector('.lpo-h2').value;
+    const osp = row.querySelector('.lpo-osp').value.trim();
+    if(osp || h1 || h2) lpo.push({h1:h1!==''?parseFloat(h1):null, h2:h2!==''?parseFloat(h2):null, osp});
+  });
+  return lpo;
 }
 
 function calcPen(){
@@ -551,6 +616,8 @@ function submitEntry(rd){
   if(h1errors!=null) obj.h1errors=h1errors;
   if(h2errors!=null) obj.h2errors=h2errors;
   if(errors!=null) obj.errors=errors;
+  const lpo = collectLpo();
+  if(lpo.length) obj.lpo=lpo;
   obj.note=null;
 
   saveData(rd, obj);
