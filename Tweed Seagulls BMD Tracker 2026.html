@@ -150,9 +150,12 @@ async function _initFirestore(){
     if(snap.exists()){
       _cache = snap.data().rounds || {};
       updateHero();
-      // Refresh any open entry form
+      // Refresh open entry form if Enter Data tab is visible
       const activeRd = document.querySelector('.rd-select-btn.active');
-      if(activeRd) renderEntryForm(parseInt(activeRd.dataset.rd));
+      if(activeRd){
+        const rd = parseInt(activeRd.dataset.rd);
+        if(!isNaN(rd)) renderEntryForm(rd);
+      }
     }
   });
   updateHero();
@@ -441,12 +444,16 @@ function renderEnter(){
     <div class="rd-select-btns" id="rd-selector">
       ${BASE.map(r=>{
         const hasSavedOrBase = saved['rd'+r.rd] || [1,2,3].includes(r.rd);
-        return `<button class="rd-select-btn ${hasSavedOrBase?'has-data':''} ${r.rd===activeEntryRd?'active':''}"
-          onclick="setEntryRound(${r.rd})">R${r.rd}</button>`;
+        return `<button class="rd-select-btn ${hasSavedOrBase?'has-data':''} ${r.rd===activeEntryRd?'active':''}" data-rd="${r.rd}">R${r.rd}</button>`;
       }).join('')}
     </div>
     <div id="entry-form-area"></div>
   </div>`;
+
+  // Use addEventListener instead of inline onclick — avoids window.* lookup issues on iOS
+  document.querySelectorAll('.rd-select-btn').forEach(btn => {
+    btn.addEventListener('click', () => setEntryRound(parseInt(btn.dataset.rd)));
+  });
 
   renderEntryForm(activeEntryRd);
 }
@@ -580,7 +587,7 @@ function renderEntryForm(rd){
   </div>
 
   <button class="btn-primary" onclick="submitEntry(${rd})">💾 Save R${rd} Data</button>
-  ${saved['rd'+rd] ? `<br><button class="btn-clear" onclick="clearEntry(${rd})">🗑 Clear saved data for R${rd}</button>` : ''}
+  ${loadSaved()['rd'+rd] ? `<br><button class="btn-clear" onclick="clearEntry(${rd})">🗑 Clear saved data for R${rd}</button>` : ''}
   <div class="save-notice" id="save-notice">✅ R${rd} data saved!</div>`;
 
   calcPct();
