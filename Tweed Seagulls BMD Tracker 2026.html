@@ -113,7 +113,9 @@ const BASE = [
   {rd:4, opp:'Burleigh Bears', venue:'A', result:'L', score:'4-34',
    h1cs:13,h2cs:9,totalcs:22,h1ncs:1,h2ncs:2,totalncs:3,h1tot:14,h2tot:11,tot:25,
    h1comp:92.9,h2comp:81.8,comp:88.0,penFor:3,penAg:8,errors:5},
-  {rd:5, opp:'Brisbane Tigers', venue:'H'},
+  {rd:5, opp:'Brisbane Tigers', venue:'H', result:'L', score:'14-38',
+   h1cs:8,h2cs:17,totalcs:25,h1ncs:5,h2ncs:4,totalncs:9,h1tot:13,h2tot:21,tot:34,
+   h1comp:61.5,h2comp:81.0,comp:73.5,penFor:4,penAg:5,errors:11},
   {rd:6, opp:'Wynnum Manly', venue:'H'},
   {rd:7, opp:'CQ Capras', venue:'A'},
   {rd:8, opp:'Souths Logan', venue:'A'},
@@ -294,18 +296,31 @@ function renderRounds(){
         ${r.penAg!=null?`<div style="background:var(--card);border-radius:8px;padding:8px 12px;text-align:center;flex:1;min-width:70px;"><div style="font-size:18px;font-weight:900;color:${r.penAg<=7?'var(--green)':r.penAg<=9?'var(--amber)':'var(--red)'};">${r.penAg}</div><div style="font-size:10px;color:var(--muted);margin-top:1px;">PEN AGAINST</div></div>`:''}
         ${r.errors!=null?`<div style="background:var(--card);border-radius:8px;padding:8px 12px;text-align:center;flex:1;min-width:70px;"><div style="font-size:18px;font-weight:900;color:${r.errors<=8?'var(--green)':r.errors<=10?'var(--amber)':'var(--red)'};">${r.errors}</div><div style="font-size:10px;color:var(--muted);margin-top:1px;">ERRORS</div></div>`:''}
       </div>
-      ${r.lpo&&r.lpo.length?`
+      ${((r.lpo1h&&r.lpo1h.length)||(r.lpo2h&&r.lpo2h.length)||(r.lpo&&r.lpo.length))?`
       <div style="margin-top:12px;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">🏉 Last Play Options</div>
-        <div style="display:grid;grid-template-columns:50px 50px 1fr;gap:4px;">
-          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">1H</div>
-          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">2H</div>
-          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Opposition Starting Point</div>
-          ${r.lpo.map(row=>`
-          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;font-size:12px;font-weight:700;color:var(--text);">${row.h1??'—'}</div>
-          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;font-size:12px;font-weight:700;color:var(--text);">${row.h2??'—'}</div>
-          <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.osp||'—'}</div>`).join('')}
-        </div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">🏉 Last Play Options</div>
+        ${(r.lpo1h&&r.lpo1h.length)||(r.lpo&&r.lpo.length)?`
+        <div style="margin-bottom:10px;">
+          <div style="font-size:9px;font-weight:700;color:var(--amber);text-transform:uppercase;margin-bottom:4px;">1st Half</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Option</div>
+            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Opp Set Start</div>
+            ${(r.lpo1h||r.lpo).map(row=>`
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.option??row.osp??'—'}</div>
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.oppSetStart??row.h1??'—'}</div>`).join('')}
+          </div>
+        </div>`:''}
+        ${r.lpo2h&&r.lpo2h.length?`
+        <div>
+          <div style="font-size:9px;font-weight:700;color:var(--amber);text-transform:uppercase;margin-bottom:4px;">2nd Half</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Option</div>
+            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Opp Set Start</div>
+            ${r.lpo2h.map(row=>`
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.option??'—'}</div>
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.oppSetStart??'—'}</div>`).join('')}
+          </div>
+        </div>`:''}
       </div>`:''}
     </div>`;
   }).join('');
@@ -487,30 +502,52 @@ function renderEntryForm(rd){
   </div>
 
   <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:14px 0 8px;">🏉 Last Play Options</div>
-  <div style="display:grid;grid-template-columns:60px 60px 1fr 32px;gap:6px;margin-bottom:6px;">
-    <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">1H</div>
-    <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">2H</div>
-    <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Opposition Starting Point</div>
-    <div></div>
+
+  <div style="margin-bottom:14px;">
+    <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;margin-bottom:6px;">1st Half</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Option</div>
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Opp Set Start</div>
+      <div></div>
+    </div>
+    <div id="lpo1h-rows">
+      ${(get('lpo1h',get('lpo',[]))).map((row,i) => `
+        <div class="lpo1h-row" style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;">
+          <input type="text" class="lpo-option" value="${row.option??row.osp??''}" placeholder="e.g. Kick Return" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <input type="text" class="lpo-oppsetstart" value="${row.oppSetStart??row.h1??''}" placeholder="e.g. 20m" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <button onclick="this.closest('.lpo1h-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
+        </div>`).join('') || `
+        <div class="lpo1h-row" style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;">
+          <input type="text" class="lpo-option" placeholder="e.g. Kick Return" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <input type="text" class="lpo-oppsetstart" placeholder="e.g. 20m" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <button onclick="this.closest('.lpo1h-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
+        </div>`}
+    </div>
+    <button onclick="addLpo1HRow()" style="background:rgba(0,75,160,.15);border:1px solid rgba(0,75,160,.3);border-radius:8px;color:#5b9bd5;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;">+ Add 1H Row</button>
   </div>
-  <div id="lpo-rows">
-    ${(get('lpo',[])).length > 0
-      ? get('lpo',[]).map((row,i) => `
-        <div class="lpo-row" style="display:grid;grid-template-columns:60px 60px 1fr 32px;gap:6px;margin-bottom:6px;" id="lpo-row-${i}">
-          <input type="text" class="lpo-h1" value="${row.h1||''}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <input type="text" class="lpo-h2" value="${row.h2||''}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <input type="text" class="lpo-osp" placeholder="e.g. Kick Return" value="${row.osp||''}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <button onclick="this.closest('.lpo-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
-        </div>`).join('')
-      : `<div class="lpo-row" style="display:grid;grid-template-columns:60px 60px 1fr 32px;gap:6px;margin-bottom:6px;" id="lpo-row-0">
-          <input type="text" class="lpo-h1" placeholder="0" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <input type="text" class="lpo-h2" placeholder="0" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <input type="text" class="lpo-osp" placeholder="e.g. Kick Return" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <button onclick="this.closest('.lpo-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
-        </div>`
-    }
+
+  <div style="margin-bottom:14px;">
+    <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;margin-bottom:6px;">2nd Half</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Option</div>
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Opp Set Start</div>
+      <div></div>
+    </div>
+    <div id="lpo2h-rows">
+      ${get('lpo2h',[]).map((row,i) => `
+        <div class="lpo2h-row" style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;">
+          <input type="text" class="lpo-option" value="${row.option||''}" placeholder="e.g. Dropout" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <input type="text" class="lpo-oppsetstart" value="${row.oppSetStart||''}" placeholder="e.g. 40m" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <button onclick="this.closest('.lpo2h-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
+        </div>`).join('') || `
+        <div class="lpo2h-row" style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;">
+          <input type="text" class="lpo-option" placeholder="e.g. Dropout" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <input type="text" class="lpo-oppsetstart" placeholder="e.g. 40m" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+          <button onclick="this.closest('.lpo2h-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
+        </div>`}
+    </div>
+    <button onclick="addLpo2HRow()" style="background:rgba(0,75,160,.15);border:1px solid rgba(0,75,160,.3);border-radius:8px;color:#5b9bd5;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;">+ Add 2H Row</button>
   </div>
-  <button onclick="addLpoRow()" style="background:rgba(0,75,160,.15);border:1px solid rgba(0,75,160,.3);border-radius:8px;color:#5b9bd5;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;margin-bottom:12px;">+ Add Row</button>
 
   <button class="btn-primary" onclick="submitEntry(${rd})">💾 Save R${rd} Data</button>
   ${saved['rd'+rd] ? `<br><button class="btn-clear" onclick="clearEntry(${rd})">🗑 Clear saved data for R${rd}</button>` : ''}
@@ -519,30 +556,35 @@ function renderEntryForm(rd){
   calcPct();
 }
 
-function addLpoRow(){
-  const container = document.getElementById('lpo-rows');
-  const idx = Date.now();
+function _makeLpoRow(cls, optPlaceholder, sspPlaceholder){
   const div = document.createElement('div');
-  div.className = 'lpo-row';
-  div.style = 'display:grid;grid-template-columns:60px 60px 1fr 32px;gap:6px;margin-bottom:6px;';
+  div.className = cls;
+  div.style = 'display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;';
   div.innerHTML = `
-    <input type="text" class="lpo-h1" placeholder="0" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-    <input type="text" class="lpo-h2" placeholder="0" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-    <input type="text" class="lpo-osp" placeholder="e.g. Dropout" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-    <button onclick="this.closest('.lpo-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>`;
-  container.appendChild(div);
+    <input type="text" class="lpo-option" placeholder="${optPlaceholder}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+    <input type="text" class="lpo-oppsetstart" placeholder="${sspPlaceholder}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+    <button onclick="this.closest('.${cls}').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>`;
+  return div;
+}
+function addLpo1HRow(){
+  document.getElementById('lpo1h-rows').appendChild(_makeLpoRow('lpo1h-row','e.g. Kick Return','e.g. 20m'));
+}
+function addLpo2HRow(){
+  document.getElementById('lpo2h-rows').appendChild(_makeLpoRow('lpo2h-row','e.g. Dropout','e.g. 40m'));
 }
 
 function collectLpo(){
-  const rows = document.querySelectorAll('.lpo-row');
-  const lpo = [];
-  rows.forEach(row => {
-    const h1 = row.querySelector('.lpo-h1').value;
-    const h2 = row.querySelector('.lpo-h2').value;
-    const osp = row.querySelector('.lpo-osp').value.trim();
-    if(osp || h1 || h2) lpo.push({h1:h1!==''?parseFloat(h1):null, h2:h2!==''?parseFloat(h2):null, osp});
-  });
-  return lpo;
+  function readRows(cls){
+    const rows = document.querySelectorAll('.'+cls);
+    const out = [];
+    rows.forEach(row => {
+      const option = row.querySelector('.lpo-option').value.trim();
+      const oppSetStart = row.querySelector('.lpo-oppsetstart').value.trim();
+      if(option || oppSetStart) out.push({option, oppSetStart});
+    });
+    return out;
+  }
+  return { lpo1h: readRows('lpo1h-row'), lpo2h: readRows('lpo2h-row') };
 }
 
 function calcPen(){
@@ -616,8 +658,9 @@ function submitEntry(rd){
   if(h1errors!=null) obj.h1errors=h1errors;
   if(h2errors!=null) obj.h2errors=h2errors;
   if(errors!=null) obj.errors=errors;
-  const lpo = collectLpo();
-  if(lpo.length) obj.lpo=lpo;
+  const {lpo1h, lpo2h} = collectLpo();
+  if(lpo1h.length) obj.lpo1h=lpo1h;
+  if(lpo2h.length) obj.lpo2h=lpo2h;
   obj.note=null;
 
   saveData(rd, obj);
