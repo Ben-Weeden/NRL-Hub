@@ -98,7 +98,7 @@ body{background:var(--dark);color:var(--text);font-family:'Segoe UI',system-ui,s
 <div id="panel-trends" class="panel"></div>
 <div id="panel-enter" class="panel"></div>
 
-<script>
+<script type="module">
 // ── Base data (hardcoded) ──────────────────────────────────────────────────
 const BASE = [
   {rd:1, opp:'Western Clydesdales', venue:'H', result:'L', score:'12-26',
@@ -124,20 +124,50 @@ const BASE = [
   {rd:11, opp:'Norths Devils', venue:'A'},
 ];
 
-// ── LocalStorage persistence ───────────────────────────────────────────────
-function loadSaved(){
-  try{ return JSON.parse(localStorage.getItem('bmd_tracker_2026')||'{}'); }
-  catch(e){ return {}; }
+// ── Firebase / Firestore persistence ──────────────────────────────────────
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const _fbApp = initializeApp({
+  apiKey: "AIzaSyD7I_oqAtJ_EBfvFZMxiDoaWukuuePZEK8",
+  authDomain: "tweed-seagulls-tracker.firebaseapp.com",
+  projectId: "tweed-seagulls-tracker",
+  storageBucket: "tweed-seagulls-tracker.firebasestorage.app",
+  messagingSenderId: "857208470048",
+  appId: "1:857208470048:web:1a3953e994e0db4bed5a45"
+});
+const _db  = getFirestore(_fbApp);
+const _ref = doc(_db, 'tracker', 'bmd_2026');
+
+// In-memory cache — keeps all functions synchronous after initial load
+let _cache = {};
+
+async function _initFirestore(){
+  const snap = await getDoc(_ref);
+  if(snap.exists()) _cache = snap.data().rounds || {};
+  // Real-time listener — any device save updates every open tab/device instantly
+  onSnapshot(_ref, snap => {
+    if(snap.exists()){
+      _cache = snap.data().rounds || {};
+      updateHero();
+      // Refresh any open entry form
+      const activeRd = document.querySelector('.rd-select-btn.active');
+      if(activeRd) renderEntryForm(parseInt(activeRd.dataset.rd));
+    }
+  });
+  updateHero();
 }
+
+function loadSaved(){ return _cache; }
+
 function saveData(rd, obj){
-  const all = loadSaved();
-  all['rd'+rd] = obj;
-  localStorage.setItem('bmd_tracker_2026', JSON.stringify(all));
+  _cache['rd'+rd] = obj;
+  setDoc(_ref, { rounds: _cache });
 }
+
 function clearRound(rd){
-  const all = loadSaved();
-  delete all['rd'+rd];
-  localStorage.setItem('bmd_tracker_2026', JSON.stringify(all));
+  delete _cache['rd'+rd];
+  setDoc(_ref, { rounds: _cache });
 }
 
 // ── Merge saved data over base ─────────────────────────────────────────────
@@ -682,7 +712,17 @@ function clearEntry(rd){
   renderEntryForm(rd);
 }
 
-updateHero();
+// Expose functions needed by inline onclick handlers
+window.showTab       = showTab;
+window.renderEntryForm = renderEntryForm;
+window.submitEntry   = submitEntry;
+window.clearEntry    = clearEntry;
+window.addLpo1HRow   = addLpo1HRow;
+window.addLpo2HRow   = addLpo2HRow;
+window.calcPct       = calcPct;
+window.calcPen       = calcPen;
+
+_initFirestore();
 </script>
 </body>
 </html>
