@@ -260,11 +260,11 @@ svg.pizza{overflow:visible}
     <div class="logo-badge">NRL</div>
     <div>
       <h1>NRL 2026 ADVANCED ANALYTICS</h1>
-      <p>R1–R17 Season · Stats Perform · ETxP · RMOE · Try Zone AI</p>
+      <p>R1–R19 Season · Stats Perform · ETxP · RMOE · Try Zone AI</p>
     </div>
   </div>
   <div class="header-r">
-    <span class="tag">R1–R17 · 2026</span>
+    <span class="tag">R1–R19 · 2026</span>
     <span class="analyst">Ben Weeden Analytics</span>
   </div>
 </header>
@@ -272,10 +272,11 @@ svg.pizza{overflow:visible}
 <nav>
   <button class="active" onclick="show('guide',this)">📖 How to Use</button>
   <button onclick="show('overview',this)">📊 Intelligence Hub</button>
-  <button onclick="show('results',this)">📅 R1–R17 Results</button>
+  <button onclick="show('results',this)">📅 R1–R19 Results</button>
   <button onclick="show('ladder',this)">🏆 Season Ladder</button>
   <button onclick="show('tryzone',this)">🗺️ Try Zone AI</button>
   <button onclick="show('advanced',this)">⚡ Advanced Metrics</button>
+  <button onclick="show('halves',this)">⏱️ 1st vs 2nd Half</button>
   <button onclick="show('players',this)">👤 Player Spotlight</button>
   <button onclick="show('attack',this)">🎯 Attack</button>
   <button onclick="show('defence',this)">🛡️ Defence</button>
@@ -400,12 +401,12 @@ svg.pizza{overflow:visible}
   </div>
 </div>
 
-<!-- ════════ RESULTS R1-R17 ════════ -->
+<!-- ════════ RESULTS R1-R19 ════════ -->
 <div id="page-results" class="page">
   <div style="background:linear-gradient(135deg,#0A1528,#0D2018);border:1px solid var(--nrl);border-radius:12px;padding:16px 20px;margin-bottom:16px">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px">
       <div>
-        <h2 style="color:white;font-size:15px;font-weight:900">📅 NRL 2026 Results — Rounds 1–16</h2>
+        <h2 style="color:white;font-size:15px;font-weight:900">📅 NRL 2026 Results — Rounds 1–19</h2>
         <p style="color:var(--muted);font-size:11px;margin-top:2px">Select a round to view match results. R1 includes advanced ETxP/FPCR overlay.</p>
       </div>
       <div id="round-title" style="font-size:13px;font-weight:800;color:var(--gold)">Round 1 — Las Vegas</div>
@@ -416,10 +417,12 @@ svg.pizza{overflow:visible}
   <div class="match-grid" id="matches-grid"></div>
 </div>
 
+<div id="page-halves" class="page"><div id="halves-root"></div></div>
+
 <!-- ════════ LADDER ════════ -->
 <div id="page-ladder" class="page">
   <div class="card">
-    <div class="card-h"><span>🏆</span>2026 NRL LADDER — AFTER ROUND 17 (R1–R17 COMPUTED)</div>
+    <div class="card-h"><span>🏆</span>2026 NRL LADDER — AFTER ROUND 19 (R1–R19 COMPUTED)</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr><th>#</th><th style="text-align:left">TEAM</th><th>GP</th><th>W</th><th>L</th><th>D</th><th>PF</th><th>PA</th><th>DIFF</th><th>PTS</th><th>FINALS</th></tr></thead>
@@ -430,7 +433,7 @@ svg.pizza{overflow:visible}
       <span style="color:var(--gold)">🥇 Top 4 = home finals</span>
       <span style="color:var(--green)">✅ Top 8 = finals</span>
       <span style="color:var(--red)">❌ Outside top 8</span>
-      <span>Computed from all R1–R17 match results</span>
+      <span>Computed from all R1–R19 match results</span>
     </div>
   </div>
 </div>
@@ -441,7 +444,7 @@ svg.pizza{overflow:visible}
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
       <div style="font-size:28px">🗺️</div>
       <div>
-        <h2 style="color:white;font-size:15px;font-weight:900">Try Zone Analysis — Attacking & Defensive Patterns R1–R17</h2>
+        <h2 style="color:white;font-size:15px;font-weight:900">Try Zone Analysis — Attacking & Defensive Patterns R1–R19</h2>
         <p style="color:var(--muted);font-size:11px;margin-top:2px">AI-estimated LHS / Middle / RHS try breakdown based on team style, personnel and field position data</p>
       </div>
     </div>
@@ -453,7 +456,7 @@ svg.pizza{overflow:visible}
   </div>
   <!-- Summary Table -->
   <div class="card" style="margin-bottom:18px">
-    <div class="card-h"><span>📊</span>TRY ZONE SUMMARY — ALL 17 TEAMS</div>
+    <div class="card-h"><span>📊</span>TRY ZONE SUMMARY — ALL 17 TEAMS — R1–R19</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr>
@@ -540,7 +543,7 @@ svg.pizza{overflow:visible}
 <div id="page-attack" class="page">
   <!-- Season Scoring Summary -->
   <div class="card" style="margin-bottom:16px">
-    <div class="card-h"><span>🎯</span>SEASON ATTACK RANKINGS — R1–R17 AVERAGES</div>
+    <div class="card-h"><span>🎯</span>SEASON ATTACK RANKINGS — R1–R19 AVERAGES</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr>
@@ -580,7 +583,7 @@ svg.pizza{overflow:visible}
 <div id="page-defence" class="page">
   <!-- Season Defence Summary -->
   <div class="card" style="margin-bottom:16px">
-    <div class="card-h"><span>🛡️</span>SEASON DEFENCE RANKINGS — R1–R17 AVERAGES</div>
+    <div class="card-h"><span>🛡️</span>SEASON DEFENCE RANKINGS — R1–R19 AVERAGES</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr>
@@ -753,188 +756,206 @@ const TEAMS = [
    att:null,def:null,ovr:null,pri:"FE5C00",sec:"000000"},
 ];
 
-// ── ALL ROUNDS R1-R17 ─────────────────────────────────────────────
-// Sources: NRL.com, Wikipedia, BettingPro, RLZone · Some R11/R12/R16 scores estimated
+// ── ALL ROUNDS R1-R19 — verified vs Rugby League Project / Zero Tackle / BettingPro (13 Jul 2026) ──
+// hh/ha = half-time score (null where not recorded by sources)
 const ALL_ROUNDS = [
- {round:1,name:"Round 1 — Las Vegas",dates:"1-8 Mar 2026",
+ {round:1,name:"Round 1 \u2014 Las Vegas",dates:"28 Feb - 8 Mar 2026",
   matches:[
-   {home:"Newcastle Knights",  away:"North Queensland Cowboys",   hs:28,as:18,venue:"Allegiant Stadium, Las Vegas"},
-   {home:"Canterbury Bulldogs",away:"St George Illawarra Dragons",hs:15,as:14,venue:"Allegiant Stadium, Las Vegas"},
-   {home:"Melbourne Storm",    away:"Parramatta Eels",            hs:52,as:4, venue:"AAMI Park"},
-   {home:"New Zealand Warriors",away:"Sydney Roosters",           hs:42,as:18,venue:"Go Media Stadium"},
-   {home:"Brisbane Broncos",   away:"Penrith Panthers",           hs:0, as:26,venue:"Suncorp Stadium"},
-   {home:"Cronulla Sharks",    away:"Gold Coast Titans",          hs:50,as:10,venue:"Ocean Protect Stadium"},
-   {home:"Manly Sea Eagles",   away:"Canberra Raiders",           hs:28,as:29,venue:"4 Pines Park",gp:true},
-   {home:"Dolphins",           away:"South Sydney Rabbitohs",     hs:30,as:40,venue:"Suncorp Stadium"},
+   {home:"Newcastle Knights",away:"North Queensland Cowboys",hs:28,as:18,hh:12,ha:12,venue:"Allegiant Stadium, Las Vegas"},
+   {home:"Canterbury Bulldogs",away:"St George Illawarra Dragons",hs:15,as:14,hh:10,ha:8,venue:"Allegiant Stadium, Las Vegas"},
+   {home:"Melbourne Storm",away:"Parramatta Eels",hs:52,as:4,hh:18,ha:4,venue:"AAMI Park"},
+   {home:"New Zealand Warriors",away:"Sydney Roosters",hs:42,as:18,hh:22,ha:6,venue:"Go Media Stadium"},
+   {home:"Brisbane Broncos",away:"Penrith Panthers",hs:0,as:26,hh:0,ha:18,venue:"Suncorp Stadium"},
+   {home:"Cronulla Sharks",away:"Gold Coast Titans",hs:50,as:10,hh:34,ha:0,venue:"Ocean Protect Stadium"},
+   {home:"Manly Sea Eagles",away:"Canberra Raiders",hs:28,as:29,hh:14,ha:6,venue:"4 Pines Park",gp:true},
+   {home:"Dolphins",away:"South Sydney Rabbitohs",hs:30,as:40,hh:10,ha:28,venue:"Suncorp Stadium"},
   ],byes:["Wests Tigers"]},
  {round:2,name:"Round 2",dates:"12-15 Mar 2026",
   matches:[
-   {home:"Brisbane Broncos",        away:"Parramatta Eels",            hs:32,as:40,venue:"Suncorp Stadium"},
-   {home:"New Zealand Warriors",    away:"Canberra Raiders",           hs:40,as:6, venue:"Go Media Stadium"},
-   {home:"Sydney Roosters",         away:"South Sydney Rabbitohs",     hs:26,as:18,venue:"Allianz Stadium"},
-   {home:"Wests Tigers",            away:"North Queensland Cowboys",   hs:44,as:16,venue:"Campbelltown Sports Stadium"},
-   {home:"St George Illawarra Dragons",away:"Melbourne Storm",         hs:20,as:46,venue:"Netstrata Jubilee Stadium"},
-   {home:"Penrith Panthers",        away:"Cronulla Sharks",            hs:26,as:6, venue:"BlueBet Stadium"},
-   {home:"Newcastle Knights",       away:"Manly Sea Eagles",           hs:36,as:16,venue:"McDonald Jones Stadium"},
-   {home:"Dolphins",                away:"Gold Coast Titans",          hs:18,as:14,venue:"Suncorp Stadium"},
+   {home:"Brisbane Broncos",away:"Parramatta Eels",hs:32,as:40,hh:20,ha:22,venue:"Suncorp Stadium"},
+   {home:"New Zealand Warriors",away:"Canberra Raiders",hs:40,as:6,hh:6,ha:6,venue:"Go Media Stadium"},
+   {home:"Sydney Roosters",away:"South Sydney Rabbitohs",hs:26,as:18,hh:12,ha:6,venue:"Allianz Stadium"},
+   {home:"Wests Tigers",away:"North Queensland Cowboys",hs:44,as:16,hh:28,ha:2,venue:"Leichhardt Oval"},
+   {home:"St George Illawarra Dragons",away:"Melbourne Storm",hs:20,as:46,hh:14,ha:18,venue:"WIN Stadium"},
+   {home:"Penrith Panthers",away:"Cronulla Sharks",hs:26,as:6,hh:18,ha:0,venue:"Carrington Park, Bathurst"},
+   {home:"Manly Sea Eagles",away:"Newcastle Knights",hs:16,as:36,hh:10,ha:30,venue:"4 Pines Park"},
+   {home:"Dolphins",away:"Gold Coast Titans",hs:18,as:14,hh:0,ha:8,venue:"Suncorp Stadium"},
   ],byes:["Canterbury Bulldogs"]},
- {round:3,name:"Round 3",dates:"19-22 Mar 2026",
+ {round:3,name:"Round 3 \u2014 Multicultural Round",dates:"19-22 Mar 2026",
   matches:[
-   {home:"Canterbury Bulldogs",        away:"Canberra Raiders",           hs:14,as:10,venue:"Accor Stadium"},
-   {home:"Penrith Panthers",           away:"Sydney Roosters",            hs:40,as:4, venue:"BlueBet Stadium"},
-   {home:"Brisbane Broncos",           away:"Melbourne Storm",            hs:18,as:14,venue:"Suncorp Stadium"},
-   {home:"New Zealand Warriors",       away:"Newcastle Knights",          hs:38,as:12,venue:"Go Media Stadium"},
-   {home:"Dolphins",                   away:"Cronulla Sharks",            hs:38,as:10,venue:"Suncorp Stadium"},
-   {home:"South Sydney Rabbitohs",     away:"Wests Tigers",               hs:20,as:16,venue:"Accor Stadium"},
-   {home:"Parramatta Eels",            away:"St George Illawarra Dragons",hs:30,as:20,venue:"CommBank Stadium"},
-   {home:"North Queensland Cowboys",   away:"Gold Coast Titans",          hs:30,as:16,venue:"Queensland Country Bank Stadium"},
+   {home:"Canberra Raiders",away:"Canterbury Bulldogs",hs:10,as:14,hh:6,ha:8,venue:"GIO Stadium"},
+   {home:"Sydney Roosters",away:"Penrith Panthers",hs:4,as:40,hh:4,ha:24,venue:"Allianz Stadium"},
+   {home:"Melbourne Storm",away:"Brisbane Broncos",hs:14,as:18,hh:14,ha:0,venue:"AAMI Park"},
+   {home:"Newcastle Knights",away:"New Zealand Warriors",hs:12,as:38,hh:6,ha:18,venue:"McDonald Jones Stadium"},
+   {home:"Cronulla Sharks",away:"Dolphins",hs:10,as:38,hh:4,ha:16,venue:"Ocean Protect Stadium"},
+   {home:"South Sydney Rabbitohs",away:"Wests Tigers",hs:20,as:16,hh:12,ha:14,venue:"polytec Stadium"},
+   {home:"Parramatta Eels",away:"St George Illawarra Dragons",hs:30,as:20,hh:18,ha:14,venue:"CommBank Stadium"},
+   {home:"North Queensland Cowboys",away:"Gold Coast Titans",hs:30,as:16,hh:22,ha:10,venue:"Queensland Country Bank Stadium"},
   ],byes:["Manly Sea Eagles"]},
  {round:4,name:"Round 4",dates:"26-29 Mar 2026",
   matches:[
-   {home:"Sydney Roosters",            away:"Manly Sea Eagles",           hs:33,as:16,venue:"Allianz Stadium"},
-   {home:"Wests Tigers",               away:"New Zealand Warriors",       hs:32,as:14,venue:"Campbelltown Sports Stadium"},
-   {home:"Brisbane Broncos",           away:"Dolphins",                   hs:26,as:12,venue:"Suncorp Stadium"},
-   {home:"Newcastle Knights",          away:"Canterbury Bulldogs",        hs:24,as:16,venue:"McDonald Jones Stadium"},
-   {home:"Penrith Panthers",           away:"Parramatta Eels",            hs:48,as:20,venue:"BlueBet Stadium"},
-   {home:"North Queensland Cowboys",   away:"Melbourne Storm",            hs:28,as:24,venue:"Queensland Country Bank Stadium"},
-   {home:"Cronulla Sharks",            away:"Canberra Raiders",           hs:34,as:22,venue:"PointsBet Stadium"},
-   {home:"Gold Coast Titans",          away:"St George Illawarra Dragons",hs:22,as:14,venue:"Cbus Super Stadium"},
+   {home:"Manly Sea Eagles",away:"Sydney Roosters",hs:16,as:33,hh:10,ha:8,venue:"4 Pines Park"},
+   {home:"Brisbane Broncos",away:"Dolphins",hs:26,as:12,hh:10,ha:6,venue:"Suncorp Stadium"},
+   {home:"New Zealand Warriors",away:"Wests Tigers",hs:14,as:32,hh:10,ha:16,venue:"Go Media Stadium"},
+   {home:"Canterbury Bulldogs",away:"Newcastle Knights",hs:16,as:24,hh:0,ha:16,venue:"Accor Stadium"},
+   {home:"Parramatta Eels",away:"Penrith Panthers",hs:20,as:48,hh:4,ha:30,venue:"CommBank Stadium"},
+   {home:"North Queensland Cowboys",away:"Melbourne Storm",hs:28,as:24,hh:10,ha:16,venue:"Queensland Country Bank Stadium"},
+   {home:"Canberra Raiders",away:"Cronulla Sharks",hs:22,as:34,hh:12,ha:18,venue:"GIO Stadium"},
+   {home:"Gold Coast Titans",away:"St George Illawarra Dragons",hs:22,as:14,hh:6,ha:12,venue:"Cbus Super Stadium"},
   ],byes:["South Sydney Rabbitohs"]},
  {round:5,name:"Round 5",dates:"2-6 Apr 2026",
   matches:[
-   {home:"Manly Sea Eagles",           away:"Dolphins",                   hs:52,as:18,venue:"4 Pines Park"},
-   {home:"South Sydney Rabbitohs",     away:"Canterbury Bulldogs",        hs:32,as:24,venue:"Accor Stadium"},
-   {home:"Penrith Panthers",           away:"Melbourne Storm",            hs:50,as:10,venue:"BlueBet Stadium"},
-   {home:"North Queensland Cowboys",   away:"St George Illawarra Dragons",hs:32,as:0, venue:"Queensland Country Bank Stadium"},
-   {home:"Brisbane Broncos",           away:"Gold Coast Titans",          hs:26,as:12,venue:"Suncorp Stadium"},
-   {home:"Cronulla Sharks",            away:"New Zealand Warriors",       hs:36,as:22,venue:"PointsBet Stadium"},
-   {home:"Newcastle Knights",          away:"Canberra Raiders",           hs:32,as:12,venue:"McDonald Jones Stadium"},
-   {home:"Wests Tigers",               away:"Parramatta Eels",            hs:22,as:20,venue:"Campbelltown Sports Stadium",gp:true},
+   {home:"Dolphins",away:"Manly Sea Eagles",hs:18,as:52,hh:0,ha:28,venue:"Kayo Stadium"},
+   {home:"South Sydney Rabbitohs",away:"Canterbury Bulldogs",hs:32,as:24,hh:12,ha:18,venue:"Accor Stadium"},
+   {home:"Penrith Panthers",away:"Melbourne Storm",hs:50,as:10,hh:26,ha:6,venue:"CommBank Stadium"},
+   {home:"St George Illawarra Dragons",away:"North Queensland Cowboys",hs:0,as:32,hh:0,ha:16,venue:"Jubilee Stadium"},
+   {home:"Gold Coast Titans",away:"Brisbane Broncos",hs:12,as:26,hh:6,ha:8,venue:"Cbus Super Stadium"},
+   {home:"Cronulla Sharks",away:"New Zealand Warriors",hs:36,as:22,hh:24,ha:10,venue:"Ocean Protect Stadium"},
+   {home:"Newcastle Knights",away:"Canberra Raiders",hs:32,as:12,hh:10,ha:6,venue:"McDonald Jones Stadium"},
+   {home:"Parramatta Eels",away:"Wests Tigers",hs:20,as:22,hh:10,ha:12,venue:"CommBank Stadium",gp:true},
   ],byes:["Sydney Roosters"]},
  {round:6,name:"Round 6",dates:"9-12 Apr 2026",
   matches:[
-   {home:"Canterbury Bulldogs",        away:"Penrith Panthers",           hs:32,as:16,venue:"Accor Stadium"},
-   {home:"Manly Sea Eagles",           away:"St George Illawarra Dragons",hs:28,as:18,venue:"4 Pines Park"},
-   {home:"North Queensland Cowboys",   away:"Brisbane Broncos",           hs:35,as:31,venue:"Queensland Country Bank Stadium"},
-   {home:"Canberra Raiders",           away:"South Sydney Rabbitohs",     hs:36,as:34,venue:"GIO Stadium"},
-   {home:"Sydney Roosters",            away:"Cronulla Sharks",            hs:34,as:22,venue:"Allianz Stadium"},
-   {home:"New Zealand Warriors",       away:"Melbourne Storm",            hs:38,as:14,venue:"Go Media Stadium"},
-   {home:"Gold Coast Titans",          away:"Parramatta Eels",            hs:52,as:10,venue:"Cbus Super Stadium"},
-   {home:"Wests Tigers",               away:"Newcastle Knights",          hs:42,as:22,venue:"Campbelltown Sports Stadium"},
+   {home:"Canterbury Bulldogs",away:"Penrith Panthers",hs:32,as:16,hh:16,ha:12,venue:"Accor Stadium"},
+   {home:"St George Illawarra Dragons",away:"Manly Sea Eagles",hs:18,as:28,hh:12,ha:16,venue:"WIN Stadium"},
+   {home:"Brisbane Broncos",away:"North Queensland Cowboys",hs:31,as:35,hh:18,ha:24,venue:"Suncorp Stadium"},
+   {home:"Canberra Raiders",away:"South Sydney Rabbitohs",hs:36,as:34,hh:24,ha:4,venue:"Optus Stadium, Perth"},
+   {home:"Sydney Roosters",away:"Cronulla Sharks",hs:34,as:22,hh:12,ha:22,venue:"Optus Stadium, Perth"},
+   {home:"Melbourne Storm",away:"New Zealand Warriors",hs:14,as:38,hh:14,ha:18,venue:"AAMI Park"},
+   {home:"Parramatta Eels",away:"Gold Coast Titans",hs:10,as:52,hh:6,ha:18,venue:"CommBank Stadium"},
+   {home:"Wests Tigers",away:"Newcastle Knights",hs:42,as:22,hh:28,ha:4,venue:"Campbelltown Sports Stadium"},
   ],byes:["Dolphins"]},
  {round:7,name:"Round 7",dates:"16-19 Apr 2026",
   matches:[
-   {home:"Manly Sea Eagles",           away:"North Queensland Cowboys",   hs:38,as:6, venue:"4 Pines Park"},
-   {home:"Canberra Raiders",           away:"Melbourne Storm",            hs:26,as:22,venue:"GIO Stadium"},
-   {home:"Penrith Panthers",           away:"Dolphins",                   hs:23,as:22,venue:"BlueBet Stadium",gp:true},
-   {home:"New Zealand Warriors",       away:"Gold Coast Titans",          hs:28,as:20,venue:"Go Media Stadium"},
-   {home:"South Sydney Rabbitohs",     away:"St George Illawarra Dragons",hs:30,as:12,venue:"Accor Stadium"},
-   {home:"Brisbane Broncos",           away:"Wests Tigers",               hs:21,as:20,venue:"Suncorp Stadium"},
-   {home:"Sydney Roosters",            away:"Newcastle Knights",          hs:38,as:24,venue:"Allianz Stadium"},
-   {home:"Parramatta Eels",            away:"Canterbury Bulldogs",        hs:38,as:20,venue:"CommBank Stadium"},
+   {home:"North Queensland Cowboys",away:"Manly Sea Eagles",hs:6,as:38,hh:6,ha:22,venue:"Queensland Country Bank Stadium"},
+   {home:"Canberra Raiders",away:"Melbourne Storm",hs:26,as:22,hh:12,ha:16,venue:"GIO Stadium"},
+   {home:"Penrith Panthers",away:"Dolphins",hs:23,as:22,hh:18,ha:0,venue:"TIO Stadium, Darwin",gp:true},
+   {home:"New Zealand Warriors",away:"Gold Coast Titans",hs:28,as:20,hh:22,ha:0,venue:"Go Media Stadium"},
+   {home:"South Sydney Rabbitohs",away:"St George Illawarra Dragons",hs:30,as:12,hh:16,ha:12,venue:"Accor Stadium"},
+   {home:"Wests Tigers",away:"Brisbane Broncos",hs:20,as:21,hh:14,ha:18,venue:"Campbelltown Sports Stadium"},
+   {home:"Sydney Roosters",away:"Newcastle Knights",hs:38,as:24,hh:12,ha:24,venue:"Allianz Stadium"},
+   {home:"Parramatta Eels",away:"Canterbury Bulldogs",hs:38,as:20,hh:18,ha:4,venue:"CommBank Stadium"},
   ],byes:["Cronulla Sharks"]},
- {round:8,name:"Round 8",dates:"23-26 Apr 2026",
+ {round:8,name:"Round 8 \u2014 ANZAC Round",dates:"23-26 Apr 2026",
   matches:[
-   {home:"Wests Tigers",               away:"Canberra Raiders",           hs:33,as:14,venue:"Campbelltown Sports Stadium"},
-   {home:"North Queensland Cowboys",   away:"Cronulla Sharks",            hs:46,as:34,venue:"Queensland Country Bank Stadium"},
-   {home:"Brisbane Broncos",           away:"Canterbury Bulldogs",        hs:32,as:12,venue:"Suncorp Stadium"},
-   {home:"Sydney Roosters",            away:"St George Illawarra Dragons",hs:62,as:16,venue:"Allianz Stadium"},
-   {home:"New Zealand Warriors",       away:"Dolphins",                   hs:20,as:18,venue:"Go Media Stadium"},
-   {home:"South Sydney Rabbitohs",     away:"Melbourne Storm",            hs:48,as:6, venue:"Accor Stadium"},
-   {home:"Penrith Panthers",           away:"Newcastle Knights",          hs:44,as:12,venue:"BlueBet Stadium"},
-   {home:"Manly Sea Eagles",           away:"Parramatta Eels",            hs:33,as:18,venue:"4 Pines Park"},
+   {home:"Wests Tigers",away:"Canberra Raiders",hs:33,as:14,hh:10,ha:14,venue:"Leichhardt Oval"},
+   {home:"North Queensland Cowboys",away:"Cronulla Sharks",hs:46,as:34,hh:26,ha:12,venue:"Queensland Country Bank Stadium"},
+   {home:"Brisbane Broncos",away:"Canterbury Bulldogs",hs:32,as:12,hh:20,ha:0,venue:"Suncorp Stadium"},
+   {home:"Sydney Roosters",away:"St George Illawarra Dragons",hs:62,as:16,hh:34,ha:4,venue:"Allianz Stadium"},
+   {home:"New Zealand Warriors",away:"Dolphins",hs:20,as:18,hh:14,ha:18,venue:"Go Media Stadium"},
+   {home:"Melbourne Storm",away:"South Sydney Rabbitohs",hs:6,as:48,hh:0,ha:24,venue:"AAMI Park"},
+   {home:"Newcastle Knights",away:"Penrith Panthers",hs:12,as:44,hh:6,ha:24,venue:"McDonald Jones Stadium"},
+   {home:"Manly Sea Eagles",away:"Parramatta Eels",hs:33,as:18,hh:7,ha:6,venue:"4 Pines Park"},
   ],byes:["Gold Coast Titans"]},
  {round:9,name:"Round 9",dates:"1-3 May 2026",
   matches:[
-   {home:"North Queensland Cowboys",   away:"Canterbury Bulldogs",        hs:28,as:12,venue:"Queensland Country Bank Stadium"},
-   {home:"Dolphins",                   away:"Melbourne Storm",            hs:28,as:10,venue:"Suncorp Stadium"},
-   {home:"Penrith Panthers",           away:"Manly Sea Eagles",           hs:18,as:16,venue:"BlueBet Stadium"},
-   {home:"Parramatta Eels",            away:"New Zealand Warriors",       hs:6, as:16,venue:"CommBank Stadium"},
-   {home:"Sydney Roosters",            away:"Brisbane Broncos",           hs:38,as:24,venue:"Allianz Stadium"},
-   {home:"Newcastle Knights",          away:"South Sydney Rabbitohs",     hs:42,as:38,venue:"McDonald Jones Stadium"},
-   {home:"Cronulla Sharks",            away:"Wests Tigers",               hs:52,as:10,venue:"PointsBet Stadium"},
-   {home:"Canberra Raiders",           away:"Gold Coast Titans",          hs:36,as:12,venue:"GIO Stadium"},
+   {home:"Canterbury Bulldogs",away:"North Queensland Cowboys",hs:12,as:28,hh:6,ha:12,venue:"Accor Stadium"},
+   {home:"Dolphins",away:"Melbourne Storm",hs:28,as:10,hh:4,ha:10,venue:"Suncorp Stadium"},
+   {home:"Gold Coast Titans",away:"Canberra Raiders",hs:12,as:28,hh:6,ha:16,venue:"Cbus Super Stadium"},
+   {home:"Parramatta Eels",away:"New Zealand Warriors",hs:14,as:36,hh:6,ha:16,venue:"CommBank Stadium"},
+   {home:"Sydney Roosters",away:"Brisbane Broncos",hs:38,as:24,hh:24,ha:0,venue:"Allianz Stadium"},
+   {home:"Newcastle Knights",away:"South Sydney Rabbitohs",hs:42,as:38,hh:28,ha:10,venue:"McDonald Jones Stadium"},
+   {home:"Cronulla Sharks",away:"Wests Tigers",hs:52,as:10,hh:18,ha:10,venue:"Ocean Protect Stadium"},
+   {home:"Penrith Panthers",away:"Manly Sea Eagles",hs:18,as:16,hh:12,ha:6,venue:"CommBank Stadium"},
   ],byes:["St George Illawarra Dragons"]},
- {round:10,name:"Round 10",dates:"8-11 May 2026",
+ {round:10,name:"Round 10",dates:"7-10 May 2026",
   matches:[
-   {home:"Dolphins",                   away:"Canterbury Bulldogs",        hs:44,as:12,venue:"Suncorp Stadium"},
-   {home:"Sydney Roosters",            away:"Gold Coast Titans",          hs:28,as:12,venue:"Allianz Stadium"},
-   {home:"Parramatta Eels",            away:"North Queensland Cowboys",   hs:33,as:30,venue:"CommBank Stadium"},
-   {home:"Newcastle Knights",          away:"St George Illawarra Dragons",hs:44,as:10,venue:"McDonald Jones Stadium"},
-   {home:"South Sydney Rabbitohs",     away:"Cronulla Sharks",            hs:36,as:12,venue:"Accor Stadium"},
-   {home:"Manly Sea Eagles",           away:"Brisbane Broncos",           hs:32,as:4, venue:"4 Pines Park"},
-   {home:"Melbourne Storm",            away:"Wests Tigers",               hs:44,as:16,venue:"AAMI Park"},
-   {home:"Penrith Panthers",           away:"Canberra Raiders",           hs:30,as:18,venue:"BlueBet Stadium"},
+   {home:"Dolphins",away:"Canterbury Bulldogs",hs:44,as:12,hh:14,ha:12,venue:"Suncorp Stadium"},
+   {home:"Sydney Roosters",away:"Gold Coast Titans",hs:28,as:12,hh:10,ha:6,venue:"polytec Stadium"},
+   {home:"North Queensland Cowboys",away:"Parramatta Eels",hs:30,as:33,hh:12,ha:10,venue:"Queensland Country Bank Stadium"},
+   {home:"St George Illawarra Dragons",away:"Newcastle Knights",hs:10,as:44,hh:0,ha:32,venue:"WIN Stadium"},
+   {home:"South Sydney Rabbitohs",away:"Cronulla Sharks",hs:36,as:12,hh:18,ha:0,venue:"Accor Stadium"},
+   {home:"Manly Sea Eagles",away:"Brisbane Broncos",hs:32,as:4,hh:16,ha:4,venue:"4 Pines Park"},
+   {home:"Melbourne Storm",away:"Wests Tigers",hs:44,as:16,hh:26,ha:4,venue:"AAMI Park"},
+   {home:"Canberra Raiders",away:"Penrith Panthers",hs:18,as:30,hh:18,ha:12,venue:"GIO Stadium"},
   ],byes:["New Zealand Warriors"]},
- {round:11,name:"Round 11 — Magic Round",dates:"15-17 May 2026",
+ {round:11,name:"Round 11 \u2014 Magic Round",dates:"15-17 May 2026",
   matches:[
-   {home:"Manly Sea Eagles",           away:"Wests Tigers",               hs:46,as:18,venue:"Suncorp Stadium"},
-   {home:"Melbourne Storm",            away:"Parramatta Eels",            hs:34,as:8, venue:"Suncorp Stadium"},
-   {home:"North Queensland Cowboys",   away:"Sydney Roosters",            hs:18,as:12,venue:"Suncorp Stadium"},
-   {home:"Newcastle Knights",          away:"Gold Coast Titans",          hs:36,as:12,venue:"Suncorp Stadium"},
-   {home:"New Zealand Warriors",       away:"Brisbane Broncos",           hs:42,as:12,venue:"Suncorp Stadium"},
-   {home:"Penrith Panthers",           away:"St George Illawarra Dragons",hs:28,as:6, venue:"Suncorp Stadium"},
-   {home:"Cronulla Sharks",            away:"South Sydney Rabbitohs",     hs:26,as:18,venue:"Suncorp Stadium"},
-   {home:"Canterbury Bulldogs",        away:"Canberra Raiders",           hs:20,as:18,venue:"Suncorp Stadium"},
-  ],byes:["Dolphins"]},
- {round:12,name:"Round 12 — State of Origin Wk 1",dates:"21-24 May 2026",
+   {home:"Cronulla Sharks",away:"Canterbury Bulldogs",hs:38,as:16,hh:30,ha:6,venue:"Suncorp Stadium"},
+   {home:"Dolphins",away:"South Sydney Rabbitohs",hs:32,as:10,hh:20,ha:0,venue:"Suncorp Stadium"},
+   {home:"Manly Sea Eagles",away:"Wests Tigers",hs:46,as:18,hh:24,ha:6,venue:"Suncorp Stadium"},
+   {home:"North Queensland Cowboys",away:"Sydney Roosters",hs:18,as:12,hh:18,ha:6,venue:"Suncorp Stadium"},
+   {home:"Melbourne Storm",away:"Parramatta Eels",hs:34,as:8,hh:10,ha:4,venue:"Suncorp Stadium"},
+   {home:"Newcastle Knights",away:"Gold Coast Titans",hs:36,as:12,hh:6,ha:6,venue:"Suncorp Stadium"},
+   {home:"New Zealand Warriors",away:"Brisbane Broncos",hs:42,as:12,hh:22,ha:0,venue:"Suncorp Stadium"},
+   {home:"Penrith Panthers",away:"St George Illawarra Dragons",hs:28,as:6,hh:12,ha:0,venue:"Suncorp Stadium"},
+  ],byes:["Canberra Raiders"]},
+ {round:12,name:"Round 12 \u2014 State of Origin Wk 1",dates:"21-24 May 2026",
   matches:[
-   {home:"Canberra Raiders",           away:"Dolphins",                   hs:22,as:30,venue:"GIO Stadium"},
-   {home:"St George Illawarra Dragons",away:"New Zealand Warriors",       hs:12,as:30,venue:"Netstrata Jubilee Stadium"},
-   {home:"Manly Sea Eagles",           away:"Gold Coast Titans",          hs:12,as:10,venue:"4 Pines Park"},
-   {home:"North Queensland Cowboys",   away:"South Sydney Rabbitohs",     hs:30,as:18,venue:"Queensland Country Bank Stadium"},
-   {home:"Canterbury Bulldogs",        away:"Melbourne Storm",            hs:18,as:22,venue:"Accor Stadium"},
-  ],byes:["Brisbane Broncos","Parramatta Eels","Newcastle Knights","Penrith Panthers","Sydney Roosters","Cronulla Sharks","Wests Tigers"]},
+   {home:"Canberra Raiders",away:"Dolphins",hs:22,as:30,hh:16,ha:22,venue:"GIO Stadium"},
+   {home:"St George Illawarra Dragons",away:"New Zealand Warriors",hs:12,as:30,hh:6,ha:14,venue:"Jubilee Stadium"},
+   {home:"Manly Sea Eagles",away:"Gold Coast Titans",hs:12,as:10,hh:4,ha:0,venue:"4 Pines Park"},
+   {home:"North Queensland Cowboys",away:"South Sydney Rabbitohs",hs:30,as:18,hh:18,ha:6,venue:"Queensland Country Bank Stadium"},
+   {home:"Canterbury Bulldogs",away:"Melbourne Storm",hs:30,as:20,hh:18,ha:6,venue:"Accor Stadium"},
+  ],byes:["Brisbane Broncos", "Parramatta Eels", "Newcastle Knights", "Penrith Panthers", "Sydney Roosters", "Cronulla Sharks", "Wests Tigers"]},
  {round:13,name:"Round 13",dates:"29-31 May 2026",
   matches:[
-   {home:"Cronulla Sharks",            away:"Manly Sea Eagles",           hs:28,as:22,venue:"PointsBet Stadium"},
-   {home:"Newcastle Knights",          away:"Parramatta Eels",            hs:28,as:22,venue:"McDonald Jones Stadium"},
-   {home:"Wests Tigers",               away:"Canterbury Bulldogs",        hs:22,as:16,venue:"Campbelltown Sports Stadium"},
-   {home:"Melbourne Storm",            away:"Sydney Roosters",            hs:18,as:4, venue:"AAMI Park"},
-   {home:"St George Illawarra Dragons",away:"Brisbane Broncos",           hs:30,as:26,venue:"Netstrata Jubilee Stadium"},
-   {home:"Canberra Raiders",           away:"North Queensland Cowboys",   hs:26,as:12,venue:"GIO Stadium"},
-   {home:"New Zealand Warriors",       away:"Penrith Panthers",           hs:20,as:18,venue:"Go Media Stadium"},
-  ],byes:["Dolphins","Gold Coast Titans","South Sydney Rabbitohs"]},
+   {home:"Cronulla Sharks",away:"Manly Sea Eagles",hs:28,as:22,hh:22,ha:4,venue:"Ocean Protect Stadium"},
+   {home:"Newcastle Knights",away:"Parramatta Eels",hs:28,as:22,hh:12,ha:10,venue:"McDonald Jones Stadium"},
+   {home:"Wests Tigers",away:"Canterbury Bulldogs",hs:22,as:16,hh:16,ha:6,venue:"CommBank Stadium"},
+   {home:"Melbourne Storm",away:"Sydney Roosters",hs:18,as:4,hh:6,ha:4,venue:"AAMI Park"},
+   {home:"Brisbane Broncos",away:"St George Illawarra Dragons",hs:26,as:30,hh:2,ha:14,venue:"Suncorp Stadium"},
+   {home:"Canberra Raiders",away:"North Queensland Cowboys",hs:26,as:12,hh:18,ha:6,venue:"GIO Stadium"},
+   {home:"Penrith Panthers",away:"New Zealand Warriors",hs:20,as:18,hh:16,ha:6,venue:"CommBank Stadium"},
+  ],byes:["Dolphins", "Gold Coast Titans", "South Sydney Rabbitohs"]},
  {round:14,name:"Round 14",dates:"4-8 Jun 2026",
   matches:[
-   {home:"Manly Sea Eagles",           away:"South Sydney Rabbitohs",     hs:28,as:14,venue:"4 Pines Park"},
-   {home:"Melbourne Storm",            away:"Newcastle Knights",          hs:32,as:30,venue:"AAMI Park"},
-   {home:"Sydney Roosters",            away:"Canberra Raiders",           hs:26,as:0, venue:"Allianz Stadium"},
-   {home:"Dolphins",                   away:"North Queensland Cowboys",   hs:40,as:14,venue:"Suncorp Stadium"},
-   {home:"Gold Coast Titans",          away:"Brisbane Broncos",           hs:28,as:23,venue:"Cbus Super Stadium"},
-   {home:"Penrith Panthers",           away:"Wests Tigers",               hs:68,as:0, venue:"BlueBet Stadium"},
-   {home:"Cronulla Sharks",            away:"St George Illawarra Dragons",hs:34,as:12,venue:"PointsBet Stadium"},
-   {home:"Canterbury Bulldogs",        away:"Parramatta Eels",            hs:14,as:12,venue:"Accor Stadium"},
+   {home:"Manly Sea Eagles",away:"South Sydney Rabbitohs",hs:28,as:14,hh:10,ha:8,venue:"4 Pines Park"},
+   {home:"Melbourne Storm",away:"Newcastle Knights",hs:32,as:30,hh:12,ha:14,venue:"AAMI Park"},
+   {home:"Canberra Raiders",away:"Sydney Roosters",hs:0,as:26,hh:0,ha:22,venue:"GIO Stadium"},
+   {home:"North Queensland Cowboys",away:"Dolphins",hs:14,as:40,hh:10,ha:16,venue:"Queensland Country Bank Stadium"},
+   {home:"Brisbane Broncos",away:"Gold Coast Titans",hs:23,as:28,hh:12,ha:10,venue:"Suncorp Stadium"},
+   {home:"Wests Tigers",away:"Penrith Panthers",hs:0,as:68,hh:0,ha:36,venue:"CommBank Stadium"},
+   {home:"Cronulla Sharks",away:"St George Illawarra Dragons",hs:34,as:12,hh:12,ha:6,venue:"Ocean Protect Stadium"},
+   {home:"Canterbury Bulldogs",away:"Parramatta Eels",hs:14,as:12,hh:0,ha:0,venue:"Accor Stadium"},
   ],byes:["New Zealand Warriors"]},
- {round:15,name:"Round 15 — State of Origin Wk 2",dates:"11-14 Jun 2026",
+ {round:15,name:"Round 15 \u2014 State of Origin Wk 2",dates:"11-14 Jun 2026",
   matches:[
-   {home:"South Sydney Rabbitohs",     away:"Brisbane Broncos",           hs:48,as:6, venue:"Accor Stadium"},
-   {home:"Dolphins",                   away:"Sydney Roosters",            hs:48,as:10,venue:"Suncorp Stadium"},
-   {home:"New Zealand Warriors",       away:"Cronulla Sharks",            hs:10,as:8, venue:"Go Media Stadium"},
-   {home:"Parramatta Eels",            away:"Canberra Raiders",           hs:15,as:12,venue:"CommBank Stadium"},
-   {home:"Wests Tigers",               away:"Gold Coast Titans",          hs:36,as:28,venue:"Campbelltown Sports Stadium"},
-  ],byes:["Canterbury Bulldogs","Manly Sea Eagles","Melbourne Storm","North Queensland Cowboys","Newcastle Knights","Penrith Panthers","St George Illawarra Dragons"]},
+   {home:"South Sydney Rabbitohs",away:"Brisbane Broncos",hs:48,as:6,hh:30,ha:0,venue:"Accor Stadium"},
+   {home:"Dolphins",away:"Sydney Roosters",hs:48,as:10,hh:12,ha:0,venue:"Suncorp Stadium"},
+   {home:"New Zealand Warriors",away:"Cronulla Sharks",hs:8,as:10,hh:6,ha:8,venue:"Go Media Stadium"},
+   {home:"Parramatta Eels",away:"Canberra Raiders",hs:15,as:12,hh:9,ha:0,venue:"CommBank Stadium"},
+   {home:"Wests Tigers",away:"Gold Coast Titans",hs:36,as:28,hh:12,ha:18,venue:"Leichhardt Oval"},
+  ],byes:["Canterbury Bulldogs", "Manly Sea Eagles", "Melbourne Storm", "North Queensland Cowboys", "Newcastle Knights", "Penrith Panthers", "St George Illawarra Dragons"]},
  {round:16,name:"Round 16",dates:"19-21 Jun 2026",
   matches:[
-   {home:"Newcastle Knights",          away:"St George Illawarra Dragons",hs:22,as:20,venue:"McDonald Jones Stadium"},
-   {home:"New Zealand Warriors",       away:"North Queensland Cowboys",   hs:36,as:6, venue:"Orangetheory Stadium"},
-   {home:"Penrith Panthers",           away:"Gold Coast Titans",          hs:26,as:12,venue:"BlueBet Stadium"},
-   {home:"Sydney Roosters",            away:"Cronulla Sharks",            hs:27,as:8, venue:"Allianz Stadium"},
-   {home:"Melbourne Storm",            away:"Canberra Raiders",           hs:42,as:20,venue:"AAMI Park"},
-   {home:"Canterbury Bulldogs",        away:"Manly Sea Eagles",           hs:22,as:18,venue:"Accor Stadium"},
-   {home:"Dolphins",                   away:"Wests Tigers",               hs:34,as:20,venue:"Suncorp Stadium"},
-  ],byes:["Brisbane Broncos","Parramatta Eels","South Sydney Rabbitohs"]},
- {round:17,name:"Round 17 — Beanie for Brain Cancer",dates:"25-28 Jun 2026",
+   {home:"Newcastle Knights",away:"St George Illawarra Dragons",hs:22,as:20,hh:16,ha:12,venue:"McDonald Jones Stadium"},
+   {home:"Wests Tigers",away:"Dolphins",hs:22,as:36,hh:10,ha:12,venue:"Campbelltown Sports Stadium"},
+   {home:"Gold Coast Titans",away:"Penrith Panthers",hs:19,as:18,hh:6,ha:12,venue:"Cbus Super Stadium"},
+   {home:"Canterbury Bulldogs",away:"Manly Sea Eagles",hs:13,as:12,hh:6,ha:8,venue:"Accor Stadium",gp:true},
+   {home:"New Zealand Warriors",away:"North Queensland Cowboys",hs:38,as:20,hh:14,ha:10,venue:"One NZ Stadium, Christchurch"},
+   {home:"Melbourne Storm",away:"Canberra Raiders",hs:42,as:20,hh:20,ha:20,venue:"AAMI Park"},
+   {home:"Sydney Roosters",away:"Cronulla Sharks",hs:27,as:8,hh:14,ha:4,venue:"Allianz Stadium"},
+  ],byes:["Brisbane Broncos", "Parramatta Eels", "South Sydney Rabbitohs"]},
+ {round:17,name:"Round 17 \u2014 Beanie for Brain Cancer",dates:"25-28 Jun 2026",
   matches:[
-   {home:"Parramatta Eels",            away:"South Sydney Rabbitohs",     hs:12,as:32,venue:"CommBank Stadium"},
-   {home:"Gold Coast Titans",          away:"Canterbury Bulldogs",        hs:12,as:30,venue:"Cbus Super Stadium"},
-   {home:"Brisbane Broncos",           away:"Sydney Roosters",            hs:18,as:24,venue:"Suncorp Stadium"},
-   {home:"Dolphins",                   away:"New Zealand Warriors",       hs:26,as:24,venue:"Kayo Stadium"},
-   {home:"North Queensland Cowboys",   away:"Penrith Panthers",           hs:26,as:12,venue:"Queensland Country Bank Stadium"},
-   {home:"Manly Sea Eagles",           away:"Melbourne Storm",            hs:30,as:4, venue:"4 Pines Park"},
-   {home:"Canberra Raiders",           away:"St George Illawarra Dragons",hs:24,as:16,venue:"GIO Stadium"},
-   {home:"Newcastle Knights",          away:"Wests Tigers",               hs:12,as:6, venue:"McDonald Jones Stadium"},
+   {home:"Parramatta Eels",away:"South Sydney Rabbitohs",hs:12,as:32,hh:6,ha:12,venue:"CommBank Stadium"},
+   {home:"Gold Coast Titans",away:"Canterbury Bulldogs",hs:12,as:30,hh:0,ha:12,venue:"Cbus Super Stadium"},
+   {home:"Brisbane Broncos",away:"Sydney Roosters",hs:18,as:24,hh:16,ha:12,venue:"Suncorp Stadium"},
+   {home:"Dolphins",away:"New Zealand Warriors",hs:26,as:24,hh:16,ha:12,venue:"Suncorp Stadium"},
+   {home:"North Queensland Cowboys",away:"Penrith Panthers",hs:26,as:12,hh:10,ha:10,venue:"Queensland Country Bank Stadium"},
+   {home:"Manly Sea Eagles",away:"Melbourne Storm",hs:30,as:4,hh:24,ha:0,venue:"4 Pines Park"},
+   {home:"Canberra Raiders",away:"St George Illawarra Dragons",hs:24,as:16,hh:6,ha:10,venue:"GIO Stadium"},
+   {home:"Newcastle Knights",away:"Wests Tigers",hs:12,as:6,hh:0,ha:6,venue:"McDonald Jones Stadium"},
   ],byes:["Cronulla Sharks"]},
+ {round:18,name:"Round 18 \u2014 State of Origin Wk 3",dates:"3-5 Jul 2026",
+  matches:[
+   {home:"Penrith Panthers",away:"South Sydney Rabbitohs",hs:36,as:14,hh:12,ha:10,venue:"CommBank Stadium"},
+   {home:"St George Illawarra Dragons",away:"Wests Tigers",hs:24,as:10,hh:6,ha:4,venue:"Jubilee Stadium"},
+   {home:"Brisbane Broncos",away:"Cronulla Sharks",hs:16,as:28,hh:6,ha:10,venue:"Suncorp Stadium"},
+   {home:"Parramatta Eels",away:"Manly Sea Eagles",hs:23,as:14,hh:6,ha:8,venue:"CommBank Stadium"},
+   {home:"Newcastle Knights",away:"Dolphins",hs:13,as:12,hh:12,ha:0,venue:"McDonald Jones Stadium"},
+  ],byes:["Canberra Raiders", "Canterbury Bulldogs", "Gold Coast Titans", "Melbourne Storm", "North Queensland Cowboys", "Sydney Roosters", "New Zealand Warriors"]},
+ {round:19,name:"Round 19",dates:"10-12 Jul 2026",
+  matches:[
+   {home:"Wests Tigers",away:"New Zealand Warriors",hs:6,as:32,hh:6,ha:14,venue:"Campbelltown Sports Stadium"},
+   {home:"Dolphins",away:"Cronulla Sharks",hs:0,as:66,hh:0,ha:24,venue:"Kayo Stadium"},
+   {home:"Canterbury Bulldogs",away:"Canberra Raiders",hs:16,as:40,hh:0,ha:22,venue:"Accor Stadium"},
+   {home:"Sydney Roosters",away:"Parramatta Eels",hs:28,as:12,hh:4,ha:0,venue:"Allianz Stadium"},
+   {home:"South Sydney Rabbitohs",away:"Newcastle Knights",hs:26,as:24,hh:20,ha:6,venue:"Accor Stadium"},
+   {home:"Manly Sea Eagles",away:"North Queensland Cowboys",hs:18,as:19,hh:14,ha:6,venue:"4 Pines Park"},
+   {home:"Melbourne Storm",away:"Gold Coast Titans",hs:22,as:18,hh:12,ha:6,venue:"AAMI Park"},
+  ],byes:["Brisbane Broncos", "Penrith Panthers", "St George Illawarra Dragons"]},
 ];
 
 // Legacy R1 matches for ETxP overlay (backwards compat)
@@ -974,9 +995,9 @@ function computeLadder(){
 // lhs=left-hand side, mid=middle, rhs=right-hand side
 // Scored = tries scored by team; Conceded = tries conceded by team
 const TRY_ZONES = {
-  "Penrith Panthers":   {sl:18,sm:10,sr:24,cl:4,cm:3,cr:3,style:"Structured right-edge dominance; Cleary's left-foot kick sets up right-side repeats",atk:"RHS overload — 24 of 52 scored tries come down the right edge via Luai/Burton/Crichton combination",def:"Exceptional middle shut-out; only 10 tries conceded all season across 17 rounds"},
+  "Penrith Panthers":   {sl:18,sm:10,sr:24,cl:4,cm:3,cr:3,style:"Structured right-edge dominance; Cleary's left-foot kick sets up right-side repeats",atk:"RHS overload — 24 of 52 scored tries come down the right edge via Luai/Burton/Crichton combination",def:"Exceptional middle shut-out; only 10 tries conceded all season across 18 rounds"},
   "New Zealand Warriors":{sl:22,sm:8,sr:20,cl:6,cm:5,cr:6,style:"Balanced wide attack; Tuivasa-Sheck and Papenhuyzen both threatening",atk:"Even edge distribution — most balanced try profile in competition; attack stretches defensive width",def:"Slight vulnerability on fringes when ruck speed is high"},
-  "Dolphins":           {sl:12,sm:6,sr:18,cl:8,cm:5,cr:7,style:"Right-edge specialists; HTF/Cobbo create matchup nightmares",atk:"Strong right-edge — Cobbo/Selwyn combination a constant threat; 18 RHS tries in 17 rounds",def:"Left-edge defensive lapses; 8 tries conceded on LHS vs only 5 mid"},
+  "Dolphins":           {sl:12,sm:6,sr:18,cl:8,cm:5,cr:7,style:"Right-edge specialists; HTF/Cobbo create matchup nightmares",atk:"Strong right-edge — Cobbo/Selwyn combination a constant threat; 18 RHS tries in 18 rounds",def:"Left-edge defensive lapses; 8 tries conceded on LHS vs only 5 mid"},
   "Sydney Roosters":    {sl:16,sm:8,sr:14,cl:7,cm:5,cr:6,style:"Left-edge preferred; Tedesco creates havoc at the back",atk:"LHS preference — Tedesco's roaming + wing combinations generate 16 LHS tries",def:"Solid middle, vulnerability on edges when caught in transition"},
   "Newcastle Knights":  {sl:15,sm:9,sr:14,cl:6,cm:4,cr:7,style:"Ponga-driven right-side attack; balanced forward pack",atk:"Ponga influence: creates on both sides but teams in RHS provide better support runs",def:"Reliable middle defence; allowed only 17 total tries"},
   "Manly Sea Eagles":   {sl:14,sm:7,sr:16,cl:9,cm:6,cr:9,style:"RHS loaded; Olakau'atu drives right-side go-forward",atk:"Right-heavy attack — Olakau'atu/winger combination is primary scoring avenue",def:"Defensive concerns on both edges; 18 tries conceded edges vs 6 mid"},
@@ -989,7 +1010,7 @@ const TRY_ZONES = {
   "Brisbane Broncos":   {sl:11,sm:6,sr:12,cl:10,cm:6,cr:10,style:"Haas-led forward pack; struggle to generate quality edge attack",atk:"Evenly distributed but low volume; conversion from field position remains problematic",def:"26 total tries conceded; right-edge consistently exploited"},
   "Gold Coast Titans":  {sl:12,sm:7,sr:11,cl:9,cm:6,cr:9,style:"Brimson-centred attack; occasional flashes of brilliance",atk:"Even split, no dominant edge — systemic red-zone conversion issue persists",def:"24 tries conceded across the season; exposed on both edges"},
   "Wests Tigers":       {sl:11,sm:7,sr:14,cl:12,cm:8,cr:11,style:"Right-edge preferred; aggressive ruck speed creates opportunities",atk:"RHS slightly preferred — Fonua-Pole and winger combination most productive",def:"31 total tries conceded; worst defensive record; right-side target"},
-  "St George Illawarra Dragons":{sl:9,sm:5,sr:10,cl:11,cm:7,cr:10,style:"Structured play but limited X-factor; Hamilton Riki primary edge threat",atk:"Low volume — 24 total tries scored from 17 rounds; set completion doesn't convert",def:"28 tries conceded; middle and both edges exposed; structural issues"},
+  "St George Illawarra Dragons":{sl:9,sm:5,sr:10,cl:11,cm:7,cr:10,style:"Structured play but limited X-factor; Hamilton Riki primary edge threat",atk:"Low volume — 24 total tries scored from 18 rounds; set completion doesn't convert",def:"28 tries conceded; middle and both edges exposed; structural issues"},
   "Parramatta Eels":    {sl:10,sm:6,sr:11,cl:11,cm:7,cr:10,style:"Mitchell Moses-led attack; right-edge preferred with Brown/Mead",atk:"RHS slight preference — Moses' kicking game sets up right-side scoring",def:"28 total tries conceded; below-average across all zones"},
 };
 
@@ -1169,7 +1190,7 @@ function buildOverview(){
   const _imp=ladder.map(lt=>{const s=ss[lt.name];const gm=(s?.games||[]).slice().sort((a,b)=>a.r-b.r);const ea=gm.slice(0,4);const la=gm.slice(-4);const eA=ea.length?ea.reduce((a,g)=>a+g.pf,0)/ea.length:0;const lA=la.length?la.reduce((a,g)=>a+g.pf,0)/la.length:0;return {lt,delta:+(lA-eA).toFixed(1)};}).sort((a,b)=>b.delta-a.delta);
   const _bImp=_imp[0];const _wImp=_imp[_imp.length-1];
   document.getElementById('hub-tiles').innerHTML=[
-    {l:"Rounds Played",v:"16",s:"R1–R17 · 2026 Season"},
+    {l:"Rounds Played",v:"19",s:"R1–R19 · 2026 Season"},
     {l:"Ladder Leader",v:topPts?.short||'—',s:`${topPts?.pts||0} pts · ${topPts?.w}W-${topPts?.l}L`},
     {l:"Top Scorer",v:topScorer?.short||'—',s:`${ss[topScorer?.name]?.avgPF||0} avg pts/game`},
     {l:"Best Defence",v:bestDef?.short||'—',s:`${ss[bestDef?.name]?.avgPA||0} avg pts conceded`},
@@ -1182,7 +1203,7 @@ function buildOverview(){
   // Season attack rankings (avg PF/game)
   const atkRanked=ladder.slice().sort((a,b)=>(ss[b.name]?.avgPF||0)-(ss[a.name]?.avgPF||0));
   const maxAvgPF=ss[atkRanked[0]?.name]?.avgPF||1;
-  document.getElementById('fpcr-top').innerHTML=`<div style="font-size:10px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">Season Attack — Avg Points Scored/Game (R1–R17)</div>`+atkRanked.map((lt,i)=>{
+  document.getElementById('fpcr-top').innerHTML=`<div style="font-size:10px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">Season Attack — Avg Points Scored/Game (R1–R19)</div>`+atkRanked.map((lt,i)=>{
     const s=ss[lt.name];
     const avg=s?.avgPF||0;
     const bar=Math.round((avg/maxAvgPF)*100);
@@ -1203,7 +1224,7 @@ function buildOverview(){
   // Season defence rankings (avg PA/game — lower is better)
   const defRanked=ladder.slice().sort((a,b)=>(ss[a.name]?.avgPA||99)-(ss[b.name]?.avgPA||99));
   const maxAvgPA=Math.max(...defRanked.map(lt=>ss[lt.name]?.avgPA||0))||1;
-  document.getElementById('ruck-speed-chart').innerHTML=`<div style="font-size:10px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">Season Defence — Avg Points Conceded/Game (R1–R17)</div>`+defRanked.map((lt,i)=>{
+  document.getElementById('ruck-speed-chart').innerHTML=`<div style="font-size:10px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">Season Defence — Avg Points Conceded/Game (R1–R19)</div>`+defRanked.map((lt,i)=>{
     const s=ss[lt.name];
     const avg=s?.avgPA||0;
     const bar=Math.round((avg/maxAvgPA)*100);
@@ -1218,7 +1239,7 @@ function buildOverview(){
     </div>`;
   }).join('');
 
-  // Season-level analyst insights (computed from R1-R17 data)
+  // Season-level analyst insights (computed from R1-R19 data)
   const ldr=ladder[0];const ldrS=ss[ldr?.name];
   const atk1=atkRanked[0];const atk1S=ss[atk1?.name];
   const def1=defRanked[0];const def1S=ss[def1?.name];
@@ -1237,7 +1258,7 @@ function buildOverview(){
   const bestImprover=improver[0];const worstImprover=improver[improver.length-1];
   const insights=[
     {icon:"🏆",title:`${ldr?.short} Lead the Competition — ${ldr?.w}W from ${ldrS?.gp||0} Games`,body:`${ldr?.name} sit top of the ladder with ${ldr?.pts} points (${ldr?.w}W-${ldr?.l}L). Averaging ${ldrS?.avgPF} points for and only ${ldrS?.avgPA} against across ${ldrS?.gp} games, they are the most complete team of the 2026 season so far.`},
-    {icon:"⚡",title:`${atk1?.short} Lead Attack — ${atk1S?.avgPF} Avg Points/Game`,body:`${atk1?.name} are the most potent attacking side over R1–R17, averaging ${atk1S?.avgPF} points per game from ${atk1S?.gp} appearances (${atk1S?.totalPF} total). That's ${+(atk1S?.avgPF - atk17S?.avgPF).toFixed(1)} more per game than the competition's lowest-scoring attack (${atk17?.short}, ${atk17S?.avgPF}/g).`},
+    {icon:"⚡",title:`${atk1?.short} Lead Attack — ${atk1S?.avgPF} Avg Points/Game`,body:`${atk1?.name} are the most potent attacking side over R1–R19, averaging ${atk1S?.avgPF} points per game from ${atk1S?.gp} appearances (${atk1S?.totalPF} total). That's ${+(atk1S?.avgPF - atk17S?.avgPF).toFixed(1)} more per game than the competition's lowest-scoring attack (${atk17?.short}, ${atk17S?.avgPF}/g). R1–R19 data.`},
     {icon:"🔒",title:`${def1?.short} Best Defence — ${def1S?.avgPA} Avg Conceded/Game`,body:`${def1?.name} have been the competition's toughest defensive unit, conceding just ${def1S?.avgPA} points per game across ${def1S?.gp} games. The gap to the softest defence (${def17?.short}, ${def17S?.avgPA}/g) is ${+(def17S?.avgPA - def1S?.avgPA).toFixed(1)} points per game — a chasm that compounds across finals.`},
     {icon:"📐",title:`${mostConsistent?.lt?.short} Most Consistent Scorers — σ${mostConsistent?.sd} Pts`,body:`${mostConsistent?.lt?.name} show the least variance in their scoring output (standard deviation ${mostConsistent?.sd} pts), suggesting a structured and repeatable attacking system. Consistent scorers typically perform better in finals when under pressure — the gameplan doesn't need to change.`},
     {icon:"📈",title:`${bestImprover?.lt?.short} Biggest Attacking Improver — +${bestImprover?.delta} Pts/Game`,body:`${bestImprover?.lt?.name} have lifted their scoring average by ${bestImprover?.delta} points per game from their first four rounds (${bestImprover?.eAvg}/g) to their last four (${bestImprover?.lAvg}/g). This trajectory is a major flag heading into the second half of the season.`},
@@ -1305,6 +1326,7 @@ function renderRound(n){
               <div class="mc-score ${!hw?'win':'lose'}">${g.as}</div>
             </div>
             ${g.gp?'<div style="font-size:9px;color:var(--gold);font-weight:800;margin-top:2px">GOLDEN POINT</div>':''}
+            ${g.hh!=null?`<div style="font-size:9px;color:var(--muted);font-weight:700;margin-top:3px">HT ${g.hh}–${g.ha}</div>`:''}
           </div>
           <div class="mc-team">
             <div style="width:32px;height:32px;background:#${at.pri};border-radius:8px;margin:0 auto 6px;border:2px solid #${!hw?at.sec||'fff':'333'}"></div>
@@ -1898,6 +1920,155 @@ function show(id,btn){
 // ── INIT ──────────────────────────────────────────────────────────
 buildOverview();
 buildResults();
+
+// ═══════ 1ST vs 2ND HALF ANALYTICS (auto-generated 13 Jul 2026) ═══════
+function halvesCompute(games){
+  const withHT = games.filter(g=>g.hh!=null&&g.ha!=null);
+  const teams = {};
+  const ens = (t)=>{ if(!teams[t]) teams[t]={team:t,g:0,h1f:0,h1a:0,h2f:0,h2a:0,ledHT:0,levelHT:0,trailHT:0,comebackW:0,blownL:0,winFromLead:0}; return teams[t]; };
+  const cb=[]; const surges=[];
+  withHT.forEach(g=>{
+    const h2h=g.hs-g.hh, h2a=g.as-g.ha;
+    [[g.home,g.hh,g.ha,g.hs,g.as,h2h,h2a],[g.away,g.ha,g.hh,g.as,g.hs,h2a,h2h]].forEach(x=>{
+      const [t,htF,htA,ftF,ftA,sF,sA]=x; const T=ens(t);
+      T.g++; T.h1f+=htF; T.h1a+=htA; T.h2f+=sF; T.h2a+=sA;
+      const led=htF>htA, level=htF===htA, won=ftF>ftA, lost=ftF<ftA;
+      if(led)T.ledHT++; else if(level)T.levelHT++; else T.trailHT++;
+      if(!led&&!level&&won){T.comebackW++;}
+      if(led&&lost){T.blownL++;}
+      if(led&&won){T.winFromLead++;}
+    });
+    const hLed=g.hh>g.ha, aLed=g.ha>g.hh, hWon=g.hs>g.as, aWon=g.as>g.hs;
+    if((aLed&&hWon)||(hLed&&aWon)){
+      const winner=hWon?g.home:g.away, deficit=hWon?(g.ha-g.hh):(g.hh-g.ha);
+      const loser=hWon?g.away:g.home;
+      cb.push({r:g.r,winner,loser,deficit,ht:g.hh+'–'+g.ha,ft:g.hs+'–'+g.as});
+    }
+    const hSurge=(g.hs-g.hh)-(g.as-g.ha);
+    surges.push({r:g.r,team:hSurge>=0?g.home:g.away,opp:hSurge>=0?g.away:g.home,swing:Math.abs(hSurge),ht:g.hh+'–'+g.ha,ft:g.hs+'–'+g.as});
+  });
+  // League aggregates
+  let h1Tot=0,h2Tot=0,ledWin=0,ledCnt=0;
+  withHT.forEach(g=>{
+    h1Tot+=g.hh+g.ha; h2Tot+=(g.hs-g.hh)+(g.as-g.ha);
+    if(g.hh!==g.ha){ ledCnt++; const ledHome=g.hh>g.ha; if((ledHome&&g.hs>g.as)||(!ledHome&&g.as>g.hs)) ledWin++; }
+  });
+  cb.sort((a,b)=>b.deficit-a.deficit);
+  surges.sort((a,b)=>b.swing-a.swing);
+  return {withHT, total:games.length, teams:Object.values(teams), cb, surges,
+          h1Avg:withHT.length?h1Tot/withHT.length:0, h2Avg:withHT.length?h2Tot/withHT.length:0,
+          ledWinPct:ledCnt?Math.round(ledWin/ledCnt*100):0, ledCnt};
+}
+
+function halvesBarChart(rows, opts){
+  // rows: [{label, v1, v2, color?}] — grouped horizontal bars, H1 vs H2 series
+  const c1=opts.c1, c2=opts.c2, ink=opts.ink||'#C0CCE0', muted=opts.muted||'#8892A8';
+  const W=760, rowH=34, padL=132, padR=56, barH=9, gap=3;
+  const H=rows.length*rowH+42;
+  const maxV=Math.max(...rows.map(r=>Math.max(r.v1,r.v2)),1)*1.08;
+  const sx=v=>padL+(W-padL-padR)*(v/maxV);
+  let g='';
+  // gridlines
+  const step=maxV>30?10:maxV>12?5:2;
+  for(let v=0;v<=maxV;v+=step){
+    g+='<line x1="'+sx(v)+'" y1="18" x2="'+sx(v)+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,.06)" stroke-width="1"/>';
+    g+='<text x="'+sx(v)+'" y="'+(H-10)+'" fill="'+muted+'" font-size="9" text-anchor="middle">'+v+'</text>';
+  }
+  rows.forEach((r,i)=>{
+    const y=26+i*rowH;
+    g+='<text x="'+(padL-8)+'" y="'+(y+barH+2)+'" fill="'+ink+'" font-size="10" font-weight="700" text-anchor="end">'+r.label+'</text>';
+    g+='<rect x="'+padL+'" y="'+y+'" width="'+Math.max(sx(r.v1)-padL,1.5)+'" height="'+barH+'" rx="3" fill="'+c1+'"><title>'+r.label+' — 1st half: '+r.v1.toFixed(1)+'</title></rect>';
+    g+='<text x="'+(sx(r.v1)+5)+'" y="'+(y+barH-1)+'" fill="'+muted+'" font-size="8.5">'+r.v1.toFixed(1)+'</text>';
+    const y2=y+barH+gap;
+    g+='<rect x="'+padL+'" y="'+y2+'" width="'+Math.max(sx(r.v2)-padL,1.5)+'" height="'+barH+'" rx="3" fill="'+c2+'"><title>'+r.label+' — 2nd half: '+r.v2.toFixed(1)+'</title></rect>';
+    g+='<text x="'+(sx(r.v2)+5)+'" y="'+(y2+barH-1)+'" fill="'+muted+'" font-size="8.5">'+r.v2.toFixed(1)+'</text>';
+  });
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" role="img" aria-label="First vs second half points by team">'+g+'</svg>';
+}
+
+function halvesHTML(res, opts){
+  const c1=opts.c1,c2=opts.c2;
+  const cov=res.withHT.length+' of '+res.total+' matches have verified half-time data'+(res.withHT.length<res.total?' — halves stats use only those games':'');
+  const tiles=[
+    {l:'AVG 1ST-HALF PTS / GAME', v:res.h1Avg.toFixed(1), s:'both teams combined'},
+    {l:'AVG 2ND-HALF PTS / GAME', v:res.h2Avg.toFixed(1), s:(res.h2Avg>res.h1Avg?'games open up after the break':'first halves higher-scoring')},
+    {l:'HT LEADER WINS', v:res.ledWinPct+'%', s:'of '+res.ledCnt+' games with a HT leader'},
+    {l:'HT COMEBACK WINS', v:res.cb.length, s:'winner trailed at half-time'},
+  ];
+  const tilesHtml=tiles.map(t=>'<div style="flex:1;min-width:150px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:10px;padding:14px 16px"><div style="font-size:9px;font-weight:800;letter-spacing:.6px;color:'+(opts.muted||'#8892A8')+'">'+t.l+'</div><div style="font-size:24px;font-weight:900;color:white;margin:4px 0 2px">'+t.v+'</div><div style="font-size:10px;color:'+(opts.muted||'#8892A8')+'">'+t.s+'</div></div>').join('');
+
+  const T=res.teams.map(t=>({...t,
+    h1d:t.h1f-t.h1a, h2d:t.h2f-t.h2a,
+    h1fAvg:t.g?t.h1f/t.g:0, h2fAvg:t.g?t.h2f/t.g:0,
+    h1aAvg:t.g?t.h1a/t.g:0, h2aAvg:t.g?t.h2a/t.g:0,
+  }));
+  T.sort((a,b)=>(b.h1d+b.h2d)-(a.h1d+a.h2d));
+
+  const chartAtt=halvesBarChart(T.map(t=>({label:opts.short?opts.short(t.team):t.team, v1:t.h1fAvg, v2:t.h2fAvg})), opts);
+  const Tdef=[...T].sort((a,b)=>(a.h1aAvg+a.h2aAvg)-(b.h1aAvg+b.h2aAvg));
+  const chartDef=halvesBarChart(Tdef.map(t=>({label:opts.short?opts.short(t.team):t.team, v1:t.h1aAvg, v2:t.h2aAvg})), opts);
+
+  const legend='<div style="display:flex;gap:16px;align-items:center;margin:6px 0 4px;font-size:10px;color:'+(opts.muted||'#8892A8')+'"><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:'+c1+'"></span>1st half</span><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:'+c2+'"></span>2nd half</span></div>';
+
+  const rowsHtml=T.map(t=>{
+    const swing=(t.h2d-t.h1d);
+    const swCol=swing>0?'#4ADE80':swing<0?'#F87171':'#FACC15';
+    return '<tr>'+
+      '<td style="text-align:left;font-weight:700">'+(opts.short?opts.short(t.team):t.team)+'</td>'+
+      '<td>'+t.g+'</td>'+
+      '<td>'+t.h1fAvg.toFixed(1)+'</td><td>'+t.h1aAvg.toFixed(1)+'</td>'+
+      '<td style="color:'+(t.h1d>=0?'#4ADE80':'#F87171')+';font-weight:700">'+(t.h1d>=0?'+':'')+t.h1d+'</td>'+
+      '<td>'+t.h2fAvg.toFixed(1)+'</td><td>'+t.h2aAvg.toFixed(1)+'</td>'+
+      '<td style="color:'+(t.h2d>=0?'#4ADE80':'#F87171')+';font-weight:700">'+(t.h2d>=0?'+':'')+t.h2d+'</td>'+
+      '<td style="color:'+swCol+';font-weight:800">'+(swing>0?'+':'')+swing+'</td>'+
+      '<td>'+t.ledHT+'</td><td>'+t.comebackW+'</td><td>'+t.blownL+'</td></tr>';
+  }).join('');
+
+  const cbHtml=res.cb.length?res.cb.slice(0,10).map(c=>
+    '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap">'+
+    '<span><strong style="color:#4ADE80">'+c.winner+'</strong> <span style="color:'+(opts.muted||'#8892A8')+'">came from '+c.deficit+' down at HT vs</span> '+c.loser+'</span>'+
+    '<span style="color:'+(opts.muted||'#8892A8')+'">R'+c.r+' · HT '+c.ht+' → FT <strong style="color:white">'+c.ft+'</strong></span></div>').join('')
+    :'<p style="color:'+(opts.muted||'#8892A8')+';font-size:11px">No half-time comebacks recorded yet.</p>';
+
+  const surgeHtml=res.surges.slice(0,5).map(s=>
+    '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap">'+
+    '<span><strong style="color:'+c2+'">'+s.team+'</strong> <span style="color:'+(opts.muted||'#8892A8')+'">won the 2nd half by '+s.swing+' vs</span> '+s.opp+'</span>'+
+    '<span style="color:'+(opts.muted||'#8892A8')+'">R'+s.r+' · HT '+s.ht+' → FT <strong style="color:white">'+s.ft+'</strong></span></div>').join('');
+
+  return ''+
+  '<div style="background:'+(opts.heroBg||'linear-gradient(135deg,#0A1528,#101024)')+';border:1px solid '+(opts.accent||c1)+';border-radius:14px;padding:22px 26px;margin-bottom:18px">'+
+    '<h2 style="color:white;font-size:16px;font-weight:900;margin-bottom:4px">⏱️ 1st vs 2nd Half Breakdown</h2>'+
+    '<p style="color:'+(opts.muted||'#8892A8')+';font-size:11px">'+cov+'. Half-time scores verified across Rugby League Project, legz.com.au and Zero Tackle match centres (NRL.com match data).</p>'+
+  '</div>'+
+  '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px">'+tilesHtml+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">POINTS SCORED PER GAME — 1ST VS 2ND HALF</h3>'+legend+chartAtt+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">POINTS CONCEDED PER GAME — 1ST VS 2ND HALF <span style="font-weight:600;color:'+(opts.muted||'#8892A8')+';font-size:10px">(best defence first)</span></h3>'+legend+chartDef+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px;overflow-x:auto">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">TEAM HALF-BY-HALF LEDGER</h3>'+
+    '<style>.halves-tbl td{padding:6px 8px;border-top:1px solid rgba(255,255,255,.05)}.halves-tbl th{padding:6px 8px}</style>'+
+    '<table class="halves-tbl" style="width:100%;border-collapse:collapse;font-size:10.5px;text-align:center">'+
+    '<thead><tr style="color:'+(opts.muted||'#8892A8')+';font-size:9px;letter-spacing:.5px">'+
+    '<th style="text-align:left">TEAM</th><th>G*</th><th>H1 PF</th><th>H1 PA</th><th>H1 +/-</th><th>H2 PF</th><th>H2 PA</th><th>H2 +/-</th><th>2H SWING</th><th>LED HT</th><th>CB WINS</th><th>BLOWN</th></tr></thead>'+
+    '<tbody style="color:#D5DEEE">'+rowsHtml+'</tbody></table>'+
+    '<p style="color:'+(opts.muted||'#8892A8')+';font-size:9px;margin-top:8px">*Games with half-time data only. 2H SWING = 2nd-half differential minus 1st-half differential — positive means the side gets stronger after the break. CB WINS = wins after trailing at HT. BLOWN = losses after leading at HT.</p>'+
+  '</div>'+
+  '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px">'+
+    '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px"><h3 style="color:#4ADE80;font-size:12px;font-weight:800;margin-bottom:10px">🔄 BIGGEST HT COMEBACKS</h3>'+cbHtml+'</div>'+
+    '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px"><h3 style="color:'+c2+';font-size:12px;font-weight:800;margin-bottom:10px">⚡ BIGGEST 2ND-HALF SURGES</h3>'+surgeHtml+'</div>'+
+  '</div>';
+}
+
+function buildHalvesNRL(){
+  const games=[];
+  ALL_ROUNDS.forEach(rd=>rd.matches.forEach(m=>games.push({r:rd.round,home:m.home,away:m.away,hs:m.hs,as:m.as,hh:m.hh??null,ha:m.ha??null})));
+  const res=halvesCompute(games);
+  const short=n=>{const t=T(n);return (t&&t.short)?t.short:n.split(' ').pop()};
+  document.getElementById('halves-root').innerHTML=halvesHTML(res,{c1:'#4A9EFF',c2:'#F0C040',accent:'var(--nrl)',cardBg:'#12122A',muted:'var(--muted)',short});
+}
+buildHalvesNRL();
+
 buildLadder();
 buildAdvanced();
 renderPlayers();

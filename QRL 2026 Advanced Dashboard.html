@@ -178,7 +178,7 @@ main{max-width:1400px;margin:0 auto;padding:20px;}
         <div class="qrl-badge" id="qrl-badge">QRL</div>
         <div>
           <h1>QRL 2026 Advanced Dashboard</h1>
-          <div class="comp-label" id="comp-label">HOSTPLUS CUP · ROUNDS 1–15</div>
+          <div class="comp-label" id="comp-label">HOSTPLUS CUP · ROUNDS 1–17</div>
         </div>
       </div>
     </div>
@@ -190,6 +190,7 @@ main{max-width:1400px;margin:0 auto;padding:20px;}
       <button class="tab-btn" onclick="showTab('results')">📅 Results</button>
       <button class="tab-btn" onclick="showTab('ladder')">🏆 Ladder</button>
       <button class="tab-btn" onclick="showTab('metrics')">📊 Metrics</button>
+      <button class="tab-btn" onclick="showTab('halves')">⏱️ Halves</button>
       <button class="tab-btn" onclick="showTab('profiles')">👥 Profiles</button>
       <button class="tab-btn" onclick="showTab('scout')">🔍 Scout Reports</button>
       <button class="tab-btn" onclick="showTab('attack')">⚔️ Attack</button>
@@ -204,6 +205,7 @@ main{max-width:1400px;margin:0 auto;padding:20px;}
     <div id="tab-results" class="tab-panel"></div>
     <div id="tab-ladder" class="tab-panel"></div>
     <div id="tab-metrics" class="tab-panel"></div>
+    <div id="tab-halves" class="tab-panel"></div>
     <div id="tab-profiles" class="tab-panel"></div>
     <div id="tab-scout" class="tab-panel"></div>
     <div id="tab-attack" class="tab-panel"></div>
@@ -240,135 +242,153 @@ function initials(n){ return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpp
 // ═══════════════════════════════════════════════════
 // HOSTPLUS CUP DATA
 // ═══════════════════════════════════════════════════
+// Verified vs Rugby League Project incl. half-time scores (hh/ha) — updated to R17, 13 Jul 2026
 const HC_ROUNDS = [
   {r:1, m:[
-    {h:'WM Seagulls',hs:16,a:'Magpies',   as:24,v:'BMD Kougari Oval'},
-    {h:'Seagulls',   hs:34,a:'Falcons',   as:28,v:'Preston Building Complex'},
-    {h:'Devils',     hs:18,a:'Cutters',   as:32,v:"Premiers' Park"},
-    {h:'Dolphins',   hs:12,a:'Bears',     as:22,v:'Kayo Stadium'},
-    {h:'Clydesdales',hs:12,a:'Tigers',    as:22,v:'Toowoomba Sports Ground'},
-    {h:'Jets',       hs:30,a:'Blackhawks',as:0, v:'Richardson Park'},
-    {h:'Hunters',    hs:16,a:'Capras',    as:24,v:'Santos National Football Stadium'},
-  ], byes:['Pride']},
+    {h:"WM Seagulls",hs:16,a:"Magpies",as:24,hh:10,ha:12,v:"BMD Kougari Oval"},
+    {h:"Seagulls",hs:34,a:"Falcons",as:28,hh:16,ha:22,v:"Preston Building Sports Complex"},
+    {h:"Devils",hs:18,a:"Cutters",as:32,hh:18,ha:12,v:"Premiers' Park"},
+    {h:"Dolphins",hs:12,a:"Bears",as:22,hh:6,ha:10,v:"Kayo Stadium"},
+    {h:"Clydesdales",hs:12,a:"Tigers",as:22,hh:8,ha:0,v:"Toowoomba Sports Ground"},
+    {h:"Jets",hs:30,a:"Blackhawks",as:0,hh:16,ha:0,v:"Richardson Park"},
+    {h:"Hunters",hs:16,a:"Capras",as:24,hh:0,ha:22,v:"Santos National Football Stadium"},
+  ], byes:["Pride"]},
   {r:2, m:[
-    {h:'Jets',       hs:12,a:'Falcons',   as:24,v:'Richardson Park'},
-    {h:'Dolphins',   hs:28,a:'Blackhawks',as:14,v:'Kayo Stadium'},
-    {h:'Tigers',     hs:36,a:'Capras',    as:22,v:'Totally Workwear Stadium'},
-    {h:'Pride',      hs:30,a:'Seagulls',  as:24,v:'Barlow Park'},
-    {h:'Clydesdales',hs:10,a:'Devils',    as:42,v:'Toowoomba Sports Ground'},
-    {h:'Hunters',    hs:20,a:'WM Seagulls',as:28,v:'Santos National Football Stadium'},
-    {h:'Magpies',    hs:28,a:'Bears',     as:28,v:'Davies Park'},
-  ], byes:['Cutters']},
+    {h:"Jets",hs:12,a:"Falcons",as:24,hh:0,ha:18,v:"North Ipswich Reserve"},
+    {h:"Dolphins",hs:28,a:"Blackhawks",as:14,hh:22,ha:0,v:"Kayo Stadium"},
+    {h:"Tigers",hs:36,a:"Capras",as:22,hh:28,ha:6,v:"Totally Workwear Stadium"},
+    {h:"Pride",hs:30,a:"Seagulls",as:24,hh:20,ha:12,v:"Barlow Park"},
+    {h:"Clydesdales",hs:10,a:"Devils",as:42,hh:0,ha:24,v:"Toowoomba Sports Ground"},
+    {h:"Hunters",hs:20,a:"WM Seagulls",as:28,hh:20,ha:4,v:"Santos National Football Stadium"},
+    {h:"Magpies",hs:28,a:"Bears",as:28,hh:6,ha:22,v:"Davies Park"},
+  ], byes:["Cutters"]},
   {r:3, m:[
-    {h:'Seagulls',   hs:28,a:'Bears',     as:28,v:'Preston Building Complex'},
-    {h:'Cutters',    hs:24,a:'Capras',    as:10,v:'BB Print Stadium'},
-    {h:'Blackhawks', hs:8, a:'Pride',     as:20,v:'Jack Manski Oval'},
-    {h:'Devils',     hs:24,a:'Magpies',   as:24,v:"Premiers' Park"},
-    {h:'Jets',       hs:48,a:'Tigers',    as:6, v:'Richardson Park'},
-    {h:'WM Seagulls',hs:16,a:'Dolphins',  as:36,v:'BMD Kougari Oval'},
-    {h:'Clydesdales',hs:14,a:'Hunters',   as:38,v:'Toowoomba Sports Ground'},
-  ], byes:['Falcons']},
+    {h:"Seagulls",hs:28,a:"Bears",as:28,hh:0,ha:28,v:"Preston Building Sports Complex"},
+    {h:"Cutters",hs:24,a:"Capras",as:10,hh:8,ha:6,v:"BB Print Stadium"},
+    {h:"Blackhawks",hs:8,a:"Pride",as:20,hh:8,ha:0,v:"Jack Manski Oval"},
+    {h:"Devils",hs:24,a:"Magpies",as:24,hh:12,ha:6,v:"Premiers' Park"},
+    {h:"Jets",hs:48,a:"Tigers",as:6,hh:24,ha:6,v:"Richardson Park"},
+    {h:"WM Seagulls",hs:16,a:"Dolphins",as:36,hh:4,ha:24,v:"BMD Kougari Oval"},
+    {h:"Clydesdales",hs:14,a:"Hunters",as:38,hh:4,ha:24,v:"Toowoomba Sports Ground"},
+  ], byes:["Falcons"]},
   {r:4, m:[
-    {h:'Tigers',     hs:22,a:'Devils',    as:12,v:'Totally Workwear Stadium'},
-    {h:'Bears',      hs:26,a:'Pride',     as:18,v:'UAA Park'},
-    {h:'Falcons',    hs:20,a:'Clydesdales',as:18,v:'Sunshine Coast Stadium'},
-    {h:'Dolphins',   hs:33,a:'Hunters',   as:4, v:'Kayo Stadium'},
-    {h:'Magpies',    hs:30,a:'Jets',      as:32,v:'Davies Park'},
-    {h:'Blackhawks', hs:34,a:'Seagulls',  as:6, v:'Jack Manski Oval'},
-    {h:'WM Seagulls',hs:26,a:'Cutters',   as:26,v:'BMD Kougari Oval'},
-  ], byes:['Capras']},
+    {h:"Tigers",hs:22,a:"Devils",as:12,hh:4,ha:8,v:"Totally Workwear Stadium"},
+    {h:"Bears",hs:26,a:"Pride",as:18,hh:10,ha:6,v:"UAA Park"},
+    {h:"Falcons",hs:20,a:"Clydesdales",as:18,hh:4,ha:12,v:"Sunshine Coast Stadium"},
+    {h:"Dolphins",hs:33,a:"Hunters",as:4,hh:16,ha:0,v:"Kayo Stadium"},
+    {h:"Magpies",hs:30,a:"Jets",as:32,hh:18,ha:18,v:"Davies Park"},
+    {h:"Blackhawks",hs:34,a:"Seagulls",as:6,hh:10,ha:0,v:"Jack Manski Oval"},
+    {h:"WM Seagulls",hs:26,a:"Cutters",as:26,hh:22,ha:10,v:"BMD Kougari Oval"},
+  ], byes:["Capras"]},
   {r:5, m:[
-    {h:'Pride',      hs:18,a:'Cutters',   as:18,v:'Barlow Park'},
-    {h:'Seagulls',   hs:36,a:'Magpies',   as:12,v:'Preston Building Complex'},
-    {h:'Jets',       hs:18,a:'Bears',     as:16,v:'Richardson Park'},
-    {h:'Blackhawks', hs:26,a:'WM Seagulls',as:12,v:'Jack Manski Oval'},
-    {h:'Devils',     hs:18,a:'Capras',    as:26,v:"Premiers' Park"},
-    {h:'Falcons',    hs:18,a:'Dolphins',  as:12,v:'Sunshine Coast Stadium'},
-    {h:'Tigers',     hs:34,a:'Hunters',   as:18,v:'Totally Workwear Stadium'},
-  ], byes:['Clydesdales']},
+    {h:"Pride",hs:18,a:"Cutters",as:18,hh:0,ha:12,v:"Barlow Park"},
+    {h:"Seagulls",hs:36,a:"Magpies",as:12,hh:20,ha:4,v:"Preston Building Sports Complex"},
+    {h:"Jets",hs:18,a:"Bears",as:16,hh:18,ha:4,v:"Richardson Park"},
+    {h:"Blackhawks",hs:26,a:"WM Seagulls",as:12,hh:10,ha:6,v:"Jack Manski Oval"},
+    {h:"Devils",hs:18,a:"Capras",as:26,hh:12,ha:0,v:"Premiers' Park"},
+    {h:"Falcons",hs:18,a:"Dolphins",as:12,hh:4,ha:6,v:"Sunshine Coast Stadium"},
+    {h:"Tigers",hs:34,a:"Hunters",as:18,hh:10,ha:6,v:"Totally Workwear Stadium"},
+  ], byes:["Clydesdales"]},
   {r:6, m:[
-    {h:'Pride',      hs:24,a:'Falcons',   as:26,v:'Barlow Park'},
-    {h:'Hunters',    hs:26,a:'Jets',      as:24,v:'Santos National Football Stadium'},
-    {h:'Tigers',     hs:4, a:'WM Seagulls',as:24,v:'Totally Workwear Stadium'},
-    {h:'Blackhawks', hs:6, a:'Capras',    as:12,v:'Jack Manski Oval'},
-    {h:'Cutters',    hs:46,a:'Seagulls',  as:18,v:'BB Print Stadium'},
-    {h:'Clydesdales',hs:24,a:'Magpies',   as:34,v:'Toowoomba Sports Ground'},
-    {h:'Bears',      hs:38,a:'Devils',    as:22,v:'UAA Park'},
-  ], byes:['Dolphins']},
+    {h:"Pride",hs:24,a:"Falcons",as:26,hh:6,ha:22,v:"Barlow Park"},
+    {h:"Hunters",hs:26,a:"Jets",as:24,hh:10,ha:18,v:"Santos National Football Stadium"},
+    {h:"Tigers",hs:4,a:"WM Seagulls",as:24,hh:4,ha:4,v:"Totally Workwear Stadium"},
+    {h:"Blackhawks",hs:6,a:"Capras",as:12,hh:0,ha:2,v:"Jack Manski Oval"},
+    {h:"Cutters",hs:46,a:"Seagulls",as:18,hh:12,ha:12,v:"BB Print Stadium"},
+    {h:"Clydesdales",hs:24,a:"Magpies",as:34,hh:24,ha:6,v:"Toowoomba Sports Ground"},
+    {h:"Bears",hs:38,a:"Devils",as:22,hh:18,ha:6,v:"UAA Park"},
+  ], byes:["Dolphins"]},
   {r:7, m:[
-    {h:'Seagulls',   hs:24,a:'Capras',    as:26,v:'Preston Building Sports Complex'},
-    {h:'Bears',      hs:42,a:'Hunters',   as:4, v:'UAA Park'},
-    {h:'Blackhawks', hs:18,a:'Tigers',    as:28,v:'Jack Manski Oval'},
-    {h:'Devils',     hs:10,a:'Dolphins',  as:22,v:"Premiers' Park"},
-    {h:'Magpies',    hs:32,a:'Falcons',   as:38,v:'Davies Park'},
-    {h:'Cutters',    hs:18,a:'Jets',      as:28,v:'BB Print Stadium'},
-    {h:'WM Seagulls',hs:40,a:'Clydesdales',as:16,v:'BMD Kougari Oval'},
-  ], byes:['Pride']},
+    {h:"Seagulls",hs:24,a:"Capras",as:26,hh:18,ha:6,v:"Preston Building Sports Complex"},
+    {h:"Bears",hs:42,a:"Hunters",as:4,hh:16,ha:4,v:"UAA Park"},
+    {h:"Blackhawks",hs:18,a:"Tigers",as:28,hh:12,ha:10,v:"Jack Manski Oval"},
+    {h:"Devils",hs:10,a:"Dolphins",as:22,hh:6,ha:14,v:"Premiers' Park"},
+    {h:"Magpies",hs:32,a:"Falcons",as:38,hh:6,ha:22,v:"Davies Park"},
+    {h:"Cutters",hs:18,a:"Jets",as:28,hh:0,ha:18,v:"BB Print Stadium"},
+    {h:"WM Seagulls",hs:40,a:"Clydesdales",as:16,hh:10,ha:12,v:"BMD Kougari Oval"},
+  ], byes:["Pride"]},
   {r:8, m:[
-    {h:'Hunters',    hs:8, a:'Falcons',   as:28,v:'Santos National Football Stadium'},
-    {h:'Capras',     hs:24,a:'Bears',     as:18,v:'Aurizon Stadium'},
-    {h:'Clydesdales',hs:24,a:'Blackhawks',as:38,v:'Father Ranger Oval'},
-    {h:'Magpies',    hs:28,a:'Cutters',   as:14,v:'Davies Park'},
-    {h:'Dolphins',   hs:20,a:'Pride',     as:20,v:'Kayo Stadium'},
-  ], byes:['Devils','Jets','Seagulls','Tigers','WM Seagulls']},
+    {h:"Hunters",hs:8,a:"Falcons",as:28,hh:4,ha:12,v:"Santos National Football Stadium"},
+    {h:"Capras",hs:24,a:"Bears",as:18,hh:12,ha:8,v:"Aurizon Stadium"},
+    {h:"Clydesdales",hs:24,a:"Blackhawks",as:38,hh:18,ha:20,v:"Father Ranger Oval"},
+    {h:"Magpies",hs:28,a:"Cutters",as:14,hh:16,ha:4,v:"Davies Park"},
+    {h:"Dolphins",hs:20,a:"Pride",as:20,hh:4,ha:14,v:"Kayo Stadium"},
+  ], byes:["Devils", "Jets", "Seagulls", "Tigers", "WM Seagulls"]},
   {r:9, m:[
-    {h:'WM Seagulls',hs:16,a:'Devils',    as:14,v:'BMD Kougari Oval'},
-    {h:'Blackhawks', hs:10,a:'Dolphins',  as:32,v:'Jack Manski Oval'},
-    {h:'Falcons',    hs:14,a:'Tigers',    as:12,v:'Sunshine Coast Stadium'},
-    {h:'Capras',     hs:28,a:'Jets',      as:28,v:'Aurizon Stadium'},
-    {h:'Seagulls',   hs:24,a:'Clydesdales',as:28,v:'Preston Building Sports Complex'},
-    {h:'Cutters',    hs:26,a:'Hunters',   as:24,v:'BB Print Stadium'},
-    {h:'Magpies',    hs:36,a:'Pride',     as:36,v:'Davies Park'},
-  ], byes:['Bears']},
+    {h:"WM Seagulls",hs:16,a:"Devils",as:14,hh:10,ha:4,v:"BMD Kougari Oval"},
+    {h:"Blackhawks",hs:10,a:"Dolphins",as:32,hh:0,ha:26,v:"Jack Manski Oval"},
+    {h:"Falcons",hs:14,a:"Tigers",as:12,hh:10,ha:0,v:"Sunshine Coast Stadium"},
+    {h:"Capras",hs:28,a:"Jets",as:28,hh:22,ha:14,v:"Aurizon Stadium"},
+    {h:"Seagulls",hs:24,a:"Clydesdales",as:28,hh:18,ha:12,v:"Preston Building Sports Complex"},
+    {h:"Cutters",hs:26,a:"Hunters",as:24,hh:14,ha:14,v:"BB Print Stadium"},
+    {h:"Magpies",hs:36,a:"Pride",as:36,hh:14,ha:22,v:"Davies Park"},
+  ], byes:["Bears"]},
   {r:10, m:[
-    {h:'Pride',      hs:40,a:'Clydesdales',as:12,v:'Barlow Park'},
-    {h:'Cutters',    hs:13,a:'Bears',     as:14,v:'BB Print Stadium'},
-    {h:'Hunters',    hs:20,a:'Magpies',   as:30,v:'Santos National Football Stadium'},
-    {h:'Falcons',    hs:38,a:'WM Seagulls',as:30,v:'Sunshine Coast Stadium'},
-    {h:'Capras',     hs:16,a:'Dolphins',  as:36,v:'Aurizon Stadium'},
-    {h:'Jets',       hs:22,a:'Seagulls',  as:20,v:'Richardson Park - Woogaroo Field'},
-    {h:'Devils',     hs:16,a:'Tigers',    as:24,v:"Premiers' Park"},
-  ], byes:['Blackhawks']},
+    {h:"Pride",hs:40,a:"Clydesdales",as:12,hh:22,ha:0,v:"Barlow Park"},
+    {h:"Cutters",hs:13,a:"Bears",as:14,hh:7,ha:6,v:"BB Print Stadium"},
+    {h:"Hunters",hs:20,a:"Magpies",as:30,hh:4,ha:8,v:"Santos National Football Stadium"},
+    {h:"Falcons",hs:38,a:"WM Seagulls",as:30,hh:20,ha:10,v:"Sunshine Coast Stadium"},
+    {h:"Capras",hs:16,a:"Dolphins",as:36,hh:4,ha:20,v:"Aurizon Stadium"},
+    {h:"Jets",hs:22,a:"Seagulls",as:20,hh:8,ha:4,v:"Richardson Park"},
+    {h:"Devils",hs:16,a:"Tigers",as:24,hh:4,ha:24,v:"Premiers' Park"},
+  ], byes:["Blackhawks"]},
   {r:11, m:[
-    {h:'Bears',      hs:22,a:'Magpies',   as:31,v:'UAA Park'},
-    {h:'Tigers',     hs:22,a:'Dolphins',  as:40,v:'Totally Workwear Stadium'},
-    {h:'Seagulls',   hs:22,a:'Pride',     as:22,v:'Preston Building Sports Complex'},
-    {h:'WM Seagulls',hs:36,a:'Capras',    as:10,v:'BMD Kougari Oval'},
-    {h:'Blackhawks', hs:22,a:'Cutters',   as:24,v:'Jack Manski Oval'},
-    {h:'Devils',     hs:12,a:'Falcons',   as:32,v:"Premiers' Park"},
-    {h:'Jets',       hs:24,a:'Clydesdales',as:38,v:'Pete Albrow Oval'},
-  ], byes:['Hunters']},
+    {h:"Bears",hs:22,a:"Magpies",as:31,hh:14,ha:20,v:"UAA Park"},
+    {h:"Tigers",hs:22,a:"Dolphins",as:40,hh:16,ha:16,v:"Totally Workwear Stadium"},
+    {h:"Seagulls",hs:22,a:"Pride",as:22,hh:10,ha:16,v:"Preston Building Sports Complex"},
+    {h:"WM Seagulls",hs:36,a:"Capras",as:10,hh:12,ha:0,v:"BMD Kougari Oval"},
+    {h:"Blackhawks",hs:22,a:"Cutters",as:24,hh:16,ha:12,v:"Jack Manski Oval"},
+    {h:"Devils",hs:12,a:"Falcons",as:32,hh:6,ha:14,v:"Premiers' Park"},
+    {h:"Jets",hs:24,a:"Clydesdales",as:38,hh:6,ha:24,v:"Pete Albrow Oval"},
+  ], byes:["Hunters"]},
   {r:12, m:[
-    {h:'Clydesdales',hs:20,a:'Dolphins',  as:52,v:'Toowoomba Sports Ground'},
-    {h:'Seagulls',   hs:36,a:'Hunters',   as:18,v:'Preston Building Sports Complex'},
-    {h:'Tigers',     hs:16,a:'Blackhawks',as:44,v:'Totally Workwear Stadium'},
-    {h:'Pride',      hs:22,a:'WM Seagulls',as:30,v:'Barlow Park'},
-    {h:'Bears',      hs:22,a:'Falcons',   as:29,v:'UAA Park'},
-  ], byes:['Capras','Cutters','Devils','Jets','Magpies']},
+    {h:"Clydesdales",hs:20,a:"Dolphins",as:52,hh:4,ha:28,v:"Toowoomba Sports Ground"},
+    {h:"Seagulls",hs:34,a:"Hunters",as:18,hh:20,ha:6,v:"Preston Building Sports Complex"},
+    {h:"Tigers",hs:16,a:"Blackhawks",as:44,hh:6,ha:16,v:"Totally Workwear Stadium"},
+    {h:"Pride",hs:22,a:"WM Seagulls",as:30,hh:6,ha:10,v:"Barlow Park"},
+    {h:"Bears",hs:22,a:"Falcons",as:29,hh:18,ha:22,v:"UAA Park"},
+  ], byes:["Capras", "Cutters", "Devils", "Jets", "Magpies"]},
   {r:13, m:[
-    {h:'Blackhawks', hs:34,a:'Jets',      as:10,v:'Jack Manski Oval'},
-    {h:'Capras',     hs:10,a:'Clydesdales',as:34,v:'Aurizon Stadium'},
-    {h:'Cutters',    hs:27,a:'Magpies',   as:26,v:'BB Print Stadium'},
-    {h:'Devils',     hs:26,a:'Seagulls',  as:16,v:"Premiers' Park"},
-    {h:'Hunters',    hs:12,a:'Bears',     as:22,v:'Santos National Football Stadium'},
-  ], byes:['Dolphins','Falcons','Pride','Tigers','WM Seagulls']},
+    {h:"Blackhawks",hs:34,a:"Jets",as:10,hh:10,ha:0,v:"Jack Manski Oval"},
+    {h:"Capras",hs:10,a:"Clydesdales",as:34,hh:10,ha:12,v:"Aurizon Stadium"},
+    {h:"Cutters",hs:27,a:"Magpies",as:26,hh:16,ha:8,v:"BB Print Stadium"},
+    {h:"Devils",hs:26,a:"Seagulls",as:16,hh:16,ha:6,v:"Premiers' Park"},
+    {h:"Hunters",hs:12,a:"Bears",as:22,hh:12,ha:12,v:"Santos National Football Stadium"},
+  ], byes:["Dolphins", "Falcons", "Pride", "Tigers", "WM Seagulls"]},
   {r:14, m:[
-    {h:'Capras',hs:14,a:'Magpies',as:12,v:'Aurizon Stadium'},
-    {h:'Cutters',hs:18,a:'Tigers',as:26,v:'BB Print Stadium'},
-    {h:'Dolphins',hs:18,a:'Jets',as:28,v:'Kayo Stadium'},
-    {h:'Falcons',hs:0,a:'Blackhawks',as:24,v:'Sunshine Coast Stadium'},
-    {h:'Devils',hs:36,a:'WM Seagulls',as:16,v:"Premiers' Park"},
-    {h:'Hunters',hs:16,a:'Pride',as:32,v:'Santos National Football Stadium'},
-  ], byes:['Bears','Clydesdales','Seagulls']},
+    {h:"Capras",hs:14,a:"Magpies",as:12,hh:10,ha:6,v:"Aurizon Stadium"},
+    {h:"Cutters",hs:18,a:"Tigers",as:26,hh:0,ha:8,v:"BB Print Stadium"},
+    {h:"Dolphins",hs:18,a:"Jets",as:28,hh:0,ha:28,v:"Kayo Stadium"},
+    {h:"Falcons",hs:0,a:"Blackhawks",as:24,hh:0,ha:10,v:"Sunshine Coast Stadium"},
+    {h:"Devils",hs:36,a:"WM Seagulls",as:16,hh:24,ha:12,v:"Premiers' Park"},
+    {h:"Hunters",hs:16,a:"Pride",as:32,hh:8,ha:16,v:"Santos National Football Stadium"},
+  ], byes:["Bears", "Clydesdales", "Seagulls"]},
   {r:15, m:[
-    {h:'Seagulls',hs:26,a:'Bears',    as:12,v:'UAA Park'},
-    {h:'Pride',   hs:16,a:'Blackhawks',as:16,v:'Barlow Park'},
-    {h:'Jets',    hs:28,a:'Tigers',   as:18,v:'Totally Workwear Stadium'},
-    {h:'Dolphins',hs:34,a:'WM Seagulls',as:10,v:'Kayo Stadium'},
-    {h:'Clydesdales',hs:8,a:'Falcons',as:42,v:'Toowoomba Sports Ground'},
-    {h:'Capras',  hs:51,a:'Cutters',  as:12,v:'Aurizon Stadium'},
-    {h:'Magpies', hs:20,a:'Devils',   as:14,v:'Davies Park'},
-  ], byes:['Hunters']},
+    {h:"Bears",hs:12,a:"Seagulls",as:26,hh:12,ha:0,v:"UAA Park"},
+    {h:"Pride",hs:16,a:"Blackhawks",as:16,hh:16,ha:10,v:"Barlow Park"},
+    {h:"Jets",hs:28,a:"Tigers",as:18,hh:6,ha:18,v:"Totally Workwear Stadium"},
+    {h:"Dolphins",hs:34,a:"WM Seagulls",as:10,hh:18,ha:6,v:"Kayo Stadium"},
+    {h:"Clydesdales",hs:8,a:"Falcons",as:42,hh:4,ha:22,v:"Toowoomba Sports Ground"},
+    {h:"Capras",hs:51,a:"Cutters",as:12,hh:22,ha:6,v:"Aurizon Stadium"},
+    {h:"Magpies",hs:20,a:"Devils",as:14,hh:12,ha:8,v:"Davies Park"},
+  ], byes:["Hunters"]},
+  {r:16, m:[
+    {h:"Pride",hs:34,a:"Jets",as:12,hh:18,ha:12,v:"Barlow Park"},
+    {h:"Seagulls",hs:22,a:"Tigers",as:26,hh:6,ha:16,v:"Preston Building Sports Complex"},
+    {h:"Falcons",hs:20,a:"Capras",as:30,hh:6,ha:6,v:"Sunshine Coast Stadium"},
+    {h:"Cutters",hs:42,a:"Devils",as:22,hh:10,ha:16,v:"BB Print Stadium"},
+    {h:"Magpies",hs:32,a:"Dolphins",as:10,hh:16,ha:6,v:"Davies Park"},
+    {h:"Clydesdales",hs:18,a:"Bears",as:26,hh:18,ha:12,v:"Toowoomba Sports Ground"},
+    {h:"WM Seagulls",hs:54,a:"Hunters",as:0,hh:30,ha:0,v:"BMD Kougari Oval"},
+  ], byes:["Blackhawks"]},
+  {r:17, m:[
+    {h:"Seagulls",hs:22,a:"Blackhawks",as:34,hh:4,ha:26,v:"Preston Building Sports Complex"},
+    {h:"Bears",hs:24,a:"Cutters",as:16,hh:8,ha:16,v:"UAA Park"},
+    {h:"Jets",hs:28,a:"Capras",as:10,hh:16,ha:4,v:"Richardson Park"},
+    {h:"Clydesdales",hs:12,a:"Pride",as:32,hh:12,ha:10,v:"Toowoomba Sports Ground"},
+    {h:"Tigers",hs:30,a:"Magpies",as:16,hh:18,ha:4,v:"Totally Workwear Stadium"},
+    {h:"Hunters",hs:24,a:"Devils",as:30,hh:14,ha:12,v:"Santos National Football Stadium"},
+  ], byes:["Falcons", "Dolphins", "WM Seagulls"]},
 ];
 
 
@@ -390,9 +410,13 @@ function computeStats(rounds) {
       s[m.a].results.push({r:rnd.r,res:ares,sc:m.as,oc:m.hs,opp:m.h});
     });
   });
+  rounds.forEach(rnd => (rnd.byes||[]).forEach(t => {
+    if (!s[t]) s[t]={p:0,w:0,d:0,l:0,f:0,a:0,results:[],byes:0};
+    s[t].byes=(s[t].byes||0)+1;
+  }));
   Object.values(s).forEach(t => {
     t.diff = t.f - t.a;
-    t.pts = t.w*2 + t.d;
+    t.pts = t.w*2 + t.d + (t.byes||0)*2; // QRL: byes worth 2 pts
     t.pct = t.p > 0 ? Math.round(t.w/t.p*100) : 0;
     t.avgF = t.p > 0 ? (t.f/t.p).toFixed(1) : 0;
     t.avgA = t.p > 0 ? (t.a/t.p).toFixed(1) : 0;
@@ -637,7 +661,7 @@ function renderGuide() {
   <div class="card">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
       <div style="font-size:12px;color:var(--muted);line-height:1.7;"><strong style="color:#fff">Competition:</strong> Hostplus Cup 2026 — 15 teams, 15 rounds of regular season data loaded. Finals structure TBC.<br><br><strong style="color:#fff">Teams:</strong> Falcons (Sunshine Coast), WM Seagulls (Wynnum-Manly), Tigers (Ipswich), Seagulls (Tweed), Blackhawks (Townsville), Capras (Central QLD), Jets (Souths), Dolphins (Redcliffe), Cutters (Mackay), Devils (Norths), Pride (Cairns), Bears (Burleigh), Magpies (Western Suburbs), Clydesdales (Toowoomba), Hunters (Port Moresby).</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.7;"><strong style="color:#fff">Calculations:</strong> All stats are computed live from the raw match data arrays. Win rate, averages and differentials auto-calculate. Form guide reflects last 5 played games (byes not counted).<br><br><strong style="color:#fff">Data Currency:</strong> Dashboard reflects data through Round 15 completed (Jun 27–28). Update the QRL_ROUNDS array to add new results.</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;"><strong style="color:#fff">Calculations:</strong> All stats are computed live from the raw match data arrays. Win rate, averages and differentials auto-calculate. Form guide reflects last 5 played games (byes not counted).<br><br><strong style="color:#fff">Data Currency:</strong> Dashboard reflects data through Round 17 completed (Jul 11–12). Update the QRL_ROUNDS array to add new results.</div>
     </div>
   </div>`;
   document.getElementById('tab-guide').innerHTML=html;
@@ -1147,13 +1171,160 @@ function renderScout() {
 // ═══════════════════════════════════════════════════
 // TAB / COMP SWITCHING
 // ═══════════════════════════════════════════════════
+
+// ═══════ 1ST vs 2ND HALF ANALYTICS (auto-generated 13 Jul 2026) ═══════
+function halvesCompute(games){
+  const withHT = games.filter(g=>g.hh!=null&&g.ha!=null);
+  const teams = {};
+  const ens = (t)=>{ if(!teams[t]) teams[t]={team:t,g:0,h1f:0,h1a:0,h2f:0,h2a:0,ledHT:0,levelHT:0,trailHT:0,comebackW:0,blownL:0,winFromLead:0}; return teams[t]; };
+  const cb=[]; const surges=[];
+  withHT.forEach(g=>{
+    const h2h=g.hs-g.hh, h2a=g.as-g.ha;
+    [[g.home,g.hh,g.ha,g.hs,g.as,h2h,h2a],[g.away,g.ha,g.hh,g.as,g.hs,h2a,h2h]].forEach(x=>{
+      const [t,htF,htA,ftF,ftA,sF,sA]=x; const T=ens(t);
+      T.g++; T.h1f+=htF; T.h1a+=htA; T.h2f+=sF; T.h2a+=sA;
+      const led=htF>htA, level=htF===htA, won=ftF>ftA, lost=ftF<ftA;
+      if(led)T.ledHT++; else if(level)T.levelHT++; else T.trailHT++;
+      if(!led&&!level&&won){T.comebackW++;}
+      if(led&&lost){T.blownL++;}
+      if(led&&won){T.winFromLead++;}
+    });
+    const hLed=g.hh>g.ha, aLed=g.ha>g.hh, hWon=g.hs>g.as, aWon=g.as>g.hs;
+    if((aLed&&hWon)||(hLed&&aWon)){
+      const winner=hWon?g.home:g.away, deficit=hWon?(g.ha-g.hh):(g.hh-g.ha);
+      const loser=hWon?g.away:g.home;
+      cb.push({r:g.r,winner,loser,deficit,ht:g.hh+'–'+g.ha,ft:g.hs+'–'+g.as});
+    }
+    const hSurge=(g.hs-g.hh)-(g.as-g.ha);
+    surges.push({r:g.r,team:hSurge>=0?g.home:g.away,opp:hSurge>=0?g.away:g.home,swing:Math.abs(hSurge),ht:g.hh+'–'+g.ha,ft:g.hs+'–'+g.as});
+  });
+  // League aggregates
+  let h1Tot=0,h2Tot=0,ledWin=0,ledCnt=0;
+  withHT.forEach(g=>{
+    h1Tot+=g.hh+g.ha; h2Tot+=(g.hs-g.hh)+(g.as-g.ha);
+    if(g.hh!==g.ha){ ledCnt++; const ledHome=g.hh>g.ha; if((ledHome&&g.hs>g.as)||(!ledHome&&g.as>g.hs)) ledWin++; }
+  });
+  cb.sort((a,b)=>b.deficit-a.deficit);
+  surges.sort((a,b)=>b.swing-a.swing);
+  return {withHT, total:games.length, teams:Object.values(teams), cb, surges,
+          h1Avg:withHT.length?h1Tot/withHT.length:0, h2Avg:withHT.length?h2Tot/withHT.length:0,
+          ledWinPct:ledCnt?Math.round(ledWin/ledCnt*100):0, ledCnt};
+}
+
+function halvesBarChart(rows, opts){
+  // rows: [{label, v1, v2, color?}] — grouped horizontal bars, H1 vs H2 series
+  const c1=opts.c1, c2=opts.c2, ink=opts.ink||'#C0CCE0', muted=opts.muted||'#8892A8';
+  const W=760, rowH=34, padL=132, padR=56, barH=9, gap=3;
+  const H=rows.length*rowH+42;
+  const maxV=Math.max(...rows.map(r=>Math.max(r.v1,r.v2)),1)*1.08;
+  const sx=v=>padL+(W-padL-padR)*(v/maxV);
+  let g='';
+  // gridlines
+  const step=maxV>30?10:maxV>12?5:2;
+  for(let v=0;v<=maxV;v+=step){
+    g+='<line x1="'+sx(v)+'" y1="18" x2="'+sx(v)+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,.06)" stroke-width="1"/>';
+    g+='<text x="'+sx(v)+'" y="'+(H-10)+'" fill="'+muted+'" font-size="9" text-anchor="middle">'+v+'</text>';
+  }
+  rows.forEach((r,i)=>{
+    const y=26+i*rowH;
+    g+='<text x="'+(padL-8)+'" y="'+(y+barH+2)+'" fill="'+ink+'" font-size="10" font-weight="700" text-anchor="end">'+r.label+'</text>';
+    g+='<rect x="'+padL+'" y="'+y+'" width="'+Math.max(sx(r.v1)-padL,1.5)+'" height="'+barH+'" rx="3" fill="'+c1+'"><title>'+r.label+' — 1st half: '+r.v1.toFixed(1)+'</title></rect>';
+    g+='<text x="'+(sx(r.v1)+5)+'" y="'+(y+barH-1)+'" fill="'+muted+'" font-size="8.5">'+r.v1.toFixed(1)+'</text>';
+    const y2=y+barH+gap;
+    g+='<rect x="'+padL+'" y="'+y2+'" width="'+Math.max(sx(r.v2)-padL,1.5)+'" height="'+barH+'" rx="3" fill="'+c2+'"><title>'+r.label+' — 2nd half: '+r.v2.toFixed(1)+'</title></rect>';
+    g+='<text x="'+(sx(r.v2)+5)+'" y="'+(y2+barH-1)+'" fill="'+muted+'" font-size="8.5">'+r.v2.toFixed(1)+'</text>';
+  });
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" role="img" aria-label="First vs second half points by team">'+g+'</svg>';
+}
+
+function halvesHTML(res, opts){
+  const c1=opts.c1,c2=opts.c2;
+  const cov=res.withHT.length+' of '+res.total+' matches have verified half-time data'+(res.withHT.length<res.total?' — halves stats use only those games':'');
+  const tiles=[
+    {l:'AVG 1ST-HALF PTS / GAME', v:res.h1Avg.toFixed(1), s:'both teams combined'},
+    {l:'AVG 2ND-HALF PTS / GAME', v:res.h2Avg.toFixed(1), s:(res.h2Avg>res.h1Avg?'games open up after the break':'first halves higher-scoring')},
+    {l:'HT LEADER WINS', v:res.ledWinPct+'%', s:'of '+res.ledCnt+' games with a HT leader'},
+    {l:'HT COMEBACK WINS', v:res.cb.length, s:'winner trailed at half-time'},
+  ];
+  const tilesHtml=tiles.map(t=>'<div style="flex:1;min-width:150px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:10px;padding:14px 16px"><div style="font-size:9px;font-weight:800;letter-spacing:.6px;color:'+(opts.muted||'#8892A8')+'">'+t.l+'</div><div style="font-size:24px;font-weight:900;color:white;margin:4px 0 2px">'+t.v+'</div><div style="font-size:10px;color:'+(opts.muted||'#8892A8')+'">'+t.s+'</div></div>').join('');
+
+  const T=res.teams.map(t=>({...t,
+    h1d:t.h1f-t.h1a, h2d:t.h2f-t.h2a,
+    h1fAvg:t.g?t.h1f/t.g:0, h2fAvg:t.g?t.h2f/t.g:0,
+    h1aAvg:t.g?t.h1a/t.g:0, h2aAvg:t.g?t.h2a/t.g:0,
+  }));
+  T.sort((a,b)=>(b.h1d+b.h2d)-(a.h1d+a.h2d));
+
+  const chartAtt=halvesBarChart(T.map(t=>({label:opts.short?opts.short(t.team):t.team, v1:t.h1fAvg, v2:t.h2fAvg})), opts);
+  const Tdef=[...T].sort((a,b)=>(a.h1aAvg+a.h2aAvg)-(b.h1aAvg+b.h2aAvg));
+  const chartDef=halvesBarChart(Tdef.map(t=>({label:opts.short?opts.short(t.team):t.team, v1:t.h1aAvg, v2:t.h2aAvg})), opts);
+
+  const legend='<div style="display:flex;gap:16px;align-items:center;margin:6px 0 4px;font-size:10px;color:'+(opts.muted||'#8892A8')+'"><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:'+c1+'"></span>1st half</span><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:'+c2+'"></span>2nd half</span></div>';
+
+  const rowsHtml=T.map(t=>{
+    const swing=(t.h2d-t.h1d);
+    const swCol=swing>0?'#4ADE80':swing<0?'#F87171':'#FACC15';
+    return '<tr>'+
+      '<td style="text-align:left;font-weight:700">'+(opts.short?opts.short(t.team):t.team)+'</td>'+
+      '<td>'+t.g+'</td>'+
+      '<td>'+t.h1fAvg.toFixed(1)+'</td><td>'+t.h1aAvg.toFixed(1)+'</td>'+
+      '<td style="color:'+(t.h1d>=0?'#4ADE80':'#F87171')+';font-weight:700">'+(t.h1d>=0?'+':'')+t.h1d+'</td>'+
+      '<td>'+t.h2fAvg.toFixed(1)+'</td><td>'+t.h2aAvg.toFixed(1)+'</td>'+
+      '<td style="color:'+(t.h2d>=0?'#4ADE80':'#F87171')+';font-weight:700">'+(t.h2d>=0?'+':'')+t.h2d+'</td>'+
+      '<td style="color:'+swCol+';font-weight:800">'+(swing>0?'+':'')+swing+'</td>'+
+      '<td>'+t.ledHT+'</td><td>'+t.comebackW+'</td><td>'+t.blownL+'</td></tr>';
+  }).join('');
+
+  const cbHtml=res.cb.length?res.cb.slice(0,10).map(c=>
+    '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap">'+
+    '<span><strong style="color:#4ADE80">'+c.winner+'</strong> <span style="color:'+(opts.muted||'#8892A8')+'">came from '+c.deficit+' down at HT vs</span> '+c.loser+'</span>'+
+    '<span style="color:'+(opts.muted||'#8892A8')+'">R'+c.r+' · HT '+c.ht+' → FT <strong style="color:white">'+c.ft+'</strong></span></div>').join('')
+    :'<p style="color:'+(opts.muted||'#8892A8')+';font-size:11px">No half-time comebacks recorded yet.</p>';
+
+  const surgeHtml=res.surges.slice(0,5).map(s=>
+    '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap">'+
+    '<span><strong style="color:'+c2+'">'+s.team+'</strong> <span style="color:'+(opts.muted||'#8892A8')+'">won the 2nd half by '+s.swing+' vs</span> '+s.opp+'</span>'+
+    '<span style="color:'+(opts.muted||'#8892A8')+'">R'+s.r+' · HT '+s.ht+' → FT <strong style="color:white">'+s.ft+'</strong></span></div>').join('');
+
+  return ''+
+  '<div style="background:'+(opts.heroBg||'linear-gradient(135deg,#0A1528,#101024)')+';border:1px solid '+(opts.accent||c1)+';border-radius:14px;padding:22px 26px;margin-bottom:18px">'+
+    '<h2 style="color:white;font-size:16px;font-weight:900;margin-bottom:4px">⏱️ 1st vs 2nd Half Breakdown</h2>'+
+    '<p style="color:'+(opts.muted||'#8892A8')+';font-size:11px">'+cov+'. Half-time scores sourced from Rugby League Project match records.</p>'+
+  '</div>'+
+  '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px">'+tilesHtml+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">POINTS SCORED PER GAME — 1ST VS 2ND HALF</h3>'+legend+chartAtt+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">POINTS CONCEDED PER GAME — 1ST VS 2ND HALF <span style="font-weight:600;color:'+(opts.muted||'#8892A8')+';font-size:10px">(best defence first)</span></h3>'+legend+chartDef+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px;overflow-x:auto">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">TEAM HALF-BY-HALF LEDGER</h3>'+
+    '<style>.halves-tbl td{padding:6px 8px;border-top:1px solid rgba(255,255,255,.05)}.halves-tbl th{padding:6px 8px}</style>'+
+    '<table class="halves-tbl" style="width:100%;border-collapse:collapse;font-size:10.5px;text-align:center">'+
+    '<thead><tr style="color:'+(opts.muted||'#8892A8')+';font-size:9px;letter-spacing:.5px">'+
+    '<th style="text-align:left">TEAM</th><th>G*</th><th>H1 PF</th><th>H1 PA</th><th>H1 +/-</th><th>H2 PF</th><th>H2 PA</th><th>H2 +/-</th><th>2H SWING</th><th>LED HT</th><th>CB WINS</th><th>BLOWN</th></tr></thead>'+
+    '<tbody style="color:#D5DEEE">'+rowsHtml+'</tbody></table>'+
+    '<p style="color:'+(opts.muted||'#8892A8')+';font-size:9px;margin-top:8px">*Games with half-time data only. 2H SWING = 2nd-half differential minus 1st-half differential — positive means the side gets stronger after the break. CB WINS = wins after trailing at HT. BLOWN = losses after leading at HT.</p>'+
+  '</div>'+
+  '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px">'+
+    '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px"><h3 style="color:#4ADE80;font-size:12px;font-weight:800;margin-bottom:10px">🔄 BIGGEST HT COMEBACKS</h3>'+cbHtml+'</div>'+
+    '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px"><h3 style="color:'+c2+';font-size:12px;font-weight:800;margin-bottom:10px">⚡ BIGGEST 2ND-HALF SURGES</h3>'+surgeHtml+'</div>'+
+  '</div>';
+}
+
+function renderHalvesTab(){
+  const games=[];
+  getRounds().forEach(rnd=>rnd.m.forEach(m=>{ if(!m.upcoming) games.push({r:rnd.r,home:m.h,away:m.a,hs:m.hs,as:m.as,hh:m.hh??null,ha:m.ha??null}); }));
+  const res=halvesCompute(games);
+  document.getElementById('tab-halves').innerHTML=halvesHTML(res,{c1:'#4ADE80',c2:'#FB7185',accent:'#4ADE80',cardBg:'var(--card,#12122A)',muted:'var(--muted,#8892A8)',short:n=>n});
+}
+
 function showTab(tab) {
   TAB = tab;
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
   const btns = document.querySelectorAll('.tab-btn');
-  const tabOrder = ['guide','hub','results','ladder','metrics','profiles','scout','attack','defence','tryzone','ai'];
+  const tabOrder = ['guide','hub','results','ladder','metrics','halves','profiles','scout','attack','defence','tryzone','ai'];
   const idx = tabOrder.indexOf(tab);
   if (idx >= 0) btns[idx].classList.add('active');
   renderCurrentTab();
@@ -1165,6 +1336,7 @@ function renderCurrentTab() {
   else if (TAB === 'results') renderResults();
   else if (TAB === 'ladder') renderLadder();
   else if (TAB === 'metrics') renderMetrics();
+  else if (TAB === 'halves') renderHalvesTab();
   else if (TAB === 'profiles') renderProfiles();
   else if (TAB === 'scout') renderScout();
   else if (TAB === 'attack') renderAttack();
@@ -1504,21 +1676,21 @@ function renderTryZone() {
   // Derived from 15 rounds of QRL Hostplus Cup match data, team scoring patterns and playing personnel
   // al/am/ar = attack % left/middle/right | vl/vm/vr = defensive vulnerability % L/M/R
   const TZ = {
-    'Falcons':     {al:32,am:28,ar:40,vl:28,vm:42,vr:30,atk:'Right-edge dominant — halfback steers right consistently, creating scoring clusters on that channel across 15 rounds. Competition leaders: 10+ wins. R1 loss to Tweed Seagulls came when right-edge attack was shut down and they had no counter. Cross-field kick to right winger is their primary red-zone weapon.',def:'Middle corridor the primary concession zone — R1 Tweed comeback (0-12 HT, 26-12 FT) exploited middle line breaks repeatedly. Right edge rarely concedes. Against Falcons in finals, commit a forward-dominant middle game plan in H1 before spreading wide in H2 when their props tire.'},
-    'WM Seagulls': {al:38,am:22,ar:40,vl:32,vm:28,vr:40,atk:'Both edges interchangeable — scoring splits fairly evenly left and right with minimal middle involvement. Attack most effective with quick play-the-ball through the forward pack. R15 loss (10-34 to Dolphins) came via defensive collapse rather than attack failure — they actually moved the ball well in patches.',def:'Both edges vulnerable — right edge slightly more exposed due to winger positioning under cross-field kicks. Middle actually solid when forwards are in the fight. Against WM Seagulls, wide ball early then direct middle running in the last set is most effective.'},
-    'Tigers':      {al:32,am:40,ar:28,vl:26,vm:28,vr:46,atk:'Middle-dominant through powerful forward pack — when the middle dominates at Totally Workwear Stadium, Tigers score freely. R15 loss (18-28 to Jets) came when Jets ran wide — Tigers\' middle attack was nullified by Jets\' edge defence. J. Christian\'s 2-try R15 performance was a warning sign of their attacking depth.',def:'Right edge is the well-known competition weakness — L. Ilias and Jets exploited it for 28 pts in R15. Cross-field kick to right winger is the primary scoring mechanism against Tigers. Any team with a quality right-side forward/back combination can score regularly through that channel.'},
-    'Seagulls':    {al:28,am:38,ar:34,vl:28,vm:30,vr:42,atk:'Middle builds through forward pack earn right-edge space. R15 comeback (0-12 HT to 26-12 FT vs Bears) the defining moment of their season — M. Bradbury, R. Cook, S. Gardiner, T. Sielaff-Burns, J. Smith all scoring via right-edge plays after halftime reset. L. McGrady 3 goals off the right side. Character proven under pressure.',def:'Right edge the structural weak point — Bears in R13/R14 exploited it repeatedly. The R15 defensive correction held Bears to 0 in the second half — showing they can fix it when they commit. Opponents who attack right side early before Tweed reset their defence will find success.'},
-    'Blackhawks':  {al:44,am:22,ar:34,vl:26,vm:28,vr:46,atk:'Left-edge dominant — D. Dotoi, J. Tanner, C. Toia are the primary left-side scorers. 65%+ of scoring plays initiate from left edge. R15 draw (16-16 with Pride) built on left-side set plays in H1. Attack becomes predictable and can be shut down by defensive left-edge focus.',def:'Right edge the clear concession zone — mirror image of their attacking preference. R15 Pride scored through the right side to equalise. Opponents who identify the right winger as the weak link and attack that channel consistently will score freely. Right winger defensive positioning is the tactical priority.'},
-    'Capras':      {al:36,am:32,ar:32,vl:28,vm:28,vr:44,atk:'Balanced attack with right edge slightly weaker. R15 demolition (51-12 over Cutters) was a breakout performance — J. Fineanganofo (3 tries) dominated through the middle before R. Tai (2 tries) converted on the right edge. Aurizon Stadium provides a real home advantage that amplifies attack effectiveness.',def:'Right edge the concession zone in away games — Capras defend it poorly when away from home. 51-12 R15 shows their home attack; check their away results against quality sides for the real defensive profile.'},
-    'Jets':        {al:44,am:18,ar:38,vl:22,vm:50,vr:28,atk:'Both-edge dominant with minimal middle involvement — L. Ilias orchestrates left-side attack while also converting goals. J. Christian (2 tries R15) gives them genuine left-edge depth. R15 win (28-18 vs Tigers) was built on left-side dominance that Tigers\' right edge could not contain. Attack is genuinely balanced across both edges.',def:'Middle corridor the exploitation route — teams that commit to direct running up the middle generate the most success against Jets. Edges are well-organised. The 3:1 ratio of middle-to-edge conceded tries tells the tactical story: direct, front-on, no-frills middle attack is the way to beat Ipswich.'},
-    'Dolphins':    {al:30,am:27,ar:43,vl:28,vm:32,vr:40,atk:'Right-edge dominant — J. James (2 tries R15), J. Averillo, D. De Stradis, L. Nonu, J. Saldanha all scoring in the 34-10 R15 demolition of WM Seagulls. Kayo Stadium right-edge system is finely tuned — halfback consistently plays right. 34-10 showing reveals depth across all scoring positions.',def:'Right edge slightly softer defensively — the mirror of their attacking system. Left edge very solid. Middle moderate. Against Dolphins, right-to-left attack (from attacking team view) that arrives at right-side defensive positions via cross-field kicks is most effective.'},
-    'Cutters':     {al:28,am:40,ar:32,vl:34,vm:28,vr:38,atk:'Middle-first attack through dummy-half and prop carries. R15 12-51 loss to Capras exposed how badly this collapses when props are dominated. Best scoring output from middle carries that free up edges late in the set. Away form poor — forward dominance requires home advantage to function properly.',def:'Both edges vulnerable — left and right exposed in the R15 51-12 demolition. Middle solid as that reflects their attacking strength (they understand middle defence). Opposition should wide the ball early in the set rather than the traditional middle-first approach Cutters are built to absorb.'},
-    'Devils':      {al:36,am:28,ar:36,vl:42,vm:26,vr:32,atk:'Balanced attack — F. Aubrey, M. Owen, B. Walters all scoring in R15 (20-14 vs Magpies) reflects genuine spread. Premiers\' Park home advantage is significant. No dominant edge allows them to switch sides based on defensive alignment — the hardest attacking pattern to scout and prepare for.',def:'Left edge the clearest vulnerability — increasingly conceding through that channel in second halves as defensive fatigue sets in. H. Perham goal-kicking from the left suggests the team is right-side dominant, meaning left-side defensive commitment may waver. Middle and right edge solid.'},
-    'Pride':       {al:42,am:22,ar:36,vl:28,vm:40,vr:32,atk:'Left-edge dominant — E. King, S. King-Smith, T. Moriarty scoring through the left side consistently. Barlow Park altitude provides defensive advantage in H2 but their attacking left-edge game delivers most of the scoring in H1. R15 draw (16-16 with Blackhawks) shows resilience when behind.',def:'Middle the vulnerability — Blackhawks equalised in R15 through middle channel pressure. Pride contain both edges well (reflecting left-edge attacking knowledge). Middle is the only way through for smart opponents — physical forward dominance through the defensive line before spreading to edges.'},
-    'Bears':       {al:26,am:40,ar:34,vl:20,vm:54,vr:26,atk:'Middle-dominant structured attack — T. Leo, L. West and the back line score from structured left and right sets after middle dominance establishes field position. R15 loss (12-26 to Seagulls) was the season\'s biggest shock — Tweed scored 5 tries from 0-12 down, exposing Bears when they stopped committing to the middle.',def:'Elite edge defence — both edges among the best defended in the competition. Middle the ONLY viable concession channel: 54% of conceded tries come through the middle corridor. The Seagulls R15 comeback proves it can be done with sustained middle pressure. Opponents should commit 100% to middle attack from kick-off — any edge play gives Bears time to reset.'},
-    'Magpies':     {al:44,am:22,ar:34,vl:26,vm:28,vr:46,atk:'Left-edge dominant and one-dimensional — the most predictable attack in the competition. Left winger and centre combination responsible for majority of tries. R15 loss (14-20 to Devils) came when Devils shut down the left edge and Magpies had no Plan B. When left is open, they score; when closed, they struggle.',def:'Right edge the glaring defensive weakness — 46% of conceded tries through right channel. F. Aubrey scoring against them (R15) went through their right side. Any team with a right-edge specialist winger/centre should isolate that channel from kick-off. The pattern is season-long and consistent.'},
-    'Clydesdales': {al:32,am:44,ar:24,vl:30,vm:36,vr:34,atk:'Middle-forward dominant — P. Gubb, S. Talita earning metres through the middle. Right edge underused: only 24% of attack through that channel. R15 loss (8-42 to Falcons at Toowoomba Sports Ground) showed how exposed they are when forward pack is dominated and middle attack fails to generate momentum.',def:'Middle and right edge both moderately vulnerable. Sunshine Coast Falcons in R15 scored across all three zones in 42-8 — no dominant safe zone. Against Clydesdales, commit to a balanced attack that uses all three channels to prevent defensive drift.'},
-    'Hunters':     {al:26,am:44,ar:30,vl:34,vm:28,vr:38,atk:'Counter-attack through the middle — kick returns and broken-play tries common in PNG\s\'s atmospheric Santos National Football Stadium. Travel fatigue severely limits their attacking quality away from home. R15 bye well-timed for squad management. Home: genuine threat; away: limited.',def:'Both edges vulnerable on road — right side slightly more exposed when communication breaks down. Middle well-defended at Santos NSS where crowd noise disrupts opposition. Managing travel fatigue is the coaching challenge — home defence elite, away defence fragile.'},
+    'Falcons':     {al:32,am:28,ar:40,vl:28,vm:42,vr:30,atk:'Right-edge dominant — halfback steers right consistently, creating scoring clusters on that channel across 17 rounds. Competition leaders: 10+ wins. R1 loss to Tweed Seagulls came when right-edge attack was shut down and they had no counter. R16 loss (20-30 to Capras away) repeated the pattern — road games expose the one-dimensional attack. Cross-field kick to right winger is their primary red-zone weapon.',def:'Middle corridor the primary concession zone — R1 Tweed comeback (0-12 HT, 26-12 FT) exploited middle line breaks repeatedly. R16 saw Capras score 30 at Sunshine Coast — the middle held but outside pressure created. Against Falcons, commit a forward-dominant middle game plan in H1 before spreading wide in H2 when their props tire.'},
+    'WM Seagulls': {al:38,am:22,ar:40,vl:32,vm:28,vr:40,atk:'Both edges interchangeable — scoring splits fairly evenly left and right with minimal middle involvement. R15 loss (10-34 to Dolphins) was followed by a season-best R16 performance: 54-0 demolition of Hunters at BMD Kougari Oval — their biggest win of 2026 and a statement of attacking depth when both edges fire simultaneously.',def:'Both edges vulnerable — right edge slightly more exposed due to winger positioning under cross-field kicks. Middle actually solid when forwards are in the fight. The R16 54-0 shutout shows their defence can dominate weaker opponents. Against WM Seagulls, wide ball early then direct middle running in the last set is most effective.'},
+    'Tigers':      {al:32,am:40,ar:28,vl:26,vm:28,vr:46,atk:'Middle-dominant through powerful forward pack — when the middle dominates at Totally Workwear Stadium, Tigers score freely. R15 loss (18-28 to Jets) was followed by a R16 bounce-back: 26-22 win away at Seagulls — showing the attack resets quickly after adversity. Middle carries into right-edge plays remains the primary pattern.',def:'Right edge is the well-known competition weakness — L. Ilias and Jets exploited it for 28 pts in R15. R16 win despite conceding 22 shows they can manage the vulnerability when the forward pack is dominant. Cross-field kick to right winger remains the primary scoring mechanism against Tigers.'},
+    'Seagulls':    {al:28,am:38,ar:34,vl:28,vm:30,vr:42,atk:'Middle builds through forward pack earn right-edge space. R15 comeback (0-12 HT to 26-12 FT vs Bears) was the season\'s defining moment — M. Bradbury, R. Cook, S. Gardiner, T. Sielaff-Burns, J. Smith all scoring via right-edge plays. R16 narrow loss (22-26 to Tigers) showed continued improvement — they led in patches and fought back throughout.',def:'Right edge the structural weak point — Bears in R13/R14 exploited it repeatedly. R15 defensive correction held Bears in the second half. R16 conceded 26 to Tigers but held them to under 30 for the first time in recent rounds — the defence is tightening. Opponents who attack right side early before Tweed reset remain most likely to succeed.'},
+    'Blackhawks':  {al:44,am:22,ar:34,vl:26,vm:28,vr:46,atk:'Left-edge dominant — D. Dotoi, J. Tanner, C. Toia are the primary left-side scorers. 65%+ of scoring plays initiate from left edge. R15 draw (16-16 with Pride) built on left-side set plays in H1. R16 BYE — rested and recharged for the run home. Attack becomes predictable and can be shut down by defensive left-edge focus.',def:'Right edge the clear concession zone — mirror image of their attacking preference. R15 Pride scored through the right side to equalise. R16 bye means fresh legs defensively. Opponents who identify the right winger as the weak link and attack that channel consistently will score freely.'},
+    'Capras':      {al:36,am:32,ar:32,vl:28,vm:28,vr:44,atk:'Back-to-back big wins have confirmed Capras as a genuine finals threat. R15 home demolition (51-12 over Cutters) — J. Fineanganofo (3 tries), R. Tai (2 tries). R16 AWAY win (30-20 at Falcons) was the bigger statement — scoring 30 on the road against a 10+ win side shows genuine quality. Attack is firing on all channels.',def:'Right edge the concession zone in away games historically — but R16 road win shows improvement. Capras now have two consecutive 30+ scoring performances. Still vulnerable on the edges when pressure is sustained — opponents with patient forward packs have historically exposed the right channel.'},
+    'Jets':        {al:44,am:18,ar:38,vl:22,vm:50,vr:28,atk:'Both-edge dominant with minimal middle involvement — L. Ilias orchestrates left-side attack while converting goals. J. Christian (2 tries R15) gives genuine left-edge depth. R15 win (28-18 vs Tigers) was followed by R16 heavy loss (12-34 to Pride) — Pride\'s left-edge shut-down exposed Jets\'s lack of a middle option when edges are closed.',def:'Middle corridor the exploitation route — teams that commit to direct running up the middle generate the most success against Jets. Edges are well-organised but R16 conceded 34 to Pride across all channels. The 3:1 ratio of middle-to-edge conceded tries remains the tactical blueprint: direct, front-on middle attack is the way to beat Ipswich.'},
+    'Dolphins':    {al:30,am:27,ar:43,vl:28,vm:32,vr:40,atk:'Right-edge dominant — J. James, J. Averillo, D. De Stradis, L. Nonu, J. Saldanha all scoring in the R15 34-10 demolition of WM Seagulls. R16 form check: lost 10-32 to Magpies at Davies Park — their right-edge attack was neutralised by Magpies\' defensive drift. Kayo Stadium right-edge system at its best at home; away performance inconsistent.',def:'Right edge slightly softer defensively — the mirror of their attacking system. R16 conceded 32 to Magpies, primarily through the left and middle channels. Left edge very solid. Against Dolphins, commit to the left/middle attack pattern that Magpies used in R16 — cross-field kicks to the right side remains the most effective road.'},
+    'Cutters':     {al:28,am:40,ar:32,vl:34,vm:28,vr:38,atk:'Middle-first attack through dummy-half and prop carries. R15 12-51 loss to Capras exposed how badly this collapses when props are dominated. R16 BOUNCE-BACK: 42-22 win over Devils at BB Print Stadium — a remarkable turnaround that showed Cutters can score big at home when the forward pack is on top. Home ground advantage is critical to their attack.',def:'R16 held Devils to 22 while scoring 42 — showing their home defence is organised when attacking momentum is established. Both edges still moderately vulnerable. Opposition should target the away version of Cutters — home defence is disciplined; road defence collapses under sustained pressure.'},
+    'Devils':      {al:36,am:28,ar:36,vl:42,vm:26,vr:32,atk:'Balanced attack — F. Aubrey, M. Owen, B. Walters scoring consistently. R15 win (20-14 vs Magpies). R16 road loss (22-42 at Cutters) was a concern — their balanced attack requires home conditions to fire. No dominant edge allows them to switch based on defensive alignment, but BB Print Stadium conditions disrupted their patterns.',def:'Left edge the clearest vulnerability — R16 conceded 42 to Cutters with multiple left-side scores. Left-edge defensive fatigue in second halves is a season-long pattern. Middle and right edge solid. Opponents targeting the left edge repeatedly — especially in H2 when defensive stamina wanes — will generate the most scoring opportunities.'},
+    'Pride':       {al:42,am:22,ar:36,vl:28,vm:40,vr:32,atk:'Left-edge dominant — E. King, S. King-Smith, T. Moriarty scoring through the left side consistently. R15 draw (16-16 with Blackhawks) showed resilience. R16 STATEMENT WIN: 34-12 over Jets at Barlow Park — Pride\'s left-edge attack was devastating, scoring 5+ tries including multiple left-channel conversions. Barlow Park altitude a real home advantage in H2.',def:'Middle the vulnerability — Blackhawks equalised in R15 through middle channel pressure. R16 held Jets to 12 with strong edge containment. Pride contain both edges well. Middle is the only way through for smart opponents — physical forward dominance through the line before spreading to edges in the second half.'},
+    'Bears':       {al:26,am:40,ar:34,vl:20,vm:54,vr:26,atk:'Middle-dominant structured attack — T. Leo, L. West and the back line score from structured left and right sets after middle dominance establishes field position. R15 loss (12-26 to Seagulls) was the season\'s biggest shock — but Bears bounced back in R16 with a 26-18 win at Clydesdales (Toowoomba), reasserting middle dominance as the foundation.',def:'Elite edge defence — both edges among the best defended in the competition. Middle the ONLY viable concession channel: 54% of conceded tries come through the middle corridor. R16 held Clydesdales to 18. Opponents should commit 100% to middle attack — any edge play gives Bears time to reset their elite edge defence.'},
+    'Magpies':     {al:44,am:22,ar:34,vl:26,vm:28,vr:46,atk:'Left-edge dominant and one-dimensional — the most predictable attack in the competition. Left winger and centre combination responsible for majority of tries. R15 loss (14-20 to Devils) came when Devils shut down the left edge. R16 TURNAROUND: 32-10 win over Dolphins at Davies Park — left-edge attack delivered freely against Dolphins\' exposed right-side defence.',def:'Right edge the glaring defensive weakness — 46% of conceded tries through right channel. R16 conceded 10 to Dolphins — a strong defensive showing. Any team with a right-edge specialist winger/centre should isolate that channel from kick-off. The pattern is season-long even when results improve.'},
+    'Clydesdales': {al:32,am:44,ar:24,vl:30,vm:36,vr:34,atk:'Middle-forward dominant — P. Gubb, S. Talita earning metres through the middle. Right edge underused: only 24% of attack through that channel. R15 loss (8-42 to Falcons). R16 home loss (18-26 to Bears at Toowoomba Sports Ground) — Bears middle dominance shut down Clydesdales\' primary attack channel and they had no counter. Middle attack only functions when their own props win the battle.',def:'Middle and right edge both moderately vulnerable. R16 conceded 26 to Bears predominantly through the middle — when opponents commit to the same middle game plan, Clydesdales are exposed. Commit to a balanced attack that uses all three channels to prevent defensive drift — then exploit the right edge once their middle is occupied.'},
+    'Hunters':     {al:26,am:44,ar:30,vl:34,vm:28,vr:38,atk:'Counter-attack through the middle — kick returns and broken-play tries common in PNG\'s atmospheric Santos National Football Stadium. R15 BYE. R16 AWAY LOSS: 0-54 to WM Seagulls at BMD Kougari Oval — worst result of the season. Travel fatigue and a fully fired-up home side produced a scoreless 80 minutes. Home: genuine threat; road: fragile.',def:'Both edges vulnerable on road — R16 conceded 54 to WM Seagulls with no defensive answer. Middle well-defended at Santos NSS where crowd noise disrupts opposition. Against Hunters AWAY, any team with structure and home conditions will score freely across all three channels — the travel deficit is a statistical near-certainty.'},
   };
 
   el.innerHTML = `

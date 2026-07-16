@@ -178,23 +178,25 @@
   <h1>BMD <span>Premiership</span></h1>
   <div class="hero-sub">Women's Rugby League · Queensland · Analytics Dashboard</div>
   <div class="hero-stats">
-    <div class="hs"><div class="hs-val">4</div><div class="hs-lbl">Rounds In Play</div></div>
-    <div class="hs"><div class="hs-val">17</div><div class="hs-lbl">R1–R3 Complete</div></div>
+    <div class="hs"><div class="hs-val">6</div><div class="hs-lbl">Rounds Complete</div></div>
+    <div class="hs"><div class="hs-val">35</div><div class="hs-lbl">R1–R6 Played</div></div>
     <div class="hs"><div class="hs-val" id="h-avg">—</div><div class="hs-lbl">Avg Score/Team</div></div>
     <div class="hs"><div class="hs-val" id="h-top">—</div><div class="hs-lbl">Top Attack</div></div>
     <div class="hs"><div class="hs-val" id="h-def">—</div><div class="hs-lbl">Best Defence</div></div>
   </div>
-  <div><div class="r4-badge">⚡ ROUND 4 — IN PROGRESS</div></div>
+  <div><div class="r4-badge">✅ ROUND 6 — COMPLETE · UPDATED 13 JUL 2026</div></div>
 </div>
 
 <!-- NAV -->
 <div class="nav">
   <button class="tab-btn active" onclick="showTab('overview')">📊 Overview</button>
-  <button class="tab-btn" onclick="showTab('r4')">✅ R4 Results</button>
   <button class="tab-btn" onclick="showTab('ladder')">📋 Ladder</button>
   <button class="tab-btn" onclick="showTab('charts')">📈 Charts</button>
   <button class="tab-btn" onclick="showTab('scouts')">🎯 Scout Reports</button>
   <button class="tab-btn" onclick="showTab('results')">🏉 Results</button>
+  <button class="tab-btn" onclick="showTab('halves')">⏱️ Halves</button>
+  <button class="tab-btn" onclick="showTab('tryzone')">🗺️ Try Zone</button>
+  <button class="tab-btn" onclick="showTab('advanced')">⚡ Advanced</button>
   <button class="tab-btn" onclick="showTab('matrix')">🔲 H2H Matrix</button>
   <button class="tab-btn" onclick="showTab('profiles')">👥 Profiles</button>
   <button class="tab-btn" onclick="showTab('attack')">⚔️ Attack</button>
@@ -204,11 +206,13 @@
 
 <!-- PANELS -->
 <div id="panel-overview" class="panel active"></div>
-<div id="panel-r4" class="panel"></div>
 <div id="panel-ladder" class="panel"></div>
 <div id="panel-charts" class="panel"></div>
 <div id="panel-scouts" class="panel"></div>
 <div id="panel-results" class="panel"></div>
+<div id="panel-halves" class="panel"></div>
+<div id="panel-tryzone" class="panel"></div>
+<div id="panel-advanced" class="panel"></div>
 <div id="panel-matrix" class="panel"></div>
 <div id="panel-profiles" class="panel"></div>
 <div id="panel-attack" class="panel"></div>
@@ -229,38 +233,55 @@ const TEAM_SHORT = {
   'Cutters':'CUT','Pride':'PRI','Seagulls':'SEA','WM Seagulls':'WMS',
 };
 
+// Verified vs Rugby League Project incl. half-time scores (hh/ha) — updated to R6, 13 Jul 2026
 const BMD_ROUNDS = [
   {round:1, games:[
-    {home:'Tigers',away:'Devils',hs:16,as:18},
-    {home:'Pride',away:'Magpies',hs:20,as:40},
-    {home:'Seagulls',away:'Clydesdales',hs:12,as:26},
-    {home:'Bears',away:'Falcons',hs:6,as:4},
-    {home:'Jets',away:'Cutters',hs:34,as:14},
-    {home:'WM Seagulls',away:'Capras',hs:6,as:48},
+    {home:"Tigers",away:"Devils",hs:16,as:18,hh:10,ha:8,venue:"Totally Workwear Stadium"},
+    {home:"Pride",away:"Magpies",hs:20,as:40,hh:16,ha:22,venue:"Barlow Park"},
+    {home:"Seagulls",away:"Clydesdales",hs:12,as:26,hh:6,ha:8,venue:"Preston Building Sports Complex"},
+    {home:"Bears",away:"Falcons",hs:6,as:4,hh:0,ha:4,venue:"UAA Park"},
+    {home:"Jets",away:"Cutters",hs:34,as:14,hh:8,ha:14,venue:"Richardson Park"},
+    {home:"WM Seagulls",away:"Capras",hs:6,as:48,hh:0,ha:32,venue:"BMD Kougari Oval"},
   ]},
   {round:2, games:[
-    {home:'Tigers',away:'Falcons',hs:32,as:10},
-    {home:'Capras',away:'Clydesdales',hs:20,as:24},
-    {home:'Seagulls',away:'Pride',hs:14,as:24},
-    {home:'Cutters',away:'Magpies',hs:28,as:12},
-    {home:'Devils',away:'Bears',hs:10,as:12},
-    {home:'WM Seagulls',away:'Jets',hs:null,as:null,upcoming:true,note:'Postponed Aug 2'},
+    {home:"Tigers",away:"Falcons",hs:32,as:10,hh:20,ha:6,venue:"Totally Workwear Stadium"},
+    {home:"Capras",away:"Clydesdales",hs:20,as:24,hh:8,ha:6,venue:"Aurizon Stadium"},
+    {home:"Seagulls",away:"Pride",hs:14,as:24,hh:10,ha:18,venue:"Preston Building Sports Complex"},
+    {home:"Cutters",away:"Magpies",hs:28,as:12,hh:16,ha:8,venue:"BB Print Stadium"},
+    {home:"Devils",away:"Bears",hs:10,as:12,hh:10,ha:12,venue:"Premiers' Park"},
+    {home:"WM Seagulls",away:"Jets",hs:null,as:null,hh:null,ha:null,venue:"BMD Kougari Oval",upcoming:true,note:"Postponed to Aug 2"},
   ]},
   {round:3, games:[
-    {home:'Clydesdales',away:'Bears',hs:6,as:38},
-    {home:'Capras',away:'Magpies',hs:20,as:32},
-    {home:'Cutters',away:'Tigers',hs:18,as:32},
-    {home:'Jets',away:'Seagulls',hs:34,as:6},
-    {home:'Falcons',away:'Pride',hs:32,as:20},
-    {home:'Devils',away:'WM Seagulls',hs:28,as:18},
+    {home:"Clydesdales",away:"Bears",hs:6,as:38,hh:6,ha:10,venue:"Toowoomba Sports Ground"},
+    {home:"Capras",away:"Magpies",hs:20,as:32,hh:10,ha:20,venue:"Aurizon Stadium"},
+    {home:"Cutters",away:"Tigers",hs:18,as:32,hh:4,ha:26,venue:"BB Print Stadium"},
+    {home:"Jets",away:"Seagulls",hs:34,as:6,hh:10,ha:6,venue:"Richardson Park"},
+    {home:"Falcons",away:"Pride",hs:32,as:20,hh:14,ha:10,venue:"Sunshine Coast Stadium"},
+    {home:"Devils",away:"WM Seagulls",hs:28,as:18,hh:12,ha:12,venue:"Premiers' Park"},
   ]},
   {round:4, games:[
-    {home:'Pride',away:'WM Seagulls',hs:22,as:6},
-    {home:'Tigers',away:'Jets',hs:32,as:6},
-    {home:'Bears',away:'Seagulls',hs:34,as:4},
-    {home:'Capras',away:'Cutters',hs:4,as:32},
-    {home:'Clydesdales',away:'Falcons',hs:10,as:22},
-    {home:'Magpies',away:'Devils',hs:0,as:28},
+    {home:"Pride",away:"WM Seagulls",hs:22,as:6,hh:12,ha:0,venue:"Barlow Park"},
+    {home:"Tigers",away:"Jets",hs:32,as:6,hh:28,ha:0,venue:"Totally Workwear Stadium"},
+    {home:"Bears",away:"Seagulls",hs:34,as:4,hh:18,ha:0,venue:"UAA Park"},
+    {home:"Capras",away:"Cutters",hs:4,as:32,hh:4,ha:14,venue:"Aurizon Stadium"},
+    {home:"Clydesdales",away:"Falcons",hs:10,as:22,hh:4,ha:6,venue:"Toowoomba Sports Ground"},
+    {home:"Magpies",away:"Devils",hs:0,as:28,hh:0,ha:10,venue:"Davies Park"},
+  ]},
+  {round:5, games:[
+    {home:"Pride",away:"Jets",hs:44,as:28,hh:24,ha:12,venue:"Barlow Park"},
+    {home:"Seagulls",away:"Tigers",hs:14,as:38,hh:6,ha:28,venue:"Preston Building Sports Complex"},
+    {home:"Falcons",away:"Capras",hs:40,as:12,hh:22,ha:8,venue:"Sunshine Coast Stadium"},
+    {home:"WM Seagulls",away:"Clydesdales",hs:28,as:6,hh:4,ha:6,venue:"Stafford Park"},
+    {home:"Cutters",away:"Devils",hs:12,as:34,hh:0,ha:24,venue:"BB Print Stadium"},
+    {home:"Magpies",away:"Bears",hs:20,as:26,hh:6,ha:20,venue:"Davies Park"},
+  ]},
+  {round:6, games:[
+    {home:"Devils",away:"Falcons",hs:30,as:8,hh:16,ha:4,venue:"Harry Kirby Park"},
+    {home:"Seagulls",away:"WM Seagulls",hs:6,as:22,hh:6,ha:14,venue:"Preston Building Sports Complex"},
+    {home:"Bears",away:"Cutters",hs:18,as:18,hh:0,ha:6,venue:"UAA Park"},
+    {home:"Jets",away:"Capras",hs:22,as:14,hh:8,ha:4,venue:"Richardson Park"},
+    {home:"Tigers",away:"Magpies",hs:32,as:24,hh:14,ha:16,venue:"Totally Workwear Stadium"},
+    {home:"Clydesdales",away:"Pride",hs:27,as:26,hh:16,ha:10,venue:"Toowoomba Sports Ground"},
   ]},
 ];
 
@@ -299,7 +320,7 @@ function computeStats() {
   }
   for (const t of Object.keys(s)) {
     const ts = s[t];
-    ts.pts = ts.w * 2 + ts.d;
+    ts.pts = ts.w * 2 + ts.d + (ts.byes||0) * 2; // QRL: bye/postponed rounds worth 2 pts
     ts.diff = ts.pf - ts.pa;
     ts.pct = ts.gp > 0 ? ts.pf / (ts.pf + ts.pa) * 100 : 0;
     ts.avgPF = ts.gp > 0 ? (ts.pf / ts.gp).toFixed(1) : '-';
@@ -338,7 +359,7 @@ const SCOUT = {
     defence: ['Only 20 pts conceded in 3 games — best in comp','Average just 6.7 pts against per game','Won by 2 points twice — prove defence wins games','Set-completion and kick pressure hallmarks'],
     exploit: ['Force a high-scoring game — their attack is the weak point','Score first and build a lead; they have to chase','Test their right edge repeatedly — 38-6 win over CLD may mask defensive depth at pace','Exploit their low-scoring attack with a momentum-shutting defensive performance'],
     plan: 'Keep the ball alive early. Score 20+ first half and dare them to match it. Their attack will struggle under pressure.',
-    verdict: 'After R4 (34-4 over Tweed), Bears are unquestionably the team to beat. 4W 0L, 90 PF, only 24 PA — the most complete team in the competition. Attack has lifted; defence remains elite.',
+    verdict: 'After R5, Bears remain the only unbeaten side at 5W 0L. Won 26-20 at Magpies — proved they win ugly when needed. 116 PF, 44 PA, +72 differential. The benchmark team in this competition.',
     threat: 97,
   },
   'Jets': {
@@ -347,7 +368,7 @@ const SCOUT = {
     defence: ['20 pts against from 2 games — matches Bears for best in comp','6 pts to Seagulls and 14 to Cutters — both lower teams'],
     exploit: ['They\'ve NEVER been in a close game or comeback situation — test their resilience','Get the first points and apply pressure early','Their postponed game vs WM Seagulls means they\'ve had extra rest — stamina game could suit you','Unknown quantities under pressure with a lot to lose'],
     plan: 'Grind them down. Force errors in the 60-70 min mark. They haven\'t faced adversity yet — create it.',
-    verdict: 'R4 reality check — lost 6-32 to Tigers. Defence conceded 32 for the first time. Now 2W 1L, still 3rd on ladder but their invincibility is gone. Bounce-back vs Magpies in R5 is critical.',
+    verdict: 'R5: Lost 28-44 to Pride at Barlow — now 2W 2L with 1 bye. The earlier invincibility narrative is gone. Jets have lost both games against top-4 sides (Tigers, Pride). Their defence is beatable by quality attack.',
     threat: 75,
   },
   'Tigers': {
@@ -356,7 +377,7 @@ const SCOUT = {
     defence: ['46 PA from 3 games — average 15.3 conceded/game','Lost R1 holding only 16 points themselves — defensively tested','Devils beat them 18-16 showing they can be held'],
     exploit: ['Attack their edges early — they concede points regularly','Apply relentless pressure in first 20 mins before they warm up','Their R1 loss (16-18) shows they can be held if you shut down their forwards','Smart kicking game — they\'re vulnerable to re-start pressure'],
     plan: 'Score first, defend your line, slow the pace when they\'re building. They scored 16 in a loss — you can win below 30.',
-    verdict: 'R4 confirmed them as the competition\'s #1 attack — 32-6 over Jets demolished the last unbeaten team. 112 PF from 4 games (28 avg). Only Bears have a better claim to favouritism. Watch in R5 vs Tweed.',
+    verdict: 'R5: 38-14 win at Tweed (Preston Building Complex) — now 4W 1L, 2nd equal on the ladder. Territory 71% vs Seagulls shows how dominant they can be. 150 PF from 5 games (30 avg). Tied for 2nd behind Bears. The competition\'s most potent attack.',
     threat: 91,
   },
   'Magpies': {
@@ -365,7 +386,7 @@ const SCOUT = {
     defence: ['68 PA from 3 games — avg 22.7 conceded/game','Lost 12-28 to Cutters despite scoring power — defence broke down','Only 12 scored in that loss too — they can go quiet AND concede'],
     exploit: ['ATTACK THEM HARD — they concede the most points of any top-4 team','Cutters beat them 28-12 — mid-table sides can beat them','Expose their defence with width and pace','Score fast and they\'ll panic — they\'re not built for chasing'],
     plan: 'Run at their defence from the first whistle. Get to 20 pts quickly. Their attack will score regardless — you have to out-attack them.',
-    verdict: 'DANGER SIGN — shut out 0-28 at home by Devils in R4. Their 0 points scored in that game is uncharacteristic and alarming. Still 8th on ladder but momentum has swung hard. Avoid relying on their PF numbers — one game inflates it.',
+    verdict: 'R5: Lost 20-26 at Bears — gave up the lead in the final quarter. Showed genuine attack (20 pts) but their defensive lapses in big games continue. Now 2W 3L. Need a run of wins to recover ladder position.',
     threat: 68,
   },
   'Devils': {
@@ -374,7 +395,7 @@ const SCOUT = {
     defence: ['46 PA — avg 15.3 conceded/game','Held Tigers to 16 in R1 — elite defensive performance','Bears only managed 12 vs them — can limit top sides'],
     exploit: ['They score consistently but rarely blow teams away — grind them down','Hold them under 20 and you\'re a chance','Force them into a high-tempo game — they prefer a slow structure','Their attack dried up vs Bears (10 pts) — replicate Bears\' defensive game plan'],
     plan: 'Control field position and kicking game. Keep the score tight. They struggle when forced to chase or score quickly.',
-    verdict: 'R4 PERFORMERS OF THE ROUND — 28-0 shutout of Magpies is the defensive result of the season. Now 3W 1L, 3rd on ladder with 84 PF and just 46 PA. Their credentials as title contenders are real. Expert eye: they don\'t just defend — they DENY. Magpies, one of the comp\'s most potent attacks, were held scoreless.',
+    verdict: 'R5: Won 34-12 AWAY at Cutters (BB Print Stadium) — now 4W 1L and 2nd equal on the ladder. 34 pts away from home is elite road form. 3 consecutive wins. Title credentials fully established — they can win both home and away.',
     threat: 84,
   },
   'Clydesdales': {
@@ -383,7 +404,7 @@ const SCOUT = {
     defence: ['70 PA — avg 23.3 conceded/game','6-38 vs Bears exposed a major defensive ceiling','Conceded only 12 pts in their 26-12 R1 win over Seagulls — efficient against lower opposition','20 conceded vs Capras in a 24-20 win — fought hard'],
     exploit: ['Apply quality defensive pressure — they crumble under sustained attack (6-38 loss)','Tempo them. Force high-intensity, high-pace game','Score 20+ in the first half and they will not recover','Set-play defence — their R3 shellacking reveals systemic issues'],
     plan: 'Go physical and fast from kick-off. They can\'t handle elite defensive pressure. Score first and score often.',
-    verdict: 'Hides in wins over lower teams. Exposed against quality. Don\'t let them settle.',
+    verdict: 'R5: Lost 6-28 to WM Seagulls at Stafford Rugby League — the worst loss of their season. Conceded 28 to a winless side. Now 2W 3L. Significant red flag — losing to bottom teams is a ladder killer.',
     threat: 62,
   },
   'Capras': {
@@ -401,7 +422,7 @@ const SCOUT = {
     defence: ['58 PA — avg 19.3 conceded/game','Bears only needed 6 to beat them — but Bears don\'t score much anyway','32 conceded to Tigers exposes fragility'],
     exploit: ['Strike early — Falcons started seasons slowly (4 pts in R1, 10 pts in R2)','They\'re inconsistent — don\'t let them build momentum','Their biggest win (32-20 vs Pride) was vs a struggling team'],
     plan: 'Apply early pressure and get the first points. They tend to start slowly.',
-    verdict: 'Mid-table — showed more in R3 but yet to beat a quality opponent.',
+    verdict: 'R5: BEST PERFORMANCE OF THE SEASON — 40-12 at home vs Capras. Falcons now 3W 2L and firmly in the top-4 mix. 40 pts is the highest single-game score for Falcons in 2026. Legitimate finals threat.',
     threat: 52,
   },
   'Cutters': {
@@ -410,7 +431,7 @@ const SCOUT = {
     defence: ['78 PA — avg 26/game — 2nd worst in comp','Conceded 34 to Jets and 32 to Tigers — concede against quality','Only held Magpies to 12 in their win — can defend when motivated'],
     exploit: ['Attack them wide — they give up 26 pts/game','Score early and score often — their defence breaks down under sustained pressure','Force them into chasing — they conceded 34 in R1 being chased','Pace wins against them'],
     plan: 'Wide attack, quick play-the-balls. Get to 30 and they won\'t claw it back.',
-    verdict: 'Can beat mid-table teams. Against quality attack they\'ll concede heavily.',
+    verdict: 'R5: Lost 12-34 to Devils at BB Print Stadium. Scored only 12 at home — their attack failed to fire when it mattered. Now 2W 3L. Home fortress narrative challenged. Away form concerns amplified by a poor home performance too.',
     threat: 48,
   },
   'Pride': {
@@ -419,26 +440,26 @@ const SCOUT = {
     defence: ['86 PA — WORST in comp (avg 28.7/game)','Conceded 40 to Magpies in R1 — blowout territory','32 conceded to Falcons — below top half teams beat them'],
     exploit: ['ATTACK — 28.7 pts against average is the worst in comp','Score from the opening set — they don\'t recover from early deficits','Any side with a strong attack should put 40+ on them','Width, pace, and quick ball — they have no answer defensively'],
     plan: 'Run up the score early. Don\'t ease off. They can put 20+ on you so you\'ll need 36+.',
-    verdict: 'Defence is a liability. Any attacking side should target them heavily.',
+    verdict: 'R5: 44-28 BIGGEST WIN OF THE SEASON over Jets at Barlow Park. Pride now 3W 2L. 44 pts is their highest single-game output. Finally showing what their attack is capable of. Finals push suddenly real.',
     threat: 40,
   },
   'Seagulls': {
-    overview: '0W 3L. Worst attack (32 PF) in the comp. Lost all 3 games, conceded 84. Yet to register a win.',
-    attack: ['32 PF from 3 games — avg 10.7/game — WORST in comp','12, 14, 6 pts across 3 rounds — unable to build momentum','No game within 10 pts — every game a comfortable loss'],
-    defence: ['84 PA — avg 28/game — 2nd worst in comp','Conceded 34 (Jets), 26 (Clydesdales), 24 (Pride)','Best defensive performance: 24 conceded to Pride (10th)'],
-    exploit: ['This should be a comfortable win for any top-6 team','Don\'t be complacent — play your normal game','Opportunity for any team to build confidence and run up the scoreboard'],
-    plan: 'Use this as a confidence builder. Attack your patterns and score freely.',
-    verdict: 'Struggling badly in all areas. Points machine for opponents.',
-    threat: 15,
+    overview: '0W 5L. Scoring is improving — 14 pts in both R4 (vs Bears) and R5 (vs Tigers). Yet to register a win.',
+    attack: ['50 PF from 5 games — avg 10/game — comp lowest','14 pts in R5 vs Tigers is joint-best of the season','Davis (×2) and Wright scoring in R5 — genuine finishers emerging'],
+    defence: ['156 PA — avg 31.2 conceded/game','Territory (29% in R5) is the structural problem — errors gift sets to opponents','Best defensive game: R2 vs Pride (24 conceded) — that level must become the standard'],
+    exploit: ['Force errors early — their completion under pressure is inconsistent','Territory is the key: win the kicking battle and they concede in bunches','Score in the first 20 mins and build — they lack the firepower for comebacks'],
+    plan: 'Control territory via the kicking game. Their error rate rises under sustained pressure. Score early and run up the count.',
+    verdict: 'R5: Lost 14-38 to Tigers at home. Davis (×2) and Wright scored 3 tries — joint-best output of the season. Territory 29% was the critical flaw. Errors (11) must improve. Season focus is development — the attack IS improving.',
+    threat: 18,
   },
   'WM Seagulls': {
-    overview: '0W 2L (1 game postponed to Aug 2 vs Jets). Lost 6-48 in R1 and 18-28 in R3. Only 2 completed games.',
-    attack: ['24 PF from 2 games — avg 12/game','18 vs Devils in R3 shows some ability','6 pts vs Capras was a blowout — no competition'],
-    defence: ['76 PA from 2 games — avg 38/game — worst two-game average','Conceded 48 in R1, 28 in R3','Missing the Jets game (postponed) means unknown ceiling'],
-    exploit: ['Attack them early and completely — that 48-6 result shows they can be blown out','Don\'t allow them to have good ball - they need momentum to score','The 18-28 loss to Devils showed some fight — don\'t be complacent','Physical game early should wear them down'],
-    plan: 'Dominate possession, score in first 10 mins, and build the lead. Don\'t let them get confidence from good ball.',
-    verdict: 'R4: Lost 4-34 to Bears — 0W 4L, bottom of ladder with 0 pts. A single try scored (N. Vaeau) in 80 minutes. The tackle numbers (248 made, 52 missed, 81.3% efficiency) are the real story — R5 vs Tigers is now a must-win for pride and momentum. Expert focus: fixing the missed tackle rate and attack structure before R5.',
-    threat: 20,
+    overview: '1W 4L (1 game postponed to Aug 2 vs Jets). Finally broke through in R5 — 28-6 over Clydesdales at Stafford Rugby League.',
+    attack: ['52 PF from 5 games — avg 10.4/game','28 pts in R5 win is their highest single-game output','Improving — just needed a confidence-builder performance'],
+    defence: ['104 PA from 5 games — avg 20.8 conceded/game','R5 held Clydesdales to just 6 — defensive best of the season','Conceded 48 in R1 was an outlier — defence has settled significantly'],
+    exploit: ['Attack them early before their confidence builds — they feed off momentum','Force them away from Stafford Rugby League where the R5 win was built','Their R1 blowout (6-48) shows they can implode under relentless early pressure'],
+    plan: 'Score first and score big — their confidence is fragile. The R5 win was a breakthrough but they haven\'t proven they can back it up.',
+    verdict: 'R5: FIRST WIN OF THE SEASON — 28-6 over Clydesdales. A watershed moment. Now 1W 4L. The defence held Clydesdales to 6 — a complete team performance. Finally off the mark; watch if they can build on this.',
+    threat: 28,
   },
 };
 
@@ -460,15 +481,313 @@ const LADDER = sortedLadder(STATS);
   document.getElementById('h-def').textContent = TEAM_SHORT[bestDef[0]]+' '+bestDef[1].pa;
 })();
 
+
+// ═══════ 1ST vs 2ND HALF ANALYTICS (auto-generated 13 Jul 2026) ═══════
+function halvesCompute(games){
+  const withHT = games.filter(g=>g.hh!=null&&g.ha!=null);
+  const teams = {};
+  const ens = (t)=>{ if(!teams[t]) teams[t]={team:t,g:0,h1f:0,h1a:0,h2f:0,h2a:0,ledHT:0,levelHT:0,trailHT:0,comebackW:0,blownL:0,winFromLead:0}; return teams[t]; };
+  const cb=[]; const surges=[];
+  withHT.forEach(g=>{
+    const h2h=g.hs-g.hh, h2a=g.as-g.ha;
+    [[g.home,g.hh,g.ha,g.hs,g.as,h2h,h2a],[g.away,g.ha,g.hh,g.as,g.hs,h2a,h2h]].forEach(x=>{
+      const [t,htF,htA,ftF,ftA,sF,sA]=x; const T=ens(t);
+      T.g++; T.h1f+=htF; T.h1a+=htA; T.h2f+=sF; T.h2a+=sA;
+      const led=htF>htA, level=htF===htA, won=ftF>ftA, lost=ftF<ftA;
+      if(led)T.ledHT++; else if(level)T.levelHT++; else T.trailHT++;
+      if(!led&&!level&&won){T.comebackW++;}
+      if(led&&lost){T.blownL++;}
+      if(led&&won){T.winFromLead++;}
+    });
+    const hLed=g.hh>g.ha, aLed=g.ha>g.hh, hWon=g.hs>g.as, aWon=g.as>g.hs;
+    if((aLed&&hWon)||(hLed&&aWon)){
+      const winner=hWon?g.home:g.away, deficit=hWon?(g.ha-g.hh):(g.hh-g.ha);
+      const loser=hWon?g.away:g.home;
+      cb.push({r:g.r,winner,loser,deficit,ht:g.hh+'–'+g.ha,ft:g.hs+'–'+g.as});
+    }
+    const hSurge=(g.hs-g.hh)-(g.as-g.ha);
+    surges.push({r:g.r,team:hSurge>=0?g.home:g.away,opp:hSurge>=0?g.away:g.home,swing:Math.abs(hSurge),ht:g.hh+'–'+g.ha,ft:g.hs+'–'+g.as});
+  });
+  // League aggregates
+  let h1Tot=0,h2Tot=0,ledWin=0,ledCnt=0;
+  withHT.forEach(g=>{
+    h1Tot+=g.hh+g.ha; h2Tot+=(g.hs-g.hh)+(g.as-g.ha);
+    if(g.hh!==g.ha){ ledCnt++; const ledHome=g.hh>g.ha; if((ledHome&&g.hs>g.as)||(!ledHome&&g.as>g.hs)) ledWin++; }
+  });
+  cb.sort((a,b)=>b.deficit-a.deficit);
+  surges.sort((a,b)=>b.swing-a.swing);
+  return {withHT, total:games.length, teams:Object.values(teams), cb, surges,
+          h1Avg:withHT.length?h1Tot/withHT.length:0, h2Avg:withHT.length?h2Tot/withHT.length:0,
+          ledWinPct:ledCnt?Math.round(ledWin/ledCnt*100):0, ledCnt};
+}
+
+function halvesBarChart(rows, opts){
+  // rows: [{label, v1, v2, color?}] — grouped horizontal bars, H1 vs H2 series
+  const c1=opts.c1, c2=opts.c2, ink=opts.ink||'#C0CCE0', muted=opts.muted||'#8892A8';
+  const W=760, rowH=34, padL=132, padR=56, barH=9, gap=3;
+  const H=rows.length*rowH+42;
+  const maxV=Math.max(...rows.map(r=>Math.max(r.v1,r.v2)),1)*1.08;
+  const sx=v=>padL+(W-padL-padR)*(v/maxV);
+  let g='';
+  // gridlines
+  const step=maxV>30?10:maxV>12?5:2;
+  for(let v=0;v<=maxV;v+=step){
+    g+='<line x1="'+sx(v)+'" y1="18" x2="'+sx(v)+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,.06)" stroke-width="1"/>';
+    g+='<text x="'+sx(v)+'" y="'+(H-10)+'" fill="'+muted+'" font-size="9" text-anchor="middle">'+v+'</text>';
+  }
+  rows.forEach((r,i)=>{
+    const y=26+i*rowH;
+    g+='<text x="'+(padL-8)+'" y="'+(y+barH+2)+'" fill="'+ink+'" font-size="10" font-weight="700" text-anchor="end">'+r.label+'</text>';
+    g+='<rect x="'+padL+'" y="'+y+'" width="'+Math.max(sx(r.v1)-padL,1.5)+'" height="'+barH+'" rx="3" fill="'+c1+'"><title>'+r.label+' — 1st half: '+r.v1.toFixed(1)+'</title></rect>';
+    g+='<text x="'+(sx(r.v1)+5)+'" y="'+(y+barH-1)+'" fill="'+muted+'" font-size="8.5">'+r.v1.toFixed(1)+'</text>';
+    const y2=y+barH+gap;
+    g+='<rect x="'+padL+'" y="'+y2+'" width="'+Math.max(sx(r.v2)-padL,1.5)+'" height="'+barH+'" rx="3" fill="'+c2+'"><title>'+r.label+' — 2nd half: '+r.v2.toFixed(1)+'</title></rect>';
+    g+='<text x="'+(sx(r.v2)+5)+'" y="'+(y2+barH-1)+'" fill="'+muted+'" font-size="8.5">'+r.v2.toFixed(1)+'</text>';
+  });
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" role="img" aria-label="First vs second half points by team">'+g+'</svg>';
+}
+
+function halvesHTML(res, opts){
+  const c1=opts.c1,c2=opts.c2;
+  const cov=res.withHT.length+' of '+res.total+' matches have verified half-time data'+(res.withHT.length<res.total?' — halves stats use only those games':'');
+  const tiles=[
+    {l:'AVG 1ST-HALF PTS / GAME', v:res.h1Avg.toFixed(1), s:'both teams combined'},
+    {l:'AVG 2ND-HALF PTS / GAME', v:res.h2Avg.toFixed(1), s:(res.h2Avg>res.h1Avg?'games open up after the break':'first halves higher-scoring')},
+    {l:'HT LEADER WINS', v:res.ledWinPct+'%', s:'of '+res.ledCnt+' games with a HT leader'},
+    {l:'HT COMEBACK WINS', v:res.cb.length, s:'winner trailed at half-time'},
+  ];
+  const tilesHtml=tiles.map(t=>'<div style="flex:1;min-width:150px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:10px;padding:14px 16px"><div style="font-size:9px;font-weight:800;letter-spacing:.6px;color:'+(opts.muted||'#8892A8')+'">'+t.l+'</div><div style="font-size:24px;font-weight:900;color:white;margin:4px 0 2px">'+t.v+'</div><div style="font-size:10px;color:'+(opts.muted||'#8892A8')+'">'+t.s+'</div></div>').join('');
+
+  const T=res.teams.map(t=>({...t,
+    h1d:t.h1f-t.h1a, h2d:t.h2f-t.h2a,
+    h1fAvg:t.g?t.h1f/t.g:0, h2fAvg:t.g?t.h2f/t.g:0,
+    h1aAvg:t.g?t.h1a/t.g:0, h2aAvg:t.g?t.h2a/t.g:0,
+  }));
+  T.sort((a,b)=>(b.h1d+b.h2d)-(a.h1d+a.h2d));
+
+  const chartAtt=halvesBarChart(T.map(t=>({label:opts.short?opts.short(t.team):t.team, v1:t.h1fAvg, v2:t.h2fAvg})), opts);
+  const Tdef=[...T].sort((a,b)=>(a.h1aAvg+a.h2aAvg)-(b.h1aAvg+b.h2aAvg));
+  const chartDef=halvesBarChart(Tdef.map(t=>({label:opts.short?opts.short(t.team):t.team, v1:t.h1aAvg, v2:t.h2aAvg})), opts);
+
+  const legend='<div style="display:flex;gap:16px;align-items:center;margin:6px 0 4px;font-size:10px;color:'+(opts.muted||'#8892A8')+'"><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:'+c1+'"></span>1st half</span><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:'+c2+'"></span>2nd half</span></div>';
+
+  const rowsHtml=T.map(t=>{
+    const swing=(t.h2d-t.h1d);
+    const swCol=swing>0?'#4ADE80':swing<0?'#F87171':'#FACC15';
+    return '<tr>'+
+      '<td style="text-align:left;font-weight:700">'+(opts.short?opts.short(t.team):t.team)+'</td>'+
+      '<td>'+t.g+'</td>'+
+      '<td>'+t.h1fAvg.toFixed(1)+'</td><td>'+t.h1aAvg.toFixed(1)+'</td>'+
+      '<td style="color:'+(t.h1d>=0?'#4ADE80':'#F87171')+';font-weight:700">'+(t.h1d>=0?'+':'')+t.h1d+'</td>'+
+      '<td>'+t.h2fAvg.toFixed(1)+'</td><td>'+t.h2aAvg.toFixed(1)+'</td>'+
+      '<td style="color:'+(t.h2d>=0?'#4ADE80':'#F87171')+';font-weight:700">'+(t.h2d>=0?'+':'')+t.h2d+'</td>'+
+      '<td style="color:'+swCol+';font-weight:800">'+(swing>0?'+':'')+swing+'</td>'+
+      '<td>'+t.ledHT+'</td><td>'+t.comebackW+'</td><td>'+t.blownL+'</td></tr>';
+  }).join('');
+
+  const cbHtml=res.cb.length?res.cb.slice(0,10).map(c=>
+    '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap">'+
+    '<span><strong style="color:#4ADE80">'+c.winner+'</strong> <span style="color:'+(opts.muted||'#8892A8')+'">came from '+c.deficit+' down at HT vs</span> '+c.loser+'</span>'+
+    '<span style="color:'+(opts.muted||'#8892A8')+'">R'+c.r+' · HT '+c.ht+' → FT <strong style="color:white">'+c.ft+'</strong></span></div>').join('')
+    :'<p style="color:'+(opts.muted||'#8892A8')+';font-size:11px">No half-time comebacks recorded yet.</p>';
+
+  const surgeHtml=res.surges.slice(0,5).map(s=>
+    '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap">'+
+    '<span><strong style="color:'+c2+'">'+s.team+'</strong> <span style="color:'+(opts.muted||'#8892A8')+'">won the 2nd half by '+s.swing+' vs</span> '+s.opp+'</span>'+
+    '<span style="color:'+(opts.muted||'#8892A8')+'">R'+s.r+' · HT '+s.ht+' → FT <strong style="color:white">'+s.ft+'</strong></span></div>').join('');
+
+  return ''+
+  '<div style="background:'+(opts.heroBg||'linear-gradient(135deg,#0A1528,#101024)')+';border:1px solid '+(opts.accent||c1)+';border-radius:14px;padding:22px 26px;margin-bottom:18px">'+
+    '<h2 style="color:white;font-size:16px;font-weight:900;margin-bottom:4px">⏱️ 1st vs 2nd Half Breakdown</h2>'+
+    '<p style="color:'+(opts.muted||'#8892A8')+';font-size:11px">'+cov+'. Half-time scores sourced from Rugby League Project match records.</p>'+
+  '</div>'+
+  '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px">'+tilesHtml+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">POINTS SCORED PER GAME — 1ST VS 2ND HALF</h3>'+legend+chartAtt+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">POINTS CONCEDED PER GAME — 1ST VS 2ND HALF <span style="font-weight:600;color:'+(opts.muted||'#8892A8')+';font-size:10px">(best defence first)</span></h3>'+legend+chartDef+'</div>'+
+  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px;overflow-x:auto">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">TEAM HALF-BY-HALF LEDGER</h3>'+
+    '<style>.halves-tbl td{padding:6px 8px;border-top:1px solid rgba(255,255,255,.05)}.halves-tbl th{padding:6px 8px}</style>'+
+    '<table class="halves-tbl" style="width:100%;border-collapse:collapse;font-size:10.5px;text-align:center">'+
+    '<thead><tr style="color:'+(opts.muted||'#8892A8')+';font-size:9px;letter-spacing:.5px">'+
+    '<th style="text-align:left">TEAM</th><th>G*</th><th>H1 PF</th><th>H1 PA</th><th>H1 +/-</th><th>H2 PF</th><th>H2 PA</th><th>H2 +/-</th><th>2H SWING</th><th>LED HT</th><th>CB WINS</th><th>BLOWN</th></tr></thead>'+
+    '<tbody style="color:#D5DEEE">'+rowsHtml+'</tbody></table>'+
+    '<p style="color:'+(opts.muted||'#8892A8')+';font-size:9px;margin-top:8px">*Games with half-time data only. 2H SWING = 2nd-half differential minus 1st-half differential — positive means the side gets stronger after the break. CB WINS = wins after trailing at HT. BLOWN = losses after leading at HT.</p>'+
+  '</div>'+
+  '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px">'+
+    '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px"><h3 style="color:#4ADE80;font-size:12px;font-weight:800;margin-bottom:10px">🔄 BIGGEST HT COMEBACKS</h3>'+cbHtml+'</div>'+
+    '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px"><h3 style="color:'+c2+';font-size:12px;font-weight:800;margin-bottom:10px">⚡ BIGGEST 2ND-HALF SURGES</h3>'+surgeHtml+'</div>'+
+  '</div>';
+}
+
+function renderHalvesTab(){
+  const games=[];
+  BMD_ROUNDS.forEach(rd=>rd.games.forEach(g=>{ if(!g.upcoming) games.push({r:rd.round,home:g.home,away:g.away,hs:g.hs,as:g.as,hh:g.hh??null,ha:g.ha??null}); }));
+  const res=halvesCompute(games);
+  document.getElementById('panel-halves').innerHTML='<div style="padding:20px;max-width:1200px;margin:0 auto">'+
+    halvesHTML(res,{c1:'#B784E0',c2:'#F5A623',accent:'var(--purple)',cardBg:'var(--card)',muted:'var(--muted)',border:'var(--border)',short:n=>TEAM_SHORT[n]||n})+'</div>';
+}
+
+
+// ═══════ ADVANCED METRICS (computed from verified results) ═══════
+function advCompute(games, opts){
+  opts=opts||{};
+  const t={};
+  const ens=n=>{ if(!t[n]) t[n]={team:n,g:0,w:0,d:0,l:0,f:0,a:0,margins:[],close:0,closeW:0,blow:0,blowW:0,h1d:0,h2d:0,htg:0}; return t[n]; };
+  games.forEach(g=>{
+    [[g.home,g.hs,g.as,g.hh,g.ha],[g.away,g.as,g.hs,g.ha,g.hh]].forEach(x=>{
+      const [n,f,a,hf,ha]=x; const T=ens(n);
+      T.g++; T.f+=f; T.a+=a; T.margins.push(f-a);
+      if(f>a)T.w++; else if(f<a)T.l++; else T.d++;
+      const m=Math.abs(f-a);
+      if(m<=6){T.close++; if(f>a)T.closeW++;}
+      if(m>=18){T.blow++; if(f>a)T.blowW++;}
+      if(hf!=null){T.htg++; T.h1d+=hf-ha; T.h2d+=(f-hf)-(a-ha);}
+    });
+  });
+  const arr=Object.values(t);
+  arr.forEach(T=>{
+    const e=2.0; // pythagorean exponent for rugby league
+    T.pyth=T.g*(Math.pow(T.f,e)/(Math.pow(T.f,e)+Math.pow(T.a,e)||1));
+    T.luck=(T.w+T.d*0.5)-T.pyth;
+    T.avgM=T.margins.reduce((s,x)=>s+x,0)/T.g;
+    const mean=T.avgM;
+    T.vol=Math.sqrt(T.margins.reduce((s,x)=>s+(x-mean)*(x-mean),0)/T.g);
+    T.swing=T.htg?(T.h2d-T.h1d)/T.htg:0;
+  });
+  // strength of schedule: mean of opponents' avg margin
+  const rate={}; arr.forEach(T=>rate[T.team]=T.avgM);
+  arr.forEach(T=>{ T.sosList=[]; });
+  games.forEach(g=>{ ens(g.home).sosList.push(rate[g.away]); ens(g.away).sosList.push(rate[g.home]); });
+  arr.forEach(T=>{ T.sos=T.sosList.length?T.sosList.reduce((s,x)=>s+x,0)/T.sosList.length:0; });
+  return arr.sort((a,b)=>b.avgM-a.avgM);
+}
+function advHTML(games, cfg){
+  const {cardBg,border,muted,acc,acc2,hl,short}=cfg;
+  const S=n=>short?short(n):n;
+  const arr=advCompute(games);
+  const rows=arr.map((T,i)=>{
+    const isHl=hl&&T.team===hl;
+    return '<tr'+(isHl?' style="background:rgba(249,115,22,.10);outline:1px solid '+acc+'"':'')+'>'+
+    '<td style="text-align:left;font-weight:700">'+(i+1)+'. '+S(T.team)+'</td>'+
+    '<td style="font-weight:800;color:'+(T.avgM>=0?'#4ADE80':'#F87171')+'">'+(T.avgM>=0?'+':'')+T.avgM.toFixed(1)+'</td>'+
+    '<td>'+T.pyth.toFixed(1)+'</td>'+
+    '<td style="color:'+(T.luck>0.5?'#4ADE80':T.luck<-0.5?'#F87171':'#FACC15')+';font-weight:800">'+(T.luck>0?'+':'')+T.luck.toFixed(1)+'</td>'+
+    '<td style="color:'+(T.sos>0?'#F87171':'#4ADE80')+'">'+(T.sos>0?'+':'')+T.sos.toFixed(1)+'</td>'+
+    '<td>'+T.vol.toFixed(1)+'</td>'+
+    '<td>'+(T.close?T.closeW+'/'+T.close:'—')+'</td>'+
+    '<td>'+(T.blow?T.blowW+'/'+T.blow:'—')+'</td>'+
+    '<td style="color:'+(T.swing>0?'#4ADE80':'#F87171')+';font-weight:700">'+(T.swing>0?'+':'')+T.swing.toFixed(1)+'</td></tr>';
+  }).join('');
+  const best=arr[0], luckiest=[...arr].sort((a,b)=>b.luck-a.luck)[0], unlucky=[...arr].sort((a,b)=>a.luck-b.luck)[0], hardest=[...arr].sort((a,b)=>b.sos-a.sos)[0];
+  const tiles=[
+    ['POWER RATING #1',S(best.team),(best.avgM>=0?'+':'')+best.avgM.toFixed(1)+' avg margin'],
+    ['OVER-PERFORMER',S(luckiest.team),'+'+luckiest.luck.toFixed(1)+' wins above Pythagorean expectation'],
+    ['UNDER-PERFORMER',S(unlucky.team),unlucky.luck.toFixed(1)+' wins below expectation — better than record shows'],
+    ['TOUGHEST DRAW',S(hardest.team),'opponents rate '+(hardest.sos>0?'+':'')+hardest.sos.toFixed(1)+' on average'],
+  ].map(x=>'<div style="flex:1;min-width:150px;background:'+cardBg+';border:1px solid '+border+';border-radius:10px;padding:14px 16px"><div style="font-size:9px;font-weight:800;letter-spacing:.6px;color:'+muted+'">'+x[0]+'</div><div style="font-size:19px;font-weight:900;color:white;margin:4px 0 2px">'+x[1]+'</div><div style="font-size:10px;color:'+muted+'">'+x[2]+'</div></div>').join('');
+  // rating bars
+  const mx=Math.max(...arr.map(T=>Math.abs(T.avgM)),1);
+  const bars=arr.map(T=>{
+    const w=Math.abs(T.avgM)/mx*50;
+    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'+
+      '<div style="width:110px;font-size:10px;font-weight:700;text-align:right">'+S(T.team)+'</div>'+
+      '<div style="flex:1;position:relative;height:10px">'+
+        '<div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.2)"></div>'+
+        '<div title="'+(T.avgM>=0?'+':'')+T.avgM.toFixed(1)+'" style="position:absolute;top:0;height:10px;border-radius:5px;'+(T.avgM>=0?'left:50%;':'right:50%;')+'width:'+w+'%;background:'+(T.avgM>=0?acc:acc2)+'"></div></div>'+
+      '<div style="width:48px;font-size:10px;font-weight:800;color:#fff">'+(T.avgM>=0?'+':'')+T.avgM.toFixed(1)+'</div></div>';
+  }).join('');
+  return '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">'+tiles+'</div>'+
+   '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;margin-bottom:16px">'+
+     '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:8px">⚡ POWER RATINGS — AVG MARGIN PER GAME</h3>'+bars+'</div>'+
+   '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;overflow-x:auto">'+
+     '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">🔬 ADVANCED METRICS TABLE</h3>'+
+     '<style>.adv-tbl td{padding:6px 8px;border-top:1px solid rgba(255,255,255,.05);text-align:center}.adv-tbl th{padding:6px 8px}</style>'+
+     '<table class="adv-tbl" style="width:100%;border-collapse:collapse;font-size:10.5px"><thead><tr style="color:'+muted+';font-size:8.5px;text-transform:uppercase;letter-spacing:.5px">'+
+     '<th style="text-align:left">Team</th><th>Rating (avg margin)</th><th>Pyth. exp. wins</th><th>Luck (W − exp)</th><th>SOS</th><th>Volatility (σ margin)</th><th>Close (≤6) W</th><th>Blowout (18+) W</th><th>2H swing/g</th></tr></thead>'+
+     '<tbody style="color:#D5DEEE">'+rows+'</tbody></table>'+
+     '<p style="font-size:9px;color:'+muted+';margin-top:8px">Pythagorean expected wins from points for/against (exponent 2.0) — a truer measure of quality than the ladder. Luck = actual wins vs expectation (positive = winning more than underlying performance). SOS = average opponent power rating (positive = harder draw). Volatility = standard deviation of margins. 2H swing = second-half differential minus first-half differential per game (games with half-time data).</p></div>';
+}
+
+// ═══════ TRY ZONE — SCORING PROFILE (verified timing + channel proxies) ═══════
+function tzCompute(games){
+  const t={};
+  const ens=n=>{ if(!t[n]) t[n]={team:n,g:0,f:0,a:0,h1f:0,h2f:0,h1a:0,h2a:0,htg:0,burst:0,shutH:0}; return t[n]; };
+  games.forEach(g=>{
+    [[g.home,g.hs,g.as,g.hh,g.ha],[g.away,g.as,g.hs,g.ha,g.hh]].forEach(x=>{
+      const [n,f,a,hf,ha]=x; const T=ens(n);
+      T.g++; T.f+=f; T.a+=a;
+      if(hf!=null){ T.htg++; T.h1f+=hf; T.h2f+=f-hf; T.h1a+=ha; T.h2a+=a-ha;
+        if(hf>=20||f-hf>=20)T.burst++;
+        if(hf===0||f-hf===0)T.shutH++; }
+    });
+  });
+  return Object.values(t).map(T=>({...T,
+    est:T.f/4.7,  // rough tries estimate: comp scoring ≈ 4.7 pts per try incl. conversions
+    h1pct:(T.h1f+T.h2f)?T.h1f/(T.h1f+T.h2f)*100:50,
+    a1pct:(T.h1a+T.h2a)?T.h1a/(T.h1a+T.h2a)*100:50,
+  })).sort((a,b)=>b.f-a.f);
+}
+function tzHTML(games, cfg){
+  const {cardBg,border,muted,acc,acc2,short,scorers,method,hl}=cfg;
+  const S=n=>short?short(n):n;
+  const arr=tzCompute(games);
+  const grid=arr.map(T=>{
+    const isHl=hl&&T.team===hl;
+    return '<div style="background:'+cardBg+';border:1px solid '+(isHl?acc:border)+';border-radius:12px;padding:14px 16px">'+
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#fff">'+S(T.team)+'</strong><span style="font-size:9px;color:'+muted+'">'+T.g+' games</span></div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:center">'+
+      '<div style="background:rgba(74,222,128,.08);border-radius:8px;padding:8px"><div style="font-size:15px;font-weight:900;color:#4ADE80">~'+T.est.toFixed(0)+'</div><div style="font-size:8px;color:'+muted+'">EST. TRIES</div></div>'+
+      '<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:8px"><div style="font-size:15px;font-weight:900;color:#fff">'+(T.f/T.g).toFixed(1)+'</div><div style="font-size:8px;color:'+muted+'">PTS / GAME</div></div>'+
+    '</div>'+
+    '<div style="margin-top:8px"><div style="font-size:8px;color:'+muted+';margin-bottom:3px">WHEN THEY STRIKE (pts share by half)</div>'+
+      '<div style="display:flex;height:12px;border-radius:6px;overflow:hidden">'+
+      '<div title="1st half '+T.h1pct.toFixed(0)+'%" style="width:'+T.h1pct+'%;background:'+acc+';display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#0A0A1E">'+T.h1pct.toFixed(0)+'%</div>'+
+      '<div title="2nd half" style="flex:1;background:'+acc2+';display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#0A0A1E">'+(100-T.h1pct).toFixed(0)+'%</div></div></div>'+
+    '<div style="margin-top:6px"><div style="font-size:8px;color:'+muted+';margin-bottom:3px">WHEN THEY CONCEDE</div>'+
+      '<div style="display:flex;height:12px;border-radius:6px;overflow:hidden;opacity:.75">'+
+      '<div style="width:'+T.a1pct+'%;background:#F87171;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#0A0A1E">'+T.a1pct.toFixed(0)+'%</div>'+
+      '<div style="flex:1;background:#7F1D1D;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#fff">'+(100-T.a1pct).toFixed(0)+'%</div></div></div>'+
+    '<div style="display:flex;gap:6px;margin-top:8px;font-size:8.5px;color:'+muted+'"><span>⚡ '+T.burst+' × 20+ pt halves</span><span>🧱 '+T.shutH+' × scoreless halves (them or opp)</span></div>'+
+    '</div>';
+  }).join('');
+  const scorersHtml=scorers&&scorers.length?
+    '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;margin-bottom:16px">'+
+    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">🏅 LEADING SCORERS — VERIFIED</h3>'+
+    scorers.map(s=>'<div style="display:flex;justify-content:space-between;padding:8px 12px;background:rgba(255,255,255,.03);border:1px solid '+border+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap;gap:6px"><span><strong style="color:#fff">'+s.player+'</strong> <span style="color:'+muted+'">('+s.team+' · '+s.pos+')</span></span><span style="font-weight:800;color:'+acc2+'">'+s.stat+'</span></div>').join('')+'</div>':'';
+  return '<div style="background:linear-gradient(135deg,#0A1528,#101024);border:1px solid '+acc+';border-radius:14px;padding:20px 24px;margin-bottom:16px">'+
+    '<h2 style="color:white;font-size:15px;font-weight:900;margin-bottom:4px">🗺️ TRY ZONE — SCORING PROFILE</h2>'+
+    '<p style="color:'+muted+';font-size:11px;line-height:1.6">'+method+'</p></div>'+
+    scorersHtml+
+    '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px">'+grid+'</div>';
+}
+
+function bmdFlatGames(){
+  const out=[];
+  BMD_ROUNDS.forEach(rd=>rd.games.forEach(g=>{ if(!g.upcoming) out.push({r:rd.round,home:g.home,away:g.away,hs:g.hs,as:g.as,hh:g.hh??null,ha:g.ha??null}); }));
+  return out;
+}
+const BMDCFG={cardBg:'var(--card)',border:'var(--border)',muted:'var(--muted)',acc:'#B784E0',acc2:'#F5A623',short:n=>n};
+function renderTryZoneTab(){
+  document.getElementById('panel-tryzone').innerHTML='<div style="padding:20px;max-width:1200px;margin:0 auto">'+
+    tzHTML(bmdFlatGames(),{...BMDCFG,method:"Precise try-placement (left/middle/right) tracking is not published for the BMD Premiership, so this tab profiles each team's scoring from verified match data: estimated try volume (points ÷ 4.7), strike timing by half, concession timing, 20+ point halves and scoreless halves — cross-checked against Rugby League Project records and the official QRL ladder. Leading-scorer facts are verified: Kiarah Siauane (Souths Logan) leads the try count with 8; Natalie Wright (Norths Devils) tops the points on 52.",
+      scorers:[{player:'Kiarah Siauane',team:'Magpies',pos:'Outside back',stat:'8 tries — comp leader'},
+               {player:'Natalie Wright',team:'Devils',pos:'Goal-kicker',stat:'52 pts — top pointscorer'}]})+'</div>';
+}
+function renderAdvTab(){
+  document.getElementById('panel-advanced').innerHTML='<div style="padding:20px;max-width:1200px;margin:0 auto">'+advHTML(bmdFlatGames(),BMDCFG)+'</div>';
+}
+
 function showTab(id) {
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
-  const idx = ['overview','r4','ladder','charts','scouts','results','matrix','profiles','attack','defence','metrics'].indexOf(id);
+  const idx = ['overview','ladder','charts','scouts','results','halves','tryzone','advanced','matrix','profiles','attack','defence','metrics'].indexOf(id);
   document.querySelectorAll('.tab-btn')[idx].classList.add('active');
   const renders = {
-    overview:renderOverview, r4:renderR4, ladder:renderLadder,
-    charts:renderCharts, scouts:renderScouts, results:renderResults, matrix:renderMatrix,
+    overview:renderOverview, ladder:renderLadder,
+    charts:renderCharts, scouts:renderScouts, results:renderResults, halves:renderHalvesTab, tryzone:renderTryZoneTab, advanced:renderAdvTab, matrix:renderMatrix,
     profiles:renderProfiles, attack:renderAttack, defence:renderDefence, metrics:renderMetrics
   };
   renders[id]();
@@ -509,19 +828,19 @@ function renderOverview() {
   const drawKing = [...LADDER].sort((a,b)=>b[1].d-a[1].d)[0];
 
   const analystInsights = [
-    `<strong>${topPts[0]}</strong> sit top of the ladder with ${topPts[1].pts} pts and a ${topPts[1].w}W-${topPts[1].l}L record — they are the team to beat heading into R4 and beyond.`,
+    `<strong>${topPts[0]}</strong> sit top of the ladder with ${topPts[1].pts} pts and a ${topPts[1].w}W-${topPts[1].l}L record after 5 rounds — they remain the team to beat heading into the second half of the season.`,
     `<strong>${topScorer[0]}</strong> have the highest total points for (${topScorer[1].pf} PF from ${topScorer[1].gp} games) — the competition's most dangerous attacking outfit regardless of record.`,
     `<strong>${bestDef[0]}</strong> concede the fewest points (${bestDef[1].pa} total, ${bestDef[1].avgPA}/game avg) — proof that defence wins competitions at this level.`,
-    `The <strong>Seagulls attack is the core development priority</strong> — 10.7 pts/game avg is the lowest in the competition. Getting within 15 points of opponents must be the first target.`,
-    `<strong>Bears vs Seagulls (R4, UAA Park)</strong> was the marquee Tweed challenge — a top vs bottom clash against the comp's most complete defensive team. R4 result shapes the rest of the season.`,
-    `<strong>R5 key fixture: Seagulls vs Tigers at HOME</strong> (Preston Building Complex, 5–6 Jul TBC) — Tigers have the comp's most dangerous attack. A strong home defensive display would be a major confidence marker.`,
+    `The <strong>Seagulls attack is the core development priority</strong> — scoring just 10 pts/game avg across R1–R5. The 14 pts scored in R5 vs Tigers is the team's joint-best output — building on that is priority in R6.`,
+    `<strong>R5 was a milestone</strong> — Seagulls scored 14 pts vs in-form Tigers at HOME, their joint-best attacking output. 3 tries in that game shows the attack is developing even in a loss.`,
+    `<strong>R6 is the next benchmark</strong> — after 5 rounds without a win, the competition is still winnable in the second half. The narrowing margins and improving try counts are positive signals.`,
   ];
 
   el.innerHTML = `
   <!-- 8 STAT TILES -->
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
     ${[
-      {l:'Rounds Played',v:'4',s:'R1–R4 completed · R5 upcoming (5–6 Jul)'},
+      {l:'Rounds Played',v:'5',s:'R1–R5 completed · R6 upcoming'},
       {l:'Ladder Leader',v:TEAM_SHORT[topPts[0]],s:`${topPts[0]} · ${topPts[1].pts} pts`},
       {l:'Top Attack',v:topAtk[1].pf,s:`${topAtk[0]} total PF`},
       {l:'Best Defence',v:bestDef[1].pa,s:`${bestDef[0]} total PA`},
@@ -619,11 +938,11 @@ function renderOverview() {
   <div class="card">
     <div class="card-title">Quick Competition Summary</div>
     <p style="font-size:13px;color:var(--muted);line-height:1.7;">
-      After 4 rounds, <strong style="color:var(--gold);">Bears</strong> remain the only unbeaten team — 4W 0L, 90 PF and just 24 PA. The R4 shutout of Tweed (34-4) confirmed their status as competition favourites.
-      <strong style="color:var(--gold);">Tigers</strong> dismantled Jets 32-6 in the match of the round — their attack (112 PF) is the most lethal in the competition.
-      <strong style="color:var(--gold);">Devils</strong> produced the performance of R4: a 28-0 shutout of Magpies, rising to 3rd and cementing their credentials as genuine title contenders.
-      <strong style="color:#e74c3c;">Magpies</strong> suffered a horror 0-28 loss after being favourites at home — their defensive frailties exposed.
-      <strong>R5 (5–6 Jul) is crucial for Seagulls (hosting Tigers) and WM Seagulls (home vs Falcons)</strong> — both winless and facing a must-win situation to stay relevant.
+      After 5 rounds, <strong style="color:var(--gold);">Bears</strong> remain the only unbeaten team — 5W 0L, 116 PF and just 44 PA. Their 26-20 win at Magpies in R5 confirmed they can win ugly as well as dominate.
+      <strong style="color:var(--gold);">Tigers</strong> and <strong style="color:var(--gold);">Devils</strong> are tied 2nd with 4W 1L each — both are genuine title contenders entering the second half of the season.
+      <strong style="color:var(--gold);">Pride</strong> broke out in R5 (44-28 over Jets) but fell agonisingly short 27-26 to the Clydesdales in R6.
+      <strong style="color:#e74c3c;">WM Seagulls</strong> broke through with back-to-back wins in R5–R6, while <strong style="color:#e74c3c;">Tweed Seagulls</strong> remain the competition's only winless side (0-6).
+      <strong>R6 delivered upsets everywhere</strong> — Bears were held 18-all by Mackay but stay top as the only unbeaten side (5W 1D), with Tigers and Devils one point behind.
     </p>
   </div>`;
 }
@@ -712,7 +1031,7 @@ function renderR4() {
       <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#2ecc71;text-transform:uppercase;">✅ Round 4 — Full Results</div>
       <div style="font-size:18px;font-weight:900;color:#fff;">27–28 June 2026</div>
     </div>
-    <div style="font-size:13px;color:var(--muted);">All 6 games complete · R5 coming 5–6 Jul</div>
+    <div style="font-size:13px;color:var(--muted);">All 6 games complete · R5 results in R5 tab</div>
   </div>
   ${r4Results.map(p=>`
   <div class="preview-card ${p.fire?'fire':''}">
@@ -742,14 +1061,46 @@ function renderR4() {
   `).join('')}
 
   <div style="margin-top:24px;">
-    <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;">⏳ Round 5 — Upcoming</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">5–6 July 2026 (TBC) · Fixtures subject to official confirmation</div>
-    ${R5_FIXTURES.map(f=>`<div style="background:var(--card2);border:1px solid rgba(106,138,255,.25);border-radius:10px;padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <div style="background:#1a1a4a;color:#6a8aff;font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;white-space:nowrap;">UPCOMING</div>
-      <div style="font-weight:700;font-size:13px;flex:1;min-width:200px;">${dot(f.home,10)}${f.home} <span style="color:var(--muted);font-size:11px;">vs</span> ${dot(f.away,10)}${f.away}</div>
-      <div style="font-size:11px;color:var(--muted);">📅 ${f.date} · ${f.time}</div>
-      <div style="font-size:11px;color:var(--muted);">📍 ${f.venue}</div>
-    </div>`).join('')}
+    <div style="background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.4);border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#2ecc71;text-transform:uppercase;">✅ Round 5 — Full Results</div>
+        <div style="font-size:18px;font-weight:900;color:#fff;">4–5 July 2026</div>
+      </div>
+      <div style="font-size:13px;color:var(--muted);">All 6 games complete · Ladder updated to R6</div>
+    </div>
+    ${[
+      {home:'Pride',away:'Jets',hs:44,as:28,date:'Sat 4 Jul',venue:'Barlow Park, Cairns',insight:'Pride\'s biggest win of the season — 44-28 over Jets. Pride now 3W 2L and firmly in finals contention. Jets (now 2W 2L + bye) have lost both games against top-4 opposition, exposing defensive vulnerabilities.'},
+      {home:'Seagulls',away:'Tigers',hs:14,as:38,date:'Sat 4 Jul',venue:'Preston Building Complex, Tweed',insight:'Tigers continue their rampage — 38-14 at Tweed. Tigers now 4W 1L with 150 PF (30/game). Tweed scored 3 tries showing attacking improvement, but 29% territory and 11 errors condemned the result. Expert eye: Tigers\' line speed is exploiting errors immediately.'},
+      {home:'Falcons',away:'Capras',hs:40,as:12,date:'Sat 4 Jul',venue:'Sunshine Coast Stadium',fire:true,insight:'BEST PERFORMANCE OF ROUND: Falcons 40-12 vs Capras — their biggest win of 2026. Falcons now 3W 2L and legitimate top-4 threats. 40 pts at home shows attack capacity not seen in earlier rounds. Capras (1W 4L) continue to struggle at home.'},
+      {home:'WM Seagulls',away:'Clydesdales',hs:28,as:6,date:'Sat 4 Jul',venue:'Stafford Rugby League',insight:'Wynnum-Manly Seagulls finally snap their losing streak — 28-6 win. First win of the season for WM Seagulls (now 1W 3L + bye). Clydesdales (2W 3L) have now won away but lost both home games — unusual home/away split.'},
+      {home:'Cutters',away:'Devils',hs:12,as:34,date:'Sun 5 Jul',venue:'BB Print Stadium, Mackay',insight:'Devils emphatic 34-12 away at Cutters — now 4W 1L and in a three-way tie for 2nd. Devils have now won 3 on the trot and look genuine title contenders. 34 pts away from home is elite. Cutters (2W 3L) drop to 7th.'},
+      {home:'Magpies',away:'Bears',hs:20,as:26,date:'Sun 5 Jul',venue:'Davies Park, Brisbane',insight:'Bears survive a scare — 26-20 at Magpies. Bears remain the only unbeaten side at 5W 0L but this was their toughest test. Expert note: Magpies had 20 pts and were in this until the final quarter — the Bears\' aura of invincibility has dents now. Beatable by any top-6 side.'},
+    ].map(p=>`
+    <div class="preview-card ${p.fire?'fire':''}">
+      <div class="preview-header">
+        <div>
+          <div class="preview-time">📅 ${p.date} · ${p.venue}</div>
+          <div class="preview-matchup" style="margin-top:4px;">${p.home}<span class="vs" style="font-size:11px;color:var(--muted);">vs</span>${p.away}</div>
+        </div>
+        ${p.fire ? '<div class="clash-badge">⭐ BEST PERF</div>' : ''}
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;padding:16px 0;border-bottom:1px solid var(--border);">
+        <div style="text-align:right;flex:1;">
+          <div style="font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;">${p.home}</div>
+          <div style="font-size:36px;font-weight:900;color:${TEAM_COLORS[p.home]||'#fff'};">${p.hs}</div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:2px;">FINAL</div>
+        <div style="text-align:left;flex:1;">
+          <div style="font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;">${p.away}</div>
+          <div style="font-size:36px;font-weight:900;color:${TEAM_COLORS[p.away]||'#fff'};">${p.as}</div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-top:12px;background:rgba(74,158,255,.07);border:1px solid rgba(74,158,255,.18);border-radius:8px;padding:10px;">
+        <div class="tip-label" style="color:#4a9eff;">🔍 Expert Analysis</div>
+        <div class="tip-text" style="line-height:1.6;">${p.insight}</div>
+      </div>
+    </div>
+    `).join('')}
   </div>`;
 }
 
@@ -760,7 +1111,7 @@ function renderLadder() {
   el.dataset.rendered = '1';
 
   el.innerHTML = `<div class="card">
-    <div class="card-title">BMD Premiership Standings — After Round 3</div>
+    <div class="card-title">BMD Premiership Standings — After Round 5</div>
     <div style="overflow-x:auto;">
     <table class="ladder-table">
       <thead>
@@ -1535,7 +1886,7 @@ function renderDefence() {
 function renderMetrics() {
   const el = document.getElementById('panel-metrics');
   if (el.innerHTML.trim()) return;
-  const s = getStats();
+  const s = STATS;
   const teams = Object.entries(s).filter(([t,v])=>v.gp>0);
   // Compute composite attack & defence ratings
   const maxPF = Math.max(...teams.map(([t,v])=>v.pf/v.gp));
@@ -1567,17 +1918,17 @@ function renderMetrics() {
       <span style="font-size:28px;">📊</span>
       <div>
         <h2 style="color:white;font-size:16px;font-weight:900;">Advanced Metrics — BMD Premiership 2026</h2>
-        <p style="color:var(--muted);font-size:11px;margin-top:2px;">Composite attack/defence ratings, home-away splits, clutch record, and consistency scores computed from R1–R4 match data</p>
+        <p style="color:var(--muted);font-size:11px;margin-top:2px;">Composite attack/defence ratings, home-away splits, clutch record, and consistency scores computed from R1–R5 match data</p>
       </div>
     </div>
     <div style="padding:8px 12px;background:rgba(74,42,138,.15);border:1px solid rgba(74,42,138,.4);border-radius:8px;font-size:11px;color:rgba(180,160,220,.9);">
-      ℹ️ Ratings computed from points scored/conceded, big performances (30+ pts), defensive shutouts (≤20 conceded), and win rate. Sample size: 4 rounds — trends will stabilise as the season progresses.
+      ℹ️ Ratings computed from points scored/conceded, big performances (30+ pts), defensive shutouts (≤20 conceded), and win rate. Sample size: 5 rounds — trends will stabilise as the season progresses.
     </div>
   </div>
 
   <!-- Attack Ratings -->
   <div style="background:var(--card);border-radius:12px;padding:18px;margin-bottom:16px;">
-    <div style="font-size:14px;font-weight:700;color:#F5C400;margin-bottom:14px;">⚔️ ATTACK RATING (0–99) — R1–R4 Computed</div>
+    <div style="font-size:14px;font-weight:700;color:#F5C400;margin-bottom:14px;">⚔️ ATTACK RATING (0–99) — R1–R5 Computed</div>
     ${rated.map((r,i)=>`
     <div style="display:grid;grid-template-columns:140px 40px 1fr 60px 80px;gap:8px;align-items:center;margin-bottom:10px;">
       <div style="font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;"><span style="background:${TEAM_COLORS[r.team]||'#888'};width:8px;height:8px;border-radius:50%;display:inline-block;"></span>${r.team}</div>
@@ -1631,7 +1982,7 @@ function renderMetrics() {
 
   <!-- Analyst Insights -->
   <div style="background:var(--card);border-radius:12px;padding:18px;">
-    <div style="font-size:13px;font-weight:700;color:#A78BFA;margin-bottom:14px;">🔍 Expert Analyst Insights — R1–R4</div>
+    <div style="font-size:13px;font-weight:700;color:#A78BFA;margin-bottom:14px;">🔍 Expert Analyst Insights — R1–R5</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
     ${[
       {icon:'🥇',title:'Bears — Competition Standard',body:'4W 0L, +66 PD — only 24 PA across 4 games. Their defensive floor (6.0 pts conceded/game) is elite. Expert note: The 38-6 and 34-4 wins in R3/R4 show they can close out already-won games, a sign of playing culture that mediocre teams lack.'},
