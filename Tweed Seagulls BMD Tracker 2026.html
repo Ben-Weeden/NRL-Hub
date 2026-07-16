@@ -335,23 +335,27 @@ function renderRounds(){
         ${(r.lpo1h&&r.lpo1h.length)||(r.lpo&&r.lpo.length)?`
         <div style="margin-bottom:10px;">
           <div style="font-size:9px;font-weight:700;color:var(--amber);text-transform:uppercase;margin-bottom:4px;">1st Half</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
             <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Option</div>
-            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Opp Set Start</div>
+            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Set Start</div>
+            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Return</div>
             ${(r.lpo1h||r.lpo).map(row=>`
-            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.option??row.osp??'—'}</div>
-            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.oppSetStart??row.h1??'—'}</div>`).join('')}
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:11px;color:var(--text);">${row.option??row.osp??'—'}</div>
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:11px;color:var(--text);">${row.oppSetStart??row.h1??'—'}</div>
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:11px;color:var(--gold);">${row.oppReturnMetres??'—'}</div>`).join('')}
           </div>
         </div>`:''}
         ${r.lpo2h&&r.lpo2h.length?`
         <div>
           <div style="font-size:9px;font-weight:700;color:var(--amber);text-transform:uppercase;margin-bottom:4px;">2nd Half</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
             <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Option</div>
-            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Opp Set Start</div>
+            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Set Start</div>
+            <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:3px 0;">Return</div>
             ${r.lpo2h.map(row=>`
-            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.option??'—'}</div>
-            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:12px;color:var(--text);">${row.oppSetStart??'—'}</div>`).join('')}
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:11px;color:var(--text);">${row.option??'—'}</div>
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:11px;color:var(--text);">${row.oppSetStart??'—'}</div>
+            <div style="background:var(--card);border-radius:6px;padding:6px;font-size:11px;color:var(--gold);">${row.oppReturnMetres??'—'}</div>`).join('')}
           </div>
         </div>`:''}
       </div>`:''}
@@ -542,21 +546,24 @@ function renderEntryForm(rd){
 
   <div style="margin-bottom:14px;">
     <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;margin-bottom:6px;">1st Half</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:4px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 32px;gap:6px;margin-bottom:4px;">
       <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Option</div>
-      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Opp Set Start</div>
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Set Start</div>
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Return m</div>
       <div></div>
     </div>
     <div id="lpo1h-rows">
       ${(get('lpo1h',get('lpo',[]))).map((row,i) => `
-        <div class="lpo1h-row" style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;">
-          <input type="text" class="lpo-option" value="${row.option??row.osp??''}" placeholder="e.g. Kick Return" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <input type="text" class="lpo-oppsetstart" value="${row.oppSetStart??row.h1??''}" placeholder="e.g. 20m" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+        <div class="lpo1h-row" style="display:grid;grid-template-columns:1fr 1fr 1fr 32px;gap:6px;margin-bottom:6px;">
+          ${_selOpt('lpo-option', row.option??row.osp??'')}
+          ${_selSetStart('lpo-oppsetstart', row.oppSetStart??row.h1??'')}
+          ${_selReturn('lpo-oppreturnmetres', row.oppReturnMetres??'')}
           <button onclick="this.closest('.lpo1h-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
         </div>`).join('') || `
-        <div class="lpo1h-row" style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;">
-          <input type="text" class="lpo-option" placeholder="e.g. Kick Return" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <input type="text" class="lpo-oppsetstart" placeholder="e.g. 20m" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+        <div class="lpo1h-row" style="display:grid;grid-template-columns:1fr 1fr 1fr 32px;gap:6px;margin-bottom:6px;">
+          ${_selOpt('lpo-option')}
+          ${_selSetStart('lpo-oppsetstart')}
+          ${_selReturn('lpo-oppreturnmetres')}
           <button onclick="this.closest('.lpo1h-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
         </div>`}
     </div>
@@ -565,21 +572,24 @@ function renderEntryForm(rd){
 
   <div style="margin-bottom:14px;">
     <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;margin-bottom:6px;">2nd Half</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:4px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 32px;gap:6px;margin-bottom:4px;">
       <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Option</div>
-      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Opp Set Start</div>
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Set Start</div>
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:4px 0;">Return m</div>
       <div></div>
     </div>
     <div id="lpo2h-rows">
       ${get('lpo2h',[]).map((row,i) => `
-        <div class="lpo2h-row" style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;">
-          <input type="text" class="lpo-option" value="${row.option||''}" placeholder="e.g. Dropout" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <input type="text" class="lpo-oppsetstart" value="${row.oppSetStart||''}" placeholder="e.g. 40m" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+        <div class="lpo2h-row" style="display:grid;grid-template-columns:1fr 1fr 1fr 32px;gap:6px;margin-bottom:6px;">
+          ${_selOpt('lpo-option', row.option??'')}
+          ${_selSetStart('lpo-oppsetstart', row.oppSetStart??'')}
+          ${_selReturn('lpo-oppreturnmetres', row.oppReturnMetres??'')}
           <button onclick="this.closest('.lpo2h-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
         </div>`).join('') || `
-        <div class="lpo2h-row" style="display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;">
-          <input type="text" class="lpo-option" placeholder="e.g. Dropout" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-          <input type="text" class="lpo-oppsetstart" placeholder="e.g. 40m" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+        <div class="lpo2h-row" style="display:grid;grid-template-columns:1fr 1fr 1fr 32px;gap:6px;margin-bottom:6px;">
+          ${_selOpt('lpo-option')}
+          ${_selSetStart('lpo-oppsetstart')}
+          ${_selReturn('lpo-oppreturnmetres')}
           <button onclick="this.closest('.lpo2h-row').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>
         </div>`}
     </div>
@@ -593,21 +603,39 @@ function renderEntryForm(rd){
   calcPct();
 }
 
-function _makeLpoRow(cls, optPlaceholder, sspPlaceholder){
+// ── LPO dropdown helpers ──────────────────────────────────────────────────
+const _SS = 'background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:6px 4px;font-size:11px;width:100%;';
+const _LPO_OPTS   = ['Crossfield Kick','Clearing Kick','Chip Kick','Grubber Kick','Bomb'];
+const _LPO_ZONES  = ['Opp Try Line','Own Try Line','Opp 10m','Own 10m','Opp 20m','Own 20m','Opp 30m','Own 30m','Opp 40m','Own 40m','50m'];
+const _LPO_POS    = ['Left','Mid Left','Middle','Mid Right','Right'];
+const _LPO_RET    = ['5m','10m','15m','20m','25m','30m','35m','40m','45m','50m','55m','60m','65m','70m','75m','80m','85m','90m','95m','100m','Try'];
+
+function _selOpt(cls, sel=''){
+  return `<select class="${cls}" style="${_SS}"><option value="">— Option —</option>${_LPO_OPTS.map(o=>`<option${o===sel?' selected':''}>${o}</option>`).join('')}</select>`;
+}
+function _selSetStart(cls, sel=''){
+  return `<select class="${cls}" style="${_SS}"><option value="">— Set Start —</option>${_LPO_ZONES.map(z=>`<optgroup label="${z}">${_LPO_POS.map(p=>{const v=`${z} — ${p}`;return `<option${v===sel?' selected':''}>${v}</option>`;}).join('')}</optgroup>`).join('')}</select>`;
+}
+function _selReturn(cls, sel=''){
+  return `<select class="${cls}" style="${_SS}"><option value="">— Return —</option>${_LPO_RET.map(v=>`<option${v===sel?' selected':''}>${v}</option>`).join('')}</select>`;
+}
+
+function _makeLpoRow(cls){
   const div = document.createElement('div');
   div.className = cls;
-  div.style = 'display:grid;grid-template-columns:1fr 1fr 32px;gap:6px;margin-bottom:6px;';
+  div.style = 'display:grid;grid-template-columns:1fr 1fr 1fr 32px;gap:6px;margin-bottom:6px;';
   div.innerHTML = `
-    <input type="text" class="lpo-option" placeholder="${optPlaceholder}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
-    <input type="text" class="lpo-oppsetstart" placeholder="${sspPlaceholder}" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:13px;width:100%;">
+    ${_selOpt('lpo-option')}
+    ${_selSetStart('lpo-oppsetstart')}
+    ${_selReturn('lpo-oppreturnmetres')}
     <button onclick="this.closest('.${cls}').remove()" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;cursor:pointer;font-size:14px;font-weight:700;">✕</button>`;
   return div;
 }
 function addLpo1HRow(){
-  document.getElementById('lpo1h-rows').appendChild(_makeLpoRow('lpo1h-row','e.g. Kick Return','e.g. 20m'));
+  document.getElementById('lpo1h-rows').appendChild(_makeLpoRow('lpo1h-row'));
 }
 function addLpo2HRow(){
-  document.getElementById('lpo2h-rows').appendChild(_makeLpoRow('lpo2h-row','e.g. Dropout','e.g. 40m'));
+  document.getElementById('lpo2h-rows').appendChild(_makeLpoRow('lpo2h-row'));
 }
 
 function collectLpo(){
@@ -617,7 +645,8 @@ function collectLpo(){
     rows.forEach(row => {
       const option = row.querySelector('.lpo-option').value.trim();
       const oppSetStart = row.querySelector('.lpo-oppsetstart').value.trim();
-      if(option || oppSetStart) out.push({option, oppSetStart});
+      const oppReturnMetres = row.querySelector('.lpo-oppreturnmetres').value.trim();
+      if(option || oppSetStart || oppReturnMetres) out.push({option, oppSetStart, oppReturnMetres});
     });
     return out;
   }
