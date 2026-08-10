@@ -1,960 +1,410 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tweed Seagulls — Hostplus Cup 2026 Breakdown — Ben Weeden Analytics</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tweed Seagulls — Hostplus Cup 2026</title>
 <style>
+:root{--acc:#D97706;--acc2:#3B82F6;--dark:#0b0b14;--card:#111120;--card2:#181830;--bord:#1e1e3a;--text:#e8e8f8;--muted:#8888aa;--grn:#16A34A;--red:#DC2626;--amb:#F5A623;}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0A0A1E;--card:#12122A;--card2:#1A1A36;--bord:rgba(255,255,255,.08);--muted:#8892A8;--ink:#E8EAF6;--acc:#004BA0;--acc2:#F5C400;--green:#4ADE80;--red:#F87171;--gold:#FACC15}
-body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh}
-header{background:linear-gradient(135deg,#12122A,#0A0A1E);border-bottom:3px solid var(--acc);padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
-.hl{display:flex;align-items:center;gap:13px}
-.badge{width:44px;height:44px;border-radius:12px;background:var(--acc);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff;flex-shrink:0}
-h1{font-size:16px;font-weight:900;letter-spacing:.3px;color:#fff}
-.sub{font-size:11px;color:var(--muted);margin-top:2px}
-.tag{background:rgba(255,255,255,.06);border:1px solid var(--bord);padding:5px 12px;border-radius:20px;font-size:10px;font-weight:800;color:var(--acc2);letter-spacing:.5px}
-nav{background:#0E0E24;border-bottom:1px solid var(--bord);display:flex;overflow-x:auto;padding:0 14px;scrollbar-width:none;position:sticky;top:79px;z-index:99}
-nav::-webkit-scrollbar{display:none}
-nav button{background:none;border:none;color:var(--muted);padding:12px 15px;cursor:pointer;font-size:12px;font-weight:700;border-bottom:3px solid transparent;white-space:nowrap}
-nav button:hover{color:#fff}
+body{background:var(--dark);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+.hero{background:linear-gradient(135deg,#1a0f05,#0d1220);padding:22px 26px;border-bottom:2px solid var(--acc)}
+.hero h1{font-size:21px;font-weight:900;color:#fff}
+.hero h1 span{color:var(--acc)}
+.hero .sub{font-size:11px;color:#c9cde0;margin-top:3px}
+.hs-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.hs{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:8px 16px;text-align:center}
+.hs-val{font-size:17px;font-weight:900;color:var(--acc)}
+.hs-lbl{font-size:7.5px;color:#c9cde0;letter-spacing:.6px;margin-top:1px}
+nav{display:flex;gap:2px;background:#0d0d18;border-bottom:2px solid var(--acc);overflow-x:auto;position:sticky;top:0;z-index:9}
+nav button{background:none;border:none;color:var(--muted);font-size:12px;font-weight:700;padding:13px 17px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;font-family:inherit}
 nav button.active{color:#fff;border-bottom-color:var(--acc)}
-main{padding:20px;max-width:1240px;margin:0 auto}
+nav button:hover{color:#fff}
+main{padding:20px;max-width:1280px;margin:0 auto}
 .page{display:none}.page.active{display:block}
-.card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:18px;margin-bottom:16px}
-.card h3{font-size:13px;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:.3px}
-.tiles{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.tile{flex:1;min-width:150px;background:var(--card);border:1px solid var(--bord);border-radius:10px;padding:14px 16px}
-.tile .l{font-size:9px;font-weight:800;letter-spacing:.6px;color:var(--muted)}
-.tile .v{font-size:24px;font-weight:900;color:#fff;margin:4px 0 2px}
-.tile .s{font-size:10px;color:var(--muted)}
-table{width:100%;border-collapse:collapse;font-size:11px}
-thead th{background:#0E0E24;color:var(--muted);padding:8px 10px;font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;text-align:center;white-space:nowrap}
-tbody td{padding:8px 10px;border-top:1px solid rgba(255,255,255,.05);text-align:center}
-tbody td:first-child,thead th:first-child{text-align:left}
-.mc{background:var(--card2);border:1px solid var(--bord);border-radius:10px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.fbtn{background:rgba(255,255,255,.05);border:1px solid var(--bord);color:var(--muted);padding:5px 12px;border-radius:7px;cursor:pointer;font-size:11px;font-weight:700}
-.fbtn.active{background:var(--acc);color:#fff;border-color:var(--acc)}
-.wl{display:inline-block;width:18px;height:18px;border-radius:5px;font-size:9px;font-weight:900;line-height:18px;text-align:center;margin-right:2px}
-.wl.W{background:rgba(74,222,128,.18);color:var(--green)}
-.wl.L{background:rgba(248,113,113,.15);color:var(--red)}
-.wl.D{background:rgba(250,204,21,.15);color:var(--gold)}
-.note{font-size:10px;color:var(--muted);margin-top:8px}
-footer{text-align:center;padding:24px;font-size:10px;color:var(--muted)}
-@media(max-width:640px){main{padding:12px}nav{top:auto;position:static}header{position:static}}
+.card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:16px;margin-bottom:14px}
+.hd{background:linear-gradient(135deg,#0d1b3d,#1a1030);border:1px solid var(--acc);border-radius:14px;padding:16px 20px;margin-bottom:14px}
+.hd h2{color:#fff;font-size:15px;font-weight:900}
+.hd p{color:var(--muted);font-size:10.5px;margin-top:3px}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{text-align:center;background:var(--card);border:1px solid var(--bord);border-radius:10px;padding:8px 14px;min-width:78px}
+.chip b{display:block;font-size:15px;font-weight:900}
+.chip span{font-size:7.5px;color:var(--muted);letter-spacing:.5px}
+table.t{width:100%;border-collapse:collapse}
+.t td,.t th{padding:6px 7px;border-top:1px solid rgba(255,255,255,.05);text-align:center;font-size:10.5px;white-space:nowrap}
+.t th{color:var(--muted);font-size:8px;letter-spacing:.5px;border-top:none}
+.t td:first-child,.t th:first-child{text-align:left}
+.t tr:hover td{background:rgba(255,255,255,.03)}
+.gm{font-weight:800;color:#fff}
+.up{color:#4ADE80;font-weight:800}.dn{color:#F87171;font-weight:800}.ev{color:#fff;font-weight:700}
+.vs{color:var(--muted);font-size:8.5px;font-weight:600}
+.note{font-size:9px;color:var(--muted);margin-top:7px}
+.lb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px}
+.leg{display:flex;gap:14px;align-items:center;margin:2px 0 6px}
+.leg span{font-size:9.5px;color:#c9cde0;display:flex;align-items:center;gap:5px}
+.leg i{display:inline-block;width:14px;height:3px;border-radius:2px}
+h3.s{color:#fff;font-size:12px;font-weight:800;margin-bottom:9px}
+footer{text-align:center;color:var(--muted);font-size:9px;padding:16px}
+@media(max-width:700px){.ch-grid{grid-template-columns:1fr}}
 </style></head><body>
-
-<header>
-  <div class="hl"><div class="badge" style="background:#004BA0">TS</div><div><h1>TWEED SEAGULLS — HOSTPLUS CUP 2026</h1><div class="sub">Men's Queensland Cup · Round-by-round breakdown to R17 · Updated 14 Jul 2026</div></div></div>
-  <div style="display:flex;gap:8px;align-items:center"><span class="tag">12th · 4W 2D 9L</span><span class="tag" style="color:#fff">Ben Weeden Analytics</span></div>
-</header>
+<div class="hero">
+  <h1>TWEED <span>SEAGULLS</span> — HOSTPLUS CUP 2026</h1>
+  <div class="sub">Men's Queensland Cup · Team analytics · Official QRL match centre data, every round · Updated 17 Jul 2026 · Next: R18 @ Capras</div>
+  <div class="hs-row">
+    <div class="hs"><div class="hs-val">15</div><div class="hs-lbl">GAMES</div></div>
+    <div class="hs"><div class="hs-val">4-2-9</div><div class="hs-lbl">W-D-L</div></div>
+    <div class="hs"><div class="hs-val">358</div><div class="hs-lbl">POINTS FOR</div></div>
+    <div class="hs"><div class="hs-val">392</div><div class="hs-lbl">POINTS AGAINST</div></div>
+    <div class="hs"><div class="hs-val">12th</div><div class="hs-lbl">LADDER</div></div>
+  </div>
+</div>
 <nav>
-  <button class="active" onclick="show('overview',this)">📊 Overview</button>
-  <button onclick="show('games',this)">🎮 Game Log</button>
-  <button onclick="show('halves',this)">⏱️ 1st vs 2nd Half</button>
-  <button onclick="show('splits',this)">🏠 Splits</button>
-  <button onclick="show('thirds',this)">📊 Season Thirds</button>
-  <button onclick="show('opposition',this)">🔍 Opposition</button>
-  <button onclick="show('oppdef',this)">🛡️ Opp Defence</button>
-  <button onclick="show('tryzone',this)">🗺️ Try Zone</button>
-  <button onclick="show('advanced',this)">⚡ Advanced Metrics</button>
-  <button onclick="show('players',this)">👤 Player Profiles</button>
-  <button onclick="show('trends',this)">📈 Trends</button>
-  <button onclick="show('ladder',this)">🏆 Comp Ladder</button>
+  <button class="active" onclick="show('team',this)">📊 Team Stats</button>
+  <button onclick="show('attack',this)">⚔️ Attack</button>
+  <button onclick="show('defence',this)">🛡️ Defence</button>
+  <button onclick="show('kicking',this)">👢 Kicking</button>
+  <button onclick="show('negative',this)">⚠️ Negative Play</button>
+  <button onclick="show('players',this)">👤 Player Stats</button>
+  <button onclick="show('charts',this)">📈 Charts</button>
 </nav>
 <main>
-  <div id="page-overview" class="page active"></div>
-  <div id="page-games" class="page"></div>
-  <div id="page-halves" class="page"></div>
-  <div id="page-splits" class="page"></div>
-  <div id="page-thirds" class="page"></div>
-  <div id="page-opposition" class="page"></div>
-  <div id="page-oppdef" class="page"></div>
-  <div id="page-tryzone" class="page"></div>
-  <div id="page-advanced" class="page"></div>
+  <div id="page-team" class="page active"></div>
+  <div id="page-attack" class="page"></div>
+  <div id="page-defence" class="page"></div>
+  <div id="page-kicking" class="page"></div>
+  <div id="page-negative" class="page"></div>
   <div id="page-players" class="page"></div>
-  <div id="page-trends" class="page"></div>
-  <div id="page-ladder" class="page"></div>
+  <div id="page-charts" class="page"></div>
 </main>
-<footer>Tweed Seagulls · Hostplus Cup 2026 · Results &amp; half-time data verified vs Rugby League Project / QRL · Built 13 Jul 2026 · Ben Weeden Rugby League Intelligence</footer>
-
+<footer>Tweed Seagulls — Hostplus Cup 2026 · Source: official QRL match centres (qrl.com.au) · built for Ben Weeden</footer>
 <script>
-const GAMES=[{"r": 1, "home": "WM Seagulls", "away": "Magpies", "hs": 16, "as": 24, "hh": 10, "ha": 12, "venue": "BMD Kougari Oval"}, {"r": 1, "home": "Seagulls", "away": "Falcons", "hs": 34, "as": 28, "hh": 16, "ha": 22, "venue": "Preston Building Sports Complex"}, {"r": 1, "home": "Devils", "away": "Cutters", "hs": 18, "as": 32, "hh": 18, "ha": 12, "venue": "Premiers' Park"}, {"r": 1, "home": "Dolphins", "away": "Bears", "hs": 12, "as": 22, "hh": 6, "ha": 10, "venue": "Kayo Stadium"}, {"r": 1, "home": "Clydesdales", "away": "Tigers", "hs": 12, "as": 22, "hh": 8, "ha": 0, "venue": "Toowoomba Sports Ground"}, {"r": 1, "home": "Jets", "away": "Blackhawks", "hs": 30, "as": 0, "hh": 16, "ha": 0, "venue": "Richardson Park"}, {"r": 1, "home": "Hunters", "away": "Capras", "hs": 16, "as": 24, "hh": 0, "ha": 22, "venue": "Santos National Football Stadium"}, {"r": 2, "home": "Jets", "away": "Falcons", "hs": 12, "as": 24, "hh": 0, "ha": 18, "venue": "North Ipswich Reserve"}, {"r": 2, "home": "Dolphins", "away": "Blackhawks", "hs": 28, "as": 14, "hh": 22, "ha": 0, "venue": "Kayo Stadium"}, {"r": 2, "home": "Tigers", "away": "Capras", "hs": 36, "as": 22, "hh": 28, "ha": 6, "venue": "Totally Workwear Stadium"}, {"r": 2, "home": "Pride", "away": "Seagulls", "hs": 30, "as": 24, "hh": 20, "ha": 12, "venue": "Barlow Park"}, {"r": 2, "home": "Clydesdales", "away": "Devils", "hs": 10, "as": 42, "hh": 0, "ha": 24, "venue": "Toowoomba Sports Ground"}, {"r": 2, "home": "Hunters", "away": "WM Seagulls", "hs": 20, "as": 28, "hh": 20, "ha": 4, "venue": "Santos National Football Stadium"}, {"r": 2, "home": "Magpies", "away": "Bears", "hs": 28, "as": 28, "hh": 6, "ha": 22, "venue": "Davies Park"}, {"r": 3, "home": "Seagulls", "away": "Bears", "hs": 28, "as": 28, "hh": 0, "ha": 28, "venue": "Preston Building Sports Complex"}, {"r": 3, "home": "Cutters", "away": "Capras", "hs": 24, "as": 10, "hh": 8, "ha": 6, "venue": "BB Print Stadium"}, {"r": 3, "home": "Blackhawks", "away": "Pride", "hs": 8, "as": 20, "hh": 8, "ha": 0, "venue": "Jack Manski Oval"}, {"r": 3, "home": "Devils", "away": "Magpies", "hs": 24, "as": 24, "hh": 12, "ha": 6, "venue": "Premiers' Park"}, {"r": 3, "home": "Jets", "away": "Tigers", "hs": 48, "as": 6, "hh": 24, "ha": 6, "venue": "Richardson Park"}, {"r": 3, "home": "WM Seagulls", "away": "Dolphins", "hs": 16, "as": 36, "hh": 4, "ha": 24, "venue": "BMD Kougari Oval"}, {"r": 3, "home": "Clydesdales", "away": "Hunters", "hs": 14, "as": 38, "hh": 4, "ha": 24, "venue": "Toowoomba Sports Ground"}, {"r": 4, "home": "Tigers", "away": "Devils", "hs": 22, "as": 12, "hh": 4, "ha": 8, "venue": "Totally Workwear Stadium"}, {"r": 4, "home": "Bears", "away": "Pride", "hs": 26, "as": 18, "hh": 10, "ha": 6, "venue": "UAA Park"}, {"r": 4, "home": "Falcons", "away": "Clydesdales", "hs": 20, "as": 18, "hh": 4, "ha": 12, "venue": "Sunshine Coast Stadium"}, {"r": 4, "home": "Dolphins", "away": "Hunters", "hs": 33, "as": 4, "hh": 16, "ha": 0, "venue": "Kayo Stadium"}, {"r": 4, "home": "Magpies", "away": "Jets", "hs": 30, "as": 32, "hh": 18, "ha": 18, "venue": "Davies Park"}, {"r": 4, "home": "Blackhawks", "away": "Seagulls", "hs": 34, "as": 6, "hh": 10, "ha": 0, "venue": "Jack Manski Oval"}, {"r": 4, "home": "WM Seagulls", "away": "Cutters", "hs": 26, "as": 26, "hh": 22, "ha": 10, "venue": "BMD Kougari Oval"}, {"r": 5, "home": "Pride", "away": "Cutters", "hs": 18, "as": 18, "hh": 0, "ha": 12, "venue": "Barlow Park"}, {"r": 5, "home": "Seagulls", "away": "Magpies", "hs": 36, "as": 12, "hh": 20, "ha": 4, "venue": "Preston Building Sports Complex"}, {"r": 5, "home": "Jets", "away": "Bears", "hs": 18, "as": 16, "hh": 18, "ha": 4, "venue": "Richardson Park"}, {"r": 5, "home": "Blackhawks", "away": "WM Seagulls", "hs": 26, "as": 12, "hh": 10, "ha": 6, "venue": "Jack Manski Oval"}, {"r": 5, "home": "Devils", "away": "Capras", "hs": 18, "as": 26, "hh": 12, "ha": 0, "venue": "Premiers' Park"}, {"r": 5, "home": "Falcons", "away": "Dolphins", "hs": 18, "as": 12, "hh": 4, "ha": 6, "venue": "Sunshine Coast Stadium"}, {"r": 5, "home": "Tigers", "away": "Hunters", "hs": 34, "as": 18, "hh": 10, "ha": 6, "venue": "Totally Workwear Stadium"}, {"r": 6, "home": "Pride", "away": "Falcons", "hs": 24, "as": 26, "hh": 6, "ha": 22, "venue": "Barlow Park"}, {"r": 6, "home": "Hunters", "away": "Jets", "hs": 26, "as": 24, "hh": 10, "ha": 18, "venue": "Santos National Football Stadium"}, {"r": 6, "home": "Tigers", "away": "WM Seagulls", "hs": 4, "as": 24, "hh": 4, "ha": 4, "venue": "Totally Workwear Stadium"}, {"r": 6, "home": "Blackhawks", "away": "Capras", "hs": 6, "as": 12, "hh": 0, "ha": 2, "venue": "Jack Manski Oval"}, {"r": 6, "home": "Cutters", "away": "Seagulls", "hs": 46, "as": 18, "hh": 12, "ha": 12, "venue": "BB Print Stadium"}, {"r": 6, "home": "Clydesdales", "away": "Magpies", "hs": 24, "as": 34, "hh": 24, "ha": 6, "venue": "Toowoomba Sports Ground"}, {"r": 6, "home": "Bears", "away": "Devils", "hs": 38, "as": 22, "hh": 18, "ha": 6, "venue": "UAA Park"}, {"r": 7, "home": "Seagulls", "away": "Capras", "hs": 24, "as": 26, "hh": 18, "ha": 6, "venue": "Preston Building Sports Complex"}, {"r": 7, "home": "Bears", "away": "Hunters", "hs": 42, "as": 4, "hh": 16, "ha": 4, "venue": "UAA Park"}, {"r": 7, "home": "Blackhawks", "away": "Tigers", "hs": 18, "as": 28, "hh": 12, "ha": 10, "venue": "Jack Manski Oval"}, {"r": 7, "home": "Devils", "away": "Dolphins", "hs": 10, "as": 22, "hh": 6, "ha": 14, "venue": "Premiers' Park"}, {"r": 7, "home": "Magpies", "away": "Falcons", "hs": 32, "as": 38, "hh": 6, "ha": 22, "venue": "Davies Park"}, {"r": 7, "home": "Cutters", "away": "Jets", "hs": 18, "as": 28, "hh": 0, "ha": 18, "venue": "BB Print Stadium"}, {"r": 7, "home": "WM Seagulls", "away": "Clydesdales", "hs": 40, "as": 16, "hh": 10, "ha": 12, "venue": "BMD Kougari Oval"}, {"r": 8, "home": "Hunters", "away": "Falcons", "hs": 8, "as": 28, "hh": 4, "ha": 12, "venue": "Santos National Football Stadium"}, {"r": 8, "home": "Capras", "away": "Bears", "hs": 24, "as": 18, "hh": 12, "ha": 8, "venue": "Aurizon Stadium"}, {"r": 8, "home": "Clydesdales", "away": "Blackhawks", "hs": 24, "as": 38, "hh": 18, "ha": 20, "venue": "Father Ranger Oval"}, {"r": 8, "home": "Magpies", "away": "Cutters", "hs": 28, "as": 14, "hh": 16, "ha": 4, "venue": "Davies Park"}, {"r": 8, "home": "Dolphins", "away": "Pride", "hs": 20, "as": 20, "hh": 4, "ha": 14, "venue": "Kayo Stadium"}, {"r": 9, "home": "WM Seagulls", "away": "Devils", "hs": 16, "as": 14, "hh": 10, "ha": 4, "venue": "BMD Kougari Oval"}, {"r": 9, "home": "Blackhawks", "away": "Dolphins", "hs": 10, "as": 32, "hh": 0, "ha": 26, "venue": "Jack Manski Oval"}, {"r": 9, "home": "Falcons", "away": "Tigers", "hs": 14, "as": 12, "hh": 10, "ha": 0, "venue": "Sunshine Coast Stadium"}, {"r": 9, "home": "Capras", "away": "Jets", "hs": 28, "as": 28, "hh": 22, "ha": 14, "venue": "Aurizon Stadium"}, {"r": 9, "home": "Seagulls", "away": "Clydesdales", "hs": 24, "as": 28, "hh": 18, "ha": 12, "venue": "Preston Building Sports Complex"}, {"r": 9, "home": "Cutters", "away": "Hunters", "hs": 26, "as": 24, "hh": 14, "ha": 14, "venue": "BB Print Stadium"}, {"r": 9, "home": "Magpies", "away": "Pride", "hs": 36, "as": 36, "hh": 14, "ha": 22, "venue": "Davies Park"}, {"r": 10, "home": "Pride", "away": "Clydesdales", "hs": 40, "as": 12, "hh": 22, "ha": 0, "venue": "Barlow Park"}, {"r": 10, "home": "Cutters", "away": "Bears", "hs": 13, "as": 14, "hh": 7, "ha": 6, "venue": "BB Print Stadium"}, {"r": 10, "home": "Hunters", "away": "Magpies", "hs": 20, "as": 30, "hh": 4, "ha": 8, "venue": "Santos National Football Stadium"}, {"r": 10, "home": "Falcons", "away": "WM Seagulls", "hs": 38, "as": 30, "hh": 20, "ha": 10, "venue": "Sunshine Coast Stadium"}, {"r": 10, "home": "Capras", "away": "Dolphins", "hs": 16, "as": 36, "hh": 4, "ha": 20, "venue": "Aurizon Stadium"}, {"r": 10, "home": "Jets", "away": "Seagulls", "hs": 22, "as": 20, "hh": 8, "ha": 4, "venue": "Richardson Park"}, {"r": 10, "home": "Devils", "away": "Tigers", "hs": 16, "as": 24, "hh": 4, "ha": 24, "venue": "Premiers' Park"}, {"r": 11, "home": "Bears", "away": "Magpies", "hs": 22, "as": 31, "hh": 14, "ha": 20, "venue": "UAA Park"}, {"r": 11, "home": "Tigers", "away": "Dolphins", "hs": 22, "as": 40, "hh": 16, "ha": 16, "venue": "Totally Workwear Stadium"}, {"r": 11, "home": "Seagulls", "away": "Pride", "hs": 22, "as": 22, "hh": 10, "ha": 16, "venue": "Preston Building Sports Complex"}, {"r": 11, "home": "WM Seagulls", "away": "Capras", "hs": 36, "as": 10, "hh": 12, "ha": 0, "venue": "BMD Kougari Oval"}, {"r": 11, "home": "Blackhawks", "away": "Cutters", "hs": 22, "as": 24, "hh": 16, "ha": 12, "venue": "Jack Manski Oval"}, {"r": 11, "home": "Devils", "away": "Falcons", "hs": 12, "as": 32, "hh": 6, "ha": 14, "venue": "Premiers' Park"}, {"r": 11, "home": "Jets", "away": "Clydesdales", "hs": 24, "as": 38, "hh": 6, "ha": 24, "venue": "Pete Albrow Oval"}, {"r": 12, "home": "Clydesdales", "away": "Dolphins", "hs": 20, "as": 52, "hh": 4, "ha": 28, "venue": "Toowoomba Sports Ground"}, {"r": 12, "home": "Seagulls", "away": "Hunters", "hs": 34, "as": 18, "hh": 20, "ha": 6, "venue": "Preston Building Sports Complex"}, {"r": 12, "home": "Tigers", "away": "Blackhawks", "hs": 16, "as": 44, "hh": 6, "ha": 16, "venue": "Totally Workwear Stadium"}, {"r": 12, "home": "Pride", "away": "WM Seagulls", "hs": 22, "as": 30, "hh": 6, "ha": 10, "venue": "Barlow Park"}, {"r": 12, "home": "Bears", "away": "Falcons", "hs": 22, "as": 29, "hh": 18, "ha": 22, "venue": "UAA Park"}, {"r": 13, "home": "Blackhawks", "away": "Jets", "hs": 34, "as": 10, "hh": 10, "ha": 0, "venue": "Jack Manski Oval"}, {"r": 13, "home": "Capras", "away": "Clydesdales", "hs": 10, "as": 34, "hh": 10, "ha": 12, "venue": "Aurizon Stadium"}, {"r": 13, "home": "Cutters", "away": "Magpies", "hs": 27, "as": 26, "hh": 16, "ha": 8, "venue": "BB Print Stadium"}, {"r": 13, "home": "Devils", "away": "Seagulls", "hs": 26, "as": 16, "hh": 16, "ha": 6, "venue": "Premiers' Park"}, {"r": 13, "home": "Hunters", "away": "Bears", "hs": 12, "as": 22, "hh": 12, "ha": 12, "venue": "Santos National Football Stadium"}, {"r": 14, "home": "Capras", "away": "Magpies", "hs": 14, "as": 12, "hh": 10, "ha": 6, "venue": "Aurizon Stadium"}, {"r": 14, "home": "Cutters", "away": "Tigers", "hs": 18, "as": 26, "hh": 0, "ha": 8, "venue": "BB Print Stadium"}, {"r": 14, "home": "Dolphins", "away": "Jets", "hs": 18, "as": 28, "hh": 0, "ha": 28, "venue": "Kayo Stadium"}, {"r": 14, "home": "Falcons", "away": "Blackhawks", "hs": 0, "as": 24, "hh": 0, "ha": 10, "venue": "Sunshine Coast Stadium"}, {"r": 14, "home": "Devils", "away": "WM Seagulls", "hs": 36, "as": 16, "hh": 24, "ha": 12, "venue": "Premiers' Park"}, {"r": 14, "home": "Hunters", "away": "Pride", "hs": 16, "as": 32, "hh": 8, "ha": 16, "venue": "Santos National Football Stadium"}, {"r": 15, "home": "Bears", "away": "Seagulls", "hs": 12, "as": 26, "hh": 12, "ha": 0, "venue": "UAA Park"}, {"r": 15, "home": "Pride", "away": "Blackhawks", "hs": 16, "as": 16, "hh": 16, "ha": 10, "venue": "Barlow Park"}, {"r": 15, "home": "Jets", "away": "Tigers", "hs": 28, "as": 18, "hh": 6, "ha": 18, "venue": "Totally Workwear Stadium"}, {"r": 15, "home": "Dolphins", "away": "WM Seagulls", "hs": 34, "as": 10, "hh": 18, "ha": 6, "venue": "Kayo Stadium"}, {"r": 15, "home": "Clydesdales", "away": "Falcons", "hs": 8, "as": 42, "hh": 4, "ha": 22, "venue": "Toowoomba Sports Ground"}, {"r": 15, "home": "Capras", "away": "Cutters", "hs": 51, "as": 12, "hh": 22, "ha": 6, "venue": "Aurizon Stadium"}, {"r": 15, "home": "Magpies", "away": "Devils", "hs": 20, "as": 14, "hh": 12, "ha": 8, "venue": "Davies Park"}, {"r": 16, "home": "Pride", "away": "Jets", "hs": 34, "as": 12, "hh": 18, "ha": 12, "venue": "Barlow Park"}, {"r": 16, "home": "Seagulls", "away": "Tigers", "hs": 22, "as": 26, "hh": 6, "ha": 16, "venue": "Preston Building Sports Complex"}, {"r": 16, "home": "Falcons", "away": "Capras", "hs": 20, "as": 30, "hh": 6, "ha": 6, "venue": "Sunshine Coast Stadium"}, {"r": 16, "home": "Cutters", "away": "Devils", "hs": 42, "as": 22, "hh": 10, "ha": 16, "venue": "BB Print Stadium"}, {"r": 16, "home": "Magpies", "away": "Dolphins", "hs": 32, "as": 10, "hh": 16, "ha": 6, "venue": "Davies Park"}, {"r": 16, "home": "Clydesdales", "away": "Bears", "hs": 18, "as": 26, "hh": 18, "ha": 12, "venue": "Toowoomba Sports Ground"}, {"r": 16, "home": "WM Seagulls", "away": "Hunters", "hs": 54, "as": 0, "hh": 30, "ha": 0, "venue": "BMD Kougari Oval"}, {"r": 17, "home": "Seagulls", "away": "Blackhawks", "hs": 22, "as": 34, "hh": 4, "ha": 26, "venue": "Preston Building Sports Complex"}, {"r": 17, "home": "Bears", "away": "Cutters", "hs": 24, "as": 16, "hh": 8, "ha": 16, "venue": "UAA Park"}, {"r": 17, "home": "Jets", "away": "Capras", "hs": 28, "as": 10, "hh": 16, "ha": 4, "venue": "Richardson Park"}, {"r": 17, "home": "Clydesdales", "away": "Pride", "hs": 12, "as": 32, "hh": 12, "ha": 10, "venue": "Toowoomba Sports Ground"}, {"r": 17, "home": "Tigers", "away": "Magpies", "hs": 30, "as": 16, "hh": 18, "ha": 4, "venue": "Totally Workwear Stadium"}, {"r": 17, "home": "Hunters", "away": "Devils", "hs": 24, "as": 30, "hh": 14, "ha": 12, "venue": "Santos National Football Stadium"}];
-const BYES={"1": ["Pride"], "2": ["Cutters"], "3": ["Falcons"], "4": ["Capras"], "5": ["Clydesdales"], "6": ["Dolphins"], "7": ["Pride"], "8": ["Devils", "Jets", "Seagulls", "Tigers", "WM Seagulls"], "9": ["Bears"], "10": ["Blackhawks"], "11": ["Hunters"], "12": ["Capras", "Cutters", "Devils", "Jets", "Magpies"], "13": ["Dolphins", "Falcons", "Pride", "Tigers", "WM Seagulls"], "14": ["Bears", "Clydesdales", "Seagulls"], "15": ["Hunters"], "16": ["Blackhawks"], "17": ["Falcons", "Dolphins", "WM Seagulls"]};
-const LADDER=[{"team": "Falcons", "p": 14, "w": 11, "d": 0, "l": 3, "byes": 3, "f": 357, "a": 278, "pts": 28}, {"team": "Dolphins", "p": 14, "w": 9, "d": 1, "l": 4, "byes": 3, "f": 385, "a": 242, "pts": 25}, {"team": "Pride", "p": 14, "w": 6, "d": 5, "l": 3, "byes": 3, "f": 364, "a": 278, "pts": 23}, {"team": "Jets", "p": 15, "w": 9, "d": 1, "l": 5, "byes": 2, "f": 372, "a": 320, "pts": 23}, {"team": "Bears", "p": 15, "w": 8, "d": 2, "l": 5, "byes": 2, "f": 360, "a": 299, "pts": 22}, {"team": "Tigers", "p": 15, "w": 9, "d": 0, "l": 6, "byes": 2, "f": 326, "a": 352, "pts": 22}, {"team": "WM Seagulls", "p": 14, "w": 7, "d": 1, "l": 6, "byes": 3, "f": 354, "a": 306, "pts": 21}, {"team": "Capras", "p": 15, "w": 8, "d": 1, "l": 6, "byes": 2, "f": 313, "a": 348, "pts": 21}, {"team": "Cutters", "p": 15, "w": 7, "d": 2, "l": 6, "byes": 2, "f": 356, "a": 355, "pts": 20}, {"team": "Blackhawks", "p": 15, "w": 7, "d": 1, "l": 7, "byes": 2, "f": 328, "a": 280, "pts": 19}, {"team": "Magpies", "p": 16, "w": 7, "d": 3, "l": 6, "byes": 1, "f": 415, "a": 385, "pts": 19}, {"team": "Seagulls", "p": 15, "w": 4, "d": 2, "l": 9, "byes": 2, "f": 356, "a": 392, "pts": 14}, {"team": "Devils", "p": 15, "w": 4, "d": 1, "l": 10, "byes": 2, "f": 316, "a": 364, "pts": 13}, {"team": "Clydesdales", "p": 15, "w": 3, "d": 0, "l": 12, "byes": 2, "f": 288, "a": 484, "pts": 10}, {"team": "Hunters", "p": 15, "w": 2, "d": 0, "l": 13, "byes": 2, "f": 248, "a": 455, "pts": 8}];
-const FULL={"Seagulls": "Tweed Seagulls", "WM Seagulls": "Wynnum-Manly Seagulls", "Bears": "Burleigh Bears", "Devils": "Norths Devils", "Dolphins": "Redcliffe Dolphins", "Magpies": "Souths Logan Magpies", "Tigers": "Brisbane Tigers", "Jets": "Ipswich Jets", "Capras": "CQ Capras", "Cutters": "Mackay Cutters", "Blackhawks": "Townsville Blackhawks", "Pride": "Northern Pride", "Hunters": "PNG Hunters", "Clydesdales": "Western Clydesdales", "Falcons": "SC Falcons"};
-const TEAM='Seagulls';
-function show(id,btn){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  btn.classList.add('active');
+const R=[{"r":1,"opp":"Falcons","ha":"H","slug":"seagulls-v-falcons","score":{"tweed":34,"opp":28,"htTweed":16,"htOpp":22},"team":{"possession":53,"completion":77,"completionRaw":"24/31","runMetres":1337,"tackles":218},"players":[["Jack Smith","Fullback",0,0,16,136,0,3,5,2,3,2],["Jensen Taumoepeau","Winger",1,0,10,128,1,6,3,2,0,2],["Kaleb Ngamanu","Centre",1,0,13,143,3,5,7,2,2,0],["Conor Carey","Centre",0,0,8,67,0,0,10,5,0,1],["Allan Fitzgibbon","Winger",0,0,9,75,0,2,3,0,1,1],["Lindon McGrady","Five-Eighth",0,5,3,11,0,1,10,0,1,0],["Patrick Irwin","Halfback",0,0,5,33,0,0,16,3,0,0],["Max Bradbury","Interchange",1,0,10,117,2,0,24,3,1,0],["Romano Cook","Hooker",0,0,4,32,0,0,24,1,0,2],["Jett Liu","Prop",0,0,16,128,0,0,17,1,0,0],["Adam Christensen","2nd Row",0,0,8,73,0,1,18,3,0,0],["Phoenix Steinwede","2nd Row",0,0,11,97,0,4,25,3,2,1],["Shaquai Mitchell","Lock",1,0,9,73,1,2,14,5,3,1],["Shannon Gardiner","Interchange",0,0,5,30,0,0,13,1,0,0],["Tim Carson","Interchange",1,0,8,103,2,4,4,0,0,0],["Jesse Jackson","Prop",1,0,7,57,1,2,11,0,0,0],["Harry Croker","Replacement",0,0,0,0,0,0,0,0,0,0],["Jack Cullen","Interchange",0,0,4,27,0,0,14,2,0,1]],"playersAdv":[["Jack Smith",80,50,1,1,17,33,1,21,0,0,0,2,3.4],["Jensen Taumoepeau",80,30,1,0,4,17,0,0,0,0,0,0,3.27],["Kaleb Ngamanu",80,32,0,1,6,15,0,0,1,1,0,0,3.97],["Conor Carey",79,32,1,0,3,11,0,0,0,0,0,1,3.41],["Allan Fitzgibbon",80,24,0,0,2,12,0,0,0,0,0,0,3.3],["Lindon McGrady",80,1,0,0,33,42,7,229,1,1,0,1,0.0],["Patrick Irwin",50,13,0,0,15,23,3,92,0,0,0,0,4.08],["Max Bradbury",63,35,6,0,0,10,0,0,0,1,0,2,3.46],["Romano Cook",75,6,1,3,87,91,0,0,3,3,0,1,4.36],["Jett Liu",61,50,14,0,0,16,0,0,0,0,0,0,3.93],["Adam Christensen",80,32,7,0,1,8,0,0,0,0,0,0,3.68],["Phoenix Steinwede",80,42,11,0,3,14,0,0,0,0,0,2,3.67],["Shaquai Mitchell",41,31,9,0,12,22,0,0,1,1,0,0,3.62],["Shannon Gardiner",24,7,4,0,4,8,0,0,0,1,0,1,2.76],["Tim Carson",30,18,2,0,6,11,0,0,0,2,0,0,3.13],["Jesse Jackson",26,14,4,0,0,8,0,0,0,0,0,0,2.96],["Jack Cullen",25,19,3,0,3,7,0,0,0,0,0,0,3.39]],"teamStats":{"tweed":{"poss":53.0,"tip":23.32,"comp":77,"runM":1337,"pcm":445,"lb":10,"tb":30,"avgSet":43.16,"krm":106,"ptb":3.55,"off":13,"passes":196,"kicks":11,"kickM":342,"fdo":0,"defusal":67,"effTck":85.16,"tck":218,"miss":33,"err":11,"pens":10,"ruck":1,"sin":2},"opp":{"poss":47.0,"tip":19.77,"comp":70,"runM":1352,"pcm":428,"lb":4,"tb":33,"avgSet":36.54,"krm":109,"ptb":3.31,"off":5,"passes":168,"kicks":11,"kickM":157,"fdo":0,"defusal":50,"effTck":81.94,"tck":254,"miss":30,"err":13,"pens":5,"ruck":1,"sin":0}}},{"r":2,"opp":"Pride","ha":"A","slug":"pride-v-seagulls","score":{"tweed":24,"opp":30,"htTweed":12,"htOpp":20},"team":{"possession":51,"completion":69,"runMetres":1351,"tackles":235},"players":[["Jack Smith","Fullback",1,0,11,113,1,3,1,3,1,1],["Tim Carson","Winger",1,0,10,123,1,3,1,2,0,1],["Kaleb Ngamanu","Centre",0,0,13,135,0,2,3,1,1,1],["Conor Carey","Centre",0,0,5,38,0,1,17,2,0,1],["Allan Fitzgibbon","Winger",0,0,18,206,0,4,4,1,0,1],["Lindon McGrady","Five-Eighth",0,4,4,42,0,2,16,1,1,3],["Zane Harrison","Halfback",0,0,6,33,1,1,11,0,0,3],["Max Bradbury","Prop",0,0,7,74,0,0,24,3,0,0],["Romano Cook","Hooker",0,0,2,8,0,0,25,3,1,1],["Jett Liu","Prop",0,0,12,126,0,1,24,2,2,0],["Adam Christensen","2nd Row",1,0,10,91,1,4,20,0,1,2],["Phoenix Steinwede","2nd Row",1,0,9,145,0,2,25,4,0,1],["Shaquai Mitchell","Lock",0,0,8,82,0,3,20,4,1,0],["Shannon Gardiner","Interchange",0,0,4,39,0,1,4,0,0,0],["Harry Croker","Interchange",0,0,2,26,0,0,11,1,0,0],["Jesse Jackson","Interchange",0,0,3,31,0,1,15,0,0,0],["Max Hayley","Replacement",0,0,0,0,0,0,0,0,0,0],["Jack Cullen","Interchange",0,0,3,32,0,0,14,0,0,0]],"playersAdv":[["Jack Smith",80,26,2,0,5,16,0,0,0,0,0,0,3.89],["Tim Carson",80,55,0,1,3,15,1,0,0,0,0,0,3.98],["Kaleb Ngamanu",80,67,1,0,3,13,0,0,0,0,0,1,4.06],["Conor Carey",80,15,0,2,4,8,1,5,0,0,0,0,3.36],["Allan Fitzgibbon",80,92,0,1,7,25,0,0,0,0,0,0,3.81],["Lindon McGrady",80,10,0,0,25,31,2,60,1,2,0,0,4.4],["Zane Harrison",80,11,0,0,35,45,4,82,1,1,0,0,4.44],["Max Bradbury",61,32,6,0,1,8,0,0,0,0,0,0,3.82],["Jett Liu",60,64,10,0,1,13,0,0,0,0,0,0,4.12],["Adam Christensen",80,25,10,0,0,11,0,0,0,0,0,0,4.18],["Phoenix Steinwede",70,22,6,0,1,11,0,0,0,0,0,1,3.84],["Shaquai Mitchell",48,49,8,0,10,18,0,0,1,1,0,0,3.44],["Shannon Gardiner",21,11,2,2,21,26,0,0,0,0,0,0,3.89],["Harry Croker",30,14,2,0,2,4,0,0,0,0,0,0,3.12],["Jesse Jackson",19,19,3,0,0,3,0,0,0,0,0,0,3.56],["Jack Cullen",32,12,3,0,2,5,0,0,0,0,0,0,3.19]],"teamStats":{"tweed":{"poss":51,"tip":21.38,"comp":69,"runM":1351,"pcm":536,"lb":4,"tb":28,"avgSet":34.65,"krm":117,"ptb":3.85,"off":8,"passes":178,"kicks":11,"kickM":240,"fdo":1,"defusal":33,"effTck":84.53,"tck":235,"miss":27,"err":15,"pens":3,"ruck":2,"sin":0},"opp":{"poss":49,"tip":21.33,"comp":67,"runM":1491,"pcm":553,"lb":4,"tb":27,"avgSet":43.88,"krm":117,"ptb":2.98,"off":9,"passes":141,"kicks":16,"kickM":472,"fdo":1,"defusal":67,"effTck":85.13,"tck":229,"miss":28,"err":13,"pens":6,"ruck":7,"sin":0}}},{"r":3,"opp":"Bears","ha":"H","slug":"seagulls-v-bears","score":{"tweed":28,"opp":28,"htTweed":0,"htOpp":28},"team":{"possession":52,"completion":84,"completionRaw":"32/38","runMetres":1401,"tackles":257},"players":[["Tim Carson","Fullback",0,0,12,152,0,2,5,1,0,0],["Jensen Taumoepeau","Winger",1,0,15,160,1,6,1,1,2,1],["Kaleb Ngamanu","Centre",0,0,12,92,0,1,3,0,3,1],["Conor Carey","Centre",0,0,4,26,0,0,21,1,0,0],["Allan Fitzgibbon","Winger",0,0,9,116,1,1,2,0,1,4],["Lindon McGrady","Five-Eighth",1,4,7,112,1,7,15,2,0,1],["Zane Harrison","Halfback",1,0,7,29,0,0,20,3,0,0],["Lamar Manuel-Liolevave","Prop",0,0,2,20,0,0,11,2,0,0],["Luke Sommerton","Hooker",1,0,8,62,1,4,28,1,2,0],["Jett Liu","Prop",0,0,17,150,0,2,35,1,0,0],["Adam Christensen","2nd Row",1,0,11,95,1,6,18,0,0,1],["Harry Croker","2nd Row",0,0,10,76,0,1,35,4,1,0],["Shaquai Mitchell","Interchange",0,0,14,135,0,0,19,1,2,0],["Romano Cook","Interchange",0,0,5,46,1,1,4,1,0,0],["Max Bradbury","Interchange",0,0,5,45,0,0,17,0,1,0],["Jesse Jackson","Interchange",0,0,8,80,0,0,14,0,0,1],["Shannon Gardiner","Replacement",0,0,0,0,0,0,0,0,0,0],["Jack Cullen","Lock",0,0,0,0,0,0,9,0,0,0]],"playersAdv":[["Tim Carson",80,35,0,2,14,24,0,0,0,0,0,0,3.9],["Jensen Taumoepeau",80,52,0,0,1,17,0,0,0,0,0,0,3.07],["Kaleb Ngamanu",80,31,1,0,2,12,0,0,1,1,0,0,3.59],["Conor Carey",80,11,0,0,3,6,0,0,0,0,0,0,3.93],["Allan Fitzgibbon",80,34,0,0,0,13,1,8,0,0,0,0,3.36],["Lindon McGrady",80,13,0,0,19,28,4,91,0,0,0,0,4.1],["Zane Harrison",80,4,0,0,31,41,7,116,0,0,0,0,5.38],["Lamar Manuel-Liolevave",26,11,1,0,0,2,0,0,0,0,0,2,3.86],["Luke Sommerton",80,12,1,7,98,106,1,10,0,1,0,0,3.95],["Jett Liu",66,75,17,0,2,20,0,0,0,0,0,2,4.26],["Adam Christensen",80,41,10,0,0,13,2,16,0,0,0,2,3.37],["Harry Croker",80,37,10,0,1,11,0,0,0,0,0,2,3.96],["Shaquai Mitchell",52,57,11,0,10,23,0,0,0,0,0,1,3.38],["Romano Cook",24,11,3,0,12,14,0,0,0,0,0,0,3.67],["Max Bradbury",31,18,5,0,0,5,0,0,0,0,0,0,3.17],["Jesse Jackson",26,33,6,0,1,10,0,0,0,0,0,0,3.22],["Jack Cullen",15,0,0,0,0,0,0,0,0,0,0,0,0.0]],"teamStats":{"tweed":{"poss":52.0,"tip":23.25,"comp":84,"runM":1401,"pcm":482,"lb":6,"tb":31,"avgSet":36.88,"krm":203,"ptb":3.67,"off":12,"passes":194,"kicks":15,"kickM":242,"fdo":3,"defusal":33,"effTck":91.13,"tck":257,"miss":18,"err":9,"pens":9,"ruck":1,"sin":0},"opp":{"poss":48.0,"tip":21.92,"comp":82,"runM":1229,"pcm":427,"lb":5,"tb":18,"avgSet":36.16,"krm":102,"ptb":3.54,"off":5,"passes":198,"kicks":14,"kickM":372,"fdo":2,"defusal":78,"effTck":83.81,"tck":264,"miss":31,"err":8,"pens":7,"ruck":6,"sin":0}}},{"r":4,"opp":"Blackhawks","ha":"A","slug":"blackhawks-v-seagulls","score":{"tweed":6,"opp":34,"htTweed":0,"htOpp":10},"team":{"possession":38,"completion":70,"completionRaw":"21/30","runMetres":1038,"tackles":297},"players":[["Tim Carson","Fullback",1,0,12,107,0,3,2,3,0,1],["Jensen Taumoepeau","Winger",0,0,13,140,0,5,5,0,0,1],["Kaleb Ngamanu","Centre",0,0,9,76,0,0,8,7,0,0],["Max Hayley","Centre",0,0,2,14,0,0,13,7,0,2],["Allan Fitzgibbon","Winger",0,0,15,132,0,3,2,1,0,1],["Lindon McGrady","Five-Eighth",0,1,3,10,0,0,24,3,0,1],["Zane Harrison","Halfback",0,0,12,64,0,2,14,7,0,0],["Max Bradbury","Prop",0,0,5,45,0,0,23,5,0,1],["Luke Sommerton","Hooker",0,0,4,35,0,2,35,1,0,1],["Jesse Jackson","Prop",0,0,6,66,0,0,26,2,0,0],["Adam Christensen","2nd Row",0,0,9,96,0,4,31,2,1,1],["Harry Croker","2nd Row",0,0,5,32,0,1,25,3,0,2],["Shaquai Mitchell","Lock",0,0,7,51,0,1,19,2,1,0],["Jack Smith","Interchange",0,0,4,36,1,2,12,2,0,1],["Bodhi Sharpley","Interchange",0,0,5,36,0,0,31,0,0,0],["Lamar Manuel-Liolevave","Interchange",0,0,8,50,0,0,10,1,1,0],["Jack Cullen","Interchange",0,0,7,42,0,1,17,1,0,0]],"playersAdv":[["Tim Carson",80,52,0,1,5,23,2,23,0,1,0,2,3.97],["Jensen Taumoepeau",80,75,0,0,0,13,0,0,0,0,0,0,3.05],["Kaleb Ngamanu",69,32,0,0,1,10,0,0,0,0,0,1,3.98],["Max Hayley",59,6,0,0,2,5,0,0,0,0,0,0,1.6],["Allan Fitzgibbon",80,54,0,0,4,20,0,0,0,0,0,0,3.75],["Lindon McGrady",80,0,0,0,15,20,2,58,0,0,0,0,0.0],["Zane Harrison",80,10,0,0,31,41,5,175,0,0,0,0,4.5],["Max Bradbury",59,24,5,0,2,8,0,0,0,0,0,0,3.66],["Luke Sommerton",80,3,0,4,84,87,0,0,0,0,0,0,5.28],["Jesse Jackson",46,33,5,0,1,7,0,0,0,0,0,1,3.55],["Adam Christensen",80,46,9,0,0,10,0,0,0,0,0,0,4.15],["Harry Croker",63,16,5,0,0,7,0,0,0,0,0,1,3.98],["Shaquai Mitchell",44,27,7,0,9,16,0,0,0,0,0,0,3.23],["Jack Smith",47,6,0,0,6,10,1,9,1,0,0,0,2.88],["Bodhi Sharpley",34,22,5,0,3,8,0,0,0,0,0,0,3.65],["Lamar Manuel-Liolevave",21,16,4,0,3,8,0,0,0,0,0,0,3.11],["Jack Cullen",38,23,7,0,1,8,0,0,0,0,0,1,3.55]],"teamStats":{"tweed":{"poss":38.0,"tip":17.63,"comp":70.0,"runM":1038,"pcm":453,"lb":1,"tb":24,"avgSet":34.62,"krm":45,"ptb":3.65,"off":3,"passes":167,"kicks":10,"kickM":267,"fdo":0,"defusal":62.0,"effTck":83.43,"tck":297,"miss":47,"err":12,"pens":6,"ruck":3,"sin":0},"opp":{"poss":62.0,"tip":28.48,"comp":80.0,"runM":1803,"pcm":741,"lb":3,"tb":47,"avgSet":42.93,"krm":123,"ptb":3.19,"off":9,"passes":251,"kicks":21,"kickM":293,"fdo":5,"defusal":100.0,"effTck":88.48,"tck":215,"miss":24,"err":10,"pens":3,"ruck":5,"sin":0}}},{"r":5,"opp":"Magpies","ha":"H","slug":"seagulls-v-magpies","score":{"tweed":36,"opp":12,"htTweed":20,"htOpp":4},"team":{"possession":54,"completion":67,"completionRaw":"25/37","runMetres":1565,"tackles":256},"players":[["Tim Carson","Fullback",0,0,13,195,1,9,3,1,1,0],["Jensen Taumoepeau","Winger",1,0,12,115,1,3,1,0,0,0],["Malakhi Donovan","Centre",1,0,13,142,1,4,14,1,0,0],["Conor Carey","Centre",0,0,11,89,0,2,15,3,0,1],["Allan Fitzgibbon","Winger",2,0,16,150,2,3,1,0,1,1],["Lindon McGrady","Five-Eighth",0,4,4,44,1,2,15,4,0,3],["Zane Harrison","Halfback",2,0,7,83,1,4,13,4,0,1],["Max Bradbury","Prop",0,0,10,88,0,0,33,2,0,0],["Luke Sommerton","Hooker",0,0,10,112,1,2,24,1,1,2],["Shaquai Mitchell","Interchange",0,0,17,160,0,3,11,1,2,1],["Harry Croker","2nd Row",0,0,9,74,0,0,23,1,1,1],["Max Hayley","2nd Row",0,0,8,56,0,2,33,6,0,1],["Jack Cullen","Lock",0,0,7,51,1,1,17,0,0,1],["Romano Cook","Interchange",0,0,6,42,0,0,19,1,0,0],["Shannon Gardiner","Interchange",1,0,2,27,1,0,3,0,0,0],["Jesse Jackson","Prop",0,0,7,67,0,0,18,0,0,1],["Jake Gleeson","Interchange",0,0,8,63,0,0,13,0,0,1],["Ethan Ferguson","Replacement",0,0,0,0,0,0,0,0,0,0]],"playersAdv":[["Tim Carson",80,77,0,0,12,27,3,61,2,1,0,1,3.8],["Jensen Taumoepeau",80,41,0,0,4,17,0,0,0,0,0,0,2.47],["Malakhi Donovan",80,55,0,0,1,12,0,0,0,0,0,0,3.03],["Conor Carey",80,29,0,1,4,13,0,0,1,1,0,0,3.52],["Allan Fitzgibbon",80,46,0,0,8,28,1,14,0,0,0,0,3.06],["Lindon McGrady",80,15,0,0,32,37,1,18,2,3,0,1,1.76],["Zane Harrison",71,3,0,0,35,45,5,152,1,1,0,0,3.88],["Max Bradbury",61,39,8,0,1,11,0,0,0,0,0,0,3.52],["Luke Sommerton",80,26,1,9,96,107,3,46,0,1,0,0,3.51],["Shaquai Mitchell",43,74,16,0,2,18,0,0,0,0,0,1,3.51],["Harry Croker",66,28,9,0,1,11,0,0,0,0,0,0,3.38],["Max Hayley",80,25,6,0,0,9,0,0,0,0,0,2,3.45],["Jack Cullen",33,23,7,0,3,10,0,0,0,0,0,0,2.81],["Romano Cook",56,4,2,1,26,28,0,0,0,0,0,0,2.8],["Shannon Gardiner",14,1,1,0,3,4,0,0,0,0,0,1,0.0],["Jesse Jackson",37,30,6,0,1,8,0,0,0,0,0,0,2.83],["Jake Gleeson",19,19,5,0,0,8,0,0,0,0,0,0,3.17]],"teamStats":{"tweed":{"poss":54,"tip":24.78,"comp":67,"runM":1565,"pcm":543,"lb":10,"tb":35,"avgSet":42.31,"krm":171,"ptb":3.22,"off":6,"passes":229,"kicks":13,"kickM":293,"fdo":3,"defusal":50,"effTck":87.97,"tck":256,"miss":25,"err":14,"pens":6,"ruck":3,"sin":0},"opp":{"poss":46,"tip":20.78,"comp":65,"runM":1044,"pcm":385,"lb":2,"tb":25,"avgSet":32.63,"krm":46,"ptb":3.33,"off":7,"passes":176,"kicks":12,"kickM":266,"fdo":0,"defusal":57,"effTck":87.43,"tck":313,"miss":35,"err":12,"pens":4,"ruck":1,"sin":0}}},{"r":6,"opp":"Cutters","ha":"A","slug":"cutters-v-seagulls","score":{"tweed":18,"opp":46,"htTweed":12,"htOpp":12},"team":{"possession":49,"completion":77,"completionRaw":"27/35","runMetres":1161,"tackles":269},"players":[["Jack Smith","Fullback",0,0,12,90,0,1,4,3,1,1],["Ethan Ferguson","Winger",1,0,9,88,0,1,0,1,1,0],["Malakhi Donovan","Centre",1,0,11,123,1,1,10,1,0,1],["Conor Carey","Centre",0,0,6,44,0,1,25,4,0,0],["Ratu Jope Rotavisoro","Winger",0,0,8,67,0,0,11,1,0,0],["Lindon McGrady","Five-Eighth",0,3,8,51,0,0,7,2,0,1],["Patrick Irwin","Halfback",0,0,6,47,0,1,28,2,0,1],["Max Bradbury","Prop",0,0,9,65,0,0,14,0,0,0],["Luke Sommerton","Hooker",0,0,6,84,1,1,31,3,0,1],["Shaquai Mitchell","Interchange",0,0,10,79,0,1,10,2,1,1],["Harry Croker","2nd Row",0,0,8,76,0,0,18,2,1,0],["Max Hayley","2nd Row",1,0,8,63,0,1,34,8,0,1],["Jack Cullen","Lock",0,0,7,72,0,0,11,0,0,1],["Romano Cook","Interchange",0,0,6,41,0,0,23,1,0,0],["Chase Chapman","Interchange",0,0,14,89,0,2,17,1,1,0],["Jesse Jackson","Prop",0,0,11,71,0,0,22,4,0,0],["Jake Gleeson","Interchange",0,0,2,4,0,0,4,2,0,0]],"playersAdv":[["Jack Smith",80,42,0,1,13,29,2,7,1,0,0,0,3.83],["Ethan Ferguson",80,34,0,0,3,11,1,1,0,0,0,0,3.19],["Malakhi Donovan",80,29,0,0,3,15,0,0,0,0,0,1,3.88],["Conor Carey",80,25,0,0,6,9,0,0,0,0,0,1,3.43],["Ratu Jope Rotavisoro",80,34,0,0,2,10,0,0,0,0,0,1,4.17],["Lindon McGrady",80,7,0,0,35,42,3,76,0,0,0,2,3.41],["Patrick Irwin",80,13,0,0,41,51,4,156,0,0,0,0,3.43],["Max Bradbury",44,32,8,0,1,10,0,0,0,0,0,0,3.47],["Luke Sommerton",80,17,2,4,89,95,2,27,1,0,0,1,3.88],["Shaquai Mitchell",23,41,10,0,2,12,0,0,0,0,0,0,3.78],["Harry Croker",52,42,8,0,1,9,0,0,0,0,0,0,3.09],["Max Hayley",73,37,8,0,0,9,0,0,0,0,0,1,3.08],["Jack Cullen",40,34,7,0,2,10,0,0,0,0,0,0,3.35],["Romano Cook",59,4,2,0,20,23,1,51,0,0,0,1,3.76],["Chase Chapman",50,42,14,0,0,14,0,0,0,0,0,0,3.7],["Jesse Jackson",45,27,9,0,0,11,0,0,0,0,0,0,3.53],["Jake Gleeson",14,4,2,0,0,2,0,0,0,0,0,0,3.68]],"teamStats":{"tweed":{"poss":49,"tip":20.75,"comp":77,"runM":1161,"pcm":469,"lb":2,"tb":10,"avgSet":33.19,"krm":40,"ptb":3.59,"off":5,"passes":218,"kicks":13,"kickM":320,"fdo":2,"defusal":20,"effTck":84.06,"tck":269,"miss":37,"err":8,"pens":8,"ruck":3,"sin":0},"opp":{"poss":51,"tip":21.63,"comp":68,"runM":1489,"pcm":529,"lb":7,"tb":37,"avgSet":36.33,"krm":160,"ptb":3.65,"off":8,"passes":173,"kicks":9,"kickM":220,"fdo":0,"defusal":50,"effTck":92.83,"tck":246,"miss":10,"err":15,"pens":8,"ruck":2,"sin":0}}},{"r":7,"opp":"Capras","ha":"H","slug":"seagulls-v-capras","score":{"tweed":24,"opp":26,"htTweed":18,"htOpp":6},"team":{"possession":44,"completion":66,"completionRaw":"22/33","runMetres":1344,"tackles":307},"players":[["Tim Carson","Fullback",0,0,11,105,0,5,3,2,0,1],["Jensen Taumoepeau","Winger",0,0,11,94,0,2,6,0,0,1],["Malakhi Donovan","Centre",0,0,13,140,0,3,5,0,0,1],["Sunny Kama","Centre",0,0,11,119,0,5,20,1,0,1],["Allan Fitzgibbon","Winger",0,0,15,167,0,7,4,0,1,2],["Lindon McGrady","Five-Eighth",3,4,8,72,3,2,12,1,1,0],["Zane Harrison","Halfback",0,0,16,105,0,2,16,1,0,1],["Max Bradbury","Prop",0,0,8,76,0,0,20,1,0,0],["Luke Sommerton","Hooker",1,0,6,49,1,2,41,1,1,0],["Shaquai Mitchell","Interchange",0,0,8,66,0,1,16,0,1,0],["Adam Christensen","2nd Row",0,0,10,57,0,2,30,1,1,2],["Max Hayley","2nd Row",0,0,4,36,0,1,30,4,0,2],["Chase Chapman","Prop",0,0,14,100,0,0,32,0,2,0],["Romano Cook","Interchange",0,0,3,24,0,1,13,1,0,0],["Conor Carey","Interchange",0,0,0,0,0,0,5,1,0,0],["Bodhi Sharpley","Lock",0,0,8,82,0,2,36,2,0,0],["Jesse Jackson","Interchange",0,0,5,46,0,0,18,0,0,0],["Jake Gleeson","Replacement",0,0,0,0,0,0,0,0,0,0]],"playersAdv":[["Tim Carson",80,47,0,1,8,20,0,0,0,0,0,2,2.9],["Jensen Taumoepeau",80,40,0,0,1,13,1,11,0,0,0,0,2.69],["Malakhi Donovan",80,58,0,0,2,15,0,0,0,0,0,1,3.67],["Sunny Kama",80,40,0,0,0,11,0,0,0,0,0,1,3.82],["Allan Fitzgibbon",80,81,0,0,2,16,0,0,0,0,0,0,2.9],["Lindon McGrady",80,0,0,0,22,28,1,29,0,0,0,0,3.4],["Zane Harrison",80,22,0,0,33,46,7,203,1,1,0,0,4.08],["Max Bradbury",42,27,7,0,0,8,0,0,0,0,0,0,2.65],["Luke Sommerton",80,23,1,5,90,96,0,0,0,0,0,2,3.93],["Shaquai Mitchell",38,26,8,0,0,8,0,0,1,1,0,0,3.15],["Adam Christensen",80,21,10,0,0,10,0,0,1,1,0,0,3.43],["Max Hayley",63,7,4,0,1,6,0,0,0,0,0,1,3.51],["Chase Chapman",46,29,10,0,6,16,0,0,0,0,0,0,3.21],["Romano Cook",36,9,2,0,9,10,0,0,0,0,0,1,2.98],["Conor Carey",17,0,0,0,0,0,0,0,0,0,0,0,0.0],["Bodhi Sharpley",50,33,7,0,1,8,0,0,0,0,0,1,3.09],["Jesse Jackson",28,26,5,0,0,5,0,0,0,0,0,0,3.18]],"teamStats":{"tweed":{"poss":44,"tip":19.33,"comp":66,"runM":1344,"pcm":495,"lb":4,"tb":35,"avgSet":40.75,"krm":37,"ptb":3.21,"off":7,"passes":175,"kicks":9,"kickM":244,"fdo":0,"defusal":71,"effTck":86.72,"tck":307,"miss":16,"err":11,"pens":9,"ruck":4,"sin":0},"opp":{"poss":56,"tip":24.57,"comp":67,"runM":1398,"pcm":498,"lb":4,"tb":16,"avgSet":32.52,"krm":128,"ptb":3.63,"off":13,"passes":190,"kicks":13,"kickM":275,"fdo":0,"defusal":100,"effTck":84.77,"tck":256,"miss":35,"err":14,"pens":5,"ruck":3,"sin":0}}},{"r":9,"opp":"Clydesdales","ha":"H","slug":"seagulls-v-clydesdales","score":{"tweed":24,"opp":28,"htTweed":18,"htOpp":12},"team":{"possession":47,"completion":77,"completionRaw":"28/36","runMetres":1386,"tackles":262},"players":[["Braden Whittaker","Fullback",0,0,15,135,0,0,6,1,0,0],["Sunny Kama","Winger",0,0,11,99,0,0,6,1,0,1],["Malakhi Donovan","Centre",1,0,12,123,1,4,13,1,1,2],["Conor Carey","Centre",0,0,10,98,0,1,15,2,0,0],["Allan Fitzgibbon","Winger",0,0,15,139,0,2,4,2,0,0],["Lindon McGrady","Halfback",0,4,3,56,1,2,17,0,0,3],["Patrick Irwin","Five-Eighth",0,0,4,34,0,0,24,0,0,0],["Max Bradbury","Prop",1,0,9,90,1,1,16,1,0,0],["Luke Sommerton","Hooker",0,0,6,45,0,0,22,3,1,0],["Shaquai Mitchell","Interchange",0,0,5,57,0,1,16,2,1,0],["Adam Christensen","2nd Row",1,0,10,88,1,1,22,1,1,0],["Max Hayley","2nd Row",0,0,6,51,0,0,12,3,0,1],["Chase Chapman","Lock",0,0,11,93,0,1,25,3,1,0],["Romano Cook","Interchange",0,0,6,49,0,1,17,0,0,1],["Bodhi Sharpley","Interchange",0,0,9,63,0,0,30,2,0,1],["JJ Collins","Prop",1,0,16,158,1,8,17,1,1,0]],"playersAdv":[["Braden Whittaker",80,44,0,0,12,24,0,0,0,0,0,0,3.15],["Sunny Kama",80,33,0,0,1,12,0,0,0,0,0,0,3.36],["Malakhi Donovan",80,34,0,0,5,18,0,0,0,0,0,1,3.05],["Conor Carey",80,32,0,0,4,11,0,0,0,0,0,0,3.61],["Allan Fitzgibbon",80,50,0,0,1,18,0,0,0,0,0,2,3.24],["Lindon McGrady",80,11,0,0,33,45,10,241,0,0,0,0,2.32],["Patrick Irwin",80,11,0,0,27,33,2,97,0,0,0,0,3.79],["Max Bradbury",54,38,8,0,0,9,0,0,0,0,0,0,3.27],["Luke Sommerton",80,13,0,6,86,91,0,0,0,0,0,1,3.58],["Shaquai Mitchell",28,27,4,0,2,7,0,0,0,0,0,1,3.69],["Adam Christensen",80,33,9,0,0,10,0,0,0,0,0,0,3.54],["Max Hayley",41,17,6,0,2,9,0,0,0,0,0,1,3.12],["Chase Chapman",64,35,11,0,6,18,0,0,1,1,0,0,3.4],["Romano Cook",40,11,4,0,16,20,0,0,1,1,0,0,3.2],["Bodhi Sharpley",43,29,9,0,1,10,0,0,0,0,0,2,3.16],["JJ Collins",50,76,15,0,0,16,0,0,0,0,0,1,2.74]],"teamStats":{"tweed":{"poss":47,"tip":21.62,"comp":77,"runM":1386,"pcm":500,"lb":5,"tb":22,"avgSet":38.52,"krm":100,"ptb":3.25,"off":6,"passes":196,"kicks":12,"kickM":338,"fdo":1,"defusal":71,"effTck":85.9,"tck":262,"miss":23,"err":9,"pens":9,"ruck":3,"sin":0},"opp":{"poss":53,"tip":23.87,"comp":78,"runM":1520,"pcm":499,"lb":3,"tb":23,"avgSet":37.08,"krm":135,"ptb":3.49,"off":13,"passes":181,"kicks":18,"kickM":478,"fdo":3,"defusal":83,"effTck":90.85,"tck":288,"miss":22,"err":11,"pens":8,"ruck":0,"sin":0}}},{"r":10,"opp":"Jets","ha":"A","slug":"jets-v-seagulls","score":{"tweed":20,"opp":22,"htTweed":4,"htOpp":8},"team":{"possession":51,"completion":76,"completionRaw":"26/34","runMetres":1345,"tackles":282},"players":[["Tim Carson","Fullback",0,0,13,131,0,1,4,1,0,0],["Sunny Kama","Winger",0,0,14,111,0,1,3,1,0,3],["Malakhi Donovan","Centre",1,0,11,108,0,5,11,4,0,0],["Conor Carey","Centre",1,0,8,68,1,3,9,2,0,1],["Allan Fitzgibbon","Winger",0,0,11,127,0,3,3,1,2,1],["Lindon McGrady","Halfback",0,2,5,22,0,1,4,2,2,0],["Jack Smith","Five-Eighth",2,0,8,100,2,5,19,6,0,1],["Max Bradbury","Prop",0,0,6,59,0,1,23,1,0,1],["Sam Verrills","Hooker",0,0,8,78,0,1,38,1,1,0],["Shaquai Mitchell","Prop",0,0,3,20,0,0,21,1,1,0],["Kaylen Miller","Interchange",0,0,5,56,0,3,15,4,1,0],["Max Hayley","2nd Row",0,0,7,43,0,0,21,3,0,0],["JJ Collins","Lock",0,0,16,149,0,1,29,1,0,2],["Romano Cook","Interchange",0,0,3,16,0,0,8,0,0,0],["Bodhi Sharpley","Interchange",0,0,8,84,0,3,31,0,0,0],["Adam Christensen","2nd Row",0,0,14,114,0,4,21,1,0,1],["Jesse Jackson","Interchange",0,0,6,53,0,0,22,1,0,0],["Jack Cullen","Replacement",0,0,0,0,0,0,0,0,0,0]],"playersAdv":[["Tim Carson",80,59,1,2,12,26,1,23,1,1,0,0,3.54],["Sunny Kama",80,61,0,0,2,17,0,0,0,0,0,0,3.39],["Malakhi Donovan",80,31,0,1,5,14,1,9,0,0,0,1,3.86],["Conor Carey",80,25,0,1,1,8,0,0,0,0,0,0,2.67],["Allan Fitzgibbon",80,55,0,0,3,15,1,5,0,0,0,1,3.6],["Lindon McGrady",80,3,0,0,33,50,15,259,2,1,0,0,0.0],["Jack Smith",80,18,0,0,24,31,0,0,0,2,0,0,3.74],["Max Bradbury",43,22,5,0,0,6,0,0,0,0,0,1,3.65],["Sam Verrills",80,25,0,7,75,82,0,0,0,0,0,0,3.45],["Shaquai Mitchell",26,4,3,0,3,6,0,0,0,0,0,1,3.78],["Kaylen Miller",37,36,5,0,0,5,0,0,0,0,0,0,2.77],["Max Hayley",43,14,6,0,1,7,0,0,0,0,0,0,3.74],["JJ Collins",68,81,15,0,0,17,0,0,0,0,0,1,3.57],["Romano Cook",17,3,1,0,9,10,0,0,0,0,0,0,3.16],["Bodhi Sharpley",49,36,6,0,7,14,0,0,0,0,0,0,3.77],["Adam Christensen",80,53,12,0,1,15,0,0,0,0,0,2,3.75],["Jesse Jackson",37,20,4,0,1,7,0,0,0,0,0,0,2.95]],"teamStats":{"tweed":{"poss":51,"tip":24.15,"comp":76,"runM":1345,"pcm":552,"lb":3,"tb":32,"avgSet":39.58,"krm":70,"ptb":3.51,"off":7,"passes":177,"kicks":18,"kickM":297,"fdo":2,"defusal":57,"effTck":87.85,"tck":282,"miss":30,"err":10,"pens":7,"ruck":2,"sin":0},"opp":{"poss":49,"tip":22.77,"comp":70,"runM":1328,"pcm":496,"lb":5,"tb":30,"avgSet":33.21,"krm":135,"ptb":3.26,"off":4,"passes":191,"kicks":11,"kickM":338,"fdo":0,"defusal":38,"effTck":85.48,"tck":259,"miss":32,"err":13,"pens":5,"ruck":1,"sin":0}}},{"r":11,"opp":"Pride","ha":"H","slug":"seagulls-v-pride","score":{"tweed":22,"opp":22,"htTweed":10,"htOpp":16},"team":{"possession":53,"completion":76,"completionRaw":"29/38","runMetres":1427,"tackles":301},"players":[["Tim Carson","Fullback",0,0,21,137,0,2,1,2,0,2],["Kalani Skipps","Winger",0,0,6,49,0,1,1,2,0,1],["Malakhi Donovan","Centre",1,0,13,107,1,3,14,2,0,1],["Sunny Kama","Centre",2,0,7,87,2,4,11,2,0,0],["Allan Fitzgibbon","Winger",0,0,19,203,0,3,4,1,0,1],["Lindon McGrady","Halfback",0,3,6,35,0,1,16,1,2,1],["Jack Smith","Five-Eighth",0,0,8,81,0,4,16,2,0,0],["Max Bradbury","Prop",0,0,10,98,0,0,16,0,0,0],["Sam Verrills","Hooker",1,0,7,68,1,2,29,0,0,1],["Shaquai Mitchell","Interchange",0,0,5,36,0,0,18,2,1,1],["Adam Christensen","2nd Row",0,0,13,109,0,1,20,0,1,0],["Kyle Pickering","2nd Row",0,0,13,130,0,0,42,5,0,0],["JJ Collins","Prop",0,0,10,82,0,1,22,0,0,0],["Romano Cook","Interchange",0,0,3,34,0,0,23,0,0,0],["Bodhi Sharpley","Interchange",0,0,9,61,0,0,30,1,0,0],["Chase Chapman","Lock",0,0,8,60,0,0,17,2,1,1],["Kaylen Miller","Replacement",0,0,0,0,0,0,0,0,0,0],["Jett Liu","Interchange",0,0,6,43,0,0,21,0,2,1]],"playersAdv":[["Tim Carson",80,55,0,0,6,28,1,18,0,0,0,0,3.43],["Kalani Skipps",80,9,0,0,5,11,0,0,0,0,0,0,3.14],["Malakhi Donovan",80,35,0,0,6,17,0,0,0,0,0,0,2.96],["Sunny Kama",73,20,0,0,1,8,0,0,0,0,0,1,3.88],["Allan Fitzgibbon",80,78,1,0,6,25,0,0,1,1,0,0,3.45],["Lindon McGrady",80,13,5,0,31,51,12,318,2,2,0,0,3.39],["Jack Smith",80,26,2,1,22,31,1,3,0,0,0,0,2.7],["Max Bradbury",33,41,7,0,0,10,0,0,0,0,0,1,3.73],["Sam Verrills",57,24,0,7,77,82,0,0,0,0,0,0,3.44],["Shaquai Mitchell",23,11,5,0,4,10,0,0,0,0,0,0,4.66],["Adam Christensen",80,54,13,0,0,13,0,0,0,0,0,0,4.1],["Kyle Pickering",80,53,12,1,8,21,0,0,0,0,0,1,3.58],["JJ Collins",57,40,10,0,2,12,0,0,0,0,0,0,3.57],["Romano Cook",47,10,2,1,40,43,1,3,0,0,0,0,3.25],["Bodhi Sharpley",40,29,9,0,3,12,0,0,0,0,0,0,3.91],["Chase Chapman",30,17,7,0,4,11,0,0,0,0,0,0,3.45],["Jett Liu",32,11,6,0,0,6,0,0,0,0,0,0,2.95]],"teamStats":{"tweed":{"poss":53,"tip":25.2,"comp":76,"runM":1427,"pcm":533,"lb":4,"tb":22,"avgSet":37.58,"krm":120,"ptb":3.49,"off":7,"passes":215,"kicks":15,"kickM":343,"fdo":1,"defusal":71,"effTck":90.12,"tck":301,"miss":22,"err":10,"pens":3,"ruck":3,"sin":1},"opp":{"poss":47,"tip":22.0,"comp":71,"runM":1266,"pcm":522,"lb":4,"tb":22,"avgSet":32.48,"krm":115,"ptb":3.74,"off":8,"passes":166,"kicks":17,"kickM":497,"fdo":1,"defusal":64,"effTck":89.94,"tck":304,"miss":22,"err":11,"pens":5,"ruck":3,"sin":2}}},{"r":12,"opp":"Hunters","ha":"H","slug":"seagulls-v-hunters","score":{"tweed":36,"opp":18,"htTweed":20,"htOpp":6},"team":{"possession":56,"completion":73,"completionRaw":"25/34","runMetres":1522,"tackles":192},"players":[["Tim Carson","Fullback",0,0,10,138,0,4,2,1,0,2],["Siale Faeamani","Winger",0,0,9,98,0,1,1,0,0,1],["Malakhi Donovan","Centre",0,0,8,123,0,4,10,4,0,1],["Sunny Kama","Centre",1,0,8,109,2,3,14,0,0,0],["Allan Fitzgibbon","Winger",0,0,14,139,0,3,4,2,1,3],["Lindon McGrady","Five-Eighth",0,6,1,2,0,1,13,1,0,2],["Matthew Egan","Halfback",0,0,1,10,0,0,10,2,0,0],["Max Bradbury","Interchange",0,0,6,71,0,0,9,0,0,0],["Sam Verrills","Hooker",0,0,4,47,0,0,28,1,0,0],["Jett Liu","Prop",1,0,14,123,1,0,21,0,1,1],["Adam Christensen","2nd Row",2,0,12,149,1,2,12,0,0,0],["Kyle Pickering","2nd Row",1,0,9,81,1,3,20,1,0,1],["Shaquai Mitchell","Interchange",0,0,7,100,0,1,5,0,1,1],["Romano Cook","Interchange",0,0,3,25,0,0,4,0,1,0],["Jack Smith","Interchange",1,0,3,25,0,1,5,0,0,3],["Chase Chapman","Lock",0,0,13,113,0,1,24,0,0,1],["JJ Collins","Prop",0,0,10,130,0,2,10,0,0,0],["Kaylen Miller","Replacement",0,0,2,31,0,0,0,0,0,0]],"playersAdv":[["Tim Carson",80,48,0,0,6,19,1,4,0,0,0,0,3.97],["Siale Faeamani",41,37,0,0,3,12,0,0,0,0,0,0,3.35],["Malakhi Donovan",71,59,0,0,4,9,0,0,0,0,0,1,3.75],["Sunny Kama",80,26,0,0,3,9,0,0,1,0,0,0,2.91],["Allan Fitzgibbon",80,60,0,1,2,18,0,0,0,0,0,0,2.92],["Lindon McGrady",80,0,0,0,34,40,7,157,2,2,0,0,0.0],["Matthew Egan",80,3,0,0,29,32,2,11,2,2,0,0,2.88],["Max Bradbury",28,37,5,0,0,6,0,0,0,0,0,0,3.51],["Sam Verrills",80,14,0,4,87,90,0,0,0,0,0,1,3.39],["Jett Liu",52,52,11,0,1,16,0,0,0,0,0,0,2.94],["Adam Christensen",80,52,11,0,2,14,0,0,0,0,0,0,3.99],["Kyle Pickering",80,22,8,1,7,16,0,0,0,0,0,3,3.21],["Shaquai Mitchell",23,60,5,0,2,9,0,0,0,0,0,0,2.94],["Romano Cook",18,11,2,0,7,9,0,0,0,0,0,0,0.0],["Jack Smith",43,9,2,0,2,8,0,0,0,0,0,0,1.82],["Chase Chapman",63,45,12,0,7,20,1,2,1,1,0,1,3.35],["JJ Collins",57,77,9,0,0,10,0,0,0,0,0,0,3.03],["Kaylen Miller",4,13,2,0,0,2,0,0,0,0,0,0,2.18]],"teamStats":{"tweed":{"poss":56,"tip":21.87,"comp":73,"runM":1522,"pcm":632,"lb":5,"tb":26,"avgSet":44.78,"krm":154,"ptb":3.26,"off":4,"passes":196,"kicks":11,"kickM":175,"fdo":0,"defusal":33,"effTck":89.72,"tck":192,"miss":12,"err":16,"pens":6,"ruck":4,"sin":0},"opp":{"poss":44,"tip":17.5,"comp":62,"runM":1113,"pcm":410,"lb":3,"tb":12,"avgSet":31.83,"krm":46,"ptb":3.74,"off":9,"passes":193,"kicks":8,"kickM":171,"fdo":0,"defusal":50,"effTck":89.29,"tck":300,"miss":26,"err":12,"pens":9,"ruck":2,"sin":0}}},{"r":13,"opp":"Devils","ha":"A","slug":"devils-v-seagulls","score":{"tweed":16,"opp":26,"htTweed":6,"htOpp":16},"team":{"possession":48,"completion":75,"runMetres":1486,"tackles":312},"players":[["Tim Carson","Fullback",0,0,12,117,0,3,5,1,0,0],["Kalani Skipps","Winger",1,0,10,60,1,2,5,1,0,0],["Siale Faeamani","Centre",0,0,11,126,0,6,11,3,0,0],["Sunny Kama","Centre",0,0,17,170,1,4,6,2,0,2],["Allan Fitzgibbon","Winger",0,0,18,185,0,4,3,2,0,0],["Lindon McGrady","Five-Eighth",0,2,6,33,0,0,16,0,0,1],["Matthew Egan","Halfback",0,0,7,57,0,0,17,3,0,0],["JJ Collins","Prop",0,0,13,126,0,2,23,3,1,1],["Sam Verrills","Hooker",1,0,6,69,1,2,42,5,0,0],["Shaquai Mitchell","Interchange",0,0,7,85,0,3,15,0,0,0],["Kaylen Miller","2nd Row",0,0,9,70,0,0,12,2,0,1],["Kyle Pickering","2nd Row",0,0,11,92,0,0,47,4,0,2],["Chase Chapman","Lock",0,0,14,118,0,1,39,4,1,0],["Shannon Gardiner","Interchange",0,0,2,14,0,0,18,2,0,0],["Bodhi Sharpley","Interchange",1,0,12,108,1,3,36,2,0,0],["Jack Smith","Interchange",0,0,1,9,0,0,1,0,0,0],["Jesse Jackson","Prop",0,0,6,40,0,0,16,2,0,0]],"playersAdv":[["Tim Carson",80,29,0,1,19,30,0,0,0,0,0,0,3.69],["Kalani Skipps",80,17,0,0,6,17,0,0,0,0,0,1,3.42],["Siale Faeamani",61,69,0,0,1,10,0,0,0,0,0,0,3.57],["Sunny Kama",80,56,0,0,5,19,1,10,0,0,0,0,3.31],["Allan Fitzgibbon",80,87,2,1,3,20,0,0,0,0,0,0,3.05],["Lindon McGrady",80,2,0,0,35,42,5,141,1,2,0,0,4.2],["Matthew Egan",80,22,0,0,33,42,5,138,0,0,0,1,3.56],["JJ Collins",65,68,11,0,0,14,0,0,0,0,0,0,3.49],["Sam Verrills",80,19,0,6,80,82,0,0,0,0,0,0,3.52],["Shaquai Mitchell",34,34,5,0,4,10,0,0,0,0,0,2,3.52],["Kaylen Miller",56,38,8,0,1,10,0,0,0,0,0,0,3.49],["Kyle Pickering",80,36,10,0,2,13,0,0,0,0,0,0,3.68],["Chase Chapman",63,36,10,0,8,19,0,0,0,0,0,2,3.66],["Shannon Gardiner",22,0,0,0,6,7,0,0,0,0,0,1,0.0],["Bodhi Sharpley",54,50,11,0,3,14,0,0,0,0,0,0,3.75],["Jack Smith",19,4,0,0,1,2,0,0,0,0,0,0,1.96],["Jesse Jackson",26,19,5,0,0,6,0,0,0,0,0,0,3.57]],"teamStats":{"tweed":{"poss":48,"tip":22.18,"comp":75,"runM":1486,"pcm":592,"lb":4,"tb":30,"avgSet":46.44,"krm":134,"ptb":3.48,"off":2,"passes":207,"kicks":11,"kickM":291,"fdo":0,"defusal":58,"effTck":88.89,"tck":312,"miss":36,"err":7,"pens":7,"ruck":3,"sin":0},"opp":{"poss":52,"tip":24.25,"comp":84,"runM":1425,"pcm":554,"lb":6,"tb":36,"avgSet":36.55,"krm":178,"ptb":3.57,"off":2,"passes":202,"kicks":19,"kickM":514,"fdo":4,"defusal":33,"effTck":90.06,"tck":299,"miss":30,"err":6,"pens":6,"ruck":4,"sin":0}}},{"r":15,"opp":"Bears","ha":"A","slug":"bears-v-seagulls","score":{"tweed":26,"opp":12,"htTweed":0,"htOpp":12},"team":{"possession":55,"completion":84,"runMetres":1866,"tackles":294},"players":[["Tim Carson","Fullback",1,0,23,239,1,3,2,1,0,1],["Matthew Bollard","Winger",0,0,12,84,0,2,7,1,0,0],["Sunny Kama","Centre",0,0,7,66,0,1,11,1,0,2],["Allan Fitzgibbon","Winger",0,0,18,171,0,2,6,3,1,2],["Lindon McGrady","Halfback",0,3,7,69,1,1,20,2,0,0],["Jack Smith","Five-Eighth",1,0,10,111,0,8,20,1,0,0],["Max Bradbury","Interchange",1,0,9,74,1,2,17,2,2,0],["Romano Cook","Hooker",1,0,10,90,1,2,25,4,2,0],["Shaquai Mitchell","Prop",0,0,7,93,0,0,12,2,0,0],["Adam Christensen","2nd Row",0,0,11,113,0,0,23,4,0,0],["Kyle Pickering","2nd Row",0,0,18,153,0,2,42,1,2,0],["JJ Collins","Interchange",0,0,12,150,0,2,20,0,2,0],["Shannon Gardiner","Centre",1,0,13,111,1,3,24,1,0,0],["Bodhi Sharpley","Lock",0,0,10,109,0,3,23,1,0,2],["Chase Chapman","Interchange",0,0,13,116,0,0,18,2,0,1],["Jett Liu","Prop",0,0,11,111,0,1,24,1,0,0]],"playersAdv":[["Tim Carson",80,77,0,4,17,41,0,0,0,0,0,0,3.66],["Matthew Bollard",80,20,0,0,2,13,0,0,0,0,0,0,4.01],["Sunny Kama",80,24,0,0,5,14,2,21,0,0,0,1,3.63],["Allan Fitzgibbon",80,59,0,0,4,24,0,0,0,0,0,0,3.1],["Lindon McGrady",80,8,0,0,39,53,12,276,1,1,0,1,3.52],["Jack Smith",80,35,0,0,29,41,4,57,0,0,0,0,3.2],["Max Bradbury",39,30,7,0,1,10,0,0,0,0,0,0,3.41],["Romano Cook",80,25,0,7,110,118,2,47,0,0,0,0,2.41],["Shaquai Mitchell",30,45,4,0,3,10,0,0,0,0,0,0,3.48],["Adam Christensen",80,40,11,0,2,13,0,0,0,0,0,0,4.04],["Kyle Pickering",80,66,18,0,5,25,1,10,1,1,0,0,3.68],["JJ Collins",45,81,12,0,1,13,0,0,0,0,0,0,3.35],["Shannon Gardiner",80,32,0,1,9,21,0,0,0,0,0,1,3.28],["Bodhi Sharpley",46,50,10,0,1,11,0,0,0,0,0,0,3.93],["Chase Chapman",34,41,12,0,7,20,0,0,1,1,0,0,3.42],["Jett Liu",46,57,11,0,2,13,0,0,0,0,0,1,3.38]],"teamStats":{"tweed":{"poss":55.0,"tip":29.83,"comp":84.0,"runM":1866,"pcm":697,"lb":5,"tb":32,"avgSet":49.12,"krm":237,"ptb":3.52,"off":9,"passes":237,"kicks":21,"kickM":412,"fdo":1,"defusal":100.0,"effTck":90.18,"tck":294,"miss":27,"err":8,"pens":4,"ruck":2,"sin":0},"opp":{"poss":45.0,"tip":23.78,"comp":82.0,"runM":1413,"pcm":481,"lb":4,"tb":27,"avgSet":41.56,"krm":140,"ptb":3.54,"off":4,"passes":198,"kicks":21,"kickM":630,"fdo":1,"defusal":61.0,"effTck":88.28,"tck":369,"miss":32,"err":6,"pens":4,"ruck":5,"sin":0}}},{"r":16,"opp":"Tigers","ha":"H","slug":"seagulls-v-tigers","score":{"tweed":22,"opp":26,"htTweed":6,"htOpp":16},"team":{"possession":47,"completion":80,"completionRaw":"32/40","runMetres":1480,"tackles":296},"players":[["Tim Carson","Fullback",0,0,16,145,0,6,8,2,1,2],["Luke Cesari","Winger",0,0,14,185,1,0,5,1,2,1],["Siale Faeamani","Centre",0,0,10,106,0,0,14,0,0,0],["Sunny Kama","Centre",0,0,6,67,0,1,15,0,1,0],["Allan Fitzgibbon","Winger",1,0,17,187,1,1,1,3,1,1],["Lindon McGrady","Five-Eighth",1,2,2,26,1,1,13,3,0,0],["Matthew Egan","Halfback",0,0,1,3,0,0,8,4,0,1],["Jett Liu","Prop",0,0,9,75,0,0,25,3,0,0],["Romano Cook","Hooker",0,0,4,33,0,2,28,3,0,0],["Shaquai Mitchell","Prop",0,0,6,70,0,0,12,0,0,0],["Adam Christensen","2nd Row",1,0,11,97,1,3,29,1,0,2],["Kyle Pickering","2nd Row",0,0,10,93,0,2,49,3,0,0],["Bodhi Sharpley","Lock",1,0,7,94,1,2,21,3,0,1],["Shannon Gardiner","Interchange",0,0,5,46,0,0,16,3,0,1],["Max Bradbury","Interchange",0,0,8,104,0,2,21,1,0,1],["JJ Collins","Interchange",0,0,7,83,0,0,20,3,2,1],["Jack Smith","Interchange",0,0,3,62,2,3,11,3,0,0],["Chase Chapman","Replacement",0,0,0,0,0,0,0,0,0,0]],"playersAdv":[["Tim Carson",80,54,0,1,12,30,0,0,0,0,0,0,3.26],["Luke Cesari",80,73,0,0,0,15,0,0,0,1,0,0,3.76],["Siale Faeamani",80,46,0,1,8,16,1,1,0,0,0,1,2.85],["Sunny Kama",80,21,0,1,2,7,0,0,0,0,0,0,3.36],["Allan Fitzgibbon",80,66,0,0,11,28,1,12,1,1,0,1,2.85],["Lindon McGrady",80,0,0,0,36,42,6,116,1,1,0,0,0.0],["Matthew Egan",31,2,0,0,6,10,2,53,0,0,0,1,6.0],["Jett Liu",49,34,8,0,1,10,0,0,0,0,0,1,4.68],["Romano Cook",73,4,0,4,66,69,1,70,0,0,0,1,3.16],["Shaquai Mitchell",24,42,6,0,2,8,0,0,1,1,0,0,3.89],["Adam Christensen",80,43,10,1,1,13,0,0,0,0,0,0,3.22],["Kyle Pickering",80,43,9,1,5,16,1,9,0,0,0,0,3.23],["Bodhi Sharpley",36,41,7,0,1,9,0,0,0,1,0,1,3.74],["Shannon Gardiner",31,10,5,0,23,28,0,0,0,0,0,0,3.99],["Max Bradbury",53,42,6,0,2,11,0,0,0,0,0,0,3.51],["JJ Collins",47,44,6,0,1,9,0,0,0,0,0,1,3.26],["Jack Smith",49,14,3,0,10,14,1,43,0,2,0,1,3.6]],"teamStats":{"tweed":{"poss":47.0,"tip":22.45,"comp":80,"runM":1480,"pcm":585,"lb":7,"tb":23,"avgSet":37.02,"krm":134,"ptb":3.46,"off":7,"passes":187,"kicks":13,"kickM":308,"fdo":1,"defusal":88,"effTck":85.06,"tck":296,"miss":36,"err":11,"pens":8,"ruck":3,"sin":1},"opp":{"poss":53.0,"tip":25.57,"comp":72,"runM":1574,"pcm":526,"lb":5,"tb":36,"avgSet":39.36,"krm":134,"ptb":3.49,"off":12,"passes":219,"kicks":14,"kickM":326,"fdo":1,"defusal":80,"effTck":89.25,"tck":274,"miss":23,"err":13,"pens":6,"ruck":6,"sin":1}}},{"r":17,"opp":"Blackhawks","ha":"A","slug":"seagulls-v-blackhawks","score":{"tweed":22,"opp":34,"htTweed":4,"htOpp":26},"team":{"possession":52,"completion":77,"completionRaw":"27/35","runMetres":1181,"tackles":227},"players":[["Tim Carson","Fullback",0,3,12,151,1,8,2,2,0,0],["Luke Cesari","Winger",0,0,8,63,0,1,4,2,0,1],["Siale Faeamani","Centre",0,0,6,59,0,2,10,3,0,1],["Sunny Kama","Centre",1,0,8,82,1,2,11,4,0,1],["Allan Fitzgibbon","Winger",1,0,11,112,0,1,2,0,0,0],["Lindon McGrady","Halfback",0,0,5,28,0,0,6,1,1,0],["Jack Smith","Five-Eighth",0,0,5,38,0,1,15,5,0,1],["Max Bradbury","Prop",0,0,7,76,0,1,15,1,0,0],["Romano Cook","Hooker",0,0,4,17,0,0,20,1,1,1],["Jett Liu","Prop",0,0,8,63,0,0,26,1,1,0],["Adam Christensen","2nd Row",0,0,6,51,0,1,22,1,1,1],["Kyle Pickering","2nd Row",0,0,14,111,0,2,34,1,2,0],["Shaquai Mitchell","Lock",0,0,6,38,0,0,13,3,0,1],["Shannon Gardiner","Interchange",1,0,4,18,1,2,7,1,0,1],["Bodhi Sharpley","Interchange",1,0,9,84,1,2,17,1,0,0],["JJ Collins","Interchange",0,0,10,95,1,3,11,0,3,1],["Chase Chapman","Interchange",0,0,13,89,0,0,12,2,0,0],["Kaylen Miller","Replacement",0,0,0,0,0,0,0,0,0,0]],"playersAdv":[["Tim Carson",80,50,0,0,5,17,1,34,0,0,0,1,3.49],["Luke Cesari",80,34,0,1,1,11,0,0,0,0,0,1,3.21],["Siale Faeamani",80,26,0,0,8,13,1,3,0,0,0,2,3.55],["Sunny Kama",80,30,0,0,3,11,0,0,0,0,0,0,3.95],["Allan Fitzgibbon",80,38,0,0,3,14,0,0,0,1,0,0,3.44],["Lindon McGrady",41,4,0,0,15,21,4,113,0,0,0,0,4.12],["Jack Smith",80,14,0,1,17,24,1,37,0,0,0,1,4.09],["Max Bradbury",47,28,6,0,0,7,0,0,0,0,0,0,2.92],["Romano Cook",80,2,0,2,97,97,2,66,2,1,0,1,0.0],["Jett Liu",60,25,7,0,2,11,0,0,0,0,0,0,3.77],["Adam Christensen",80,19,6,0,0,7,0,0,1,1,0,0,3.93],["Kyle Pickering",80,39,14,0,5,20,0,0,0,0,0,1,3.37],["Shaquai Mitchell",39,12,3,0,9,12,0,0,0,0,0,0,3.62],["Shannon Gardiner",40,10,1,0,15,23,5,141,0,0,0,1,3.12],["Bodhi Sharpley",33,45,9,0,0,9,0,0,0,0,0,0,3.43],["JJ Collins",28,46,10,0,2,13,0,0,0,0,0,0,2.92],["Chase Chapman",33,25,10,0,6,16,0,0,0,0,0,0,3.12]],"teamStats":{"tweed":{"poss":52.0,"tip":20.1,"comp":77.0,"runM":1181,"pcm":455,"lb":5,"tb":26,"avgSet":33.74,"krm":84,"ptb":3.45,"off":9,"passes":188,"kicks":14,"kickM":398,"fdo":4,"defusal":62.0,"effTck":85.34,"tck":227,"miss":29,"err":9,"pens":8,"ruck":2,"sin":0},"opp":{"poss":48.0,"tip":18.8,"comp":75.0,"runM":1346,"pcm":373,"lb":5,"tb":29,"avgSet":40.8,"krm":145,"ptb":3.68,"off":6,"passes":182,"kicks":11,"kickM":250,"fdo":0,"defusal":80.0,"effTck":86.53,"tck":257,"miss":26,"err":9,"pens":8,"ruck":4,"sin":0}}}];
+const ACC='#D97706',ACC2='#3B82F6',GRN='#4ADE80',REDT='#F87171',CGRN='#16A34A',CRED='#DC2626',MU='#8888aa';
+function show(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');btn.classList.add('active');}
+const res=r=>r.score.tweed>r.score.opp?'W':(r.score.tweed<r.score.opp?'L':'D');
+const resC=x=>x==='W'?CGRN:(x==='L'?CRED:'#F5A623');
+const gm=r=>'R'+r.r+' '+(r.ha==='H'?'v':'@')+' '+r.opp;
+const T=r=>r.teamStats?r.teamStats.tweed:null, O=r=>r.teamStats?r.teamStats.opp:null;
+function avg(side,k){const v=R.filter(r=>r.teamStats&&r.teamStats[side][k]!=null);return v.length?v.reduce((a,r)=>a+r.teamStats[side][k],0)/v.length:null;}
+function fk(k,v){if(v==null)return '—';if(k==='ptb')return v.toFixed(2)+'s';if(k==='tip')return v.toFixed(1)+'m';if(['poss','comp','defusal','effTck'].includes(k))return (Math.round(v*10)/10)+'%';if(['runM','pcm','kickM','krm'].includes(k))return Math.round(v).toLocaleString();if(k==='avgSet')return v.toFixed(1);return (Math.round(v*10)/10).toString();}
+function cell(k,us,them,dir){ // us vs them coloured cell
+  if(us==null)return '<td>—</td>';
+  let cls='ev';
+  if(them!=null&&us!==them)cls=(dir==='hi'?us>them:us<them)?'up':'dn';
+  return '<td><span class="'+cls+'">'+fk(k,us)+'</span>'+(them!=null?' <span class="vs">'+fk(k,them)+'</span>':'')+'</td>';
 }
-
-function computeLadder(games, opts){
-  opts=opts||{};
-  const s={};
-  const ens=t=>{ if(!s[t]) s[t]={team:t,p:0,w:0,d:0,l:0,f:0,a:0,byes:0,results:[]}; return s[t]; };
-  games.forEach(g=>{
-    const H=ens(g.home),A=ens(g.away);
-    H.p++;A.p++; H.f+=g.hs;H.a+=g.as; A.f+=g.as;A.a+=g.hs;
-    if(g.hs>g.as){H.w++;A.l++;H.results.push({r:g.r,res:'W',opp:g.away,sc:g.hs,oc:g.as});A.results.push({r:g.r,res:'L',opp:g.home,sc:g.as,oc:g.hs});}
-    else if(g.hs<g.as){A.w++;H.l++;H.results.push({r:g.r,res:'L',opp:g.away,sc:g.hs,oc:g.as});A.results.push({r:g.r,res:'W',opp:g.home,sc:g.as,oc:g.hs});}
-    else {H.d++;A.d++;H.results.push({r:g.r,res:'D',opp:g.away,sc:g.hs,oc:g.as});A.results.push({r:g.r,res:'D',opp:g.home,sc:g.as,oc:g.hs});}
-  });
-  if(opts.rounds){ Object.values(s).forEach(t=>{ t.byes=opts.rounds-t.p; }); }
-  Object.values(s).forEach(t=>{
-    t.pts=t.w*2+t.d+(opts.byePts?t.byes*2:0);
-    t.diff=t.f-t.a;
-    t.avgF=t.p?(t.f/t.p):0; t.avgA=t.p?(t.a/t.p):0;
-    t.form=t.results.sort((a,b)=>a.r-b.r).slice(-5).map(x=>x.res);
-  });
-  return Object.values(s).sort((a,b)=>b.pts-a.pts||b.diff-a.diff);
-}
-function formHtml(form){ return form.map(r=>'<span class="wl '+r+'">'+r+'</span>').join(''); }
-function barRow(label,val,max,color,suffix){
-  const pct=max?Math.max(val/max*100,1):0;
-  return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:7px">'+
-    '<div style="width:110px;font-size:10.5px;font-weight:700;text-align:right;flex-shrink:0">'+label+'</div>'+
-    '<div style="flex:1;height:10px;background:rgba(255,255,255,.05);border-radius:5px;overflow:hidden"><div style="width:'+pct+'%;height:100%;border-radius:5px;background:'+color+'"></div></div>'+
-    '<div style="width:52px;font-size:10.5px;font-weight:800;color:#fff">'+val.toFixed(1)+(suffix||'')+'</div></div>';
-}
-
-// ═══════ 1ST vs 2ND HALF ANALYTICS (auto-generated 13 Jul 2026) ═══════
-function halvesCompute(games){
-  const withHT = games.filter(g=>g.hh!=null&&g.ha!=null);
-  const teams = {};
-  const ens = (t)=>{ if(!teams[t]) teams[t]={team:t,g:0,h1f:0,h1a:0,h2f:0,h2a:0,ledHT:0,levelHT:0,trailHT:0,comebackW:0,blownL:0,winFromLead:0}; return teams[t]; };
-  const cb=[]; const surges=[];
-  withHT.forEach(g=>{
-    const h2h=g.hs-g.hh, h2a=g.as-g.ha;
-    [[g.home,g.hh,g.ha,g.hs,g.as,h2h,h2a],[g.away,g.ha,g.hh,g.as,g.hs,h2a,h2h]].forEach(x=>{
-      const [t,htF,htA,ftF,ftA,sF,sA]=x; const T=ens(t);
-      T.g++; T.h1f+=htF; T.h1a+=htA; T.h2f+=sF; T.h2a+=sA;
-      const led=htF>htA, level=htF===htA, won=ftF>ftA, lost=ftF<ftA;
-      if(led)T.ledHT++; else if(level)T.levelHT++; else T.trailHT++;
-      if(!led&&!level&&won){T.comebackW++;}
-      if(led&&lost){T.blownL++;}
-      if(led&&won){T.winFromLead++;}
-    });
-    const hLed=g.hh>g.ha, aLed=g.ha>g.hh, hWon=g.hs>g.as, aWon=g.as>g.hs;
-    if((aLed&&hWon)||(hLed&&aWon)){
-      const winner=hWon?g.home:g.away, deficit=hWon?(g.ha-g.hh):(g.hh-g.ha);
-      const loser=hWon?g.away:g.home;
-      cb.push({r:g.r,winner,loser,deficit,ht:g.hh+'–'+g.ha,ft:g.hs+'–'+g.as});
-    }
-    const hSurge=(g.hs-g.hh)-(g.as-g.ha);
-    surges.push({r:g.r,team:hSurge>=0?g.home:g.away,opp:hSurge>=0?g.away:g.home,swing:Math.abs(hSurge),ht:g.hh+'–'+g.ha,ft:g.hs+'–'+g.as});
-  });
-  // League aggregates
-  let h1Tot=0,h2Tot=0,ledWin=0,ledCnt=0;
-  withHT.forEach(g=>{
-    h1Tot+=g.hh+g.ha; h2Tot+=(g.hs-g.hh)+(g.as-g.ha);
-    if(g.hh!==g.ha){ ledCnt++; const ledHome=g.hh>g.ha; if((ledHome&&g.hs>g.as)||(!ledHome&&g.as>g.hs)) ledWin++; }
-  });
-  cb.sort((a,b)=>b.deficit-a.deficit);
-  surges.sort((a,b)=>b.swing-a.swing);
-  return {withHT, total:games.length, teams:Object.values(teams), cb, surges,
-          h1Avg:withHT.length?h1Tot/withHT.length:0, h2Avg:withHT.length?h2Tot/withHT.length:0,
-          ledWinPct:ledCnt?Math.round(ledWin/ledCnt*100):0, ledCnt};
-}
-
-function halvesBarChart(rows, opts){
-  // rows: [{label, v1, v2, color?}] — grouped horizontal bars, H1 vs H2 series
-  const c1=opts.c1, c2=opts.c2, ink=opts.ink||'#C0CCE0', muted=opts.muted||'#8892A8';
-  const W=760, rowH=34, padL=132, padR=56, barH=9, gap=3;
-  const H=rows.length*rowH+42;
-  const maxV=Math.max(...rows.map(r=>Math.max(r.v1,r.v2)),1)*1.08;
-  const sx=v=>padL+(W-padL-padR)*(v/maxV);
-  let g='';
-  // gridlines
-  const step=maxV>30?10:maxV>12?5:2;
-  for(let v=0;v<=maxV;v+=step){
-    g+='<line x1="'+sx(v)+'" y1="18" x2="'+sx(v)+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,.06)" stroke-width="1"/>';
-    g+='<text x="'+sx(v)+'" y="'+(H-10)+'" fill="'+muted+'" font-size="9" text-anchor="middle">'+v+'</text>';
-  }
-  rows.forEach((r,i)=>{
-    const y=26+i*rowH;
-    g+='<text x="'+(padL-8)+'" y="'+(y+barH+2)+'" fill="'+ink+'" font-size="10" font-weight="700" text-anchor="end">'+r.label+'</text>';
-    g+='<rect x="'+padL+'" y="'+y+'" width="'+Math.max(sx(r.v1)-padL,1.5)+'" height="'+barH+'" rx="3" fill="'+c1+'"><title>'+r.label+' — 1st half: '+r.v1.toFixed(1)+'</title></rect>';
-    g+='<text x="'+(sx(r.v1)+5)+'" y="'+(y+barH-1)+'" fill="'+muted+'" font-size="8.5">'+r.v1.toFixed(1)+'</text>';
-    const y2=y+barH+gap;
-    g+='<rect x="'+padL+'" y="'+y2+'" width="'+Math.max(sx(r.v2)-padL,1.5)+'" height="'+barH+'" rx="3" fill="'+c2+'"><title>'+r.label+' — 2nd half: '+r.v2.toFixed(1)+'</title></rect>';
-    g+='<text x="'+(sx(r.v2)+5)+'" y="'+(y2+barH-1)+'" fill="'+muted+'" font-size="8.5">'+r.v2.toFixed(1)+'</text>';
-  });
-  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" role="img" aria-label="First vs second half points by team">'+g+'</svg>';
-}
-
-function halvesHTML(res, opts){
-  const c1=opts.c1,c2=opts.c2;
-  const cov=res.withHT.length+' of '+res.total+' matches have verified half-time data'+(res.withHT.length<res.total?' — halves stats use only those games':'');
-  const tiles=[
-    {l:'AVG 1ST-HALF PTS / GAME', v:res.h1Avg.toFixed(1), s:'both teams combined'},
-    {l:'AVG 2ND-HALF PTS / GAME', v:res.h2Avg.toFixed(1), s:(res.h2Avg>res.h1Avg?'games open up after the break':'first halves higher-scoring')},
-    {l:'HT LEADER WINS', v:res.ledWinPct+'%', s:'of '+res.ledCnt+' games with a HT leader'},
-    {l:'HT COMEBACK WINS', v:res.cb.length, s:'winner trailed at half-time'},
-  ];
-  const tilesHtml=tiles.map(t=>'<div style="flex:1;min-width:150px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:10px;padding:14px 16px"><div style="font-size:9px;font-weight:800;letter-spacing:.6px;color:'+(opts.muted||'#8892A8')+'">'+t.l+'</div><div style="font-size:24px;font-weight:900;color:white;margin:4px 0 2px">'+t.v+'</div><div style="font-size:10px;color:'+(opts.muted||'#8892A8')+'">'+t.s+'</div></div>').join('');
-
-  const T=res.teams.map(t=>({...t,
-    h1d:t.h1f-t.h1a, h2d:t.h2f-t.h2a,
-    h1fAvg:t.g?t.h1f/t.g:0, h2fAvg:t.g?t.h2f/t.g:0,
-    h1aAvg:t.g?t.h1a/t.g:0, h2aAvg:t.g?t.h2a/t.g:0,
-  }));
-  T.sort((a,b)=>(b.h1d+b.h2d)-(a.h1d+a.h2d));
-
-  const chartAtt=halvesBarChart(T.map(t=>({label:opts.short?opts.short(t.team):t.team, v1:t.h1fAvg, v2:t.h2fAvg})), opts);
-  const Tdef=[...T].sort((a,b)=>(a.h1aAvg+a.h2aAvg)-(b.h1aAvg+b.h2aAvg));
-  const chartDef=halvesBarChart(Tdef.map(t=>({label:opts.short?opts.short(t.team):t.team, v1:t.h1aAvg, v2:t.h2aAvg})), opts);
-
-  const legend='<div style="display:flex;gap:16px;align-items:center;margin:6px 0 4px;font-size:10px;color:'+(opts.muted||'#8892A8')+'"><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:'+c1+'"></span>1st half</span><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:'+c2+'"></span>2nd half</span></div>';
-
-  const rowsHtml=T.map(t=>{
-    const swing=(t.h2d-t.h1d);
-    const swCol=swing>0?'#4ADE80':swing<0?'#F87171':'#FACC15';
-    return '<tr>'+
-      '<td style="text-align:left;font-weight:700">'+(opts.short?opts.short(t.team):t.team)+'</td>'+
-      '<td>'+t.g+'</td>'+
-      '<td>'+t.h1fAvg.toFixed(1)+'</td><td>'+t.h1aAvg.toFixed(1)+'</td>'+
-      '<td style="color:'+(t.h1d>=0?'#4ADE80':'#F87171')+';font-weight:700">'+(t.h1d>=0?'+':'')+t.h1d+'</td>'+
-      '<td>'+t.h2fAvg.toFixed(1)+'</td><td>'+t.h2aAvg.toFixed(1)+'</td>'+
-      '<td style="color:'+(t.h2d>=0?'#4ADE80':'#F87171')+';font-weight:700">'+(t.h2d>=0?'+':'')+t.h2d+'</td>'+
-      '<td style="color:'+swCol+';font-weight:800">'+(swing>0?'+':'')+swing+'</td>'+
-      '<td>'+t.ledHT+'</td><td>'+t.comebackW+'</td><td>'+t.blownL+'</td></tr>';
-  }).join('');
-
-  const cbHtml=res.cb.length?res.cb.slice(0,10).map(c=>
-    '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap">'+
-    '<span><strong style="color:#4ADE80">'+c.winner+'</strong> <span style="color:'+(opts.muted||'#8892A8')+'">came from '+c.deficit+' down at HT vs</span> '+c.loser+'</span>'+
-    '<span style="color:'+(opts.muted||'#8892A8')+'">R'+c.r+' · HT '+c.ht+' → FT <strong style="color:white">'+c.ft+'</strong></span></div>').join('')
-    :'<p style="color:'+(opts.muted||'#8892A8')+';font-size:11px">No half-time comebacks recorded yet.</p>';
-
-  const surgeHtml=res.surges.slice(0,5).map(s=>
-    '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:'+(opts.tileBg||'rgba(255,255,255,.03)')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap">'+
-    '<span><strong style="color:'+c2+'">'+s.team+'</strong> <span style="color:'+(opts.muted||'#8892A8')+'">won the 2nd half by '+s.swing+' vs</span> '+s.opp+'</span>'+
-    '<span style="color:'+(opts.muted||'#8892A8')+'">R'+s.r+' · HT '+s.ht+' → FT <strong style="color:white">'+s.ft+'</strong></span></div>').join('');
-
-  return ''+
-  '<div style="background:'+(opts.heroBg||'linear-gradient(135deg,#0A1528,#101024)')+';border:1px solid '+(opts.accent||c1)+';border-radius:14px;padding:22px 26px;margin-bottom:18px">'+
-    '<h2 style="color:white;font-size:16px;font-weight:900;margin-bottom:4px">⏱️ 1st vs 2nd Half Breakdown</h2>'+
-    '<p style="color:'+(opts.muted||'#8892A8')+';font-size:11px">'+cov+'. Half-time scores sourced from Rugby League Project match records.</p>'+
-  '</div>'+
-  '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px">'+tilesHtml+'</div>'+
-  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px">'+
-    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">POINTS SCORED PER GAME — 1ST VS 2ND HALF</h3>'+legend+chartAtt+'</div>'+
-  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px">'+
-    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">POINTS CONCEDED PER GAME — 1ST VS 2ND HALF <span style="font-weight:600;color:'+(opts.muted||'#8892A8')+';font-size:10px">(best defence first)</span></h3>'+legend+chartDef+'</div>'+
-  '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px;margin-bottom:18px;overflow-x:auto">'+
-    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">TEAM HALF-BY-HALF LEDGER</h3>'+
-    '<style>.halves-tbl td{padding:6px 8px;border-top:1px solid rgba(255,255,255,.05)}.halves-tbl th{padding:6px 8px}</style>'+
-    '<table class="halves-tbl" style="width:100%;border-collapse:collapse;font-size:10.5px;text-align:center">'+
-    '<thead><tr style="color:'+(opts.muted||'#8892A8')+';font-size:9px;letter-spacing:.5px">'+
-    '<th style="text-align:left">TEAM</th><th>G*</th><th>H1 PF</th><th>H1 PA</th><th>H1 +/-</th><th>H2 PF</th><th>H2 PA</th><th>H2 +/-</th><th>2H SWING</th><th>LED HT</th><th>CB WINS</th><th>BLOWN</th></tr></thead>'+
-    '<tbody style="color:#D5DEEE">'+rowsHtml+'</tbody></table>'+
-    '<p style="color:'+(opts.muted||'#8892A8')+';font-size:9px;margin-top:8px">*Games with half-time data only. 2H SWING = 2nd-half differential minus 1st-half differential — positive means the side gets stronger after the break. CB WINS = wins after trailing at HT. BLOWN = losses after leading at HT.</p>'+
-  '</div>'+
-  '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px">'+
-    '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px"><h3 style="color:#4ADE80;font-size:12px;font-weight:800;margin-bottom:10px">🔄 BIGGEST HT COMEBACKS</h3>'+cbHtml+'</div>'+
-    '<div style="background:'+(opts.cardBg||'#12122A')+';border:1px solid '+(opts.border||'rgba(255,255,255,.08)')+';border-radius:12px;padding:18px"><h3 style="color:'+c2+';font-size:12px;font-weight:800;margin-bottom:10px">⚡ BIGGEST 2ND-HALF SURGES</h3>'+surgeHtml+'</div>'+
-  '</div>';
-}
-
-// ═══════ ADVANCED METRICS (computed from verified results) ═══════
-function advCompute(games, opts){
-  opts=opts||{};
-  const t={};
-  const ens=n=>{ if(!t[n]) t[n]={team:n,g:0,w:0,d:0,l:0,f:0,a:0,margins:[],close:0,closeW:0,blow:0,blowW:0,h1d:0,h2d:0,htg:0}; return t[n]; };
-  games.forEach(g=>{
-    [[g.home,g.hs,g.as,g.hh,g.ha],[g.away,g.as,g.hs,g.ha,g.hh]].forEach(x=>{
-      const [n,f,a,hf,ha]=x; const T=ens(n);
-      T.g++; T.f+=f; T.a+=a; T.margins.push(f-a);
-      if(f>a)T.w++; else if(f<a)T.l++; else T.d++;
-      const m=Math.abs(f-a);
-      if(m<=6){T.close++; if(f>a)T.closeW++;}
-      if(m>=18){T.blow++; if(f>a)T.blowW++;}
-      if(hf!=null){T.htg++; T.h1d+=hf-ha; T.h2d+=(f-hf)-(a-ha);}
+// player aggregates (core cols: 0name 1pos 2t 3g 4runs 5rm 6lb 7tb 8tck 9mt 10off 11err ; adv: 0name 1min 2pcm 3hu 4dhr 5pass 6rec 7kicks 8km 9ta 10lba 11steal 12pen 13ptb)
+function pAgg(){
+  const m={};
+  R.forEach(r=>{
+    const adv={};(r.playersAdv||[]).forEach(a=>adv[a[0]]=a);
+    r.players.forEach(p=>{
+      const active=(p[2]+p[3]+p[4]+p[6]+p[7]+p[8]+p[9]+p[10]+p[11])>0||p[5]>0;
+      if(!active)return;
+      const k=p[0];if(!m[k])m[k]={n:k,pos:p[1],gp:0,t:0,g:0,rm:0,runs:0,lb:0,tb:0,tck:0,mt:0,off:0,err:0,min:0,pcm:0,hu:0,dhr:0,pass:0,rec:0,kicks:0,km:0,ta:0,lba:0,pen:0,steal:0,ptbS:0,ptbN:0};
+      const a=m[k];a.gp++;a.t+=p[2];a.g+=p[3];a.runs+=p[4];a.rm+=p[5];a.lb+=p[6];a.tb+=p[7];a.tck+=p[8];a.mt+=p[9];a.off+=p[10];a.err+=p[11];
+      const v=adv[k];if(v){a.min+=v[1]||0;a.pcm+=v[2]||0;a.hu+=v[3]||0;a.dhr+=v[4]||0;a.pass+=v[5]||0;a.rec+=v[6]||0;a.kicks+=v[7]||0;a.km+=v[8]||0;a.ta+=v[9]||0;a.lba+=v[10]||0;a.steal+=v[11]||0;a.pen+=v[12]||0;if(v[13]&&v[13]>0){a.ptbS+=v[13];a.ptbN++;}}
     });
   });
-  const arr=Object.values(t);
-  arr.forEach(T=>{
-    const e=2.0; // pythagorean exponent for rugby league
-    T.pyth=T.g*(Math.pow(T.f,e)/(Math.pow(T.f,e)+Math.pow(T.a,e)||1));
-    T.luck=(T.w+T.d*0.5)-T.pyth;
-    T.avgM=T.margins.reduce((s,x)=>s+x,0)/T.g;
-    const mean=T.avgM;
-    T.vol=Math.sqrt(T.margins.reduce((s,x)=>s+(x-mean)*(x-mean),0)/T.g);
-    T.swing=T.htg?(T.h2d-T.h1d)/T.htg:0;
-  });
-  // strength of schedule: mean of opponents' avg margin
-  const rate={}; arr.forEach(T=>rate[T.team]=T.avgM);
-  arr.forEach(T=>{ T.sosList=[]; });
-  games.forEach(g=>{ ens(g.home).sosList.push(rate[g.away]); ens(g.away).sosList.push(rate[g.home]); });
-  arr.forEach(T=>{ T.sos=T.sosList.length?T.sosList.reduce((s,x)=>s+x,0)/T.sosList.length:0; });
-  return arr.sort((a,b)=>b.avgM-a.avgM);
+  return Object.values(m).map(a=>{a.eff=(a.tck+a.mt)>0?a.tck/(a.tck+a.mt)*100:null;a.pts=a.t*4+a.g*2;a.ptb=a.ptbN?a.ptbS/a.ptbN:null;return a;});
 }
-function advHTML(games, cfg){
-  const {cardBg,border,muted,acc,acc2,hl,short}=cfg;
-  const S=n=>short?short(n):n;
-  const arr=advCompute(games);
-  const rows=arr.map((T,i)=>{
-    const isHl=hl&&T.team===hl;
-    return '<tr'+(isHl?' style="background:rgba(249,115,22,.10);outline:1px solid '+acc+'"':'')+'>'+
-    '<td style="text-align:left;font-weight:700">'+(i+1)+'. '+S(T.team)+'</td>'+
-    '<td style="font-weight:800;color:'+(T.avgM>=0?'#4ADE80':'#F87171')+'">'+(T.avgM>=0?'+':'')+T.avgM.toFixed(1)+'</td>'+
-    '<td>'+T.pyth.toFixed(1)+'</td>'+
-    '<td style="color:'+(T.luck>0.5?'#4ADE80':T.luck<-0.5?'#F87171':'#FACC15')+';font-weight:800">'+(T.luck>0?'+':'')+T.luck.toFixed(1)+'</td>'+
-    '<td style="color:'+(T.sos>0?'#F87171':'#4ADE80')+'">'+(T.sos>0?'+':'')+T.sos.toFixed(1)+'</td>'+
-    '<td>'+T.vol.toFixed(1)+'</td>'+
-    '<td>'+(T.close?T.closeW+'/'+T.close:'—')+'</td>'+
-    '<td>'+(T.blow?T.blowW+'/'+T.blow:'—')+'</td>'+
-    '<td style="color:'+(T.swing>0?'#4ADE80':'#F87171')+';font-weight:700">'+(T.swing>0?'+':'')+T.swing.toFixed(1)+'</td></tr>';
-  }).join('');
-  const best=arr[0], luckiest=[...arr].sort((a,b)=>b.luck-a.luck)[0], unlucky=[...arr].sort((a,b)=>a.luck-b.luck)[0], hardest=[...arr].sort((a,b)=>b.sos-a.sos)[0];
-  const tiles=[
-    ['POWER RATING #1',S(best.team),(best.avgM>=0?'+':'')+best.avgM.toFixed(1)+' avg margin'],
-    ['OVER-PERFORMER',S(luckiest.team),'+'+luckiest.luck.toFixed(1)+' wins above Pythagorean expectation'],
-    ['UNDER-PERFORMER',S(unlucky.team),unlucky.luck.toFixed(1)+' wins below expectation — better than record shows'],
-    ['TOUGHEST DRAW',S(hardest.team),'opponents rate '+(hardest.sos>0?'+':'')+hardest.sos.toFixed(1)+' on average'],
-  ].map(x=>'<div style="flex:1;min-width:150px;background:'+cardBg+';border:1px solid '+border+';border-radius:10px;padding:14px 16px"><div style="font-size:9px;font-weight:800;letter-spacing:.6px;color:'+muted+'">'+x[0]+'</div><div style="font-size:19px;font-weight:900;color:white;margin:4px 0 2px">'+x[1]+'</div><div style="font-size:10px;color:'+muted+'">'+x[2]+'</div></div>').join('');
-  // rating bars
-  const mx=Math.max(...arr.map(T=>Math.abs(T.avgM)),1);
-  const bars=arr.map(T=>{
-    const w=Math.abs(T.avgM)/mx*50;
-    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'+
-      '<div style="width:110px;font-size:10px;font-weight:700;text-align:right">'+S(T.team)+'</div>'+
-      '<div style="flex:1;position:relative;height:10px">'+
-        '<div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.2)"></div>'+
-        '<div title="'+(T.avgM>=0?'+':'')+T.avgM.toFixed(1)+'" style="position:absolute;top:0;height:10px;border-radius:5px;'+(T.avgM>=0?'left:50%;':'right:50%;')+'width:'+w+'%;background:'+(T.avgM>=0?acc:acc2)+'"></div></div>'+
-      '<div style="width:48px;font-size:10px;font-weight:800;color:#fff">'+(T.avgM>=0?'+':'')+T.avgM.toFixed(1)+'</div></div>';
-  }).join('');
-  return '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">'+tiles+'</div>'+
-   '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;margin-bottom:16px">'+
-     '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:8px">⚡ POWER RATINGS — AVG MARGIN PER GAME</h3>'+bars+'</div>'+
-   '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;overflow-x:auto">'+
-     '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">🔬 ADVANCED METRICS TABLE</h3>'+
-     '<style>.adv-tbl td{padding:6px 8px;border-top:1px solid rgba(255,255,255,.05);text-align:center}.adv-tbl th{padding:6px 8px}</style>'+
-     '<table class="adv-tbl" style="width:100%;border-collapse:collapse;font-size:10.5px"><thead><tr style="color:'+muted+';font-size:8.5px;text-transform:uppercase;letter-spacing:.5px">'+
-     '<th style="text-align:left">Team</th><th>Rating (avg margin)</th><th>Pyth. exp. wins</th><th>Luck (W − exp)</th><th>SOS</th><th>Volatility (σ margin)</th><th>Close (≤6) W</th><th>Blowout (18+) W</th><th>2H swing/g</th></tr></thead>'+
-     '<tbody style="color:#D5DEEE">'+rows+'</tbody></table>'+
-     '<p style="font-size:9px;color:'+muted+';margin-top:8px">Pythagorean expected wins from points for/against (exponent 2.0) — a truer measure of quality than the ladder. Luck = actual wins vs expectation (positive = winning more than underlying performance). SOS = average opponent power rating (positive = harder draw). Volatility = standard deviation of margins. 2H swing = second-half differential minus first-half differential per game (games with half-time data).</p></div>';
+const PA=pAgg();
+function board(title,arr,fmt,color){
+  const mx=arr.length?arr[0].v:1;
+  return '<div class="card"><h3 class="s">'+title+'</h3>'+arr.map((x,i)=>'<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px"><span style="width:13px;font-size:9px;color:'+MU+'">'+(i+1)+'</span><span style="flex:0 0 128px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+x.n+'</span><div style="flex:1;height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden"><div style="width:'+Math.max(4,Math.round(x.v/mx*100))+'%;height:100%;background:'+(i===0?(color||ACC):'#3B82F6')+'"></div></div><span style="width:62px;font-size:10px;font-weight:900;color:#fff;text-align:right">'+fmt(x.v)+'</span></div>').join('')+'</div>';
 }
+const top5=(key,filt)=>PA.filter(filt||(()=>true)).map(a=>({n:a.n,v:typeof key==='function'?key(a):a[key]})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v).slice(0,5);
+function chips(list){return '<div class="chip-row">'+list.map(c=>'<div class="chip"><b style="color:'+(c[2]||ACC)+'">'+c[0]+'</b><span>'+c[1].toUpperCase()+'</span></div>').join('')+'</div>';}
+function tbl(heads,rows,note){return '<div class="card" style="overflow-x:auto"><table class="t"><thead><tr>'+heads.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table>'+(note?'<p class="note">'+note+'</p>':'')+'</div>';}
+const GAMECOL=r=>'<td class="gm">'+gm(r)+' <span style="color:'+resC(res(r))+'">'+res(r)+'</span></td>';
 
-// ═══════ TRY ZONE — SCORING PROFILE (verified timing + channel proxies) ═══════
-function tzCompute(games){
-  const t={};
-  const ens=n=>{ if(!t[n]) t[n]={team:n,g:0,f:0,a:0,h1f:0,h2f:0,h1a:0,h2a:0,htg:0,burst:0,shutH:0}; return t[n]; };
-  games.forEach(g=>{
-    [[g.home,g.hs,g.as,g.hh,g.ha],[g.away,g.as,g.hs,g.ha,g.hh]].forEach(x=>{
-      const [n,f,a,hf,ha]=x; const T=ens(n);
-      T.g++; T.f+=f; T.a+=a;
-      if(hf!=null){ T.htg++; T.h1f+=hf; T.h2f+=f-hf; T.h1a+=ha; T.h2a+=a-ha;
-        if(hf>=20||f-hf>=20)T.burst++;
-        if(hf===0||f-hf===0)T.shutH++; }
-    });
-  });
-  return Object.values(t).map(T=>({...T,
-    est:T.f/4.7,  // rough tries estimate: comp scoring ≈ 4.7 pts per try incl. conversions
-    h1pct:(T.h1f+T.h2f)?T.h1f/(T.h1f+T.h2f)*100:50,
-    a1pct:(T.h1a+T.h2a)?T.h1a/(T.h1a+T.h2a)*100:50,
-  })).sort((a,b)=>b.f-a.f);
-}
-function tzHTML(games, cfg){
-  const {cardBg,border,muted,acc,acc2,short,scorers,method,hl}=cfg;
-  const S=n=>short?short(n):n;
-  const arr=tzCompute(games);
-  const grid=arr.map(T=>{
-    const isHl=hl&&T.team===hl;
-    return '<div style="background:'+cardBg+';border:1px solid '+(isHl?acc:border)+';border-radius:12px;padding:14px 16px">'+
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#fff">'+S(T.team)+'</strong><span style="font-size:9px;color:'+muted+'">'+T.g+' games</span></div>'+
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:center">'+
-      '<div style="background:rgba(74,222,128,.08);border-radius:8px;padding:8px"><div style="font-size:15px;font-weight:900;color:#4ADE80">~'+T.est.toFixed(0)+'</div><div style="font-size:8px;color:'+muted+'">EST. TRIES</div></div>'+
-      '<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:8px"><div style="font-size:15px;font-weight:900;color:#fff">'+(T.f/T.g).toFixed(1)+'</div><div style="font-size:8px;color:'+muted+'">PTS / GAME</div></div>'+
-    '</div>'+
-    '<div style="margin-top:8px"><div style="font-size:8px;color:'+muted+';margin-bottom:3px">WHEN THEY STRIKE (pts share by half)</div>'+
-      '<div style="display:flex;height:12px;border-radius:6px;overflow:hidden">'+
-      '<div title="1st half '+T.h1pct.toFixed(0)+'%" style="width:'+T.h1pct+'%;background:'+acc+';display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#0A0A1E">'+T.h1pct.toFixed(0)+'%</div>'+
-      '<div title="2nd half" style="flex:1;background:'+acc2+';display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#0A0A1E">'+(100-T.h1pct).toFixed(0)+'%</div></div></div>'+
-    '<div style="margin-top:6px"><div style="font-size:8px;color:'+muted+';margin-bottom:3px">WHEN THEY CONCEDE</div>'+
-      '<div style="display:flex;height:12px;border-radius:6px;overflow:hidden;opacity:.75">'+
-      '<div style="width:'+T.a1pct+'%;background:#F87171;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#0A0A1E">'+T.a1pct.toFixed(0)+'%</div>'+
-      '<div style="flex:1;background:#7F1D1D;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#fff">'+(100-T.a1pct).toFixed(0)+'%</div></div></div>'+
-    '<div style="display:flex;gap:6px;margin-top:8px;font-size:8.5px;color:'+muted+'"><span>⚡ '+T.burst+' × 20+ pt halves</span><span>🧱 '+T.shutH+' × scoreless halves (them or opp)</span></div>'+
+// ================= TEAM STATS =================
+(function(){
+  const led=R.filter(r=>r.score.htTweed>r.score.htOpp).length, lvl=R.filter(r=>r.score.htTweed===r.score.htOpp).length;
+  const h2w=R.filter(r=>(r.score.tweed-r.score.htTweed)>(r.score.opp-r.score.htOpp)).length;
+  const strip=R.map(r=>'<span title="'+gm(r)+' '+r.score.tweed+'-'+r.score.opp+'" style="display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;border-radius:7px;background:'+resC(res(r))+';color:#fff;font-weight:900;font-size:11px">'+res(r)+'</span>').join(' ');
+  const rows=R.map(r=>{const t=T(r),o=O(r);return '<tr>'+GAMECOL(r)+
+    '<td class="gm">'+r.score.tweed+'–'+r.score.opp+'</td><td>'+r.score.htTweed+'–'+r.score.htOpp+'</td>'+
+    cell('poss',t&&t.poss,o&&o.poss,'hi')+cell('tip',t&&t.tip,o&&o.tip,'hi')+cell('comp',t&&t.comp,o&&o.comp,'hi')+
+    cell('runM',t&&t.runM,o&&o.runM,'hi')+cell('avgSet',t&&t.avgSet,o&&o.avgSet,'hi')+cell('ptb',t&&t.ptb,o&&o.ptb,'lo')+
+    cell('passes',t&&t.passes,o&&o.passes,'hi')+cell('tck',t&&t.tck,o&&o.tck,'hi')+'</tr>';}).join('');
+  const KEYS=[['poss','Possession %','hi'],['tip','Time in possession (min)','hi'],['comp','Completion %','hi'],['runM','Run metres','hi'],['pcm','Post-contact metres','hi'],['avgSet','Avg set distance (m)','hi'],['lb','Line breaks','hi'],['tb','Tackle breaks','hi'],['off','Offloads','hi'],['passes','Passes','hi'],['ptb','Play-the-ball speed','lo'],['kicks','Kicks','hi'],['kickM','Kick metres','hi'],['krm','Kick return metres','hi'],['defusal','Kick defusal %','hi'],['fdo','Forced drop-outs','hi'],['tck','Tackles made','hi'],['miss','Missed tackles','lo'],['effTck','Effective tackle %','hi'],['err','Errors','lo'],['pens','Penalties conceded','lo'],['ruck','Ruck infringements','lo'],['sin','Sin bins','lo']];
+  const avgRows=KEYS.map(x=>{const us=avg('tweed',x[0]),th=avg('opp',x[0]);if(us==null&&th==null)return '';
+    const good=us!=null&&th!=null&&(x[2]==='hi'?us>th:us<th);
+    return '<tr><td style="color:#C0CCE0;font-weight:700">'+x[1]+'</td><td><span class="'+(good?'up':(us!=null&&th!=null&&us!==th?'dn':'ev'))+'">'+fk(x[0],us)+'</span></td><td style="color:'+MU+'">'+fk(x[0],th)+'</td><td class="'+(good?'up':'dn')+'">'+(us==null||th==null?'—':(good?'▲':'▼'))+'</td></tr>';}).join('');
+  document.getElementById('page-team').innerHTML=
+    '<div class="hd"><h2>📊 TEAM STATS — THE SEASON AT A GLANCE</h2><p>Every game, every core team number, us against them. Green = we won that stat, red = they did. Small grey number = the opponent.</p></div>'+
+    chips([['4-2-9','Record'],[ (358/R.length).toFixed(1),'Points for /gm',GRN],[(392/R.length).toFixed(1),'Points agst /gm',REDT],[led+'/'+lvl+'/'+(R.length-led-lvl),'HT led/level/trailed'],[h2w+' of '+R.length,'2nd halves won'],[fk('poss',avg('tweed','poss')),'Avg possession'],[fk('comp',avg('tweed','comp')),'Avg completion']])+
+    '<div class="card"><h3 class="s">RESULTS (hover any game)</h3><div style="display:flex;gap:4px;flex-wrap:wrap">'+strip+'</div></div>'+
+    tbl(['GAME','SCORE','HT','POSS','TIME IN POSS','COMP','RUN M','SET DIST','PTB','PASSES','TACKLES'],rows,'PTB = average play-the-ball speed (lower is faster).')+
+    '<div class="card" style="overflow-x:auto"><h3 class="s">SEASON AVERAGES — TWEED v OPPONENTS (per game)</h3><table class="t"><thead><tr><th>METRIC</th><th>TWEED</th><th>OPPONENTS V US</th><th></th></tr></thead><tbody>'+avgRows+'</tbody></table><p class="note">Benchmark = what the teams we have played produced in those same games. ▲ ahead · ▼ behind.</p></div>';
+})();
+
+// ================= ATTACK =================
+(function(){
+  const rows=R.map(r=>{const t=T(r),o=O(r);return '<tr>'+GAMECOL(r)+
+    '<td class="gm">'+r.score.tweed+'</td>'+
+    cell('runM',t&&t.runM,o&&o.runM,'hi')+cell('pcm',t&&t.pcm,o&&o.pcm,'hi')+cell('lb',t&&t.lb,o&&o.lb,'hi')+
+    cell('tb',t&&t.tb,o&&o.tb,'hi')+cell('off',t&&t.off,o&&o.off,'hi')+cell('avgSet',t&&t.avgSet,o&&o.avgSet,'hi')+cell('krm',t&&t.krm,o&&o.krm,'hi')+'</tr>';}).join('');
+  document.getElementById('page-attack').innerHTML=
+    '<div class="hd"><h2>⚔️ ATTACK — METRES, BREAKS &amp; POINTS</h2><p>What we generate with the ball, round by round, against what the opposition generated. Leaders below are season totals from official stat lines.</p></div>'+
+    chips([[ (358/R.length).toFixed(1),'Points /gm'],[fk('runM',avg('tweed','runM')),'Run m /gm'],[fk('pcm',avg('tweed','pcm')),'Post-contact /gm'],[fk('lb',avg('tweed','lb')),'Line breaks /gm'],[fk('tb',avg('tweed','tb')),'Tackle breaks /gm'],[fk('off',avg('tweed','off')),'Offloads /gm']])+
+    tbl(['GAME','PTS','RUN METRES','POST-CONTACT','LINE BRKS','TACKLE BRKS','OFFLOADS','SET DIST','KICK RETURN M'],rows)+
+    '<div class="lb-grid">'+
+      board('🏃 RUN METRES',top5('rm'),v=>v.toLocaleString()+'m')+
+      board('💪 POST-CONTACT METRES',top5('pcm'),v=>Math.round(v)+'m')+
+      board('🏉 TRIES',top5('t'),v=>v,CGRN)+
+      board('🎯 POINTS',top5('pts'),v=>v)+
+      board('🚀 LINE BREAKS',top5('lb'),v=>v)+
+      board('💥 TACKLE BREAKS',top5('tb'),v=>v)+
+      board('🤲 OFFLOADS',top5('off'),v=>v)+
+      board('🅰️ TRY ASSISTS',top5('ta'),v=>v)+
     '</div>';
-  }).join('');
-  const scorersHtml=scorers&&scorers.length?
-    '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;margin-bottom:16px">'+
-    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">🏅 LEADING SCORERS — VERIFIED</h3>'+
-    scorers.map(s=>'<div style="display:flex;justify-content:space-between;padding:8px 12px;background:rgba(255,255,255,.03);border:1px solid '+border+';border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap;gap:6px"><span><strong style="color:#fff">'+s.player+'</strong> <span style="color:'+muted+'">('+s.team+' · '+s.pos+')</span></span><span style="font-weight:800;color:'+acc2+'">'+s.stat+'</span></div>').join('')+'</div>':'';
-  return '<div style="background:linear-gradient(135deg,#0A1528,#101024);border:1px solid '+acc+';border-radius:14px;padding:20px 24px;margin-bottom:16px">'+
-    '<h2 style="color:white;font-size:15px;font-weight:900;margin-bottom:4px">🗺️ TRY ZONE — SCORING PROFILE</h2>'+
-    '<p style="color:'+muted+';font-size:11px;line-height:1.6">'+method+'</p></div>'+
-    scorersHtml+
-    '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px">'+grid+'</div>';
-}
+})();
 
-// ═══════ TEAM PROFILES ═══════
-function profilesHTML(games, cfg){
-  const {cardBg,border,muted,acc,tcol,short,ladder,notes}=cfg;
-  const S=n=>short?short(n):n;
-  const stats={};
-  const ens=n=>{ if(!stats[n]) stats[n]={team:n,g:0,w:0,d:0,l:0,f:0,a:0,res:[],bestW:null,worstL:null,h1d:0,h2d:0,htg:0}; return stats[n]; };
-  games.forEach(g=>{
-    [[g.home,g.hs,g.as,g.hh,g.ha,g.away,'v'],[g.away,g.as,g.hs,g.ha,g.hh,g.home,'@']].forEach(x=>{
-      const [n,f,a,hf,ha,opp,ha_]=x; const T=ens(n);
-      T.g++; T.f+=f; T.a+=a;
-      const r=f>a?'W':f<a?'L':'D';
-      T[r==='W'?'w':r==='L'?'l':'d']++;
-      T.res.push({r:g.r,res:r,opp,f,a,ha:ha_});
-      const m=f-a;
-      if(m>0&&(!T.bestW||m>T.bestW.m))T.bestW={m,opp,f,a,r:g.r};
-      if(m<0&&(!T.worstL||m<T.worstL.m))T.worstL={m,opp,f,a,r:g.r};
-      if(hf!=null){T.htg++;T.h1d+=hf-ha;T.h2d+=(f-hf)-(a-ha);}
-    });
+// ================= DEFENCE =================
+(function(){
+  const rows=R.map(r=>{const t=T(r),o=O(r);return '<tr>'+GAMECOL(r)+
+    '<td class="gm" style="color:'+(r.score.opp>=30?REDT:'#fff')+'">'+r.score.opp+'</td>'+
+    cell('tck',t&&t.tck,o&&o.tck,'hi')+cell('miss',t&&t.miss,o&&o.miss,'lo')+cell('effTck',t&&t.effTck,o&&o.effTck,'hi')+
+    '<td><span class="'+(o&&o.lb>=5?'dn':'ev')+'">'+(o?o.lb:'—')+'</span></td>'+
+    '<td>'+(o?o.tb:'—')+'</td><td>'+(o?fk('runM',o.runM):'—')+'</td><td>'+(o?fk('pcm',o.pcm):'—')+'</td></tr>';}).join('');
+  document.getElementById('page-defence').innerHTML=
+    '<div class="hd"><h2>🛡️ DEFENCE — WORKLOAD &amp; WHAT WE CONCEDE</h2><p>Our tackle numbers and what opponents made against us each game. Red flags: 5+ line breaks conceded, high missed counts.</p></div>'+
+    chips([[(392/R.length).toFixed(1),'Pts conceded /gm',REDT],[fk('tck',avg('tweed','tck')),'Tackles /gm'],[fk('miss',avg('tweed','miss')),'Missed /gm',REDT],[fk('effTck',avg('tweed','effTck')),'Tackle efficiency'],[fk('lb',avg('opp','lb')),'Line brks conceded /gm',REDT],[fk('runM',avg('opp','runM')),'Opp run m /gm']])+
+    tbl(['GAME','PTS AGST','TACKLES','MISSED','EFF %','LB CONCEDED','BUSTS CONCEDED','OPP RUN M','OPP POST-CONTACT'],rows)+
+    '<div class="lb-grid">'+
+      board('🛡️ TACKLES',top5('tck'),v=>v,ACC2)+
+      board('⚙️ TACKLES PER GAME (min 5 gp)',top5(a=>a.tck/a.gp,a=>a.gp>=5),v=>v.toFixed(1),ACC2)+
+      board('🎯 BEST EFFICIENCY (min 80 tackles)',top5(a=>a.eff,a=>(a.tck+a.mt)>=80),v=>v.toFixed(1)+'%',CGRN)+
+      board('❌ MOST MISSED',top5('mt'),v=>v,CRED)+
+    '</div>';
+})();
+
+// ================= KICKING =================
+(function(){
+  const hasK=R.some(r=>T(r)&&T(r).kickM!=null);
+  let kb=0,kbTot=0;
+  const rows=R.map(r=>{const t=T(r),o=O(r);if(t&&o&&t.kickM!=null&&o.kickM!=null){kbTot++;if(t.kickM>o.kickM)kb++;}
+    return '<tr>'+GAMECOL(r)+
+    cell('kicks',t&&t.kicks,o&&o.kicks,'hi')+cell('kickM',t&&t.kickM,o&&o.kickM,'hi')+
+    cell('defusal',t&&t.defusal,o&&o.defusal,'hi')+cell('krm',t&&t.krm,o&&o.krm,'hi')+cell('fdo',t&&t.fdo,o&&o.fdo,'hi')+'</tr>';}).join('');
+  document.getElementById('page-kicking').innerHTML=
+    '<div class="hd"><h2>👢 KICKING — TERRITORY &amp; THE AIR BATTLE</h2><p>Kick volume, metres, defusal and forced drop-outs, us against them every game.'+(hasK?'':' Note: the QRL feed does not publish some kicking metrics for this competition — dashes mean not recorded, never zero.')+'</p></div>'+
+    chips([[kb+' of '+kbTot,'Kick-metre battles won',kb>=kbTot/2?GRN:REDT],[fk('kicks',avg('tweed','kicks')),'Kicks /gm'],[fk('kickM',avg('tweed','kickM')),'Kick m /gm'],[fk('kickM',avg('opp','kickM')),'Their kick m /gm',REDT],[fk('defusal',avg('tweed','defusal')),'Defusal'],[fk('krm',avg('tweed','krm')),'Return m /gm']])+
+    tbl(['GAME','KICKS','KICK METRES','DEFUSAL %','RETURN METRES','DROP-OUTS FORCED'],rows,'Defusal % = opposition kicks we cleaned up.')+
+    '<div class="lb-grid">'+
+      board('👢 MOST KICKS',top5('kicks'),v=>v)+
+      board('📏 KICK METRES',top5('km'),v=>Math.round(v).toLocaleString()+'m')+
+    '</div>';
+})();
+
+// ================= NEGATIVE PLAY =================
+(function(){
+  const tot=k=>R.reduce((a,r)=>a+((T(r)&&T(r)[k])||0),0), otot=k=>R.reduce((a,r)=>a+((O(r)&&O(r)[k])||0),0);
+  const rows=R.map(r=>{const t=T(r),o=O(r);return '<tr>'+GAMECOL(r)+
+    cell('err',t&&t.err,o&&o.err,'lo')+cell('comp',t&&t.comp,o&&o.comp,'hi')+cell('pens',t&&t.pens,o&&o.pens,'lo')+
+    cell('ruck',t&&t.ruck,o&&o.ruck,'lo')+cell('sin',t&&t.sin,o&&o.sin,'lo')+cell('miss',t&&t.miss,o&&o.miss,'lo')+'</tr>';}).join('');
+  document.getElementById('page-negative').innerHTML=
+    '<div class="hd"><h2>⚠️ NEGATIVE PLAY — WHAT WE GIVE AWAY</h2><p>Errors, penalties, ruck infringements, sin bins and missed tackles — the self-inflicted stuff. Green = we won that count that game.</p></div>'+
+    chips([[tot('err')+' v '+otot('err'),'Errors (us v them)',tot('err')<=otot('err')?GRN:REDT],[tot('pens')+' v '+otot('pens'),'Penalties',tot('pens')<=otot('pens')?GRN:REDT],[tot('ruck')+' v '+otot('ruck'),'Ruck infringements',tot('ruck')<=otot('ruck')?GRN:REDT],[tot('sin')+' v '+otot('sin'),'Sin bins',tot('sin')<=otot('sin')?GRN:REDT],[fk('miss',avg('tweed','miss')),'Missed tackles /gm',REDT],[fk('comp',avg('tweed','comp')),'Completion']])+
+    tbl(['GAME','ERRORS','COMPLETION','PENALTIES','RUCK INF.','SIN BINS','MISSED TCK'],rows)+
+    '<div class="lb-grid">'+
+      board('🏉 MOST ERRORS',top5('err'),v=>v,CRED)+
+      board('⚖️ MOST PENALTIES CONCEDED',top5('pen'),v=>v,CRED)+
+      board('❌ MOST MISSED TACKLES',top5('mt'),v=>v,CRED)+
+    '</div><p class="note">Named leaders are not "worst players" — high-minute, high-involvement players naturally accumulate more. Read alongside their workload on the Attack/Defence tabs.</p>';
+})();
+
+
+// ================= PLAYER STATS =================
+const PS={mode:0,col:0,dir:1};
+const PSCOLS=[
+ ['n','PLAYER',0,'hi'],['pos','POS',0,'hi'],['gp','GP',1,'hi'],['min','MIN',1,'hi'],
+ ['t','T',1,'hi'],['g','G',1,'hi'],['pts','PTS',1,'hi'],
+ ['runs','RUNS',1,'hi'],['rm','RUN M',1,'hi'],['pcm','POST-CON M',1,'hi'],['hu','HIT-UPS',1,'hi'],['dhr','DH RUNS',1,'hi'],
+ ['lb','LB',1,'hi'],['tb','TB',1,'hi'],['ta','TRY AST',1,'hi'],['lba','LB AST',1,'hi'],['off','OFF',1,'hi'],
+ ['pass','PASSES',1,'hi'],['rec','RECEIPTS',1,'hi'],['kicks','KICKS',1,'hi'],['km','KICK M',1,'hi'],
+ ['tck','TCK',1,'hi'],['mt','MISS',1,'neg'],['eff','EFF%',2,'hi'],['steal','STEALS',1,'hi'],
+ ['pen','PENS',1,'neg'],['err','ERR',1,'neg'],['ptb','PTB',2,'lo']];
+function psMode(m){PS.mode=m;psRender();}
+function psSort(i){if(PS.col===i)PS.dir*=-1;else{PS.col=i;PS.dir=(i<2?1:-1);}psRender();}
+function psVal(a,c,avg){
+  const k=c[0];
+  if(k==='n')return a.n; if(k==='pos')return a.pos;
+  if(k==='gp')return a.gp;
+  if(k==='eff')return a.eff; if(k==='ptb')return a.ptb;
+  const v=a[k];
+  return avg?v/a.gp:v;
+}
+function psFmt(v,c,avg){
+  if(v==null)return '—';
+  const k=c[0];
+  if(k==='n'||k==='pos')return v;
+  if(k==='eff')return v.toFixed(1)+'%';
+  if(k==='ptb')return v.toFixed(2)+'s';
+  if(avg&&c[2]===1)return (Math.round(v*10)/10).toLocaleString();
+  if(k==='rm'||k==='km')return Math.round(v).toLocaleString();
+  return Math.round(v*10)/10;
+}
+function initials(n){return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();}
+function psBoard(title,icon,color,arr,fmt,sub){
+  if(!arr.length)return '';
+  const mx=Math.abs(arr[0].v)||1;
+  const one=arr[0];
+  const medal=['🥇','🥈','🥉'];
+  const rows=arr.slice(1).map((x,i)=>'<div style="display:flex;align-items:center;gap:8px;margin-top:7px">'+
+    '<span style="width:20px;text-align:center;font-size:'+(i<2?'12px':'9px')+';color:'+MU+'">'+(i<2?medal[i+1]:(i+2))+'</span>'+
+    '<span style="flex:0 0 118px;font-size:10.5px;font-weight:700;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+x.n+'</span>'+
+    '<div style="flex:1;height:9px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden"><div style="width:'+Math.max(5,Math.round(Math.abs(x.v)/mx*100))+'%;height:100%;background:'+color+';opacity:.55;border-radius:5px"></div></div>'+
+    '<span style="width:62px;font-size:11px;font-weight:900;color:#fff;text-align:right">'+fmt(x.v)+'</span></div>').join('');
+  return '<div style="background:linear-gradient(150deg,'+color+'22,var(--card) 55%);border:1px solid '+color+'55;border-left:5px solid '+color+';border-radius:14px;padding:15px 16px">'+
+    '<div style="font-size:10px;font-weight:900;letter-spacing:.8px;color:'+color+';margin-bottom:10px">'+icon+' '+title+'</div>'+
+    '<div style="display:flex;align-items:center;gap:11px">'+
+      '<div style="width:44px;height:44px;border-radius:12px;background:'+color+';color:#0b0b14;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px '+color+'66">'+initials(one.n)+'</div>'+
+      '<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:900;color:#fff;line-height:1.15">🥇 '+one.n+'</div>'+
+      '<div style="font-size:9px;color:'+MU+'">'+(sub?sub(one):'')+'</div></div>'+
+      '<div style="font-size:19px;font-weight:900;color:'+color+';text-shadow:0 0 12px '+color+'55;flex-shrink:0">'+fmt(one.v)+'</div></div>'+
+    '<div style="height:9px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden;margin-top:8px"><div style="width:100%;height:100%;background:linear-gradient(90deg,'+color+'88,'+color+');border-radius:5px"></div></div>'+
+    rows+'</div>';
+}
+function psRender(){
+  const el=document.getElementById('ps-tbl');if(!el)return;
+  const avgMode=PS.mode===1;
+  const list=PA.slice().sort((x,y)=>{
+    const c=PSCOLS[PS.col];
+    const a=psVal(x,c,avgMode),b=psVal(y,c,avgMode);
+    if(c[0]==='n'||c[0]==='pos')return PS.dir*String(a).localeCompare(String(b));
+    return PS.dir*(((a==null)?-1e9:a)-((b==null)?-1e9:b));
   });
-  const lpos={}; if(ladder)ladder.forEach((t,i)=>lpos[t.team||t]=i+1);
-  const arr=Object.values(stats).sort((a,b)=>(lpos[a.team]||99)-(lpos[b.team]||99));
-  return '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px">'+arr.map(T=>{
-    const form=T.res.sort((a,b)=>a.r-b.r).slice(-5);
-    const note=notes&&notes[T.team]?'<p style="font-size:10px;color:#C0CCE0;line-height:1.6;margin-top:8px">'+notes[T.team]+'</p>':'';
-    return '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:16px">'+
-    '<div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">'+
-      '<span style="width:14px;height:14px;border-radius:4px;background:'+((tcol&&tcol[T.team])||'#666')+'"></span>'+
-      '<strong style="font-size:13px;color:#fff">'+S(T.team)+'</strong>'+
-      (lpos[T.team]?'<span style="margin-left:auto;font-size:9px;font-weight:800;color:'+muted+'">#'+lpos[T.team]+' ON LADDER</span>':'')+'</div>'+
-    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;margin-bottom:9px">'+
-      [['REC',T.w+'-'+T.d+'-'+T.l],['PF/G',(T.f/T.g).toFixed(1)],['PA/G',(T.a/T.g).toFixed(1)],['DIFF',(T.f-T.a>0?'+':'')+(T.f-T.a)]]
-      .map(x=>'<div style="background:rgba(255,255,255,.04);border-radius:7px;padding:7px 4px"><div style="font-size:11.5px;font-weight:900;color:#fff">'+x[1]+'</div><div style="font-size:7.5px;color:'+muted+'">'+x[0]+'</div></div>').join('')+'</div>'+
-    '<div style="display:flex;gap:3px;margin-bottom:8px">'+form.map(x=>'<span title="R'+x.r+' '+x.ha+' '+S(x.opp)+' '+x.f+'–'+x.a+'" style="width:20px;height:20px;border-radius:5px;font-size:9px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;background:'+(x.res==='W'?'rgba(74,222,128,.18)':x.res==='D'?'rgba(250,204,21,.15)':'rgba(248,113,113,.14)')+';color:'+(x.res==='W'?'#4ADE80':x.res==='D'?'#FACC15':'#F87171')+'">'+x.res+'</span>').join('')+'</div>'+
-    '<div style="font-size:9.5px;color:'+muted+';line-height:1.7">'+
-      (T.bestW?'Best: <strong style="color:#4ADE80">'+T.bestW.f+'–'+T.bestW.a+'</strong> v '+S(T.bestW.opp)+' (R'+T.bestW.r+')<br>':'')+
-      (T.worstL?'Worst: <strong style="color:#F87171">'+T.worstL.f+'–'+T.worstL.a+'</strong> v '+S(T.worstL.opp)+' (R'+T.worstL.r+')<br>':'')+
-      (T.htg?'Halves: '+(T.h1d>=0?'+':'')+T.h1d+' H1 · '+(T.h2d>=0?'+':'')+T.h2d+' H2':'')+'</div>'+note+'</div>';
-  }).join('')+'</div>';
-}
-
-// Tweed game view (normalized to Tweed perspective)
-const TG = GAMES.filter(g=>g.home===TEAM||g.away===TEAM).map(g=>{
-  const home=g.home===TEAM;
-  return {r:g.r, opp:home?g.away:g.home, home, venue:g.venue,
-    f:home?g.hs:g.as, a:home?g.as:g.hs,
-    hf:g.hh==null?null:(home?g.hh:g.ha), ha_:g.hh==null?null:(home?g.ha:g.hh)};
-}).sort((a,b)=>a.r-b.r);
-TG.forEach(t=>{ t.res=t.f>t.a?'W':t.f<t.a?'L':'D'; t.margin=t.f-t.a; });
-const LPOS={}; LADDER.forEach((t,i)=>LPOS[t.team]=i+1);
-const byeRounds=Object.entries(BYES).filter(([r,b])=>b.includes(TEAM)).map(([r])=>+r);
-
-function buildOverview(){
-  const W=TG.filter(t=>t.res==='W').length, Dd=TG.filter(t=>t.res==='D').length, Ls=TG.filter(t=>t.res==='L').length;
-  const pf=TG.reduce((s,t)=>s+t.f,0), pa=TG.reduce((s,t)=>s+t.a,0);
-  const close=TG.filter(t=>t.res==='L'&&t.margin>=-6).length;
-  const tiles=[
-    {l:'RECORD',v:W+'-'+Dd+'-'+Ls,s:'W-D-L · 12th of 15 · 14 comp pts'},
-    {l:'POINTS FOR',v:pf,s:(pf/TG.length).toFixed(1)+' per game'},
-    {l:'POINTS AGAINST',v:pa,s:(pa/TG.length).toFixed(1)+' per game'},
-    {l:'DIFFERENTIAL',v:(pf-pa>0?'+':'')+(pf-pa),s:'across '+TG.length+' games'},
-    {l:'CLOSE LOSSES',v:close,s:'defeats by 6 or less — the season story'},
-  ];
-  const form=TG.slice(-5);
-  document.getElementById('page-overview').innerHTML=
-    '<div class="tiles">'+tiles.map(t=>'<div class="tile"><div class="l">'+t.l+'</div><div class="v">'+t.v+'</div><div class="s">'+t.s+'</div></div>').join('')+'</div>'+
-    '<div class="card"><h3>📈 SEASON SHAPE</h3>'+resultStrip()+'<p class="note">Byes: R'+byeRounds.join(' &amp; R')+'. Hover any block for the score.</p></div>'+
-    '<div class="card"><h3>🔥 FORM — LAST 5</h3>'+form.map(t=>gameRow(t)).join('')+'</div>'+
-    '<div class="card"><h3>📌 WHERE THE SEASON SITS</h3><p style="font-size:12px;line-height:1.8;color:#C0CCE0">'+
-    'Tweed are <strong>12th</strong> with 14 competition points (4 wins, 2 draws, 9 losses + two byes). The gap to the top eight is real but not absurd — 8th-placed Capras sit on 21. '+
-    'The killer stat: <strong>five of the nine losses have been by single-digit margins</strong>, and Tweed have led at half-time in two of those. '+
-    'The R15 win over Burleigh at UAA Park (26–12 after trailing 0–12 at the break) proved the ceiling; the back-to-back home losses to Brisbane Tigers (22–26) and Townsville (22–34) closed the door on a realistic finals run. '+
-    'Six rounds remain to build for 2027 — see Opposition Defence for the R18 Capras plan, and Trends for where the season has moved.</p></div>';
-}
-function resultStrip(){
-  let h='<div style="display:flex;gap:4px;flex-wrap:wrap">';
-  for(let r=1;r<=17;r++){
-    const g=TG.find(t=>t.r===r);
-    if(!g){ h+='<div title="R'+r+' — BYE" style="width:34px;height:34px;border-radius:7px;background:rgba(255,255,255,.04);border:1px dashed var(--bord);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--muted)">BYE</div>'; continue; }
-    const col=g.res==='W'?'rgba(74,222,128,.2)':g.res==='D'?'rgba(250,204,21,.18)':'rgba(248,113,113,.14)';
-    const ink=g.res==='W'?'var(--green)':g.res==='D'?'var(--gold)':'var(--red)';
-    h+='<div title="R'+r+' '+(g.home?'v':'@')+' '+FULL[g.opp]+' — '+g.f+'–'+g.a+'" style="width:34px;height:34px;border-radius:7px;background:'+col+';display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:default">'+
-       '<span style="font-size:9px;font-weight:900;color:'+ink+'">'+g.res+'</span><span style="font-size:7px;color:var(--muted)">R'+r+'</span></div>';
-  }
-  return h+'</div>';
-}
-function gameRow(t){
-  const ink=t.res==='W'?'var(--green)':t.res==='D'?'var(--gold)':'var(--red)';
-  const htTxt=t.hf==null?'':' · HT '+t.hf+'–'+t.ha_;
-  return '<div class="mc"><div><span class="wl '+t.res+'">'+t.res+'</span> <strong style="margin-left:6px">'+(t.home?'v':'@')+' '+FULL[t.opp]+'</strong>'+
-    '<div class="note">R'+t.r+htTxt+' · '+t.venue+' · opponent sits '+LPOS[t.opp]+ordinal(LPOS[t.opp])+'</div></div>'+
-    '<div style="text-align:right"><span style="font-size:16px;font-weight:900;color:'+ink+'">'+t.f+'–'+t.a+'</span><div class="note">'+(t.margin>0?'+':'')+t.margin+'</div></div></div>';
-}
-function ordinal(n){return n===1?'st':n===2?'nd':n===3?'rd':'th';}
-function buildGames(){
-  document.getElementById('page-games').innerHTML='<div class="card"><h3>🎮 ALL GAMES — ROUNDS 1–17</h3>'+TG.map(t=>gameRow(t)).join('')+
-  '<p class="note">HT = half-time score (Tweed first). Byes in rounds '+byeRounds.join(' and ')+'.</p></div>';
-}
-function buildHalves(){
-  // Tweed-only halves ledger + per-game chart + comp context
-  const wh=TG.filter(t=>t.hf!=null);
-  const h1f=wh.reduce((s,t)=>s+t.hf,0), h1a=wh.reduce((s,t)=>s+t.ha_,0);
-  const h2f=wh.reduce((s,t)=>s+(t.f-t.hf),0), h2a=wh.reduce((s,t)=>s+(t.a-t.ha_),0);
-  const ledHT=wh.filter(t=>t.hf>t.ha_), trailHT=wh.filter(t=>t.hf<t.ha_);
-  const blown=wh.filter(t=>t.hf>t.ha_&&t.res==='L');
-  const cb=wh.filter(t=>t.hf<t.ha_&&t.res==='W');
-  const tiles=[
-    {l:'1ST-HALF DIFFERENTIAL',v:(h1f-h1a>0?'+':'')+(h1f-h1a),s:h1f+' for · '+h1a+' against'},
-    {l:'2ND-HALF DIFFERENTIAL',v:(h2f-h2a>0?'+':'')+(h2f-h2a),s:h2f+' for · '+h2a+' against'},
-    {l:'LED AT HALF-TIME',v:ledHT.length+'/'+wh.length,s:'converted '+ledHT.filter(t=>t.res==='W').length+' into wins'},
-    {l:'LEADS BLOWN',v:blown.length,s:'led at HT, lost the game'},
-    {l:'COMEBACK WINS',v:cb.length,s:cb.map(t=>'R'+t.r+' v '+t.opp).join(', ')||'—'},
-  ];
-  // per-game halves chart (SVG): two rows per game, H1 margin & H2 margin
-  const W=760,rowH=26,padL=100,padR=40,H=wh.length*rowH+50;
-  const maxAbs=Math.max(...wh.map(t=>Math.max(Math.abs(t.hf-t.ha_),Math.abs((t.f-t.hf)-(t.a-t.ha_)))),1);
-  const cx=padL+(W-padL-padR)/2, sc=v=>((W-padL-padR)/2)*(v/maxAbs);
-  let svg='<line x1="'+cx+'" y1="14" x2="'+cx+'" y2="'+(H-26)+'" stroke="rgba(255,255,255,.18)" stroke-width="1"/>';
-  svg+='<text x="'+(cx-6)+'" y="'+(H-8)+'" fill="#8892A8" font-size="9" text-anchor="end">behind ←</text>';
-  svg+='<text x="'+(cx+6)+'" y="'+(H-8)+'" fill="#8892A8" font-size="9">→ in front</text>';
-  wh.forEach((t,i)=>{
-    const y=20+i*rowH;
-    const m1=t.hf-t.ha_, m2=(t.f-t.hf)-(t.a-t.ha_);
-    svg+='<text x="'+(padL-8)+'" y="'+(y+10)+'" fill="#C0CCE0" font-size="9.5" font-weight="700" text-anchor="end">R'+t.r+' '+(t.home?'v':'@')+' '+t.opp+'</text>';
-    [[m1,'#F97316',0,'1st half'],[m2,'#60A5FA',9,'2nd half']].forEach(x=>{
-      const [m,c,dy,lab]=x;
-      const w=Math.abs(sc(m));
-      svg+='<rect x="'+(m>=0?cx:cx-w)+'" y="'+(y+dy)+'" width="'+Math.max(w,1.5)+'" height="7" rx="3" fill="'+c+'"><title>R'+t.r+' '+lab+' margin: '+(m>0?'+':'')+m+'</title></rect>';
-    });
+  // column leaders for highlight
+  const best={};
+  PSCOLS.slice(2).forEach(c=>{
+    let bv=null;
+    PA.forEach(a=>{const v=psVal(a,c,avgMode);if(v==null)return;
+      if(bv==null||(c[3]==='lo'?v<bv:v>bv))bv=v;});
+    best[c[0]]=bv;
   });
-  const chart='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" role="img" aria-label="Tweed half-by-half margins per game">'+svg+'</svg>';
-  const legend='<div style="display:flex;gap:16px;font-size:10px;color:#8892A8;margin-bottom:6px"><span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#F97316;margin-right:5px"></span>1st-half margin</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#60A5FA;margin-right:5px"></span>2nd-half margin</span></div>';
-  // comp-wide halves for context
-  const res=halvesCompute(GAMES);
-  const mine=res.teams.find(t=>t.team===TEAM);
-  document.getElementById('page-halves').innerHTML=
-    '<div class="tiles">'+tiles.map(t=>'<div class="tile"><div class="l">'+t.l+'</div><div class="v" style="font-size:'+(String(t.v).length>6?'17px':'24px')+'">'+t.v+'</div><div class="s">'+t.s+'</div></div>').join('')+'</div>'+
-    '<div class="card"><h3>⏱️ HALF-BY-HALF MARGIN, EVERY GAME</h3>'+legend+chart+'<p class="note">Bars right of the centre line = Tweed won that half; left = lost it. All 15 games have verified half-time scores (Rugby League Project).</p></div>'+
-    '<div class="card"><h3>🏉 COMPETITION CONTEXT</h3><p style="font-size:12px;line-height:1.8;color:#C0CCE0">'+
-    'Across the Hostplus Cup, Tweed\'s <strong>1st-half differential is '+(mine.h1f-mine.h1a>0?'+':'')+(mine.h1f-mine.h1a)+'</strong> and their <strong>2nd-half differential is '+(mine.h2f-mine.h2a>0?'+':'')+(mine.h2f-mine.h2a)+'</strong>. '+
-    'They have trailed at half-time in '+trailHT.length+' of '+wh.length+' games. The R3 draw v Burleigh (0–28 at HT, 28–28 FT) remains the biggest half-time turnaround by any side in the 2026 competition — proof the second-half footy is elite when the game is still alive.</p></div>';
+  const rows=list.map(a=>'<tr><td style="font-weight:800;color:#fff;text-align:left">'+a.n+'</td><td style="color:'+MU+';font-size:9px;text-align:left">'+String(a.pos||'').toUpperCase()+'</td>'+
+    PSCOLS.slice(2).map(c=>{
+      const v=psVal(a,c,avgMode);
+      const isBest=v!=null&&v===best[c[0]]&&(c[0]==='ptb'||c[0]==='eff'||v>0);
+      const col=isBest?(c[3]==='neg'?'#F87171':'#FACC15'):'';
+      const st=isBest?'font-weight:900;color:'+col+';background:'+(c[3]==='neg'?'rgba(220,38,38,.12)':'rgba(250,204,21,.10)'):'';
+      return '<td style="'+st+'">'+psFmt(v,c,avgMode)+(isBest?(c[3]==='neg'?' ⚠':' ★'):'')+'</td>';
+    }).join('')+'</tr>').join('');
+  el.innerHTML='<table class="t"><thead><tr>'+PSCOLS.map((c,i)=>'<th onclick="psSort('+i+')" style="cursor:pointer">'+c[1]+(PS.col===i?(PS.dir<0?' ▼':' ▲'):'')+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table>';
+  document.getElementById('ps-tot').style.cssText=psBtn(PS.mode===0);
+  document.getElementById('ps-avg').style.cssText=psBtn(PS.mode===1);
 }
-function buildSplits(){
-  const home=TG.filter(t=>t.home), away=TG.filter(t=>!t.home);
-  const rec=g=>g.filter(t=>t.res==='W').length+'-'+g.filter(t=>t.res==='D').length+'-'+g.filter(t=>t.res==='L').length;
-  const avg=(g,k)=>g.length?(g.reduce((s,t)=>s+t[k],0)/g.length).toFixed(1):'—';
-  const top8=TG.filter(t=>LPOS[t.opp]<=8), bot=TG.filter(t=>LPOS[t.opp]>8);
-  const close=TG.filter(t=>Math.abs(t.margin)<=6);
-  const rows=[
-    ['🏠 Home (Piggabeen)',home],['✈️ Away',away],
-    ['🔝 vs current top 8',top8],['⬇️ vs bottom 7',bot],
-    ['🤏 Games decided by ≤6',close],
-  ];
-  document.getElementById('page-splits').innerHTML=
-    '<div class="card"><h3>🏠 SITUATIONAL SPLITS</h3><div style="overflow-x:auto"><table><thead><tr><th>Split</th><th>Games</th><th>W-D-L</th><th>Avg For</th><th>Avg Against</th><th>Win %</th></tr></thead><tbody>'+
-    rows.map(x=>{
-      const g=x[1]; const wp=g.length?Math.round(g.filter(t=>t.res==='W').length/g.length*100):0;
-      return '<tr><td style="font-weight:700">'+x[0]+'</td><td>'+g.length+'</td><td style="font-weight:800">'+rec(g)+'</td><td>'+avg(g,'f')+'</td><td>'+avg(g,'a')+'</td><td style="font-weight:800;color:'+(wp>=50?'var(--green)':'var(--red)')+'">'+wp+'%</td></tr>';
-    }).join('')+'</tbody></table></div>'+
-    '<p class="note">Home games at Preston Building Sports Complex (Piggabeen). "Top 8" = opponent\'s current ladder position after R17.</p></div>'+
-    '<div class="card"><h3>📊 MARGIN PROFILE</h3>'+marginChart()+'</div>';
+function psBtn(on){return 'cursor:pointer;border-radius:9px;padding:7px 16px;font-size:11px;font-weight:800;font-family:inherit;border:1px solid '+(on?ACC:'#1e1e3a')+';background:'+(on?ACC:'rgba(255,255,255,.04)')+';color:'+(on?'#fff':'#8888aa');}
+(function(){
+  const minAtt=R.length>=10?80:40;
+  const pg=(a,k)=>' · '+(Math.round(a[k]/a.gp*10)/10).toLocaleString()+' per game · '+a.gp+' gp';
+  const t5=(key,filt,asc)=>PA.filter(filt||(x=>true)).map(a=>({n:a.n,v:typeof key==='function'?key(a):a[key],a:a})).filter(x=>x.v!=null&&(asc||x.v>0)).sort((x,y)=>asc?x.v-y.v:y.v-x.v).slice(0,5);
+  const boards=[
+    psBoard('RUN METRES','🏃','#F97316',t5('rm'),v=>v.toLocaleString()+'m',x=>pg(x.a,'rm')),
+    psBoard('POST-CONTACT METRES','💪','#F59E0B',t5('pcm'),v=>Math.round(v).toLocaleString()+'m',x=>pg(x.a,'pcm')),
+    psBoard('TRIES','🏉','#22C55E',t5('t'),v=>v,x=>' · '+x.a.gp+' games'),
+    psBoard('POINTS','🎯','#FACC15',t5('pts'),v=>v,x=>' · '+x.a.t+' tries, '+x.a.g+' goals'),
+    psBoard('TACKLES','🛡️','#3B82F6',t5('tck'),v=>v,x=>pg(x.a,'tck')),
+    psBoard('TACKLE EFFICIENCY (min '+minAtt+' att)','⚙️','#14B8A6',t5(a=>a.eff,a=>(a.tck+a.mt)>=minAtt),v=>v.toFixed(1)+'%',x=>' · '+x.a.tck+' made, '+x.a.mt+' missed'),
+    psBoard('LINE BREAKS','🚀','#A855F7',t5('lb'),v=>v,x=>' · '+x.a.gp+' games'),
+    psBoard('TACKLE BREAKS','💥','#EC4899',t5('tb'),v=>v,x=>pg(x.a,'tb')),
+    psBoard('TRY ASSISTS','🅰️','#8B5CF6',t5('ta'),v=>v,x=>' · '+x.a.lba+' line-break assists'),
+    psBoard('OFFLOADS','🤲','#06B6D4',t5('off'),v=>v,x=>pg(x.a,'off')),
+    psBoard('KICK METRES','👢','#EAB308',t5('km'),v=>Math.round(v).toLocaleString()+'m',x=>' · '+x.a.kicks+' kicks'),
+    psBoard('FASTEST PLAY-THE-BALL (min 5 gp)','⚡','#4ADE80',t5(a=>a.ptb,a=>a.ptb!=null&&a.gp>=5,true),v=>v.toFixed(2)+'s',x=>' · lower is faster'),
+    psBoard('MINUTES PLAYED','⏱️','#94A3B8',t5('min'),v=>v.toLocaleString(),x=>pg(x.a,'min')),
+    psBoard('HIT-UPS','🔨','#EF4444',t5('hu'),v=>v,x=>pg(x.a,'hu')),
+    psBoard('DUMMY-HALF RUNS','🐍','#10B981',t5('dhr'),v=>v,x=>pg(x.a,'dhr')),
+    psBoard('ONE-ON-ONE STEALS','🥷','#D946EF',t5('steal'),v=>v,x=>' · '+x.a.gp+' games'),
+  ].filter(Boolean);
+  document.getElementById('page-players').innerHTML=
+    '<div class="hd"><h2>👤 PLAYER STATS — LEADERS &amp; FULL BREAKDOWN</h2><p>Top five in every metric first, then the full table for every player — alphabetical by default, click any column to sort, toggle totals or per-game averages. Gold ★ marks the squad leader in that column; red ⚠ marks the highest count on a negative stat. PTB = average play-the-ball speed, lower is faster.</p></div>'+
+    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:13px;margin-bottom:16px">'+boards.join('')+'</div>'+
+    '<div style="display:flex;gap:8px;margin-bottom:12px;align-items:center"><h3 class="s" style="margin:0;flex:1">FULL SQUAD TABLE — EVERY METRIC</h3><button id="ps-tot" onclick="psMode(0)">SEASON TOTALS</button><button id="ps-avg" onclick="psMode(1)">PER-GAME AVERAGES</button></div>'+
+    '<div class="card" style="overflow-x:auto"><div id="ps-tbl"></div><p class="note">GP = games with a recorded stat line. HU hit-ups · DH RUNS dummy-half runs · TA/LBA try &amp; line-break assists · STEALS one-on-one steals · PENS penalties conceded. In averages mode counting stats divide by games played; Eff% and PTB stay as season rates. Dashes = not recorded by the QRL feed.</p></div>';
+  psRender();
+})();
+
+// ================= CHARTS =================
+let CH_ID=0;
+function chart(title,series,labels,opts){
+  opts=opts||{};CH_ID++;
+  const n=labels.length, ns=series.length;
+  const w=560,h=250,pl=44,pr=16,pt=16,pb=28,iw=w-pl-pr,ih=h-pt-pb;
+  let vals=[];series.forEach(s=>s.vals.forEach(v=>{if(v!=null)vals.push(v);}));
+  if(opts.ref!=null)vals.push(opts.ref);
+  let mx=Math.max.apply(null,vals),mn=0;
+  const pad=mx*0.14||1;mx+=pad;
+  const band=iw/n, outer=band*0.16, usable=band-outer*2, slot=usable/ns, bw=slot*0.82, bgap=slot-bw;
+  const Y=v=>pt+ih*(1-(v-mn)/(mx-mn)), y0=Y(0);
+  let defs='<defs>'+series.map((s,si)=>'<linearGradient id="g'+CH_ID+'_'+si+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+s.color+'"/><stop offset="100%" stop-color="'+s.color+'" stop-opacity=".5"/></linearGradient>').join('')+'</defs>';
+  let g=defs;
+  for(let i=0;i<=3;i++){const yv=mn+(mx-mn)*i/3,y=Y(yv);
+    g+='<line x1="'+pl+'" y1="'+y+'" x2="'+(w-pr)+'" y2="'+y+'" stroke="rgba(255,255,255,.07)" stroke-width="1"/>'+
+       '<text x="'+(pl-7)+'" y="'+(y+3)+'" text-anchor="end" font-size="9" font-weight="700" fill="'+MU+'">'+(opts.yFmt?opts.yFmt(yv):Math.round(yv))+'</text>';}
+  if(opts.ref!=null){const y=Y(opts.ref);g+='<line x1="'+pl+'" y1="'+y+'" x2="'+(w-pr)+'" y2="'+y+'" stroke="#F5A623" stroke-width="1.6" stroke-dasharray="6 4"/><text x="'+(w-pr)+'" y="'+(y-5)+'" text-anchor="end" font-size="8.5" font-weight="800" fill="#F5A623">'+opts.refLabel+'</text>';}
+  labels.forEach((lb,i)=>{
+    const bx=pl+band*i+outer;
+    series.forEach((s,si)=>{
+      const v=s.vals[i];if(v==null)return;
+      const x=bx+si*slot+(slot-bw)/2, y=Y(v), bh=Math.max(2,y0-y);
+      g+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="3" fill="url(#g'+CH_ID+'_'+si+')"><title>'+lb+' — '+s.name+': '+(opts.yFmt?opts.yFmt(v):v)+(opts.sub?' · '+opts.sub[i]:'')+'</title></rect>';
+      if(ns===1){g+='<text x="'+(x+bw/2)+'" y="'+(y-5)+'" text-anchor="middle" font-size="9" font-weight="900" fill="#fff" stroke="#0b0b14" stroke-width="3" paint-order="stroke">'+(opts.yFmt?opts.yFmt(v):v)+'</text>';}
+    });
+    if(n<=18||i%2===0)g+='<text x="'+(pl+band*i+band/2).toFixed(1)+'" y="'+(h-9)+'" text-anchor="middle" font-size="8.5" font-weight="700" fill="'+MU+'">'+lb+'</text>';
+  });
+  const leg=series.length>1?'<div class="leg">'+series.map(s=>'<span><i style="background:'+s.color+';box-shadow:0 0 8px '+s.color+'88"></i><b style="color:#fff">'+s.name+'</b></span>').join('')+'</div>':'';
+  const chipsH=(opts.chips||[]).map(c=>'<span style="background:'+c[2]+'1e;border:1px solid '+c[2]+'55;color:'+c[2]+';border-radius:9px;padding:3px 9px;font-size:9px;font-weight:900">'+c[0]+' <span style="color:#fff">'+c[1]+'</span></span>').join(' ');
+  return '<div class="card" style="border-top:3px solid '+(opts.accent||series[0].color)+'">'+
+    '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px"><h3 class="s" style="margin:0;flex:1">'+title+'</h3>'+chipsH+'</div>'+leg+
+    '<svg viewBox="0 0 '+w+' '+h+'" style="width:100%;height:auto">'+g+'</svg></div>';
 }
 function marginChart(){
-  const buckets=[['Won by 13+',t=>t.margin>=13],['Won by 7-12',t=>t.margin>=7&&t.margin<=12],['Won by 1-6',t=>t.margin>=1&&t.margin<=6],['Draw',t=>t.margin===0],['Lost by 1-6',t=>t.margin<=-1&&t.margin>=-6],['Lost by 7-12',t=>t.margin<=-7&&t.margin>=-12],['Lost by 13+',t=>t.margin<=-13]];
-  const counts=buckets.map(b=>TG.filter(b[1]).length);
-  const mx=Math.max(...counts,1);
-  const cols=['#4ADE80','#4ADE80','#4ADE80','#FACC15','#F87171','#F87171','#F87171'];
-  return buckets.map((b,i)=>barRow(b[0],counts[i],mx,cols[i],'')).join('')+'<p class="note">More than half the season (8 of 15 games) has been decided by a converted try or less.</p>';
-}
-function buildOpposition(){
-  const opps={};
-  TG.forEach(t=>{ (opps[t.opp]=opps[t.opp]||[]).push(t); });
-  const rows=Object.entries(opps).map(([o,g])=>({o,g,pos:LPOS[o]})).sort((a,b)=>a.pos-b.pos);
-  document.getElementById('page-opposition').innerHTML='<div class="card"><h3>🔍 HEAD-TO-HEAD BY OPPONENT (sorted by their ladder position)</h3><div style="overflow-x:auto"><table><thead><tr><th>Opponent</th><th>Pos</th><th>Meetings</th><th>Results</th><th>Agg For</th><th>Agg Against</th></tr></thead><tbody>'+
-    rows.map(x=>'<tr><td style="font-weight:700">'+FULL[x.o]+'</td><td>'+x.pos+ordinal(x.pos)+'</td><td>'+x.g.length+'</td><td>'+x.g.map(t=>'<span class="wl '+t.res+'" title="R'+t.r+' '+t.f+'–'+t.a+'">'+t.res+'</span>').join(' ')+'</td><td>'+x.g.reduce((s,t)=>s+t.f,0)+'</td><td>'+x.g.reduce((s,t)=>s+t.a,0)+'</td></tr>').join('')+
-    '</tbody></table></div><p class="note">Hover a result chip for round and score. Tweed have beaten two current top-8 sides: Falcons (R1) and Burleigh (R15).</p></div>';
-}
-function buildLadder(){
-  document.getElementById('page-ladder').innerHTML='<div class="card"><h3>🏆 HOSTPLUS CUP LADDER — AFTER ROUND 17 (OFFICIAL)</h3><div style="overflow-x:auto"><table><thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>Byes</th><th>PF</th><th>PA</th><th>Diff</th><th>Pts</th></tr></thead><tbody>'+
-    LADDER.map((t,i)=>'<tr style="'+(t.team===TEAM?'background:rgba(0,75,160,.25);outline:1px solid #004BA0':i<8?'background:rgba(255,255,255,.02)':'')+'"><td>'+(i+1)+'</td><td style="font-weight:700">'+FULL[t.team]+'</td><td>'+t.p+'</td><td>'+t.w+'</td><td>'+t.d+'</td><td>'+t.l+'</td><td>'+t.byes+'</td><td>'+t.f+'</td><td>'+t.a+'</td><td style="font-weight:700;color:'+((t.f-t.a)>=0?'var(--green)':'var(--red)')+'">'+((t.f-t.a)>=0?'+':'')+(t.f-t.a)+'</td><td style="font-weight:900;color:#fff">'+t.pts+'</td></tr>').join('')+
-    '</tbody></table></div><p class="note">Byes worth 2 pts (QRL rules). Source: Rugby League Project official ladder, 13 Jul 2026. Tweed highlighted; top 8 lightly shaded.</p></div>';
-}
-
-const TZ_METHOD="Precise try-placement (left/middle/right) tracking is not published for the Hostplus Cup, so this tab profiles scoring from verified match data: estimated try volume (points ÷ 4.7), strike timing by half, concession timing, 20+ point halves and scoreless halves — cross-checked against Rugby League Project records and the official QRL ladder. Leading-scorer facts are verified: Ronald Philitoga (Northern Pride) and Alexander Lobb (Wynnum-Manly) lead the comp with 14 tries; Lobb tops the points on 150.";
-const HCCFG={cardBg:'var(--card)',border:'var(--bord)',muted:'#8892A8',acc:'#F97316',acc2:'#60A5FA',short:n=>n,hl:'Seagulls'};
-function buildTZ(){
-  document.getElementById('page-tryzone').innerHTML=tzHTML(GAMES,{...HCCFG,method:TZ_METHOD,
-    scorers:[{player:'Ronald Philitoga',team:'Pride',pos:'Outside back',stat:'14 tries — comp co-leader'},
-             {player:'Alexander Lobb',team:'WM Seagulls',pos:'Goal-kicking back',stat:'14 tries · 150 pts — top pointscorer'}]});
-}
-function buildAdv(){
-  document.getElementById('page-advanced').innerHTML=advHTML(GAMES,HCCFG)+
-  '<p class="note" style="margin-top:10px">Tweed highlighted. Note the volatility column — Tweed’s margin swings are among the smallest in the comp: the games are always close, which is why late-game execution is the priority.</p>';
-}
-const ROSTER_RICH=[{"n": "Lindon McGrady", "num": 6, "pos": "Halfback", "apps": 15, "tries": 5, "goals": 48, "pts": 114, "rm": 620, "tck": 204, "eff": null, "fpg": 40.9, "chips": [["Try assists", "13"], ["LB assists", "15"], ["Forced dropouts", "10"], ["Avg kick m", "145.8"]], "note": "Top pointscorer (114) and the only ever-present spine member. 13 try assists and 15 line-break assists \u2014 the attack runs through his hands and boot."}, {"n": "Tim Carson", "num": 1, "pos": "Fullback", "apps": 13, "tries": 4, "goals": 3, "pts": 22, "rm": 1846, "tck": 42, "eff": 68.9, "fpg": 31.4, "chips": [["Line breaks", "6"], ["Tackle breaks", "53"], ["Kick-return m", "565"], ["Try assists", "3"]], "note": "First-choice No.1 since his 7 March debut \u2014 142m a game and the launch point of every counter-attack."}, {"n": "Adam Christensen", "num": 12, "pos": "Second Row", "apps": 12, "tries": 6, "goals": 0, "pts": 24, "rm": 1138, "tck": 266, "eff": 95.0, "fpg": 41.3, "chips": [["Line breaks", "5"], ["Offloads", "6"], ["Avg run m", "94/g"]], "note": "Top tryscorer (6) AND best defender (95% efficiency) \u2014 the squad's highest fantasy average. Everything good happens down his edge."}, {"n": "Shaquai Mitchell", "num": 10, "pos": "Prop", "apps": 15, "tries": 1, "goals": 0, "pts": 4, "rm": 1153, "tck": 221, "eff": 89.8, "fpg": 26.1, "chips": [["Post-contact m", "548.6"], ["Offloads", "15"], ["Try assists", "2"]], "note": "Ever-present middle \u2014 nearly half his metres come after contact and 15 offloads keep sets alive."}, {"n": "Max Bradbury", "num": 8, "pos": "Prop", "apps": 14, "tries": 3, "goals": 0, "pts": 12, "rm": 1088, "tck": 272, "eff": 93.2, "fpg": 29.1, "chips": [["Post-contact m", "450"], ["Tackle breaks", "7"], ["Hit-ups", "6.4/g"]], "note": "Squad-high 272 tackles at 93% \u2014 the workhorse who keeps the middle honest."}, {"n": "Allan Fitzgibbon", "num": 5, "pos": "Winger", "apps": 14, "tries": 4, "goals": 0, "pts": 16, "rm": 2114, "tck": 43, "eff": 72.9, "fpg": 25.6, "chips": [["Tackle breaks", "39"], ["Line breaks", "4"], ["Avg run m", "151/g \u2014 team high"]], "note": "Team-high 2,114 running metres \u2014 the yardage winger who gets Tweed out of trouble every restart."}, {"n": "Romano Cook", "num": 14, "pos": "Hooker", "apps": 13, "tries": 1, "goals": 0, "pts": 4, "rm": 461, "tck": 233, "eff": null, "fpg": 24.3, "chips": [["Try assists", "6"], ["LB assists", "5"], ["Receipts", "595"]], "note": "Bench to starting nine from R15 \u2014 118 receipts in the Burleigh win. Service speed lifted with him starting."}, {"n": "Sunny Kama", "num": 4, "pos": "Centre", "apps": 9, "tries": 4, "goals": 0, "pts": 16, "rm": 914, "tck": 97, "eff": 89.0, "fpg": 27.1, "chips": [["Line breaks", "6"], ["Tackle breaks", "21"], ["Avg run m", "101/g"]], "note": "Four tries and six line breaks in nine games \u2014 the strike weapon when fit."}, {"n": "Malakhi Donovan", "num": 3, "pos": "Centre / Winger", "apps": 7, "tries": 5, "goals": 0, "pts": 20, "rm": 867, "tck": 77, "eff": 85.6, "fpg": 33.7, "chips": [["Line breaks", "4"], ["Tackle breaks", "24"], ["Avg run m", "123/g"]], "note": "Five tries in seven games \u2014 best strike-rate in the squad. Keeping him on the park changes the attack."}, {"n": "Jensen Taumoepeau", "num": 2, "pos": "Winger", "apps": 5, "tries": 3, "goals": 0, "pts": 12, "rm": 638, "tck": 16, "eff": 84.2, "fpg": 30.8, "chips": [["Line breaks", "3"], ["Tackle breaks", "22"], ["Avg run m", "127/g"]], "note": "Three tries in five games at 127m a game \u2014 hasn't lost when he's crossed."}];
-const ROSTER_BASIC=[["Zane Harrison", 7, "Halfback", 5, 3], ["Sam Verrills", 9, "Hooker", 4, 2], ["Jesse Jackson", 17, "Prop / Middle", 9, 1], ["Jett Liu", 10, "Prop", 8, 1], ["JJ Collins", 8, "Prop", 8, 1], ["Conor Carey", 4, "Centre", 8, 1], ["Chase Chapman", 10, "Prop", 8, 0], ["Shannon Gardiner", 18, "Hooker", 7, 3], ["Luke Sommerton", 9, "Hooker", 7, 2], ["Max Hayley", 12, "Second Row", 6, 1], ["Jack Cullen", 13, "Lock", 6, 0], ["Harry Croker", 12, "Second Row", 5, 0], ["Kaleb Ngamanu", 3, "Centre", 4, 1], ["Sialetili Faeamani", 5, "Winger / Centre", 4, 0], ["Matthew Egan", 7, "Halfback", 3, 0], ["Patrick Irwin", 7, "Halfback", 3, 0], ["Luke Cesari", 2, "Winger", 2, 0], ["Jake Gleeson", 5, "Winger", 2, 0], ["Lamar Manuel-Liolevave", 8, "Prop", 2, 0], ["Kalani Skipps", 5, "Winger", 2, 1], ["Ethan Ferguson", 2, "Winger", 1, 1], ["Braden Whittaker", 1, "Fullback", 1, 0], ["Matthew Bollard", 1, "Fullback", 1, 0]];
-const POSC={'Fullback':'#3498DB','Winger':'#1ABC9C','Centre':'#9B59B6','Halfback':'#F5C400','Five-Eighth':'#F5C400','Hooker':'#E67E22','Prop':'#E74C3C','Second Row':'#2ECC71','Lock':'#16A085','Forward':'#E74C3C','Middle':'#E74C3C','Utility':'#7F8C8D','Outside back':'#1ABC9C','Middle Forward':'#E74C3C','Winger / Centre':'#1ABC9C','Centre / Winger':'#9B59B6','Prop / Middle':'#E74C3C'};
-function effCol(e){return e==null?'#8892A8':e>=88?'#2ecc71':e>=78?'#F5A623':'#e74c3c';}
-function buildPlayers(){
-  const maxRM=Math.max(...ROSTER_RICH.map(p=>p.rm));
-  const maxTCK=Math.max(...ROSTER_RICH.map(p=>p.tck));
-  const cards=ROSTER_RICH.map(p=>{
-    const pc=POSC[p.pos]||'#7F8C8D';
-    const posText=pc==='#F5C400'?'#000':'#fff';
-    const appsPct=Math.round(p.apps/15*100);
-    return '<div style="background:var(--card2);border:1px solid var(--bord);border-left:4px solid '+pc+';border-radius:12px;padding:16px">'+
-    '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px">'+
-      '<div style="width:40px;height:40px;border-radius:10px;background:'+pc+';color:'+posText+';font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center">#'+p.num+'</div>'+
-      '<div style="flex:1;min-width:130px"><div style="font-size:15px;font-weight:900;color:#fff">'+p.n+'</div>'+
-      '<div style="display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap">'+
-        '<span style="background:'+pc+'25;border:1px solid '+pc+'60;color:'+pc+';border-radius:10px;padding:2px 9px;font-size:9px;font-weight:800">'+p.pos.toUpperCase()+'</span>'+
-        '<span style="font-size:10px;color:var(--muted)">'+p.apps+' of 15 games ('+appsPct+'%)</span></div></div>'+
-      '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
-        [[p.rm.toLocaleString()+'m','Run Metres','#F97316'],[p.tries,'Tries','#4ADE80'],[p.tck,'Tackles','#60A5FA'],[p.pts,'Points','#FACC15'],[p.fpg,'Fantasy/g','#B784E0']]
-        .map(x=>'<div style="text-align:center;background:rgba(255,255,255,.04);border-radius:9px;padding:7px 11px;min-width:62px"><div style="font-size:14px;font-weight:900;color:'+x[2]+'">'+x[0]+'</div><div style="font-size:7.5px;color:var(--muted);letter-spacing:.4px">'+x[1].toUpperCase()+'</div></div>').join('')+'</div></div>'+
-    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="width:78px;font-size:8.5px;color:var(--muted);text-align:right">RUN METRES</span><div style="flex:1;height:9px;background:rgba(255,255,255,.05);border-radius:5px;overflow:hidden"><div style="width:'+Math.round(p.rm/maxRM*100)+'%;height:100%;background:#F97316"></div></div><span style="width:44px;font-size:9px;color:var(--muted)">'+Math.round(p.rm/maxRM*100)+'%</span></div>'+
-    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="width:78px;font-size:8.5px;color:var(--muted);text-align:right">TACKLES</span><div style="flex:1;height:9px;background:rgba(255,255,255,.05);border-radius:5px;overflow:hidden"><div style="width:'+Math.round(p.tck/maxTCK*100)+'%;height:100%;background:#60A5FA"></div></div><span style="width:44px;font-size:9px;color:'+effCol(p.eff)+';font-weight:800">'+(p.eff!=null?p.eff.toFixed(1)+'%':'—')+'</span></div>'+
-    '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">'+p.chips.map(x=>'<span style="font-size:8.5px;background:rgba(255,255,255,.05);border:1px solid var(--bord);border-radius:10px;padding:2px 8px;color:#C0CCE0"><strong style="color:'+pc+'">'+x[1]+'</strong> '+x[0]+'</span>').join('')+
-    (p.goals?'<span style="font-size:8.5px;background:rgba(255,255,255,.05);border:1px solid var(--bord);border-radius:10px;padding:2px 8px;color:#C0CCE0"><strong style="color:'+pc+'">'+p.goals+'</strong> Goals</span>':'')+'</div>'+
-    '<p style="font-size:10px;color:#C0CCE0;line-height:1.65">'+p.note+'</p></div>';
-  }).join('');
-  const basics=ROSTER_BASIC.map(b=>{
-    const pc=POSC[b[2]]||'#7F8C8D';
-    return '<div style="background:var(--card2);border:1px solid var(--bord);border-left:3px solid '+pc+';border-radius:10px;padding:11px 13px">'+
-    '<div style="font-size:12px;font-weight:800;color:#fff;margin-bottom:4px">'+b[0]+'</div>'+
-    '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="background:'+pc+'25;border:1px solid '+pc+'60;color:'+pc+';border-radius:9px;padding:1px 8px;font-size:8px;font-weight:800">'+b[2].toUpperCase()+'</span>'+
-    '<span style="font-size:9.5px;color:var(--muted)">'+b[3]+' apps · '+b[4]+' '+(b[4]===1?'try':'tries')+'</span></div></div>';
-  }).join('');
-  document.getElementById('page-players').innerHTML=
-  '<div class="card" style="border-color:#F97316"><h3>👤 PLAYER PROFILES — FULL 2026 SQUAD (33 PLAYERS USED, R1–R17)</h3>'+
-  '<p class="note" style="margin-top:0">Stats from the QRL official match centre (appearances, tries, goals, running metres, tackles, assists, tackle efficiency, fantasy) cross-checked against Rugby League Project season records — verified: Adam Christensen top tryscorer (6), Lindon McGrady top pointscorer (114). Every position verified against official QRL/NRL.com player profiles and QRL team lists (July 2026); jersey numbers rotate week to week. Coach: Joe O\'Callaghan.</p></div>'+
-  '<div class="card"><h3>⭐ CORE ROTATION — FULL STAT PROFILES</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:12px">'+cards+'</div></div>'+
-  '<div class="card"><h3>📋 REST OF SQUAD</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">'+basics+'</div>'+
-  '<p class="note">Appearance/try counts per Rugby League Project 2026 season records; bars above are relative to squad-best (run metres: Fitzgibbon 2,114 · tackles: Bradbury 272). Tackle % coloured green ≥88, amber ≥78, red below.</p></div>';
-}
-
-function buildTrends(){
-  // cumulative comp points + rolling margin
-  let cum=0; const pts=[];
-  for(let r=1;r<=17;r++){
-    const g=TG.find(t=>t.r===r);
-    if(!g){cum+=2;pts.push({r,cum,label:'BYE (+2)'});continue;}
-    cum+=g.res==='W'?2:g.res==='D'?1:0;
-    pts.push({r,cum,label:g.res+' '+(g.home?'v':'@')+' '+g.opp+' '+g.f+'–'+g.a});
-  }
-  const W=740,H=200,PL=40,PB=26;
-  const mx=Math.max(...pts.map(p=>p.cum),1);
-  const X=r=>PL+(W-PL-16)*((r-1)/16), Y=v=>H-PB-(H-PB-14)*(v/mx);
-  let line='',dots='';
-  pts.forEach((p,i)=>{ line+=(i?'L':'M')+X(p.r).toFixed(1)+' '+Y(p.cum).toFixed(1)+' '; 
-    dots+='<circle cx="'+X(p.r)+'" cy="'+Y(p.cum)+'" r="3.5" fill="#F97316"><title>R'+p.r+': '+p.label+' — '+p.cum+' pts</title></circle>'; });
-  const grid=[0,4,8,12,16].filter(v=>v<=mx).map(v=>'<line x1="'+PL+'" y1="'+Y(v)+'" x2="'+(W-16)+'" y2="'+Y(v)+'" stroke="rgba(255,255,255,.06)"/><text x="'+(PL-6)+'" y="'+(Y(v)+3)+'" fill="#8892A8" font-size="9" text-anchor="end">'+v+'</text>').join('');
-  const xl=pts.map(p=>'<text x="'+X(p.r)+'" y="'+(H-8)+'" fill="#8892A8" font-size="8" text-anchor="middle">'+p.r+'</text>').join('');
-  const chart1='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto">'+grid+xl+'<path d="'+line+'" fill="none" stroke="#F97316" stroke-width="2"/>'+dots+'</svg>';
-  // rolling-3 margin
-  const wh=TG;
-  const roll=wh.map((t,i)=>{ const w=wh.slice(Math.max(0,i-2),i+1); return {r:t.r,v:w.reduce((s,x)=>s+x.margin,0)/w.length}; });
-  const mxR=Math.max(...roll.map(x=>Math.abs(x.v)),1);
-  const H2=180, Y2=v=>H2/2-(H2/2-20)*(v/mxR);
-  let l2='',d2='';
-  roll.forEach((p,i)=>{ l2+=(i?'L':'M')+X(p.r).toFixed(1)+' '+Y2(p.v).toFixed(1)+' ';
-    d2+='<circle cx="'+X(p.r)+'" cy="'+Y2(p.v)+'" r="3.5" fill="'+(p.v>=0?'#4ADE80':'#F87171')+'"><title>R'+p.r+': rolling-3 margin '+(p.v>0?'+':'')+p.v.toFixed(1)+'</title></circle>'; });
-  const chart2='<svg viewBox="0 0 '+W+' '+H2+'" style="width:100%;height:auto"><line x1="'+PL+'" y1="'+(H2/2)+'" x2="'+(W-16)+'" y2="'+(H2/2)+'" stroke="rgba(255,255,255,.18)"/><path d="'+l2+'" fill="none" stroke="#60A5FA" stroke-width="2"/>'+d2+'</svg>';
-  document.getElementById('page-trends').innerHTML=
-   '<div class="card"><h3>📈 COMPETITION POINTS ACCUMULATION — R1 TO R17</h3>'+chart1+'<p class="note">Hover a dot for the result. Flat sections are losses — the R6–R11 stretch (1 win in 6) is where the season drifted.</p></div>'+
-   '<div class="card"><h3>🌊 ROLLING 3-GAME AVERAGE MARGIN</h3>'+chart2+'<p class="note">Above the line = winning football over a 3-game window. The mid-season block (R11–R12) and the R15 Burleigh win are the peaks; the season has never been far below the line — this side is close.</p></div>'+
-   '<div class="card"><h3>🔑 WHAT MOVES THE NEEDLE</h3>'+[
-    ['🚨','Fix the first 20','Trailed at half-time in 10 of 15 with a −68 first-half differential, yet own the second halves (+32). Even par at the break converts 2–3 of the close losses.'],
-    ['🤏','Close-game execution','Five losses by 6 or less. Volatility is the lowest tier in the comp — games are always live. Last-10-minute kick selection, discipline and set control decide the season.'],
-    ['✈️','Road starts','1-0-5 away with heavy defeats at Townsville and Mackay. The R18 Capras trip (they concede 23.2/g) is the template test.']
-   ].map(x=>'<div class="mc"><span style="font-size:12px"><span style="margin-right:8px">'+x[0]+'</span><strong>'+x[1]+'</strong><div class="note" style="margin-top:4px">'+x[2]+'</div></span></div>').join('')+'</div>';
-}
-
-buildOverview();buildGames();buildHalves();buildSplits();buildOpposition();buildLadder();buildTZ();buildAdv();buildPlayers();buildTrends();
-
-// ═══════ OPPOSITION DEFENCE ANALYTICS ═══════
-function oppDefCompute(allGames, myTeam){
-  const t={};
-  const ens=n=>{ if(!t[n]) t[n]={team:n,g:0,pa:0,h1a:0,h2a:0,htG:0,log:[],zero:0,over30:0}; return t[n]; };
-  allGames.forEach(g=>{
-    [[g.home,g.as,g.ha!=null?g.ha:null,g.as-(g.ha!=null?g.ha:0),g.r,g.away],[g.away,g.hs,g.hh!=null?g.hh:null,g.hs-(g.hh!=null?g.hh:0),g.r,g.home]].forEach(x=>{
-      const [team,conc,h1,h2,r,opp]=x; const T=ens(team);
-      T.g++; T.pa+=conc; T.log.push({r,opp,conc});
-      if(h1!=null){T.htG++;T.h1a+=h1;T.h2a+=h2;}
-      if(conc===0)T.zero++;
-      if(conc>=30)T.over30++;
-    });
+  CH_ID++;
+  const w=560,h=250,pl=44,pr=16,pt=18,pb=28,iw=w-pl-pr,ih=h-pt-pb;
+  const margins=R.map(r=>r.score.tweed-r.score.opp);
+  const mx=Math.max.apply(null,margins.map(Math.abs))*1.2;
+  const Y=v=>pt+ih*(1-(v+mx)/(2*mx)), y0=Y(0);
+  const bw=Math.min(24,(iw/R.length)-5);
+  let g='<defs><linearGradient id="mgW'+CH_ID+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4ADE80"/><stop offset="100%" stop-color="#15803D"/></linearGradient><linearGradient id="mgL'+CH_ID+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#B91C1C"/><stop offset="100%" stop-color="#F87171"/></linearGradient></defs>';
+  g+='<line x1="'+pl+'" y1="'+y0+'" x2="'+(w-pr)+'" y2="'+y0+'" stroke="rgba(255,255,255,.35)" stroke-width="1.4"/>';
+  [-mx,-mx/2,mx/2,mx].forEach(v=>{const y=Y(v);g+='<line x1="'+pl+'" y1="'+y+'" x2="'+(w-pr)+'" y2="'+y+'" stroke="rgba(255,255,255,.06)"/><text x="'+(pl-7)+'" y="'+(y+3)+'" text-anchor="end" font-size="9" font-weight="700" fill="'+MU+'">'+(v>0?'+':'')+Math.round(v)+'</text>';});
+  R.forEach((r,i)=>{
+    const x=pl+iw*(i+0.5)/R.length-bw/2,m=margins[i];
+    const fill=m>0?'url(#mgW'+CH_ID+')':(m<0?'url(#mgL'+CH_ID+')':'#F5A623');
+    const y=m>=0?Y(m):y0, hh=Math.max(3,Math.abs(y0-Y(m)));
+    g+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw+'" height="'+hh.toFixed(1)+'" rx="4" fill="'+fill+'"><title>'+gm(r)+' — '+r.score.tweed+'–'+r.score.opp+' ('+(m>0?'won by '+m:(m<0?'lost by '+(-m):'draw'))+')</title></rect>';
+    g+='<text x="'+(x+bw/2)+'" y="'+(m>=0?y-5:y0+hh+11)+'" text-anchor="middle" font-size="9.5" font-weight="900" fill="'+(m>0?'#4ADE80':(m<0?'#F87171':'#F5A623'))+'" stroke="#0b0b14" stroke-width="3" paint-order="stroke">'+(m>0?'+'+m:(m<0?m:'D'))+'</text>';
+    g+='<text x="'+(x+bw/2)+'" y="'+(h-9)+'" text-anchor="middle" font-size="8.5" font-weight="700" fill="'+MU+'">R'+r.r+'</text>';
   });
-  Object.values(t).forEach(T=>{
-    T.avg=T.g?T.pa/T.g:0;
-    T.h1avg=T.htG?T.h1a/T.htG:0; T.h2avg=T.htG?T.h2a/T.htG:0;
-    T.log.sort((a,b)=>a.r-b.r);
-    T.last5=T.log.slice(-5);
-    T.l5avg=T.last5.length?T.last5.reduce((s,x)=>s+x.conc,0)/T.last5.length:0;
-    T.trend=T.l5avg-T.avg; // + = defence getting worse
-  });
-  return t;
+  const wn=margins.filter(m=>m>0).length,ls=margins.filter(m=>m<0).length;
+  return '<div class="card" style="border-top:3px solid #4ADE80">'+
+    '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px"><h3 class="s" style="margin:0;flex:1">RESULT MARGIN BY ROUND</h3>'+
+    '<span style="background:#4ADE801e;border:1px solid #4ADE8055;color:#4ADE80;border-radius:9px;padding:3px 9px;font-size:9px;font-weight:900">'+wn+' WINS</span>'+
+    '<span style="background:#F871711e;border:1px solid #F8717155;color:#F87171;border-radius:9px;padding:3px 9px;font-size:9px;font-weight:900">'+ls+' LOSSES</span></div>'+
+    '<svg viewBox="0 0 '+w+' '+h+'" style="width:100%;height:auto">'+g+'</svg></div>';
 }
-function oppDefHTML(cfg){
-  const {allGames,myTeam,myGames,full,lpos,nextOpp,cardBg,border,muted,acc,acc2}=cfg;
-  const def=oppDefCompute(allGames,myTeam);
-  const opps=[...new Set(myGames.map(g=>g.opp))];
-  const ranked=Object.values(def).filter(T=>T.team!==myTeam).sort((a,b)=>a.avg-b.avg);
-  const rankOf={}; ranked.forEach((T,i)=>rankOf[T.team]=i+1);
-  const mx=Math.max(...ranked.map(T=>T.avg));
-
-  // 1. Next opponent scout
-  let scout='';
-  if(nextOpp){
-    const T=def[nextOpp.team];
-    const vs=myGames.filter(g=>g.opp===nextOpp.team);
-    const leak=T.h2avg>T.h1avg?'2nd':'1st';
-    scout='<div style="background:linear-gradient(135deg,#0A1528,#101a30);border:1px solid '+acc+';border-radius:14px;padding:22px 26px;margin-bottom:16px">'+
-      '<div style="font-size:9px;font-weight:800;letter-spacing:.8px;color:'+acc2+'">NEXT OPPONENT — DEFENSIVE SCOUT</div>'+
-      '<h2 style="color:white;font-size:17px;font-weight:900;margin:4px 0 2px">'+ (full[nextOpp.team]||nextOpp.team) +'</h2>'+
-      '<p style="color:'+muted+';font-size:11px;margin-bottom:14px">'+nextOpp.detail+'</p>'+
-      '<div style="display:flex;gap:12px;flex-wrap:wrap">'+
-      [['CONCEDES / GAME',T.avg.toFixed(1),'rank '+rankOf[nextOpp.team]+' of '+ranked.length+' defences'],
-       ['1ST-HALF CONCEDED',T.h1avg.toFixed(1),'per game'],
-       ['2ND-HALF CONCEDED',T.h2avg.toFixed(1),'they leak most in the '+leak+' half'],
-       ['LAST 5 GAMES',T.l5avg.toFixed(1)+'/g',(T.trend>1?'defence trending WORSE':T.trend<-1?'defence tightening — beware':'holding steady')],
-       ['VS US THIS YEAR',(vs.length?vs.map(g=>g.f+'–'+g.a+' (R'+g.r+')').join(' · '):'first meeting'),(vs.length?'our score vs their '+T.avg.toFixed(1)+' avg':'')]]
-      .map(x=>'<div style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid '+border+';border-radius:10px;padding:12px 14px"><div style="font-size:8.5px;font-weight:800;letter-spacing:.6px;color:'+muted+'">'+x[0]+'</div><div style="font-size:19px;font-weight:900;color:white;margin:3px 0 2px">'+x[1]+'</div><div style="font-size:9.5px;color:'+muted+'">'+x[2]+'</div></div>').join('')+
-      '</div>'+
-      '<p style="color:#C0CCE0;font-size:11.5px;line-height:1.7;margin-top:14px">'+nextOpp.note+'</p></div>';
-  }
-
-  // 2. attack vs par ledger (our games)
-  const parRows=myGames.map(g=>{
-    const T=def[g.opp]; const par=g.f-T.avg;
-    return {r:g.r,opp:g.opp,f:g.f,a:g.a,avg:T.avg,par,res:g.res};
-  });
-  const parAvg=parRows.reduce((s,x)=>s+x.par,0)/parRows.length;
-  const mxPar=Math.max(...parRows.map(x=>Math.abs(x.par)),1);
-  const W=740,rowH=24,padL=118,padR=44,H=parRows.length*rowH+46;
-  const cx=padL+(W-padL-padR)/2, sc=v=>((W-padL-padR)/2)*(v/mxPar);
-  let svg='<line x1="'+cx+'" y1="12" x2="'+cx+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,.18)"/>';
-  svg+='<text x="'+(cx-6)+'" y="'+(H-8)+'" fill="'+muted+'" font-size="9" text-anchor="end">below their usual concession ←</text>';
-  svg+='<text x="'+(cx+6)+'" y="'+(H-8)+'" fill="'+muted+'" font-size="9">→ above (we beat their defence)</text>';
-  parRows.forEach((x,i)=>{
-    const y=16+i*rowH, w=Math.abs(sc(x.par)), col=x.par>=0?'#4ADE80':'#F87171';
-    svg+='<text x="'+(padL-8)+'" y="'+(y+8)+'" fill="#C0CCE0" font-size="9" font-weight="700" text-anchor="end">R'+x.r+' v '+x.opp+'</text>';
-    svg+='<rect x="'+(x.par>=0?cx:cx-w)+'" y="'+y+'" width="'+Math.max(w,1.5)+'" height="8" rx="3" fill="'+col+'"><title>R'+x.r+' v '+x.opp+': scored '+x.f+' vs their season avg '+x.avg.toFixed(1)+' conceded ('+(x.par>=0?'+':'')+x.par.toFixed(1)+')</title></rect>';
-  });
-  const parChart='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto">'+svg+'</svg>';
-
-  // 3. every opponent defensive table
-  const tbl=ranked.map((T,i)=>{
-    const played=myGames.filter(g=>g.opp===T.team);
-    const vsTxt=played.length?played.map(g=>'<span title="R'+g.r+'" style="font-weight:800;color:'+(g.f>T.avg?'#4ADE80':'#F87171')+'">'+g.f+'</span>').join(' · '):'—';
-    const leak=T.htG?(T.h2avg>T.h1avg?'2nd':'1st'):'—';
-    return '<tr'+(nextOpp&&T.team===nextOpp.team?' style="background:rgba(74,158,255,.10);outline:1px solid '+acc+'"':'')+'>'+
-      '<td style="font-weight:700;text-align:left">'+(i+1)+'. '+(full[T.team]||T.team)+'</td>'+
-      '<td>'+(lpos[T.team]||'—')+'</td><td style="font-weight:800">'+T.avg.toFixed(1)+'</td>'+
-      '<td>'+T.h1avg.toFixed(1)+'</td><td>'+T.h2avg.toFixed(1)+'</td><td>'+leak+'</td>'+
-      '<td style="color:'+(T.trend>1?'#F87171':T.trend<-1?'#4ADE80':'#FACC15')+';font-weight:800">'+(T.trend>0?'+':'')+T.trend.toFixed(1)+'</td>'+
-      '<td>'+T.over30+'</td><td>'+vsTxt+'</td></tr>';
-  }).join('');
-
-  // 4. defensive leak bars
-  const bars=ranked.map(T=>{
-    const pct1=T.avg?T.h1avg/mx*100:0, pct2=T.avg?T.h2avg/mx*100:0;
-    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'+
-     '<div style="width:110px;font-size:10px;font-weight:700;text-align:right">'+T.team+'</div>'+
-     '<div style="flex:1;display:flex;height:10px;border-radius:5px;overflow:hidden;background:rgba(255,255,255,.04)">'+
-       '<div title="1st half: '+T.h1avg.toFixed(1)+'" style="width:'+pct1/2+'%;background:'+acc+'"></div>'+
-       '<div title="2nd half: '+T.h2avg.toFixed(1)+'" style="width:'+pct2/2+'%;background:'+acc2+';border-left:2px solid #0A0A1E"></div></div>'+
-     '<div style="width:70px;font-size:10px;font-weight:800;color:#fff">'+T.avg.toFixed(1)+'<span style="color:'+muted+';font-weight:600"> /g</span></div></div>';
-  }).join('');
-
-  return scout+
-   '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">'+
-   [['OUR ATTACK VS PAR',(parAvg>=0?'+':'')+parAvg.toFixed(1),'points vs opponents\' usual concession'],
-    ['GAMES ABOVE PAR',parRows.filter(x=>x.par>0).length+'/'+parRows.length,'we out-scored their season average'],
-    ['SOFTEST DEFENCE FACED',ranked[ranked.length-1].team,ranked[ranked.length-1].avg.toFixed(1)+' conceded/game'],
-    ['STINGIEST DEFENCE FACED',ranked[0].team,ranked[0].avg.toFixed(1)+' conceded/game']]
-   .map(x=>'<div style="flex:1;min-width:150px;background:'+cardBg+';border:1px solid '+border+';border-radius:10px;padding:14px 16px"><div style="font-size:9px;font-weight:800;letter-spacing:.6px;color:'+muted+'">'+x[0]+'</div><div style="font-size:21px;font-weight:900;color:white;margin:4px 0 2px">'+x[1]+'</div><div style="font-size:10px;color:'+muted+'">'+x[2]+'</div></div>').join('')+'</div>'+
-   '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;margin-bottom:16px">'+
-     '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:4px">🎯 OUR ATTACK VS THEIR DEFENSIVE PAR — GAME BY GAME</h3>'+
-     '<p style="font-size:10px;color:'+muted+';margin-bottom:8px">Par = that opponent\'s season average points conceded. Green right = we scored more than teams usually manage against them.</p>'+parChart+'</div>'+
-   '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;margin-bottom:16px;overflow-x:auto">'+
-     '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:10px">🛡️ EVERY DEFENCE IN THE COMPETITION — RANKED BEST TO WORST</h3>'+
-     '<style>.od-tbl td{padding:6px 8px;border-top:1px solid rgba(255,255,255,.05);text-align:center}.od-tbl th{padding:6px 8px}</style>'+
-     '<table class="od-tbl" style="width:100%;border-collapse:collapse;font-size:10.5px"><thead><tr style="color:'+muted+';font-size:8.5px;letter-spacing:.5px;text-transform:uppercase"><th style="text-align:left">Defence (ranked)</th><th>Ladder</th><th>PA/G</th><th>H1 PA</th><th>H2 PA</th><th>Leaks in</th><th>L5 trend</th><th>30+ conceded</th><th>Our scores v them</th></tr></thead><tbody style="color:#D5DEEE">'+tbl+'</tbody></table>'+
-     '<p style="font-size:9px;color:'+muted+';margin-top:8px">L5 trend = last-5-games concession vs season average (+ = defence deteriorating, − = tightening). Our scores are green when above their par. Next opponent highlighted.</p></div>'+
-   '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px">'+
-     '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:2px">⏱️ WHERE EACH DEFENCE LEAKS — 1ST VS 2ND HALF CONCEDED</h3>'+
-     '<div style="display:flex;gap:14px;font-size:10px;color:'+muted+';margin:4px 0 10px"><span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:'+acc+';margin-right:5px"></span>1st half</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:'+acc2+';margin-right:5px"></span>2nd half</span></div>'+bars+'</div>';
-}
-
-function buildOppDef(){
-  const myGames=TG.map(t=>({r:t.r,opp:t.opp,f:t.f,a:t.a,res:t.res}));
-  document.getElementById('page-oppdef').innerHTML=oppDefHTML({
-    allGames:GAMES, myTeam:TEAM, myGames, full:FULL, lpos:LPOS,
-    nextOpp:{team:'Capras', detail:'Round 18 · Saturday 18 July, 5:00pm · Aurizon Stadium, Rockhampton (away) — same-day double-header with the BMD side, who face the Capras women at Browne Park at 3:00pm.',
-      note:'The Capras sit 8th and concede 23.2/game, but they stole it 26–24 at Piggabeen in R7 after we led 18–6 at half-time — they won that second half 20–6. Overall we still edged their defensive par that day (24 scored vs their 23.2 average), and their defence has been trending the wrong way. The pattern from R7 is the warning: get in front and then keep playing footy after the break rather than protecting the lead.'},
-    cardBg:'var(--card)', border:'var(--bord)', muted:'#8892A8', acc:'#F97316', acc2:'#60A5FA'});
-}
-buildOppDef();
-
-
-// ═══════ SEASON SPLITS v2 — FULL METRIC BREAKDOWN BY THIRDS ═══════
-function splitsBlockCompute(tg, sg, ctx){
-  const g=tg.filter(t=>t.r>=sg.from&&t.r<=sg.to);
-  if(!g.length) return {...sg,g,empty:true};
-  const w=g.filter(t=>t.res==='W').length,d=g.filter(t=>t.res==='D').length,l=g.filter(t=>t.res==='L').length;
-  const pf=g.reduce((s,t)=>s+t.f,0),pa=g.reduce((s,t)=>s+t.a,0);
-  const wh=g.filter(t=>t.hf!=null);
-  const h1f=wh.reduce((s,t)=>s+t.hf,0),h1a=wh.reduce((s,t)=>s+t.ha_,0);
-  const h2f=wh.reduce((s,t)=>s+(t.f-t.hf),0),h2a=wh.reduce((s,t)=>s+(t.a-t.ha_),0);
-  const led=wh.filter(t=>t.hf>t.ha_),lvl=wh.filter(t=>t.hf===t.ha_),trl=wh.filter(t=>t.hf<t.ha_);
-  const cb=wh.filter(t=>t.hf<t.ha_&&t.res==='W').length, blown=wh.filter(t=>t.hf>t.ha_&&t.res==='L').length;
-  const close=g.filter(t=>Math.abs(t.margin)<=6), closeW=close.filter(t=>t.res==='W').length, closeD=close.filter(t=>t.res==='D').length;
-  const big=g.filter(t=>Math.abs(t.margin)>=13), bigW=big.filter(t=>t.res==='W').length;
-  const hg=g.filter(t=>t.home),ag=g.filter(t=>!t.home);
-  const rec=x=>x.filter(t=>t.res==='W').length+'-'+x.filter(t=>t.res==='D').length+'-'+x.filter(t=>t.res==='L').length;
-  const byeN=(ctx.byes||[]).filter(r=>r>=sg.from&&r<=sg.to).length;
-  // opposition-adjusted (par) + opponent quality
-  let atkPar=0,defPar=0,oppPosSum=0,oppRated=0;
-  g.forEach(t=>{
-    const oc=ctx.oppConcede[t.opp], os=ctx.oppScore[t.opp];
-    if(oc!=null){atkPar+=t.f-oc;}
-    if(os!=null){defPar+=os-t.a;}
-    if(ctx.lpos&&ctx.lpos[t.opp]){oppPosSum+=ctx.lpos[t.opp];oppRated++;}
-  });
-  const zeroH=wh.filter(t=>t.hf===0||t.f-t.hf===0).length;
-  const bigH=wh.filter(t=>t.hf>=18||t.f-t.hf>=18).length;
-  return {...sg,g,w,d,l,pf,pa,wh,h1f,h1a,h2f,h2a,led:led.length,lvl:lvl.length,trl:trl.length,cb,blown,
-    close:close.length,closeW,closeD,big:big.length,bigW,homeRec:rec(hg),awayRec:rec(ag),byeN,
-    pts:w*2+d+byeN*2, atkPar:g.length?atkPar/g.length:0, defPar:g.length?defPar/g.length:0,
-    oppPos:oppRated?oppPosSum/oppRated:null, zeroH, bigH};
-}
-function seasonSplitsHTML(tg, segs, cfg){
-  const {cardBg,border,muted,acc,acc2,full,byes,allGames,lpos,myTeam,intro}=cfg;
-  // comp context: each opponent's season avg scored & conceded (excluding vs us? keep season-wide, standard par)
-  const oppScore={},oppConcede={},cnt={};
-  allGames.forEach(g=>{
-    [[g.home,g.hs,g.as],[g.away,g.as,g.hs]].forEach(x=>{
-      const [t,f,a]=x;
-      oppScore[t]=(oppScore[t]||0)+f; oppConcede[t]=(oppConcede[t]||0)+a; cnt[t]=(cnt[t]||0)+1;
-    });
-  });
-  Object.keys(cnt).forEach(t=>{oppScore[t]/=cnt[t];oppConcede[t]/=cnt[t];});
-  const ctx={oppScore,oppConcede,lpos,byes};
-  const B=segs.map(sg=>splitsBlockCompute(tg,sg,ctx));
-  const played=B.filter(b=>!b.empty);
-  const labels=['OPENING THIRD','MIDDLE THIRD','FINAL THIRD'];
-
-  // ── block hero cards ──
-  const mxAvg=Math.max(...played.map(s=>Math.max(s.pf/s.g.length,s.pa/s.g.length)),1);
-  const cards=B.map((s,i)=>{
-    if(s.empty){
-      return '<div style="background:'+cardBg+';border:1px dashed '+border+';border-radius:14px;padding:20px;opacity:.75">'+
-      '<div style="font-size:9px;font-weight:800;letter-spacing:.8px;color:'+muted+'">'+labels[i]+' · R'+s.from+'–R'+s.to+'</div>'+
-      '<div style="font-size:18px;font-weight:900;color:#fff;margin:6px 0">Not yet played</div>'+
-      '<p style="font-size:10.5px;color:'+muted+';line-height:1.6">'+(s.note||'Fills in automatically as rounds are added.')+'</p></div>';
-    }
-    const diff=s.pf-s.pa, gp=s.g.length;
-    const complete=s.to<=Math.max(...tg.map(t=>t.r));
-    return '<div style="background:'+cardBg+';border:1px solid '+(diff>=0?'rgba(74,222,128,.4)':border)+';border-radius:14px;padding:20px">'+
-      '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px"><div style="font-size:9px;font-weight:800;letter-spacing:.8px;color:'+acc2+'">'+labels[i]+' · R'+s.from+'–R'+s.to+(complete?'':' (in progress)')+'</div><span style="font-size:9px;color:'+muted+'">'+gp+' games'+(s.byeN?' + '+s.byeN+' bye'+(s.byeN>1?'s':''):'')+'</span></div>'+
-      '<div style="font-size:26px;font-weight:900;color:#fff;margin:8px 0 2px">'+s.w+'-'+s.d+'-'+s.l+'</div>'+
-      '<div style="font-size:10px;color:'+muted+';margin-bottom:10px">'+s.pts+' comp pts · diff <strong style="color:'+(diff>=0?'#4ADE80':'#F87171')+'">'+(diff>=0?'+':'')+diff+'</strong> · win rate '+Math.round(s.w/gp*100)+'%</div>'+
-      '<div style="display:flex;gap:3px;flex-wrap:wrap;margin-bottom:10px">'+s.g.map(t=>'<span title="R'+t.r+' '+(t.home?'v':'@')+' '+(full?full[t.opp]||t.opp:t.opp)+' '+t.f+'–'+t.a+(t.hf!=null?' (HT '+t.hf+'–'+t.ha_+')':'')+'" style="width:26px;height:26px;border-radius:6px;font-size:9px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;background:'+(t.res==='W'?'rgba(74,222,128,.18)':t.res==='D'?'rgba(250,204,21,.15)':'rgba(248,113,113,.14)')+';color:'+(t.res==='W'?'#4ADE80':t.res==='D'?'#FACC15':'#F87171')+'">'+t.res+'</span>').join('')+'</div>'+
-      (s.summary?'<p style="font-size:10.5px;color:#C0CCE0;line-height:1.7">'+s.summary+'</p>':'')+'</div>';
-  }).join('');
-
-  // ── per-game margin chart by block ──
-  const allM=Math.max(...tg.map(t=>Math.abs(t.margin)),1);
-  const mCharts=played.map((s,i)=>{
-    const bars=s.g.map(t=>{
-      const h=Math.max(Math.abs(t.margin)/allM*54,3);
-      const col=t.res==='W'?'#4ADE80':t.res==='D'?'#FACC15':'#F87171';
-      return '<div title="R'+t.r+' '+(t.home?'v':'@')+' '+t.opp+': '+(t.margin>0?'+':'')+t.margin+'" style="display:flex;flex-direction:column;align-items:center;width:34px">'+
-        '<div style="height:56px;display:flex;flex-direction:column;justify-content:flex-end">'+(t.margin>=0?'<div style="width:16px;height:'+h+'px;background:'+col+';border-radius:3px 3px 0 0"></div>':'')+'</div>'+
-        '<div style="height:1px;width:100%;background:rgba(255,255,255,.25)"></div>'+
-        '<div style="height:56px">'+(t.margin<0?'<div style="width:16px;height:'+h+'px;background:'+col+';border-radius:0 0 3px 3px;margin:0 auto"></div>':'')+'</div>'+
-        '<div style="font-size:7.5px;color:'+muted+'">R'+t.r+'</div></div>';
-    }).join('');
-    return '<div style="flex:1;min-width:220px"><div style="font-size:10px;font-weight:800;color:#fff;margin-bottom:6px">R'+s.from+'–'+s.to+' <span style="color:'+muted+';font-weight:600">margin per game</span></div><div style="display:flex;gap:2px;flex-wrap:wrap">'+bars+'</div></div>';
-  }).join('');
-
-  // ── the full metric comparison table ──
-  const gp=s=>s.g.length;
-  const rows=[
-    ['— RESULTS —',null],
-    ['Games played',s=>gp(s)],
-    ['Record (W-D-L)',s=>s.w+'-'+s.d+'-'+s.l],
-    ['Win rate',s=>Math.round(s.w/gp(s)*100)+'%'],
-    ['Competition points banked',s=>s.pts+(s.byeN?' (incl. '+s.byeN*2+' bye)':'')],
-    ['— SCOREBOARD —',null],
-    ['Points for / game',s=>(s.pf/gp(s)).toFixed(1),'hi'],
-    ['Points against / game',s=>(s.pa/gp(s)).toFixed(1),'lo'],
-    ['Differential / game',s=>((s.pf-s.pa)/gp(s)>=0?'+':'')+((s.pf-s.pa)/gp(s)).toFixed(1),'hi'],
-    ['Est. tries / game (pts ÷ 4.7)',s=>(s.pf/gp(s)/4.7).toFixed(1),'hi'],
-    ['— HALVES —',null],
-    ['1st-half points for / game',s=>s.wh.length?(s.h1f/s.wh.length).toFixed(1):'—','hi'],
-    ['1st-half points against / game',s=>s.wh.length?(s.h1a/s.wh.length).toFixed(1):'—','lo'],
-    ['1st-half differential (total)',s=>((s.h1f-s.h1a)>=0?'+':'')+(s.h1f-s.h1a),'hi'],
-    ['2nd-half points for / game',s=>s.wh.length?(s.h2f/s.wh.length).toFixed(1):'—','hi'],
-    ['2nd-half points against / game',s=>s.wh.length?(s.h2a/s.wh.length).toFixed(1):'—','lo'],
-    ['2nd-half differential (total)',s=>((s.h2f-s.h2a)>=0?'+':'')+(s.h2f-s.h2a),'hi'],
-    ['Share of our points after HT',s=>(s.h1f+s.h2f)?Math.round(s.h2f/(s.h1f+s.h2f)*100)+'%':'—'],
-    ['Led / level / trailed at HT',s=>s.led+' / '+s.lvl+' / '+s.trl],
-    ['Comeback wins (trailed HT)',s=>s.cb,'hi'],
-    ['Leads blown (led HT, lost)',s=>s.blown,'lo'],
-    ['Scoreless halves (us)',s=>s.zeroH,'lo'],
-    ['18+ point halves (us)',s=>s.bigH,'hi'],
-    ['— GAME SHAPE —',null],
-    ['Close games ≤6 (record)',s=>s.close?s.closeW+'-'+s.closeD+'-'+(s.close-s.closeW-s.closeD):'0'],
-    ['13+ margin games (won)',s=>s.big?s.bigW+' of '+s.big:'0'],
-    ['Home record',s=>s.homeRec],
-    ['Away record',s=>s.awayRec],
-    ['— OPPOSITION-ADJUSTED —',null],
-    ['Attack vs par / game*',s=>(s.atkPar>=0?'+':'')+s.atkPar.toFixed(1),'hi'],
-    ['Defence vs par / game*',s=>(s.defPar>=0?'+':'')+s.defPar.toFixed(1),'hi'],
-    ['Avg opponent ladder position',s=>s.oppPos?s.oppPos.toFixed(1):'—'],
+(function(){
+  const L=R.map(r=>'R'+r.r);
+  const tv=k=>R.map(r=>T(r)?T(r)[k]:null), ov=k=>R.map(r=>O(r)?O(r)[k]:null);
+  const OPP='Opponent';
+  const charts=[
+    marginChart(),
+    chart('POINTS — FOR v AGAINST',[{name:'Tweed',color:ACC,vals:R.map(r=>r.score.tweed)},{name:OPP,color:'#3B82F6',vals:R.map(r=>r.score.opp)}],L,{zero:true,sub:R.map(gm)}),
+    chart('RUN METRES — US v THEM',[{name:'Tweed',color:ACC,vals:tv('runM')},{name:OPP,color:'#3B82F6',vals:ov('runM')}],L,{yFmt:v=>Math.round(v/50)*50,sub:R.map(gm)}),
+    chart('POST-CONTACT METRES — US v THEM',[{name:'Tweed',color:ACC,vals:tv('pcm')},{name:OPP,color:'#3B82F6',vals:ov('pcm')}],L,{sub:R.map(gm)}),
+    chart('COMPLETION RATE',[{name:'Tweed',color:ACC,vals:tv('comp')}],L,{ref:80,refLabel:'80% target',yFmt:v=>Math.round(v)+'%',sub:R.map(gm)}),
+    chart('ERRORS — US v THEM',[{name:'Tweed',color:ACC,vals:tv('err')},{name:OPP,color:'#3B82F6',vals:ov('err')}],L,{zero:true,sub:R.map(gm)}),
+    chart('KICK METRES — US v THEM',[{name:'Tweed',color:ACC,vals:tv('kickM')},{name:OPP,color:'#3B82F6',vals:ov('kickM')}],L,{sub:R.map(gm)}),
+    chart('MISSED TACKLES — US v THEM',[{name:'Tweed',color:ACC,vals:tv('miss')},{name:OPP,color:'#3B82F6',vals:ov('miss')}],L,{zero:true,sub:R.map(gm)}),
   ];
-  const num=v=>parseFloat(String(v).replace('%','').replace('+',''));
-  const tblRows=rows.map(r=>{
-    if(!r[1])return '<tr><td colspan="'+(played.length+1)+'" style="text-align:left;padding:10px 8px 4px;font-size:8.5px;font-weight:800;letter-spacing:.8px;color:'+acc2+'">'+r[0].replace(/—/g,'').trim()+'</td></tr>';
-    const vals=played.map(s=>r[1](s));
-    // best-block highlight for hi/lo metrics
-    let bestIdx=-1;
-    if(r[2]&&played.length>1){
-      const nums=vals.map(num);
-      if(nums.every(x=>!isNaN(x))){
-        bestIdx=r[2]==='hi'?nums.indexOf(Math.max(...nums)):nums.indexOf(Math.min(...nums));
-      }
-    }
-    return '<tr><td style="text-align:left;color:#C0CCE0">'+r[0].replace('*','<span style="color:'+muted+'">*</span>')+'</td>'+
-      vals.map((v,i)=>'<td style="font-weight:800;color:'+(i===bestIdx?'#4ADE80':'#fff')+'">'+v+(i===bestIdx?' ▲':'')+'</td>').join('')+'</tr>';
-  }).join('');
-  const tbl='<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;margin-bottom:16px;overflow-x:auto">'+
-    '<h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:8px">🔬 EVERY KEY METRIC — BLOCK BY BLOCK</h3>'+
-    '<style>.sp-tbl td,.sp-tbl th{padding:5px 8px;border-top:1px solid rgba(255,255,255,.05);text-align:center;font-size:10.5px}.sp-tbl th{color:'+muted+';font-size:9px;letter-spacing:.5px}</style>'+
-    '<table class="sp-tbl" style="width:100%;border-collapse:collapse"><thead><tr><th style="text-align:left">METRIC</th>'+played.map(s=>'<th>R'+s.from+'–'+s.to+'</th>').join('')+'</tr></thead><tbody>'+tblRows+'</tbody></table>'+
-    '<p style="font-size:9px;color:'+muted+';margin-top:8px">▲ marks the better block for that metric. *Par = opponents\' season averages: attack vs par = points scored above what that opponent usually concedes; defence vs par = points that opponent scored below their usual output (positive = we held them under par). Opponent quality uses current ladder positions.</p></div>';
-
-  // ── scoring rate comparison bars ──
-  const cmp=played.map(s=>{
-    const avgF=s.pf/gp(s),avgA=s.pa/gp(s);
-    return '<div style="margin-bottom:14px"><div style="font-size:10px;font-weight:800;color:#fff;margin-bottom:5px">R'+s.from+'–'+s.to+' <span style="color:'+muted+';font-weight:600">('+s.w+'-'+s.d+'-'+s.l+')</span></div>'+
-     '<div style="display:flex;align-items:center;gap:8px;margin-bottom:3px"><span style="width:52px;font-size:8.5px;color:'+muted+';text-align:right">FOR</span><div style="flex:1;height:11px;background:rgba(255,255,255,.05);border-radius:5px;overflow:hidden"><div style="width:'+(avgF/mxAvg*100)+'%;height:100%;background:'+acc+'"></div></div><span style="width:36px;font-size:10px;font-weight:800;color:#fff">'+avgF.toFixed(1)+'</span></div>'+
-     '<div style="display:flex;align-items:center;gap:8px"><span style="width:52px;font-size:8.5px;color:'+muted+';text-align:right">AGAINST</span><div style="flex:1;height:11px;background:rgba(255,255,255,.05);border-radius:5px;overflow:hidden"><div style="width:'+(avgA/mxAvg*100)+'%;height:100%;background:#F87171"></div></div><span style="width:36px;font-size:10px;font-weight:800;color:#fff">'+avgA.toFixed(1)+'</span></div></div>';
-  }).join('');
-
-  return '<div style="background:linear-gradient(135deg,#0A1528,#101024);border:1px solid '+acc+';border-radius:14px;padding:20px 24px;margin-bottom:16px">'+
-    '<h2 style="color:white;font-size:15px;font-weight:900;margin-bottom:4px">📊 SEASON SPLITS — THE SEASON IN THIRDS</h2>'+
-    '<p style="color:'+muted+';font-size:11px">'+(intro||'')+'</p></div>'+
-    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px">'+cards+'</div>'+
-    tbl+
-    '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px;margin-bottom:16px"><h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:12px">📉 MARGIN, EVERY GAME, BY BLOCK <span style="font-weight:600;color:'+muted+';font-size:10px">(above line = won the game)</span></h3><div style="display:flex;gap:24px;flex-wrap:wrap">'+mCharts+'</div></div>'+
-    '<div style="background:'+cardBg+';border:1px solid '+border+';border-radius:12px;padding:18px"><h3 style="color:white;font-size:13px;font-weight:800;margin-bottom:12px">📈 BLOCK-BY-BLOCK SCORING — AVG POINTS PER GAME</h3>'+cmp+'</div>';
-}
-
-function buildThirds(){
-  const segs=[
-    {from:1,to:9,summary:'Promising start (beat the eventual leaders in R1) then five losses in six — the block where the first-half problem took hold: trailed at HT in six of eight games and conceded 29 a game.'},
-    {from:10,to:18,summary:'Genuinely even footy: positive differential, defence down to 22.9/game, and the two best wins of the year (Hunters, Burleigh away). R18 @ Capras completes the block.'},
-    {from:19,to:26,note:'Six games to finish — the audition block for 2027. Data targets: even or better at half-time, defence under 22, and 3+ wins.'},
-  ];
-  document.getElementById('page-thirds').innerHTML=seasonSplitsHTML(TG,segs,{cardBg:'var(--card)',border:'var(--bord)',muted:'#8892A8',acc:'#F97316',acc2:'#60A5FA',full:FULL,byes:byeRounds,allGames:GAMES,lpos:LPOS,
-    intro:'Hostplus Cup season in thirds: R1–9, R10–18, R19–26. Every key metric per block — results, scoreboard, halves, game shape and opposition-adjusted numbers. Byes (R'+byeRounds.join(', R')+') count 2 competition points inside their block.'});
-}
-buildThirds();
-
-
-
-</script></body></html>
+  if(R.some(r=>T(r)&&T(r).effTck!=null))charts.push(chart('TACKLE EFFICIENCY',[{name:'Tweed',color:ACC,vals:tv('effTck')}],L,{yFmt:v=>Math.round(v)+'%',sub:R.map(gm)}));
+  if(R.some(r=>T(r)&&T(r).pens!=null))charts.push(chart('PENALTIES CONCEDED — US v THEM',[{name:'Tweed',color:ACC,vals:tv('pens')},{name:OPP,color:'#3B82F6',vals:ov('pens')}],L,{zero:true,sub:R.map(gm)}));
+  document.getElementById('page-charts').innerHTML=
+    '<div class="hd"><h2>📈 CHARTS — THE SEASON, VISUALISED</h2><p>Hover any point or bar for the exact game and value. Every chart is drawn from the same official QRL numbers as the tables.</p></div>'+
+    '<div class="ch-grid">'+charts.join('')+'</div>'+
+    '<p class="note">Missing bars = stat not published for that game. All data: official QRL match centres.</p>';
+})();
+</script>
+</body></html>
